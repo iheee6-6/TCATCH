@@ -1,0 +1,453 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<link rel="apple-touch-icon" sizes="76x76"
+	href="../assets/img/apple-icon.png">
+<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>TCATCH</title>
+<meta
+	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+	name='viewport' />
+<!--     Fonts and icons     -->
+<link
+	href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"
+	rel="stylesheet" />
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
+	rel="stylesheet">
+<!-- CSS Files -->
+
+<link href="resources/css/mypage.css" rel="stylesheet" />
+<link href="resources/css/bootstrap.min.css" rel="stylesheet" />
+<link href="resources/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
+
+<style>
+ul {
+	list-style: none;
+}
+
+.my_list01 {
+	display: inline-block;
+	list-style: none;
+}
+
+.my_list01 li {
+	float: left;
+	border-right: 1px dotted paleturquoise;
+	background-color: #f9f9fb;
+	_display: inline-block;
+	_overflow: hidden;
+	_height: 100px;
+	padding-bottom: 5px
+}
+
+.my_list01 li div {
+	padding-right: 20px;
+	width: 270px;
+	height: 110px;
+	padding: 18px 21px 18px 18px;
+}
+
+.my_list01 li div.end {
+	background: none;
+	border: none;
+	width: 206px;
+}
+
+.my_list01 li img {
+	float: left;
+}
+
+.my_list01 li strong {
+	margin-left: 65px;
+	font-weight: bold;
+	color: #3c3c3c;
+	display: block;
+	margin-bottom: 6px;
+	height: 26px;
+	margin-top: 2px;
+	margin-left: 61px;
+	line-height: 13px;
+	word-wrap: break-word;
+	word-break: break-all;
+	overflow: hidden;
+}
+
+.my_list01 li span {
+	margin-left: 62px;
+	font-size: 11px;
+	display: block;
+	line-height: 15px;
+}
+
+.my_list01 li.nocont {
+	text-align: center;
+	width: 728px;
+	padding-bottom: 35px;
+	_height: 70px;
+}
+
+.my_list01 li.nocont em {
+	display: block;
+	font-size: 12px;
+	margin-bottom: 3px;
+	padding-top: 32px;
+	border-top: 1px solid #d2d2d2;
+}
+
+.my_list01 li.nocont a {
+	display: inline-block;
+}
+</style>
+</head>
+
+<body class="">
+	<div class="wrapper ">
+		<div class="sidebar" data-color="white" data-active-color="danger">
+			<!--
+        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+    -->
+			<div class="logo">
+				<a href="http://www.creative-tim.com" class="simple-text logo-mini">
+					<div class="logo-image-small">
+						<img src="../assets/img/logo-small.png">
+					</div>
+				</a> <a href="http://www.creative-tim.com"
+					class="simple-text logo-normal"> 신하은님의 MYPAGE <!-- <div class="logo-image-big">
+            <img src="../assets/img/logo-big.png">
+          </div> -->
+				</a>
+			</div>
+			<div class="sidebar-wrapper">
+				<ul class="nav">
+					<li class="active"><a href="./dashboard.html"> <i
+							class="nc-icon nc-check-2"></i>
+							<p>예매확인/취소</p>
+					</a></li>
+					<li><a href="./icons.html"> <i
+							class="nc-icon nc-favourite-28"></i>
+							<p>나의 관심 공연</p>
+					</a></li>
+					<li><a href="./map.html"> <i class="nc-icon nc-paper"></i>
+							<p>나의 관람 공연</p>
+					</a></li>
+					<li><a href="./notifications.html"> <i
+							class="nc-icon nc-bell-55"></i>
+							<p>나의 맞춤 설정</p>
+					</a></li>
+					<li><a href="./user.html"> <i class="nc-icon nc-single-02"></i>
+							<p>회원정보 수정</p>
+					</a></li>
+					<li><a href="./tables.html"> <i class="nc-icon nc-tile-56"></i>
+							<p>Table List</p>
+					</a></li>
+					<li><a href="./typography.html"> <i
+							class="nc-icon nc-caps-small"></i>
+							<p>Typography</p>
+					</a></li>
+					<li class="active-pro"><a href="./upgrade.html"> <i
+							class="nc-icon nc-spaceship"></i>
+							<p>Upgrade to PRO</p>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- <jsp:include page="leftMeun.html"/> -->
+		<div class="main-panel">
+			<div class="content" style="margin-top: 5px;">
+				<div class="row">
+					<div class="col-md-8">
+						<div class="card">
+							<div class="card-header">
+								<h4 class="card-title text-danger" style="float: left;">
+									<i class="nc-icon nc-alert-circle-i">&nbsp;</i>예매내역
+								</h4>
+							</div>
+							<div class="card-body">
+								<div id="mypage_contain" class="mypage_contain">
+
+									<div class="mycont">
+
+										<div class="blu_box">
+											<p class="tit">뮤지컬 [쓰릴 미]</p>
+											<p class="poster">
+												<a href='/Pages/Perf/Detail/Detail.aspx?IdPerf=35104'
+													Title='뮤지컬 [쓰릴 미]'><img
+													src='http://tkfile.yes24.com/upload2/PerfBlog/202001/20200106/20200106-35104_1.jpg'
+													width='180' height='224' alt='' /></a>
+											</p>
+											<table id="tblOrderInfo" class="table_sm">
+												<tr>
+													<th class="le">예매번호</th>
+													<td><strong>Y1530778690</strong></td>
+													<th>예매자</th>
+													<td class="ri">신하은</td>
+												</tr>
+												<tr id="trPerfDateTime">
+													<th class="le">관람일</th>
+													<td colspan="3" class="ri"><strong>2020.02.09
+															15:00</strong></td>
+												</tr>
+												<tr id="trTheater">
+													<th class="le">공연장</th>
+													<td colspan="3" class="ri">예스24스테이지 2관 <a
+														class='dcursor' onclick='jsf_otv_ViewTheaterMap(3422);'><img
+															src='http://tkfile.yes24.com/img/mypage/btn_map.gif'
+															alt='약도' /></a></td>
+												</tr>
+												<tr id="trSeat">
+													<th class="le">좌석
+														<p>
+															<a href='javascript:;MySeatPopup();'><img
+																src='http://tkfile.yes24.com/img/mypage/btn_chkseat.gif'
+																alt='좌석위치보기' style='margin-left: -7px' /></a>
+														</p>
+													</th>
+													<td colspan="3" class="ri">
+														<div class="scroll">
+															S석 1층 L열 014번<br />
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<th class="le">티켓수령방법
+														<p></p>
+													</th>
+													<td colspan="3" class="ri">
+
+
+														<div id="divDeliveryNone">
+															<span class="blu">현장수령</span> <span>- 공연 당일
+																티켓교부처에서 티켓을 받으시면 됩니다.</span> <span>- 예매내역서(프린트)와 신분증을
+																지참해주세요.</span>
+														</div>
+													</td>
+												</tr>
+											</table>
+
+											<!-- <div id="divButtonGroup" class="btn">
+                        <div class="fr">
+
+
+                          <a href='/Pages/Perf/Detail/Detail.aspx?IdPerf=35104'><img
+                              src='http://tkfile.yes24.com/img/mypage/btn_minfor.gif' alt='공연정보' /></a>
+                          <a class='dcursor' onclick='jsf_otv_SetFavoritePerformance(35104);'><img
+                              src='http://tkfile.yes24.com/img/mypage/btn_basket03.gif' alt='관심공연담기' /></a>
+                          <a class='dcursor' onclick='jsf_otv_SetAlarm(35104);'><img
+                              src='http://tkfile.yes24.com/img/mypage/btn_alram.gif' alt='나의 맞춤알림 설정' /></a>
+                        </div>
+                      </div> -->
+											<div id="divFamily_info" class="user_info"></div>
+										</div>
+										<div id="divFamilyNoticeinfo" class="stxt fr"></div>
+									</div>
+									<div class="mycont">
+										<!-- NEW 결제내역 -->
+										<h2 class="tit">
+											<img src="http://tkfile.yes24.com/img/mypage/h2_mtit07.gif"
+												alt="결제내역" />
+										</h2>
+										<!-- A. 무통장입금이 포함된 CASE -->
+										<div id="tblPV_Bank">
+
+											<table class="table_gbox">
+												<colgroup>
+													<col width="13%" />
+													<col width="*" />
+													<col width="13%" />
+													<col width="27%" />
+												</colgroup>
+												<tr>
+													<th class="le">예매일시</th>
+													<td class="ri">2020.01.30 19:09</td>
+													<th>예매상태</th>
+													<td class="ri">예약 - 결제전</td>
+												</tr>
+												<tr>
+													<th class="le">총결제금액</th>
+													<td class="ri"><span class='red tit'><strong>41,000</strong>원</span><br />
+													<span class='sm'>(티켓금액 <strong>40,000</strong>원 +
+															예매수수료 <strong>1,000</strong>원 + 배송비 <strong>0</strong>원)
+													</span></td>
+													<th>현금영수증<a class="dcursor"
+														onclick="jsf_otv_CashReceiptGuide();"><img
+															src="http://tkfile.yes24.com/img/mypage/btn_ques.gif"
+															alt="현금영수증 안내" /></a></th>
+													<td class="ri">미신청<br />
+													<a class='dcursor'
+														onclick='jsf_otv_CashReceiptIssue(1530778690,1);'><img
+															src='http://tkfile.yes24.com/img/mypage/btn_prop.gif'
+															alt='현금영수증 신청' /></a>&nbsp;
+													</td>
+												</tr>
+												<tr>
+													<th class="le">결제수단</th>
+													<td colspan="3" class="ri">
+														<div>
+															<em>무통장입금</em>
+															<div class='sub_list'>
+																<span>- 입금계좌: 기업은행 07501540897803 / 예금주: 예스이십사㈜</span><span>-
+																	입금마감시간: <strong>2020.01.31 (금) 23:29:59까지 총
+																		결제금액 41,000</strong>원이 입금되지 않으면 자동 취소됩니다.
+																</span><span>* 은행에 따라 밤 11시 30분 이후로는 온라인 입금이 제한될 수 있습니다.</span>
+															</div>
+
+														</div>
+													</td>
+												</tr>
+
+											</table>
+
+										</div>
+										<!-- //A. 무통장입금이 포함된 CASE -->
+										<!-- B. 신용카드가 포함된 CASE -->
+
+										<!-- //B. 신용카드가 포함된 CASE -->
+										<!-- C. Yes24 결제수단만 포함된 CASE -->
+
+										<!-- //C. Yes24 결제수단만 포함된 CASE -->
+										<!-- D. 0원 결제(A.B.C 이외) CASE -->
+
+										<!-- //D. 0원 결제(A.B.C 이외) CASE -->
+										<!-- //NEW 결제내역 -->
+										<!-- 좌석정보 리스트 -->
+
+										<!-- 취소안내 -->
+										<div class="mycont">
+
+											<h2 class="tit">
+												<img src="http://tkfile.yes24.com/img/mypage/h2_mtit08.gif"
+													alt="예매취소 안내" />
+											</h2>
+											<div class="gray_box02 " style="padding: 10px;">
+												<h4 style="margin-top: 10px;">
+													※ 취소 마감시간 :<span class='text-danger'> 2020.02.08 (토)
+														11:00</span> 까지
+												</h4>
+												<div id="tblCancelinfo2">
+													<h3>취소 수수료 안내></h3>
+													<ul>
+														<li>- 취소 일자에 따라서 취소수수료가 달라집니다 <span>* 단, 예매 당일
+																밤 12시 이전 취소시에는 취소수수료 없음(취소기한내에한함)</span></li>
+														<li>- 취소 시 예매수수료는 예매 당일 밤 12시 이전까지 환불되며, 그 이후 기간에는
+															환불되지 않습니다.</li>
+														<li class="f_n">- 취소수수료 관련 기타 자세한 내용은 예매 <a
+															href="http://ticket.yes24.com/Pages/UserGuide/Cancel.aspx"><em>이용안내
+																	>수수료</em></a> 안내를 확인해주세요.
+														</li>
+													</ul>
+													<table class="table_sm">
+														<colgroup>
+															<col width="30%" />
+															<col width="30%" />
+															<col width="*" />
+														</colgroup>
+														<tr>
+															<th>내용</th>
+															<th>취소일</th>
+															<th>취소수수료</th>
+														</tr>
+														<tr>
+															<td>미부과 기간</td>
+															<td>2020.01.30 ~ 2020.01.30</td>
+															<td>없음</td>
+														</tr>
+														<tr>
+															<td>관람일 9일전 ~관람일 7일전까지</td>
+															<td>2020.01.31 ~ 2020.02.02</td>
+															<td>티켓금액의 10%</td>
+														</tr>
+														<tr>
+															<td>관람일 6일전 ~관람일 3일전까지</td>
+															<td>2020.02.03 ~ 2020.02.06</td>
+															<td>티켓금액의 20%</td>
+														</tr>
+														<tr>
+															<td>관람일 2일전 ~관람일 1일전까지</td>
+															<td>2020.02.07 ~ 2020.02.08</td>
+															<td>티켓금액의 30%</td>
+														</tr>
+													</table>
+
+												</div>
+											</div>
+
+											<ul class="gbox_notice" style="text-align: right;">
+												<li><a class='dcursor' id='imgCancelPayNone'
+													onclick='jsf_otv_CancelPayNone(0);'><img
+														src='http://tkfile.yes24.com/img/mypage/btn_no_reserv.gif'
+														alt='예매취소 신청' /></a></li>
+											</ul>
+											<div style="text-align: center;">
+												<a class='dcursor' id='imgList'
+													onclick='jsf_otv_GoMyOrder();'><img
+													src='http://tkfile.yes24.com/img/mypage/btn_reser_list.gif'
+													alt='예매내역 목록' /></a>
+											</div>
+										</div>
+									</div>
+									<!-- 유의사항 -->
+
+
+
+									<div class="mycont">
+										<h2 class="tit">
+											<img src="http://tkfile.yes24.com/img/mypage/h2_mtit09.gif"
+												alt="유의사항" />
+										</h2>
+										<div class="gray_box03">
+											<ul>
+												<li class="red">- 취소 시 예매수수료는 예매 당일 밤 12시 이전까지 환불되며, 그
+													이후 기간에는 환불되지 않습니다.</li>
+												<li>- 티켓 수령 방법 변경(현장수령 -> 배송)은 예매 완료된 건에 한하며, 배송비 결제는
+													신용카드만 결제 가능합니다.(단 공연일 기준 12일 전까지 / 일부 공연 불가)</li>
+												<li>- 다음과 같은 경우 PC/모바일에서는 취소 또는 부분취소가 불가하오니 고객센터로
+													문의해주시기 바랍니다.<br /> &nbsp;&nbsp 1) YES머니, YES상품권, 쿠폰 등 예스24
+													결제수단을 사용하여 예매한 경우<br /> &nbsp;&nbsp 2) 무통장입금 예매 후 신용카드로
+													배송비를 추가 결제한 경우<br /> &nbsp;&nbsp 3) 티켓 배송이 완료되었거나 시작된 경우<br />
+													&nbsp;&nbsp;&nbsp;&nbsp;(취소마감시간 이전에 고객센터로 반송되어야 취소 가능, 취소
+													수수료는 티켓 도착일 기준으로 부과되며 배송비는 환불 불가)
+												</li>
+												<li>- 예매 티켓 배송은 예매완료 후 4~5일 이내(영업일 기준) 배송해드립니다. 티켓 분실 시
+													재발권이 불가하오니, 보관에 주의해주시기 바랍니다.<br /> &nbsp;&nbsp;&nbsp;(일괄배송
+													공연일 경우 일괄배송일 기준 4~5일(영업일 기준) 이내에 수령 가능)
+												</li>
+												<li>- 무통장입금 예매 취소 시 결제금액에서 수수료를 제외한 금액만큼 환불처리됩니다. 부분 취소
+													시에는 취소수수료 + 잔여티켓금액 등을 제외한 <br /> &nbsp;&nbsp;&nbsp;금액만큼
+													환불처리 됩니다.
+												</li>
+												<li>- 신용카드 예매 취소 시에는 발생되는 수수료(부분취소 시에는 취소수수료+잔여티켓금액 등)에
+													대한 금액을 재 결제 후 기존 결제내역은 전체 취소됩니다.</li>
+												<li>- 복합결제로 예매한 경우 전체 취소 시 각 결제 수단(YES머니, YES상품권 등)으로
+													자동환급됩니다. 단 YES상품권, 예매권 등 사용기한이 <br />
+													&nbsp;&nbsp;&nbsp;만료된 경우 재사용하실 수 없습니다.
+												</li>
+												<li>- 예매 취소 시점과 해당 카드사의 환불 처리 기준에 따라 환급방법과 환급일은 다소 차이가
+													있을 수 있습니다.</li>
+												<li>- 기타 문의사항은 [이용안내]를 참고하시거나, 고객센터(1544-6399) 또는
+													[1:1문의]를 이용해주시기 바랍니다.</li>
+											</ul>
+										</div>
+									</div>
+
+
+								</div>
+							</div>
+
+
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+</body>
+
+</html>
