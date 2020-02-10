@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+	
 	<h1 align="center">TCATCH</h1>
 	<div align="center">
-		<button onclick="javascript:location.href='login.do';">Login
-			!</button>
+		<button onclick="javascript:location.href='login.do';">Login!</button>
 	</div>
 
 </body>
