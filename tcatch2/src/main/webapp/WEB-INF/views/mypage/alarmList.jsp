@@ -220,6 +220,7 @@ ul {
 							</div>
 							<div class="text-danger" style="margin-left: 30px;">
 								※ 티켓오픈 알림 받을 공연을 추가하거나 티켓 오픈 예정 공연 확인은 공지사항을 확인해주세요
+							
 								<div style="float: right; margin-right: 50px;">
 									<button class="btn btn-sm">공지사항 확인</button>
 									<button class="btn btn-sm">전체 선택</button>

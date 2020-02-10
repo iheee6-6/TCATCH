@@ -117,6 +117,7 @@
 					class="simple-text logo-normal"> 신하은님의 MYPAGE <!-- <div class="logo-image-big">
             <img src="../assets/img/logo-big.png">
           </div> -->
+          
 				</a>
 			</div>
 			<div class="sidebar-wrapper">
