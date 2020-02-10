@@ -121,10 +121,9 @@
 			</div>
 			<div class="sidebar-wrapper">
 				<ul class="nav">
-					<li><a href="./dashboard.html"> <i
-							class="nc-icon nc-check-2"></i>
+					<li><i class="nc-icon nc-check-2"></i>
 							<p>예매확인/취소</p>
-					</a></li>
+					</li>
 					<li><a href="./icons.html"> <i
 							class="nc-icon nc-favourite-28"></i>
 							<p>나의 관심 공연</p>
