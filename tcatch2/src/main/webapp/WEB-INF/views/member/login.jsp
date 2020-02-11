@@ -41,8 +41,6 @@
         background-color:white;
       }
     </style>
-    <!-- Custom styles for this template -->
-    <link href="floating-labels.css" rel="stylesheet">
 
 <head>
 	<title>Login</title>
@@ -50,7 +48,7 @@
 </head>
 
 <body>
-<jsp:include page="common/menubar.jsp"/>
+<jsp:include page="../common/menubar.jsp"/>
     <form class="form-signin">
   <div class="text-center mb-4">
     <!-- <img class="mb-4" src="로고.png" alt="" width="100" height="90"> -->
@@ -76,7 +74,7 @@
   <p class="mt-5 mb-3 text-muted text-center" style="font-family: 'Do Hyeon', sans-serif;">T CATCH에 오신 것을 환영합니다.</p>
   <p class="mt-5 mb-3 text-muted text-center" style="font-family: 'Do Hyeon', sans-serif;">로그인하시면 더욱 많은 서비스를 이용가능합니다.</p>
 </form>
-<link href="${contextPath }/resources/css/font.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 

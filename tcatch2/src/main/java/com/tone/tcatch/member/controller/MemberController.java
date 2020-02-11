@@ -8,7 +8,7 @@ public class MemberController {
 	
 	@RequestMapping("/login.do")
 	public String login() {
-		return "login";
+		return "member/login";
 	}
 	
 	@RequestMapping("enrollView.do")
