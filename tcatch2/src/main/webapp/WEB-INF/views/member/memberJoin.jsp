@@ -74,7 +74,7 @@
 	<form class="form-signin">
         <div class="text-center mb-4">
             <!-- <img class="mb-4" src="로고.png" alt="" width="100" height="90"> -->
-            <h1 class="mb-4">티캐치(Ticket Catch)</h1>
+            <h1 class="mb-4">Ticket Catch</h1>
             <h1 class="h3 mb-3 font-weight-normal">로그인/회원가입</h1>
         </div>
         <table align="center" width="600" height="600">

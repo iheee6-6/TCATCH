@@ -1,0 +1,105 @@
+@charset "utf-8";
+/*헤더*/
+
+.perform-top{display:block; width:100%; height:100px; min-width:1300px; position:absolute; top:0; left:0;z-index:50;}
+.perform-top.fixed{position:fixed; top:0px; background:#fff;border-bottom:1px solid #ddd;}
+.perform-top.movie{background:#fff;border-bottom:1px solid #ddd;}
+.pf-left{position:absolute; left:30px; top:40px;width:150px;height:30px;z-index:10;background:rgba(0,0,0,0);}
+
+.pf-left a span{display:block; height:2px; background:#fff;}
+.perform-top.fixed .pf-left a span{background:#000;}
+.perform-top.fixed .pf-left a span.on{background:#fff;}
+.perform-top.movie .pf-left a span{background:#000;}
+.pf-left a span.pf-ham1{width:15px;margin-bottom:5px;}
+.pf-left a span.pf-ham2{width:22px;margin-bottom:5px;}
+.pf-left a span.pf-ham3{width:15px;}
+
+.pf-left a.open span.pf-ham1{width:22px !important;}
+.pf-left a.open span.pf-ham2{width:15px !important;}
+.pf-left a.open span.pf-ham3{width:22px !important;}
+@keyframes ham1 {
+  0%   {width:15px;}
+  100% {width:22px;}
+}
+@keyframes ham2 {
+  0%   {width:22px;}
+  100% {width:15px;}
+}
+@keyframes ham3 {
+  0%   {width:22px;}
+  100% {width:15px;}
+}
+@keyframes ham4 {
+  0%   {width:15px;}
+  100% {width:22px;}
+}
+.pf-left h1{display:inline; position:absolute; left:32px;top:1px;}
+.pf-left h1 img{vertical-align:top;}
+.pf-left h1 img.trans{display:inline-block;}
+.pf-left h1 img.fixed{display:none;}
+.perform-top.fixed .pf-left h1 img.trans{display:none;}
+.perform-top.fixed .pf-left h1 img.fixed{display:inline-block;}
+.perform-top.movie .pf-left h1 img.trans{display:none;}
+.perform-top.movie .pf-left h1 img.fixed{display:inline-block;}
+.pf-center{position:absolute; left:50%; transform:translate(-50%,0); top:42px;font-size:0;}
+.pf-center h2{display:inline-block;font-size:0;}
+.pf-center a{font-size:18px; color:#fff; margin:0 13px;font-weight:700;position:relative;font-family: 'Noto Sans KR', 'NanumBarunGothic', '맑은 고딕', 'Malgun Gothic', sans-serif;font-weight:300;}
+.pf-center a span{display:block;background:#ec7d2c;width:0; height:3px;position:absolute; top:30px; left:0;}
+.pf-center a:hover span{animation-name:pfcenterline;animation-duration: 0.5s;}
+.pf-center a.on span{width:100%;}
+@keyframes pfcenterline {
+  0%   {width:0;}
+  100% {width:100%;}
+}
+.pf-center a.current span{width:100%;}
+.perform-top.fixed .pf-center a{color:#000;}
+.perform-top.movie .pf-center a{color:#000;}
+.pf-right{position:absolute; width:467px; right:40px; top:40px;font-size:0;}
+.pf-right .pf-top-srch{display:inline-block;width:380px;height:40px;position:relative;top:-13px;}
+.pf-right .pf-top-srch input{font-size:15px;vertical-align:bottom;text-indent:13px; border:0 none;position:absolute;bottom:0;left:0; background:none; border-bottom:3px solid #fff; width:348px;height:32px;line-height:32px;color:#fff;}
+.pf-right .pf-top-srch input::placeholder{color:#999;font-size:13px;}
+.pf-right .pf-top-srch input:-ms-input-placeholder {color:#999;font-size:13px;}
+.pf-right .pf-top-srch input::-ms-input-placeholder {color:#999;font-size:13px;}
+.pf-right .pf-top-srch a{vertical-align:bottom;display:inline-block;position:absolute;top:13px;right:12px;}
+.pf-right .pf-top-srch a img.trans{display:inline-block;}
+.pf-right .pf-top-srch a img.fixed{display:none;}
+.pf-right .pf-top-srch.on{background:rgba(0,0,0,0.8);}
+.pf-right .pf-top-srch.on input{border-bottom:3px solid #000;color:#fff;}
+.pf-right .pf-top-srch.on a img.trans{display:inline-block;}
+.pf-right .pf-top-srch.on a img.fixed{display:none;}
+
+.pf-right a{display:inline-block; height:22px; line-height:24px;font-size:12px;position:absolute; top:0;font-family: 'Noto Sans KR', 'NanumBarunGothic', '맑은 고딕', 'Malgun Gothic', sans-serif;}
+.pf-right a span{opacity:0; transition:all 0.5s; color:#fff;}
+.pf-right .my-ticket{background:url('http://tkfile.yes24.com/imgNew/common/pf-ticket-w.png')no-repeat center top;right:33px;padding-top:22px;}
+.pf-right .global{background:url('http://tkfile.yes24.com/imgNew/common/pf-global-w.png')no-repeat center top;right:-11px;padding-top:22px;}
+.pf-right a:hover span{color:#fff;}
+.pf-right a:hover span{opacity:1;}
+
+
+/*footer*/
+footer{width:100%; min-width:1300px;border-top:1px solid #ddd;padding-bottom:25px;font-family: 'NanumBarunGothic', '맑은 고딕', 'Malgun Gothic', sans-serif;}
+footer .cont{width:1200px;}
+.footer-menu{border-bottom:1px solid #f6f6f6;height:70px;position:relative;}
+.footer-menu > a{display:inline-block;line-height:78px;font-size:15px; color:#333;padding:0 16px;position:relative;}
+.footer-menu > a:after{content:""; display:block; width:1px;height:15px;background:#eee;position:absolute;top:27px;left:0;}
+.footer-menu > a:first-child{padding-left:0;}
+.footer-menu > a:first-child:after{display:none;}
+.footer-menu .family{position:absolute;z-index:1; overflow:hidden;top:21px; right:0; border:1px solid #999;width:168px; height:28px;background:#fff;}
+.footer-menu .family li a{display:block;height:24px;line-height:24px;font-size:13px;color:#666;text-indent:10px;}
+.footer-menu .family li a:hover{text-decoration:underline;}
+.footer-menu .family li .family-btn{background:url('http://tkfile.yes24.com/imgNew/common/family-sdown.png')no-repeat 136px 9px;margin-bottom:6px;height:28px;line-height:28px;font-size:15px;color:#333;border-bottom:1px solid #ddd;}
+.footer-menu .family li .family-btn.on{background:url('http://tkfile.yes24.com/imgNew/common/family-sup.png')no-repeat 136px 9px;}
+.footer-menu .family li .family-btn:hover{text-decoration:none;}
+.footer-txt{position:relative;height:165px;}
+.footer-txt .flogo{display:block;position:absolute;top:53px;left:2px;}
+.footxt{position:absolute;top:22px;left:221px;}
+.footxt p{font-size:15px;color:#333;line-height:23px;margin-bottom:5px;}
+.footxt p.gray{color:#999;font-size:13px;}
+.footxt p.gray+p{font-size:13px;}
+.footxt p.gray a{font-size:13px;color:#333;padding-right:10px;background:url('http://tkfile.yes24.com/imgNew/common/f-arrow.png')no-repeat right center;margin-left:15px;}
+.foo-right{position:absolute;top:30px;right:-6px;width:225px;font-size:12px;}
+.foo-right .mark a{font-size:12px;color:#333;padding-right:10px;background:url('http://tkfile.yes24.com/imgNew/common/f-arrow.png')no-repeat right center;margin-left:45px;vertical-align:middle;}
+.foo-right .mark img{vertical-align:middle;}
+.foo-right p.fservice{font-size:12px; color:#999;margin-top:10px;line-height:18px;}
+
+
