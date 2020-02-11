@@ -45,7 +45,7 @@
         margin-top:50px;
       }
       body{
-        background-color:ghostwhite;
+        background-color:white;
       }
       h1,label,button,p,table{
         font-family: 'Do Hyeon', sans-serif;
