@@ -16,11 +16,11 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"
 	scope="application" />
 <link rel='stylesheet' type='text/css'
-	href="${ contextPath }/resources/css/main2.css" />
+	href="${ contextPath }/resources/css/menu/main2.css" />
 <link rel='stylesheet' type='text/css'
-	href="${ contextPath }/resources/css/menu.css" />
+	href="${ contextPath }/resources/css/menu/menu.css" />
 <link rel='stylesheet' type='text/css'
-	href="${ contextPath }/resources/css/main1.css" />
+	href="${ contextPath }/resources/css/menu/main1.css" />
 
 
 <style type="text/css">

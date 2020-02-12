@@ -5,15 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <link rel='stylesheet' type='text/css'
-	href='http://tkfile.yes24.com/New/Css/swiper.css' />
+	href='${ contextPath }/resources/css/main/swiper.css' />
 <script type='text/javascript'
-	src='http://tkfile.yes24.com/New/Js/jquery-3.4.1_min.js'></script>
+	src='${ contextPath }/resources/js/main/main1.js'></script>
 <script type='text/javascript'
-	src='http://tkfile.yes24.com/New/Js/swiper_min.js'></script>
+	src='${ contextPath }/resources/js/main/main2.js'></script>
 
 <script type='text/javascript'
-	src='http://tkfile.yes24.com/New/Js/Main.js?v=952'></script>
+	src='${ contextPath }/resources/js/main/main3.js'></script>
 	
 </head>
 <body>
@@ -153,6 +156,8 @@
 		<div class='swiper-button-next m2-kvs'></div>
 		<div class='swiper-button-prev m2-kvs'></div>
 	</div>
+
+	<jsp:include page="footer.jsp"/>
 
 </body>
 </html>

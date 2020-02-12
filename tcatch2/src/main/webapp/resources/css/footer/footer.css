@@ -1,0 +1,85 @@
+@charset "utf-8";
+
+/*footer*/
+footer{width:100%; min-width:1300px;border-top:1px solid #ddd;padding-bottom:25px;font-family: 'NanumBarunGothic', '맑은 고딕', 'Malgun Gothic', sans-serif;}
+footer .cont{width:1200px;}
+.footer-menu{border-bottom:1px solid #f6f6f6;height:70px;position:relative;}
+.footer-menu > a{display:inline-block;line-height:78px;font-size:15px; color:#333;padding:0 16px;position:relative;}
+.footer-menu > a:after{content:""; display:block; width:1px;height:15px;background:#eee;position:absolute;top:27px;left:0;}
+.footer-menu > a:first-child{padding-left:0;}
+.footer-menu > a:first-child:after{display:none;}
+.footer-menu .family{position:absolute;z-index:1; overflow:hidden;top:21px; right:0; border:1px solid #999;width:168px; height:28px;background:#fff;}
+.footer-menu .family li a{display:block;height:24px;line-height:24px;font-size:13px;color:#666;text-indent:10px;}
+.footer-menu .family li a:hover{text-decoration:underline;}
+.footer-menu .family li .family-btn{background:url('http://tkfile.yes24.com/imgNew/common/family-sdown.png')no-repeat 136px 9px;margin-bottom:6px;height:28px;line-height:28px;font-size:15px;color:#333;border-bottom:1px solid #ddd;}
+.footer-menu .family li .family-btn.on{background:url('http://tkfile.yes24.com/imgNew/common/family-sup.png')no-repeat 136px 9px;}
+.footer-menu .family li .family-btn:hover{text-decoration:none;}
+.footer-txt{position:relative;height:165px;}
+.footer-txt .flogo{display:block;position:absolute;top:53px;left:2px;}
+.footxt{position:absolute;top:22px;left:221px;}
+.footxt p{font-size:15px;color:#333;line-height:23px;margin-bottom:5px;}
+.footxt p.gray{color:#999;font-size:13px;}
+.footxt p.gray+p{font-size:13px;}
+.footxt p.gray a{font-size:13px;color:#333;padding-right:10px;background:url('http://tkfile.yes24.com/imgNew/common/f-arrow.png')no-repeat right center;margin-left:15px;}
+.foo-right{position:absolute;top:30px;right:-6px;width:225px;font-size:12px;}
+.foo-right .mark a{font-size:12px;color:#333;padding-right:10px;background:url('http://tkfile.yes24.com/imgNew/common/f-arrow.png')no-repeat right center;margin-left:45px;vertical-align:middle;}
+.foo-right .mark img{vertical-align:middle;}
+.foo-right p.fservice{font-size:12px; color:#999;margin-top:10px;line-height:18px;}
+
+.return-top{display:block;position:fixed;width:50px;height:50px;overflow:hidden;bottom:-50px;right:0;}
+.return-top.on{animation-name:rtt;animation-duration: 0.5s;animation-fill-mode: forwards;}
+.return-top.on:hover img{margin-top:-50px;}
+@keyframes rtt {
+  from {bottom:-50px}
+  to {bottom:0;}
+}
+
+/*section*/
+section{width:100%; min-width:1300px; overflow:hidden;}
+div.cont{width:1200px; margin:0 auto;}
+
+/*smclass*/
+.ac{text-align:center !important;}
+.al{text-align:left !important;}
+.ar{text-align:right !important;}
+.fb{font-weight:bold !important;}
+.fn{font-weight:normal !important;}
+.txc_0{color:#000 !important;}
+.txc_w{color:#fff !important;}
+.txc_3{color:#333 !important;}
+.txc_6{color:#666 !important;}
+.txc_9{color:#999 !important;}
+.txc_orange{color:#ec7d2c !important;}
+.txc_red{color:#ed334a !important;}
+.dp_b{display:block !important;}
+.txt_d{text-decoration:underline !important;}
+
+@media screen and (max-width: 800px){
+	.sec07 .pop-right{display:none !important;}
+}
+
+/*2차 추가*/
+.content-min-wrap{min-width:1300px;overflow:hidden;padding-bottom:100px;}
+.big-title{font-size:45px;text-align:center;color:#333;padding:90px 0 60px 0;font-family:'Noto Sans KR', 'NanumBarunGothic', '맑은 고딕', 'Malgun Gothic', sans-serif;}
+.category{width:1200px;margin:0 auto;font-size:0;position:relative;}
+.category > a{display:inline-block;font-size:14px;color:#888;margin-right:30px;height:50px;line-height:50px;border-top:3px solid #fff;position:relative;}
+.category > a.on{color:#333;padding-right:12px;border-top:3px solid #ec7d2c;padding-right:12px;}
+.category > a.on:after{content:"↓";display:block;font-size:13px;position:absolute;top:0;right:0;color:#000;width:12px;height:55px;font-weight:normal;font-family:'Noto Sans KR','NanumBarunGothic','맑은 고딕','Malgun Gothic',sans-serif;}
+.category > a:before{content:"";display:block;width:1px;height:15px;background:#ddd;position:absolute;top:20px;left:-15px;}
+.category > a:nth-child(1):before{display:none;}
+.list-pagenation{text-align:center;padding-top:35px;}
+.list-pagenation a{display:inline-block; width:32px;height:32px;line-height:32px;text-align:center;font-size:15px;color:#666;margin:0 3px;border:1px solid #ddd;}
+.list-pagenation a img{vertical-align:middle;}
+.list-pagenation a.on{border:1px solid #333; color:#333;}
+.list-pagenation a.list-page-next img, .list-pagenation a.list-page-last img{transform:rotate(180deg);}
+.list-pagenation div{display:inline-block; margin:0 14px;}
+/*스크롤 컬러 통일*/
+.scroll-color .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{background-color: rgba(0,0,0,0.4);width:5px;}
+.scroll-color .mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar{background-color: rgba(0,0,0,0.5);}
+.scroll-color .mCSB_scrollTools .mCSB_draggerRail{background-color: rgba(190,190,190,0.75);width:5px;}
+
+.pf-right{width:607px;}
+.pf-right-menu{display:inline-block;padding-right:32px;vertical-align:top;}
+.pf-right-menu a{display:inline-block;font-size:14px;font-weight:300;line-height:22px;color:#fff;position:relative;padding-left:12px;margin-right:14px;}
+.pf-right-menu a:before{content:"";display:block;width:3px;height:3px;background:#ec7d2c;position:absolute;top:10px;left:0;}
+.perform-top.fixed .pf-right-menu a{color:#333;}
