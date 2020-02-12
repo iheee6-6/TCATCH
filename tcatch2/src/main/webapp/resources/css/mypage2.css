@@ -4601,12 +4601,6 @@ License - nucleoapp.com/license/
 .sidebar,
 .off-canvas-sidebar {
   position: fixed;
-  top: 0;
-  height: 100%;
-  bottom: 0;
-  width: 260px;
-  left: 0;
-  z-index: 1030;
   border-right: 1px solid #ddd;
 }
 
@@ -5020,7 +5014,6 @@ License - nucleoapp.com/license/
 .main-panel {
   position: relative;
   float: right;
-  width: calc(100% - 260px);
   background-color: #f4f3ef;
   -webkit-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
   -moz-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
@@ -5045,8 +5038,8 @@ License - nucleoapp.com/license/
 
 .perfect-scrollbar-on .sidebar,
 .perfect-scrollbar-on .main-panel {
-  height: 100%;
-  max-height: 100%;
+  height: 80%;
+  max-height: 80%;
 }
 
 .panel-header {
@@ -5855,6 +5848,10 @@ License - nucleoapp.com/license/
     margin-top: 5px;
   }
   .wrapper {
+  margin-top: 150px;  
+margin-left:200px; 
+margin-right:200px;
+float:left;
     -webkit-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
     -moz-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
     -o-transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
@@ -6208,8 +6205,8 @@ License - nucleoapp.com/license/
   }
   .sidebar,
   .bootstrap-navbar {
-    position: fixed;
-    display: block;
+    position: relative;
+    display: inline-block;
     top: 0;
     height: 100%;
     width: 260px;
@@ -6295,7 +6292,7 @@ License - nucleoapp.com/license/
   }
   .sidebar .sidebar-wrapper li.active>a:not([data-toggle="collapse"]):before,
   .sidebar .sidebar-wrapper li.active>[data-toggle="collapse"]+div .nav li:before {
-    border-right: 17px solid #DDDDDD;
+    border-right: 17px solid black;
     border-top: 17px solid transparent;
     border-bottom: 17px solid transparent;
     content: "";
