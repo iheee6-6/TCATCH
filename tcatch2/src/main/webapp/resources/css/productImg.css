@@ -1,0 +1,101 @@
+@charset "utf-8";
+
+@font-face {
+	font-family: 'NanumBarunGothic';
+	font-style: normal;
+	font-weight: 400;
+	src: url('http://tkfile.yes24.com/entimg/font/barunN/NanumBarunGothicSubset.eot');
+	src: url('http://tkfile.yes24.com/entimg/font/barunN/NanumBarunGothicSubset.eot?#iefix') format('embedded-opentype'), url('http://tkfile.yes24.com/entimg/font/barunN/NanumBarunGothicSubset.woff2') format('woff2'),
+	url('http://tkfile.yes24.com/entimg/font/barunN/NanumBarunGothicSubset.woff') format('woff'), url('http://tkfile.yes24.com/entimg/font/barunN/NanumBarunGothicSubset.ttf') format('truetype');
+}
+
+.perform-top{
+    overflow:visible !important;
+    }
+    body{
+      font-family: 'NanumBarunGothic', 
+      '맑은 고딕', 
+      'Malgun Gothic', 
+      sans-serif;
+      }
+
+@font-face {
+	font-family: 'NanumBarunGothic';
+	font-style: normal;
+	font-weight: 700;
+	src: url('http://tkfile.yes24.com/entimg/font/barunN/NanumBarunGothicBoldSubset.eot');
+	src: url('http://tkfile.yes24.com/entimg/font/barunN/NanumBarunGothicBoldSubset.eot?#iefix') format('embedded-opentype'), url('http://tkfile.yes24.com/entimg/font/barunN/NanumBarunGothicBoldSubset.woff2') format('woff2'),
+	url('http://tkfile.yes24.com/entimg/font/barunN/NanumBarunGothicBoldSubset.woff') format('woff'), url('http://tkfile.yes24.com/entimg/font/barunN/NanumBarunGothicBoldSubset.ttf') format('truetype')
+}
+
+@font-face {
+  font-family:"Noto Sans KR";
+  font-style: normal;
+  font-weight: 300;
+  src: url("http://tkfile.yes24.com/entimg/font/notoN/NotoSansKR-DemiLight-Hestia.eot");
+  src: local(��), url("http://tkfile.yes24.com/entimg/font/notoN/NotoSansKR-DemiLight-Hestia.woff") format("woff"), url("http://tkfile.yes24.com/entimg/font/notoN/NotoSansKR-DemiLight-Hestia.otf") format("opentype");
+}
+@font-face {
+  font-family:"Noto Sans KR";
+  font-style: normal;
+  font-weight: 500;
+  src: url("http://tkfile.yes24.com/entimg/font/notoN/NotoSansKR-Medium-Hestia.eot");
+  src: local(��), url("http://tkfile.yes24.com/entimg/font/notoN/NotoSansKR-Medium-Hestia.woff") format("woff"), url("http://tkfile.yes24.com/entimg/font/notoN/NotoSansKR-Medium-Hestia.otf") format("opentype");
+}
+@font-face {
+  font-family:"Noto Sans KR";
+  font-style: normal;
+  font-weight: 700;
+  src: url("http://tkfile.yes24.com/entimg/font/notoN/NotoSansKR-Bold-Hestia.eot");
+  src: local(��), url("http://tkfile.yes24.com/entimg/font/notoN/NotoSansKR-Bold-Hestia.woff") format("woff"), url("http://tkfile.yes24.com/entimg/font/notoN/NotoSansKR-Bold-Hestia.otf") format("opentype");
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: inherit;
+	font:inherit;
+	vertical-align: baseline;
+	font-family:'NanumBarunGothic', '���� ����', 'Malgun Gothic', sans-serif;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;	
+	font-weight:400;
+}
+li {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+a{font-size:0;text-decoration:none;outline:none;color:inherit;}
+input, select, textarea, div, p, span{outline:none;}
+input[type=text]::-ms-clear{width:0; height:0;overflow:hidden;visibility:hidden;
+} 
