@@ -22,6 +22,15 @@
 <link rel='stylesheet' type='text/css'
 	href="${ contextPath }/resources/css/menu/main1.css" />
 
+<link rel='stylesheet' type='text/css'
+	href='${ contextPath }/resources/css/main/swiper.css' />
+<script type='text/javascript'
+	src='${ contextPath }/resources/js/main/main1.js'></script>
+<script type='text/javascript'
+	src='${ contextPath }/resources/js/main/main2.js'></script>
+
+<script type='text/javascript'
+	src='${ contextPath }/resources/js/main/main3.js'></script>
 
 <style type="text/css">
 body {
@@ -57,7 +66,7 @@ body {
 
 			</h2>
 			<h2>
-				<a href="#">뮤지컬<span></span></a>
+				<a href="musical.do">뮤지컬<span></span></a>
 
 			</h2>
 			<h2>
@@ -72,7 +81,8 @@ body {
 		</div>
 		<div class="pf-right">
 			<div class="pf-right-menu">
-				<a href="/Rank/All">랭킹</a>
+				<a href="clist.do">커뮤니티</a>
+				<a href="cnotice.do">안내</a>
 			</div>
 			<div class="pf-top-srch" autocomplete="off">
 				<input type="text" id="searchWord" /> <input type="hidden" name=""
