@@ -66,15 +66,6 @@
 .m2-sec01-bnr{text-align:center;height:248px;position:relative;}
 .m2-sec01-bnr a{display:block;position:absolute;bottom:0;text-align:center;width:1200px;left:50%;margin-left:-600px;}
 
-.ms-list-imgs{width:1300px; margin:0 auto;font-size:0;text-align:center;height:452px;}
-.ms-list-imgs a{display:inline-block;width:216px;height:410px;margin:0 15px;vertical-align:top;}
-.ms-list-imgs a .list-bigger-wrap{width:216px;height:410px;}
-.ms-list-imgs a .list-bigger-wrap img{display:block;width:100%;transition:all 0.3s;}
-.ms-list-imgs a .list-bigger-wrap .list-bigger-txt{width:100%; height:108px; text-align:center;position:relative;}
-.ms-list-imgs a .list-bigger-wrap .list-bigger-txt .list-b-tit1{font-size:16px; line-height:22px; color:#888;padding:25px 0 12px 0;}
-.ms-list-imgs a .list-bigger-wrap .list-bigger-txt .list-b-tit2{font-size:16px; color:#000;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
-.ms-list-imgs a .list-bigger-wrap .list-bigger-txt .list-b-circle{font-size:19px;color:#fff;background:#ec7d2c;width:57px;height:57px;line-height:62px;border-radius:50%;text-align:center;border:4px solid #fff;font-weight:bold;position:absolute;left:10px;top:-44px;}
-.ms-list-imgs a:hover img{transform:scale(1.08);}
 
 .m2-sec03{position:relative; width:100%; min-width:1300px; height:400px;margin-top:35px;}
 .ms3-wrap{position:absolute; width:1200px; margin:0 auto; height:400px; left:50%; transform:translate(-50%,0);}
@@ -155,18 +146,7 @@ a.ms3-player-close img{width:26px; height:26px;}
 
 .m2-sec06 .m2-tit{height:144px;}
 .m2-sec06 .m2-tit img{padding-top:72px;}
-.ms-list-imgs2{width:1200px;margin:0 auto;font-size:0;padding-bottom:62px;text-align:center;}
-.ms-list-imgs2 a{display:inline-block;width:214px;height:410px;margin-left:30px;border:1px solid #ddd;vertical-align: top;}
-.ms-list-imgs2 a:first-child{margin-left:0;}
-.ms-list-imgs2 a span {display:block; width:214px;height:301px;background:#000;overflow:hidden;}
-.ms-list-imgs2 a span img{display:block; width:100%;height:100%;transition:all ease-out 0.3s;}
-.ms-list-imgs2 a .list-2-txt{width:100%;height:108px;background:#fff; text-align:center;border-top:1px solid #ddd;}
-.ms-list-imgs2 a .list-2-txt p{width:calc(100% - 40px);margin-left:20px;}
-.ms-list-imgs2 a .list-2-txt .list-2-tit1{font-size:16px; color:#333;line-height:22px;margin:18px 20px 12px 20px;}
-.ms-list-imgs2 a .list-2-txt .list-2-tit2{font-size:16px; color:#ec7d2c;}
-.ms-list-imgs2 a .list-2-txt .list-2-tit3{width:160px;margin:0 auto;text-align:center;font-size:16px; color:#999;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
-.ms-list-imgs2 a:hover{border:1px solid #ec7d2c;}
-.ms-list-imgs2 a:hover img{opacity:0.8; transform:scale(1.05);}
+
 
 .m2-sec07{width:100%; min-width:1300px; height:168px;position:relative;}
 .bnr2way{width:100%; min-width:1300px; position:absolute;height:120px;bottom:0;background:#f6f6f6;left:0;}
@@ -196,8 +176,8 @@ a.ms3-player-close img{width:26px; height:26px;}
 .li-sec-tag span a.on:after{content:"↓"; display:inline; color:#333;margin-left:3px;}
 .li-sec-result{width:1200px; margin:0 auto;height:182px;line-height:173px;font-size:19px;color:#333;text-align:center;letter-spacing:0.04em;}
 .li-sec-result span{color:#ec7d2c;}
-.ms-list-imgs a .list-bigger-wrap .list-bigger-txt .list-b-tit1.v2{color:#333;padding-bottom:9px;}
-.ms-list-imgs a .list-bigger-wrap .list-bigger-txt .list-b-tit2.v2{font-size:13px;color:#999;line-height:20px;}
+.list-bigger-wrap .list-bigger-txt .list-b-tit1.v2{color:#333;padding-bottom:9px;}
+.list-bigger-wrap .list-bigger-txt .list-b-tit2.v2{font-size:13px;color:#999;line-height:20px;}
 .list-more{text-align:center;padding:80px 0 110px 0;}
 .list-more span{display:inline-block;opacity:0;width:11px; height:11px;border-radius:50%;margin:0 4px;background:#f7decb; animation:dotdot 1s infinite linear;}
 .list-more .lm1{background:#f7decb;}
@@ -209,10 +189,10 @@ a.ms3-player-close img{width:26px; height:26px;}
   20%  {opacity:1;}
   100% {opacity:1;}
 }
-.list-sec .ms-list-imgs{height:471px;}
-.list-sec .ms-list-imgs a:hover{margin:0 15px;}
-.list-sec .ms-list-imgs a:hover .list-bigger-wrap{width:216px;height:410px;}
-.list-sec .ms-list-imgs a .list-bigger-wrap .list-bigger-txt .list-b-circle{top:-46px;}
+.list-sec {height:471px;}
+.list-sec {margin:0 15px;}
+.list-sec .list-bigger-wrap{width:216px;height:410px;}
+.list-sec .list-bigger-wrap .list-bigger-txt .list-b-circle{top:-46px;}
 
 .pf-right{width:607px;}
 .pf-right-menu{display:inline-block;padding-right:32px;vertical-align:top;}

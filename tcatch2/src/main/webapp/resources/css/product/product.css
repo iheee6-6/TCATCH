@@ -66,7 +66,7 @@
 .m2-sec01-bnr{text-align:center;height:248px;position:relative;}
 .m2-sec01-bnr a{display:block;position:absolute;bottom:0;text-align:center;width:1200px;left:50%;margin-left:-600px;}
 
-.ms-list-imgs{width:1300px; margin:0 auto;font-size:0;text-align:center;height:452px;}
+.ms-list-imgs{width:80%; margin:0 auto;font-size:0;text-align:center;height:100%;}
 .ms-list-imgs a{display:inline-block;width:216px;height:410px;margin:0 15px;vertical-align:top;}
 .ms-list-imgs a .list-bigger-wrap{width:216px;height:410px;}
 .ms-list-imgs a .list-bigger-wrap img{display:block;width:100%;transition:all 0.3s;}
