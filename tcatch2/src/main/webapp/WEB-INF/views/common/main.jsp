@@ -8,15 +8,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<link rel='stylesheet' type='text/css'
-	href='${ contextPath }/resources/css/main/swiper.css' />
-<script type='text/javascript'
-	src='${ contextPath }/resources/js/main/main1.js'></script>
-<script type='text/javascript'
-	src='${ contextPath }/resources/js/main/main2.js'></script>
 
-<script type='text/javascript'
-	src='${ contextPath }/resources/js/main/main3.js'></script>
 	
 </head>
 <body>
