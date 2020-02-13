@@ -40,6 +40,9 @@ body {
 .consice {
 	background-color: white;
 }
+.pf-top-srch{
+	margin-left: 150px;
+}
 </style>
 
 </head>
@@ -52,7 +55,7 @@ body {
 
 		<div class="pf-left">
 			<h1>
-				<a href="/New/Main.aspx?Gcode=009_201" class="pf-logo"><img
+				<a href="home.do" class="pf-logo"><img
 					src="http://tkfile.yes24.com/imgNew/common/pf-logo.png" alt=""
 					class="trans" /><img
 					src="http://tkfile.yes24.com/imgNew/common/pf-logo-w.png" alt=""
@@ -78,12 +81,16 @@ body {
 
 			</h2>
 
+			<h2>
+				<a href="clist.do">커뮤니티<span></span></a>
+			</h2>
+				
+			<h2>
+				<a href="cnotice.do">안내<span></span></a>
+			</h2>	
+
 		</div>
 		<div class="pf-right">
-			<div class="pf-right-menu">
-				<a href="clist.do">커뮤니티</a>
-				<a href="cnotice.do">안내</a>
-			</div>
 			<div class="pf-top-srch" autocomplete="off">
 				<input type="text" id="searchWord" /> <input type="hidden" name=""
 					id="searchType" value="" /> <a href="#" onclick="jsf_mm_Search();"><img
