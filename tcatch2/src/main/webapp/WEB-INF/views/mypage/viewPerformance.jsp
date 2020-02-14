@@ -28,7 +28,7 @@
 								<h4 class="card-title text-danger" style="float: left;">
 									<i class="fa fa-* fa-bookmark"></i> &nbsp; 나의 관람 공연
 								</h4>
-								&nbsp;
+								&nbsp; 
 								<p class="card-category" style="margin-left: 200px;">
 									<strong>신하은</strong>님의 관람 공연은 총 <em>1</em>건 입니다.
 								</p>
@@ -89,6 +89,7 @@
 													src="http://tkfile.yes24.com/upload2/PerfBlog/201408/20140807/20140807-18681_1.jpg"
 													width="141" height="174" alt="Ripple Effect the Concert">
 											</p>
+											
 											<ul>
 												<li><em>예매번호</em><span class="bold">Y16393010</span></li>
 												<li><em>장르</em><span>콘서트</span></li>
@@ -118,11 +119,11 @@
 			$("#viewPer").addClass("active");
 
 			$("#date3").datepicker({
-				onSelect : function(dateText, inst) {
+				/* onSelect : function(dateText, inst) {
 					console.log(dateText);
 				},
 			changeYear : true,
-			changeMonth : true
+			changeMonth : true */
 			});
 		});
 
