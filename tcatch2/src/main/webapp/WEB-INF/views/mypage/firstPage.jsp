@@ -5,7 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>TCATCH</title>
-
+<style>
+	li a{
+	font-size:13px;
+	}
+	.firstBtn{
+		margin-right:10px;
+	}
+</style>
 </head>
 <body class="">
 <jsp:include page="../common/menubar.jsp"/>
@@ -87,7 +94,6 @@
 									<li>
 										<div class="end"></div>
 									</li>
-
 								</ul>
 							</div>
 						</div>
@@ -98,8 +104,8 @@
 								</h4>
 								<button class="btn btn-sm" style="float: right;">더보기</button>
 							</div>
+							
 							<div class="card-body">
-
 								<ul class="my_list01 rv_bor">
 									<li>
 										<div>
@@ -109,11 +115,12 @@
 												alt="Ripple Effect the Concert"></a><a
 												href="/Pages/Perf/Detail/Detail.aspx?idPerf=18681"><strong>Ripple
 													Effect the Concert</strong></a><span class="red"></span><span>예매번호:
-												Y16393010</span><span><a
-												href="/Pages/Perf/Detail/Detail.aspx?idPerf=18681"><img
-													src="http://tkfile.yes24.com/img/mypage/btn_minfor.gif"
-													alt="공연정보"></a><a href="/Perf/18681?idorder=16393010"><img
-													src="http://tkfile.yes24.com/img/mypage/btn_after.gif"
+												Y16393010</span>
+												<span><a href="/Pages/Perf/Detail/Detail.aspx?idPerf=18681">
+												<img class="firstBtn" src="http://tkfile.yes24.com/img/mypage/btn_minfor.gif"
+													alt="공연정보"></a>
+													<a href="/Perf/18681?idorder=16393010">
+													<img src="http://tkfile.yes24.com/img/mypage/btn_after.gif"
 													alt="관람후기 작성"></a></span>
 										</div>
 									</li>

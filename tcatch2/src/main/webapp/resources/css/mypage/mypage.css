@@ -813,11 +813,11 @@ p.ntit em{ font:normal 12px 돋움; float:right; padding:1px 10px 5px 30px; back
 .ic_live {position:absolute; right:5px; top:5px; display:inline-block; width:28px; height:24px; background: url('http://tkfile.yes24.com/img/common/ic_live.png') no-repeat 0 0 }
 .ic_live span {visibility:hidden}
 .my_list01{ border:1px solid #d2d2d2; border-top:2px solid #4e7ad1; display:inline-block;}
-.my_list01 li{ float:left;  background-color:#f9f9fb; _display:inline-block; _overflow:hidden; _height:100px; padding-bottom:5px}
-.my_list01 li div{ background:url(http://tkfile.yes24.com/img/mypage/bg_line01.gif) no-repeat right; padding-right:20px; width:202px; height:68px; padding:18px 21px 18px 18px; }
-.my_list01 li div.end{ background:none; border:none; width:206px;}
+.my_list01 li{ text-align: center;float:left;  background-color:#f9f9fb; _display:inline-block; _overflow:hidden;  /* _height:138px; */  padding-bottom:5px}
+.my_list01 li div{ background:url(http://tkfile.yes24.com/img/mypage/bg_line01.gif) no-repeat right; padding-right:20px; width:255px; height:108px; padding:18px 21px 18px 18px; }
+.my_list01 li div.end{ background:none; border:none; width:206px;} 
 .my_list01 li img{ float:left;}
-.my_list01 li strong{ margin-left:65px; font-weight:bold; color:#3c3c3c; display:block; margin-bottom:6px; height:26px; margin-top:2px; margin-left:61px; line-height:13px; word-wrap: break-word; word-break: break-all;overflow: hidden;}
+.my_list01 li strong{ margin-left:65px; font-weight:bold; color:#3c3c3c; display:block; margin-bottom:14px; height:26px; margin-top:2px; margin-left:61px; line-height:13px; word-wrap: break-word; word-break: break-all;overflow: hidden;}
 .my_list01 li span{margin-left:62px; font-size:11px; display:block;line-height:15px;}
 .my_list01 li.nocont{ text-align:center; width:728px; padding-bottom:35px; _height:70px; }
 .my_list01 li.nocont em{ display:block; font-size:12px; margin-bottom:3px; padding-top:32px; border-top:1px solid #d2d2d2;}
@@ -999,7 +999,7 @@ ul.gbox_notice li em{ text-decoration:underline;}
 
 .memo.end{ margin-bottom:50px;}
 
-.sms_alram{ background:url(http://tkfile.yes24.com/img/mypage/bg_address02.gif) no-repeat; height:150px; margin-bottom:30px; padding:7px 10px 10px 10px;}
+.sms_alram{/*  background:url(http://tkfile.yes24.com/img/mypage/bg_address02.gif) no-repeat;  height:150px;*/ margin-bottom:30px; padding:7px 10px 10px 10px;}
 .sms_alram h3 span{ font-size:11px; margin-left:3px; font-weight:normal; position:relative; top:3px; color:#666666; }
 .sms_alram em{ background:url(http://tkfile.yes24.com/img/mypage/bg_address.gif) no-repeat; padding:15px; text-align:center; display:block; width:309px; height:17px; margin:4px auto; font-size:14px; font-weight:bold; color:#676767; }
 .sms_alram ul{ margin-top:10px; display:inline-block; margin-left:106px;}

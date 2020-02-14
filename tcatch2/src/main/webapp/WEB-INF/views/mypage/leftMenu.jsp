@@ -14,9 +14,13 @@
 	rel="stylesheet">
 <!-- CSS Files -->
 
-<link href="resources/css/bootstrap.min.css" rel="stylesheet" />
-<link href="resources/css/mypage.css" rel="stylesheet" />
-<link href="resources/css/mypage2.css" rel="stylesheet" />
+<!-- <link href="resources/css/bootstrap.min.css" rel="stylesheet" /> -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<link href="resources/css/mypage/mypage.css" rel="stylesheet" />
+<link href="resources/css/mypage/mypage2.css" rel="stylesheet" />
 <style>
 
 section,div {
@@ -67,7 +71,7 @@ margin-bottom: 150px;
 				<li id="alarmS"><a href="alarmList.do"> <i class="fa fa-* fa-bell"></i>
 						<p>나의 맞춤 설정</p>
 				</a></li>
-				<li id="userU"><a href="user.do"> <i class="fa fa-* fa-user"></i>
+				<li id="userU"><a href="memberUpdateView.do"> <i class="fa fa-* fa-user"></i>
 						<p>회원정보 수정</p>
 				</a></li>
 

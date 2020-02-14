@@ -5,7 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>TCATCH</title>
+<style>
+.pImage{
+float: left; margin-right: 3px;
+}
 
+p span{
+	margin-left:10px;
+}
+</style>
 </head>
 <body class="">
 	<jsp:include page="../common/menubar.jsp" />
@@ -22,6 +30,7 @@
 									<i class="fa fa-* fa-bookmark"></i> &nbsp;나의 관심 공연
 								</h4>
 							</div>
+							<form action="deleteP.do" method="post" id="checkForm">
 							<div class="card-body">
 								<table class="table">
 									<thead class=" text-primary">
@@ -31,16 +40,16 @@
 									</thead>
 									<tbody>
 										<tr>
-											<td><input name="chkInterestPerf" type="checkbox"
+											<td><input class="interestP" name="chkInterestPerf" type="checkbox"
 												value="35104"> &nbsp; 2019.02.12</td>
 											<td>
 												<p class="list">
-												<p style="float: left; margin-right: 3px;">
+												<p class="pImage">
 													<img
 														src="http://tkfile.yes24.com/upload2/PerfBlog/202001/20200106/20200106-35104_1.jpg"
 														width="72" height="89" alt="뮤지컬 [쓰릴 미]"></a>
-												</p> <br>
-												<p>
+												</p>
+												<p class="pIntro">
 													<a href="/Pages/Perf/Detail/Detail.aspx?IdPerf=35104"><strong>뮤지컬
 															[쓰릴 미]</strong> </a> <br> <span>2019.12.10~2020.03.01</span> <br>
 													<span>예스24스테이지 2관</span>
@@ -52,16 +61,16 @@
 
 										</tr>
 										<tr>
-											<td><input name="chkInterestPerf" type="checkbox"
+											<td><input class="interestP" name="chkInterestPerf" type="checkbox"
 												value="35104"> &nbsp; 2019.02.12</td>
 											<td>
 												<p class="list">
-												<p style="float: left; margin-right: 3px;">
+												<p class="pImage">
 													<img
 														src="http://tkfile.yes24.com/upload2/PerfBlog/202001/20200106/20200106-35104_1.jpg"
 														width="72" height="89" alt="뮤지컬 [쓰릴 미]"></a>
-												</p> <br>
-												<p>
+												</p>
+												<p class="pIntro">
 													<a href="/Pages/Perf/Detail/Detail.aspx?IdPerf=35104"><strong>뮤지컬
 															[쓰릴 미]</strong> </a> <br> <span>2019.12.10~2020.03.01</span> <br>
 													<span>예스24스테이지 2관</span>
@@ -73,16 +82,16 @@
 
 										</tr>
 										<tr>
-											<td><input name="chkInterestPerf" type="checkbox"
+											<td><input class="interestP" name="chkInterestPerf" type="checkbox"
 												value="35104"> &nbsp; 2019.02.12</td>
 											<td>
 												<p class="list">
-												<p style="float: left; margin-right: 3px;">
+												<p class="pImage">
 													<img
 														src="http://tkfile.yes24.com/upload2/PerfBlog/202001/20200106/20200106-35104_1.jpg"
 														width="72" height="89" alt="뮤지컬 [쓰릴 미]"></a>
-												</p> <br>
-												<p>
+												</p>
+												<p class="pIntro">
 													<a href="/Pages/Perf/Detail/Detail.aspx?IdPerf=35104"><strong>뮤지컬
 															[쓰릴 미]</strong> </a> <br> <span>2019.12.10~2020.03.01</span> <br>
 													<span>예스24스테이지 2관</span>
@@ -95,13 +104,18 @@
 										</tr>
 									</tbody>
 								</table>
+								
 							</div>
 							<div>
 								<div style="float: right; margin-right: 50px;">
-									<button class="btn btn-sm">전체 선택</button>
-									<button class="btn btn-sm">선택 삭제</button>
+									<button type="button" class="btn btn-sm" id="allCheck">전체 선택</button>
+									<%-- <c:url var="deleteP" value="deleteP.do">
+										<c:param name="art_no" value="<%=arr %>"/>
+									</c:url> --%>
+									<button class="btn btn-sm" id="deleteP">선택 삭제</button>
 								</div>
 							</div>
+							</form>
 						</div>
 					</div>
 
@@ -112,6 +126,26 @@
 	<script>
 		$(function() {
 			$("#interest").addClass("active");
+		});
+		
+		$("#allCheck").click(function(){
+			if($(this).text()=="전체 선택"){
+				$('.interestP').prop('checked',true);
+				$(this).text("전체 해제");
+			}
+			else{
+				$('.interestP').prop('checked',false);
+				$(this).text("전체 선택");
+			}
+			
+		});
+		
+		$("#deleteP").click(function(){
+			
+			if(confirm("정말 삭제하시겠습니까?")){
+				$("#checkForm").submit();
+			}
+			
 		});
 	</script>
 		<jsp:include page="../common/footer.jsp"/>

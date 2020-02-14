@@ -6,6 +6,13 @@
 <meta charset="UTF-8">
 <title>TCATCH</title>
 
+<!-- datepicker -->
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="resources/js/datepicker/datepicker-ko.js"></script>
+
 </head>
 <body class="">
 	<jsp:include page="../common/menubar.jsp" />
@@ -30,23 +37,22 @@
 								<div class="mypage_contain" style="margin: 4px;">
 									<div class="date_list" style="border: 1px solid gray;">
 										<ul>
-											<li><img
-												src="http://tkfile.yes24.com/img/mypage/th_02.gif" alt="기간별">
-												<input id="txtFrom" name="txtFrom" type="text"
-												class="date w70 hasDatepicker" value="2019-08-03"
+											<li><img src="http://tkfile.yes24.com/img/mypage/th_02.gif" alt="기간별">
+												
+												<input type="text" name="date" id="date3" size="12"
 												style="width: 90px; z-index: 999; position: relative;"
-												autocomplete="off"> <img
-												class="ui-datepicker-trigger"
-												src="http://tkfile.yes24.com/img/mypage/btn_cal.gif"
-												alt="날짜를 선택하세요. title=" 날짜를선택하세요."> ~ <input
-												id="txtTo" name="txtTo" type="text"
-												class="date w70 hasDatepicker" value="2020-02-03"
+												autocomplete="off" /> <input type="button" value="달력" /> 
+												
+												 ~ <input id="txtTo" name="txtTo"
+												type="text" class="date w70 hasDatepicker"
+												value="2020-02-03"
 												style="width: 90px; z-index: 999; position: relative;"
 												autocomplete="off"><img
 												class="ui-datepicker-trigger"
 												src="http://tkfile.yes24.com/img/mypage/btn_cal.gif"
-												alt="날짜를 선택하세요. title=" 날짜를선택하세요."></li>
-											<li class="sec"><img src="http://tkfile.yes24.com/img/mypage/th_03.gif" alt="장르별">
+												alt="날짜를 선택하세요. title="날짜를선택하세요."></li>
+											<li class="sec"><img
+												src="http://tkfile.yes24.com/img/mypage/th_03.gif" alt="장르별">
 												<select name="ViewPerformance1$ddlGenre"
 												id="ViewPerformance1_ddlGenre">
 													<option value="-1">장르선택</option>
@@ -107,12 +113,21 @@
 			</div>
 		</div>
 	</div>
-<script>
-	$(function(){
-		$("#viewPer").addClass("active");
-	});
+	<script>
+		$(function() {
+			$("#viewPer").addClass("active");
+
+			$("#date3").datepicker({
+				onSelect : function(dateText, inst) {
+					console.log(dateText);
+				},
+			changeYear : true,
+			changeMonth : true
+			});
+		});
+
 	</script>
-		<jsp:include page="../common/footer.jsp"/>
+	<jsp:include page="../common/footer.jsp" />
 </body>
 
 </html>

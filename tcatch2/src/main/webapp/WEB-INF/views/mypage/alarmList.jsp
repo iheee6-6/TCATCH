@@ -27,7 +27,7 @@
 
 							</div>
 							<div class="card-body">
-								<div class="sms_alram" style="height: 170px; background-color:gray; border:1px solid black">
+								<div class="sms_alram" style="height: 180px; background-color:ghostwhite; border:1px solid black">
 									<span>* 티켓 오픈 소식, 관심 공연 등의 정보를 받을 휴대전화번호를 확인해주세요. </span> <br>
 									<br> <em style="height: 70px; width: 360px;">수신 EMAIL
 										: <span>TCATCH@kh.com</span>
