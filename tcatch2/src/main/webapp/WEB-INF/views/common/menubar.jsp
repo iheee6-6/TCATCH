@@ -65,8 +65,6 @@ body {
 		<div class="pf-center">
 			<h2>
 				<a href="#">콘서트<span></span></a>
-
-
 			</h2>
 			<h2>
 				<a href="musical.do">뮤지컬<span></span></a>
