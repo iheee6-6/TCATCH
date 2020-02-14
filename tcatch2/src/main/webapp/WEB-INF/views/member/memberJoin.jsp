@@ -93,13 +93,15 @@ span.error {
 </style>
 </head>
 <body>
+<jsp:include page="../common/menubar.jsp"/>
+<br><br><br><br>
 
 	<form class="form-signin" action="minsert.do" method="post"
 		id="joinForm" onsubmit="return validate()">
 		<div class="text-center mb-4">
 			<!-- <img class="mb-4" src="로고.png" alt="" width="100" height="90"> -->
-			<h1 class="mb-4">Ticket Catch</h1>
-			<h1 class="h3 mb-3 font-weight-normal">로그인/회원가입</h1>
+			<h1 class="mb-4" style="font-family: 'Do Hyeon', sans-serif; font-size:40px;">Ticket Catch</h1>
+			<h1 class="h3 mb-3 font-weight-normal" style="font-family: 'Do Hyeon', sans-serif;">회원가입</h1>
 		</div>
 		<table align="center" width="600" height="600">
 			<tr>
@@ -174,12 +176,14 @@ span.error {
 
 		</table>
 		<div class="joinbtn">
-			<button class="btn btn-lg btn-primary btn-block2">회원가입</button>
+			<button class="btn btn-lg btn-primary btn-block2" style="font-family: 'Do Hyeon', sans-serif;">회원가입</button>
 			&emsp;
-			<button type="button" class="btn btn-danger"
+			<button type="button" class="btn btn-danger" style="font-family: 'Do Hyeon', sans-serif;"
 				onclick="location.href='home.do'">메인으로</button>
 		</div>
 	</form>
+	
+	<link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"

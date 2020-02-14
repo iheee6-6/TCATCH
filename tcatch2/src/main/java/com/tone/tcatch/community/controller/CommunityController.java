@@ -15,5 +15,17 @@ public class CommunityController {
 	public String communityNotice() {
 		return "community/communityNotice";
 	}
+	@RequestMapping("/cnotice4.do")
+	public String communityNotice4() {
+		return "community/communityNotice4";
+	}
+	@RequestMapping("/cnotice3.do")
+	public String communityNotice3() {
+		return "community/communityNotice3";
+	}
+	@RequestMapping("/cnotice2.do")
+	public String communityNotice2() {
+		return "community/communityNotice2";
+	}
 	
 }

@@ -66,8 +66,10 @@ body {
 			</div>
 		</div>
 		<div class="guide-division" style="text-align: center;">
-			<a href="#" class="on">예매방법</a> <a href="#">결제방법</a> <a href="#">수수료</a>
-			<a href="#">취소/환불</a> <a href="#">티켓판매/제휴문의</a>
+			<a href="cnotice.do" class="on">예매방법</a>
+			<a href="cnotice2.do">수수료</a>
+			<a href="cnotice3.do">취소/환불</a> 
+			<a href="cnotice4.do">티켓판매/제휴문의</a>
 		</div>
 
 		<div class="guidebox gb01" style="display: block;">
@@ -135,8 +137,9 @@ body {
 			<div class="gb01-con">
 				<p class="gb01-con-tit">5. 예매내역 확인</p>
 				<div class="gb01-con-txt">
-					<p class="gb01-con-txt">결제 완료 후 예매 내역은 회원 정보 마이페이지에서 <br>
-					예매내역 탭에서 확인 가능합니다.</p>
+					<p class="gb01-con-txt">
+						결제 완료 후 예매 내역은 회원 정보 마이페이지에서 <br> 예매내역 탭에서 확인 가능합니다.
+					</p>
 				</div>
 			</div>
 
@@ -150,11 +153,10 @@ body {
 		<!--guidebox gb03 수수료-->
 		<div class="guidebox gb04"></div>
 		<!--guidebox gb04 취소/환불-->
-		<div class="guidebox gb07">
-
+		<div class="guidebox gb07"></div>
 	</div>
-	
-	<jsp:include page="../common/footer.jsp"/>
+
+	<jsp:include page="../common/footer.jsp" />
 
 
 
