@@ -16,7 +16,7 @@
 		<div class="main-panel" style="overflow:auto;">
 			<div class="content" style="margin-top: 20px; display:block">
 				<div class="row">
-					<div class="col-md-9">
+					<div class="col-md-12">
 						<div class="card">
 							<div class="card-header">
 								<h4 class="card-title text-danger" style="float: left;">

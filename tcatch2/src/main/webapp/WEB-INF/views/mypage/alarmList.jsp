@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
 <title>TCATCH</title>
 
 
@@ -19,7 +19,7 @@
 		<div class="main-panel">
 			<div class="content" style="margin-top: 20px;">
 				<div class="row">
-					<div class="col-md-9">
+					<div class="col-md-12">
 						<div class="card">
 							<div class="card-header">
 								<h4 class="card-title text-danger" style="float: left;">
@@ -32,7 +32,7 @@
 									<div class="sms_alram"
 										style="height: 180px; background-color: ghostwhite; border: 1px solid black">
 										<span>* 티켓 오픈 소식, 관심 공연 등의 정보를 받을 휴대전화번호를 확인해주세요. </span> <br>
-										<br> <em style="height: 70px; width: 360px;">수신
+										<br> <em >수신
 											EMAIL : <span>TCATCH@kh.com</span>
 										</em>
 										<ul>
