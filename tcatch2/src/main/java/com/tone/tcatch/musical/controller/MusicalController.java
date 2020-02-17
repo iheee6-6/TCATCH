@@ -12,5 +12,15 @@ public class MusicalController {
 		return "musical/musicalDetail";
 	}
 	
+	@RequestMapping("/buy.do")
+	public String buy() {
+		return "musical/buy";
+	}
+	
+	@RequestMapping("/buyTwo.do")
+	public String buyTwo() {
+		return "musical/buy_two";
+	}
+	
 	
 }

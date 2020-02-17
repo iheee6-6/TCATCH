@@ -12,10 +12,7 @@
   <title>김대성/디테일</title>
 
   <link rel='stylesheet' type='text/css' href='http://tkfile.yes24.com/New/Css/reset.css' />
-
-  <!-- <link rel='stylesheet' type='text/css' href='http://tkfile.yes24.com/New/Css/main2.css?v=2020012203' />	 -->
   <link rel='stylesheet' type='text/css' href='http://tkfile.yes24.com/New/Css/sub.css' />	
-  <!-- <link rel='stylesheet' type='text/css' href='http://tkfile.yes24.com/New/Css/etc.css' /> -->
 
   
   <script type='text/javascript' src='http://tkfile.yes24.com/New/Js/jquery-3.4.1_min.js'></script>
@@ -25,8 +22,9 @@
   	body{font-family: 'NanumBarunGothic', '맑은 고딕', 'Malgun Gothic', sans-serif;}
   </style>
  </head>
- <bod1y>
-
+ <body>
+<jsp:include page="../common/menubar.jsp"/>
+<br><br><br><br>
  
  <form name="mainForm" method="post" action="./36369?IdPerf=36369" id="mainForm">
 
@@ -51,16 +49,30 @@
 		<div class="rn-03"><!--상단-->
 			<div class="rn-03-left"><!--포스터, 지역, 동영상-->
 				<div class="rn-product-imgbox">
-					<img src='D:\HTML\티캐취\imges\KakaoTalk_20200130_191356180.jpg'> <!-- 이미지 -->
+					<img class='lazyload' src="http://tkfile.yes24.com/upload2/PerfBlog/202001/20200122/20200122-36049_1.jpg"/><!-- 이미지 -->
 				</div>
 
 				<div class="rn-product-social">
 					<a href="javascript:;" class="rn-product-good">
-                        <img src="http://tkfile.yes24.com/imgNew/sub/rn-product-good1.png" alt="" /><!--좋아요 안누른 하트-->
-                        <img src="http://tkfile.yes24.com/imgNew/sub/rn-product-good2.png" alt="" /><!--좋아요 누른 하트-->
+                        <img src="http://tkfile.yes24.com/imgNew/sub/rn-product-good1.png" alt="" id="h1" /><!--좋아요 안누른 하트-->
+                        <img src="http://tkfile.yes24.com/imgNew/sub/rn-product-good2.png" alt="" id="h2"/><!--좋아요 누른 하트-->
                         <span class="rn-pdg-txt2">찜</span>
                         <span class="rn-pdg-txt1"></span>
 					</a>
+					<script>
+					var h1 = document.getElementById("h1");
+					var h2 = document.getElementById("h2");
+					var aa = document.getElementsByClassName("rn-product-good");
+
+					$("#h1").click(function(){
+						$("#h1").hide();
+						$("#h2").fadeToggle(0);
+					});
+					$("#h2").click(function(){
+						$("#h2").hide();
+						$("#h1").fadeToggle(0);
+					});
+					</script>
 						
 				</div>				
             </div><!--rn-03-left-->
@@ -78,6 +90,12 @@
                             고태훈 바보(기타) ,
                             킹고태 병맛(베이스) , 
                             코태훈 코고는소리(드럼)
+                            
+						<dt id="dtPrice">좌석</dt>
+						<dd>
+						 <span class='rn-red'>100</span>/100
+						</dd>
+						
 						<dt id="dtPrice">가격</dt>
 						<dd id="divPrice" class="rn-product-price">
 							<ul class="rn-product-price1 scroll-color">
@@ -99,15 +117,16 @@
 						<dt>공연시간 안내</dt>
 						<dd>2020년 3월 8일(일) 오후 6시</dd>
 						<dt>배송정보</dt>
-                        <dd>현장 수령 가능</dd>
-                        <dd>택배 배송 가능</dd>
+                        <dd>현장 수령 <span class='rn-red'>가능</span></dd>
+                        <dd>택배 배송 <span class='rn-red'>가능</span></dd>
 					</dl>
 				</div>
 
                 <!--자동주문방지적용-->
                 
 		<div class="rn-05"><!--예매버튼-->         
-            <a href='javascript:;' onclick='' class='rn-bb03'>예매하기</a>
+            <a href="#" onclick="window.open('buy.do', 'www.naver.com', 'width=715, height=650');" class='rn-bb03'>예매하기</a>
+            
 		</div><!--rn-05-->
 			</div><!--rn-03-right-->
 		</div><!--rn-03-->
