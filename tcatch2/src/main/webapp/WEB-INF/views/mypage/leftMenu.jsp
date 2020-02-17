@@ -4,7 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Insert title here</title>
+
 <!--     Fonts and icons     -->
 <link
 	href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"
@@ -30,8 +33,8 @@ section,div {
 }
 .wrapper{
 display:block;
-/* width:1500px;
-height:1800px;  */
+width:1300px;
+/*height:1800px;  */
 margin-top: 150px;  
 margin-left:200px; 
 margin-right:200px;
