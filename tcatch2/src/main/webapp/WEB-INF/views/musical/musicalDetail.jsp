@@ -73,11 +73,8 @@
 						$("#h1").fadeToggle(0);
 					});
 					</script>
-						
 				</div>				
             </div><!--rn-03-left-->
-            
-            
 			<div class="rn-03-right"><!--상품정보-->
 				<div class="rn-product-area1"><!--등급, 관람시간, 출연, 가격, 혜택-->
 					<dl>
@@ -115,7 +112,7 @@
 				<div class="rn-product-area3"><!--공연시간안내, 배송정보-->
 					<dl>
 						<dt>공연시간 안내</dt>
-						<dd>2020년 3월 8일(일) 오후 6시</dd>
+						<dd>2020년 3월 8일(일) 오후 6시 ~ 2020년 3월 8일(일) 오후 6시</dd>
 						<dt>배송정보</dt>
                         <dd>현장 수령 <span class='rn-red'>가능</span></dd>
                         <dd>택배 배송 <span class='rn-red'>가능</span></dd>

@@ -30,14 +30,14 @@
 
 			<div class='ms-list-imgs'>
 				<!-- 목록 1 -->
-				<a href='musicalDetail.do' target='_self'
+				<a href='artDetail.do' target='_self'
 					title='뮤지컬 (은밀하게 위대하게 - THE LAST)'>
 					<div class='list-bigger-wrap'>
 						<img class='lazyload' src="http://tkfile.yes24.com/upload2/PerfBlog/202001/20200122/20200122-36049_1.jpg" alt='뮤지컬 (은밀하게 위대하게 - THE LAST)' />
 						<div class='list-bigger-txt'>
 							<p class='list-b-tit1'>뮤지컬 (고태훈 고태 방구)</p>
-							<p class='list-b-tit2'>프리뷰 30%</p>
-							<p class='list-b-circle'>30%</p>
+							<!-- <p class='list-b-tit2'>프리뷰 30%</p>
+							<p class='list-b-circle'>30%</p> -->
 						</div>
 					</div>
 				</a>
