@@ -21,7 +21,7 @@
 .perform-top .pf-right .pf-top-srch.on a img.trans{display:none;}
 .perform-top .pf-right .pf-top-srch.on a img.fixed{display:inline-block;}
 .perform-top .pf-right .my-ticket{background:url('http://tkfile.yes24.com/imgNew/common/pf-ticket-b.png')no-repeat center top;}
-.perform-top .pf-right .global{background:url('http://tkfile.yes24.com/imgNew/common/pf-global-b.png')no-repeat center top;}
+.perform-top .pf-right .global{background:url('http://tkfile.yes24.com/imgNew/common/pf-global-w.png')no-repeat center top;}
 .perform-top .pf-right .my-ticket:hover span{color:#333;}
 .perform-top .pf-right .global:hover span{color:#333;}
 .pf-gnb-wrap{top:34px;}

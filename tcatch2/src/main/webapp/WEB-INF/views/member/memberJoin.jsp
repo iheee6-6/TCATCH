@@ -122,9 +122,9 @@ span.error {
 			<tr>
 				<th>아이디 *</th>
 				<td><input type="text" name="id" id="userId" size="30">
-					<span class="guide ok">이 아이디는 사용 가능합니다.</span> <span
-					class="guide error">이 아이디는 사용할 수 없습니다.</span> <input type="hidden"
-					name="idDuplicateCheck" id="idDuplicateCheck" value="0"></td>
+					<span class="guide ok">이 아이디는 사용 가능합니다.</span> 
+					<span class="guide error">이 아이디는 사용할 수 없습니다.</span> 
+					<input type="hidden" name="idDuplicateCheck" id="idDuplicateCheck" value="0"></td>
 			</tr>
 			<tr>
 				<th>비밀번호 *</th>
@@ -183,20 +183,6 @@ span.error {
 		</div>
 	</form>
 	
-	<link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-		crossorigin="anonymous"></script>
-
-	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
-	<script>
-		$(function() {
-			$("#postcodify_search_button").postcodifyPopUp();
-		});
-	</script>
-
-	<!-- ajax 이후 추가 : 아이디 중복 확인 -->
 	<script>
 		$(function() {
 			$("#userId").on("keyup", function() {
@@ -242,18 +228,26 @@ span.error {
 				$("#userId").focus();
 				return false;
 			}
+			alert("회원가입 성공!");
 			return true;
+			
 		}
 	</script>
+	
+	<link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
 
+	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+	<script>
+		$(function() {
+			$("#postcodify_search_button").postcodifyPopUp();
+		});
+	</script>
 
-
-
-
-
-
-
-
+	
 
 
 

@@ -30,6 +30,11 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
+	
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/WEB-INF/views/common/errorPage.jsp</location>
+	</error-page>
 
 	<filter>
 		<filter-name>encodingFilter</filter-name>
