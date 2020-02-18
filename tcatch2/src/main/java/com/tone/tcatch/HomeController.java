@@ -35,12 +35,6 @@ public class HomeController {
 		
 		return "common/main";
 	}
-	
-	@RequestMapping(value = "musical.do", method = RequestMethod.GET)
-	public String musical() {
 
-		
-		return "musical/musical";
-	}
 	
 }

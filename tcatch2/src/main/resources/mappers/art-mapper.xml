@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+"-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="artMapper">
+	<resultMap id="ArtResultSet" type="Art">
+		<id property="artNo" column="ART_NO"/>
+		<result property="artType" column="ART_TYPE"/>
+		<result property="artTitle" column="ART_TITLE"/>
+		<result property="artExplain" column="ART_EXPLAIN"/>
+		<result property="count" column="COUNT"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="companyNo" column="COMPANY_NO"/>
+		<result property="rating" column="RATING"/>
+		<result property="status" column="STATUS"/>
+		<result property="originalFile" column="ORIGINAL_FILE"/>
+		<result property="renameFile" column="RENAME_FILE"/>
+		<result property="durationTime" column="DURATION_TIME"/>
+	</resultMap>
+
+	<select id="selectList" resultMap="ArtResultSet">
+		SELECT *
+		FROM ART
+		WHERE STATUS='Y'
+		ORDER BY ART_NO DESC 
+	</select>
+	
+	<select id="selectOne" resultMap="ArtResultSet">
+		SELECT *
+		FROM ART
+		WHERE ART_NO = #{artNo}
+	</select>
+	
+	<update id="updateCount">
+		UPDATE ART SET COUNT=COUNT+1 
+		WHERE ART_NO = #{artNo}
+	</update>
+	
+</mapper>

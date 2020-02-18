@@ -144,10 +144,6 @@
 					<p class="rn08-tit" id="titPerfNotice">유의사항</p>
                     <div><p>어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고</p></div>
 				</div><!--rn-0801-->
-				<div class="rn-0802"><!--할인정보-->
-					<p class="rn08-tit" id="titPerfPromotion">할인정보</p>
-					<div><p>어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고</p></div>
-				</div><!--rn-0802-->
 				<div class="rn-0803"><!--공연정보-->
 					<p class="rn08-tit">공연정보</p>
 					<div class="rn08-txt" id="divPerfContent">
@@ -155,16 +151,12 @@
 					</div>
 				</div><!--rn-0803-->
 				<div class="rn-0804"><!--캐스팅일정-->
-					<p class="rn08-tit" id="titPerfCasting">캐스팅 일정</p>
-					<div class="rn08-txt" id="divPerfCasting">
-                        <div><p>어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고</p></div>
-					</div>
 					<div class="rn08-tbl rn-0803-tbl">
 						<table>
 							<caption></caption>
 							<colgroup>
 								<col width="18.5%" />
-								<col width="*" />
+								<col width="*" /> 
 							</colgroup>
 							<tbody>
 								<tr><th scope="row" class="rn08-tbl-tit">기획사 정보</th>
@@ -174,9 +166,6 @@
 						</table>
 					</div>
                 </div><!--rn-0804-->
-                
-
-
 
 				<div class="rn-0805"><!--상품정보제공 고시-->
 					<p class="rn08-tit">상품정보제공 고시</p>
@@ -261,14 +250,13 @@
                 </div>
 
                 <br><br><br><br><br><br><br><br>
-
-                푸텨
     </div>
     </div>	
 </div>
 </div>
 </form>
-</bod1y>
+<jsp:include page="../common/footer.jsp" />
+</body>
 </html>
 
 
