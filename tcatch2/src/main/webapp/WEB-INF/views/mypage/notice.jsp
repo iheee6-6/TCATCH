@@ -283,8 +283,8 @@
 										<c:param name="bId" value="${ b.bId }" />
 										<c:param name="page" value="${ pi.currentPage }" />
 									</c:url>
-									<td><a href="ndetail"><em>줄리안 라지 트리오(Julian
-												Lage Trio) 내한공연 취소안내</em></a></td>
+									<td><a href="ndetail"><em>줄리안 라지 트리오(Julian Lage
+												Trio) 내한공연 취소안내</em></a></td>
 									<td></td>
 									<td>41</td>
 								</tr>
@@ -459,119 +459,6 @@
 							$(document)
 									.ready(
 											function() {
-
-												$.History
-														.bind(function(state) {
-															var url = $.url("?"
-																	+ state);
-
-															if (url
-																	.param("list") != undefined
-																	&& url
-																			.param("list") != "") {
-																$("html, body")
-																		.animate(
-																				{
-																					scrollTop : 0
-																				},
-																				'fast');
-															}
-
-														});
-
-												//$("html, body").animate({ scrollTop: 0 }, 'fast');
-
-												// 스와이프라이브러리
-												if ($(".ticketo .swiper-slide").length <= 5) {
-
-													$(".swiper-button-next")
-															.css("display",
-																	"none");
-													$(".swiper-button-prev")
-															.css("display",
-																	"none");
-													$(
-															".ticketo .swiper-wrapper")
-															.css(
-																	{
-																		"display" : "block",
-																		"text-align" : "center",
-																		"font-size" : "0"
-																	});
-													$(".ticketo .swiper-slide")
-															.css(
-																	{
-																		"margin-left" : "12px",
-																		"margin-right" : "12px",
-																		"display" : "inline-block"
-																	});
-													$(
-															".ticketo .swiper-slide:first")
-															.css("margin-left",
-																	"0");
-													$(
-															".ticketo .swiper-slide:last")
-															.css(
-																	"margin-right",
-																	"0");
-												} else {
-
-													var ticketO = new Swiper(
-															'.ticketo',
-															{
-																slidesPerView : 5,
-																spaceBetween : 24,
-																slidesPerGroup : 1,
-																navigation : {
-																	nextEl : '.swiper-button-next',
-																	prevEl : '.swiper-button-prev',
-																},
-															});
-												}
-
-												// 도넛챠트
-												displayDonut();
-
-												//우측 플로팅배너
-												var nss = new Swiper(
-														'.noti-scroll-slide .swiper-container',
-														{
-															loop : true,
-															autoplay : {
-																delay : 8000,
-																disableOnInteraction : false
-															},
-															pagination : {
-																el : '.noti-scroll-slide .swiper-pagination',
-																clickable : true,
-															},
-														});
-												$(window)
-														.on(
-																'scroll',
-																function() {
-																	var crtTop = $(
-																			this)
-																			.scrollTop();
-																	if (crtTop > 0) {
-																		$(
-																				".srch-scroll01 .noti-scroll-slide")
-																				.css(
-																						{
-																							"position" : "fixed",
-																							"top" : "225px"
-																						});
-																	} else {
-																		$(
-																				".srch-scroll01 .noti-scroll-slide")
-																				.css(
-																						{
-																							"position" : "absolute",
-																							"top" : "90px"
-																						});
-																	}
-																});
-
 												//팬클럽 선예매 타이틀,오픈시간 바인딩
 												$(".noti-btn-pop")
 														.on(
@@ -681,8 +568,7 @@
 				</div>
 
 			</div>
-			<!-- 공지사항 상세 -->
-			<div id="NoticeRead" style="display: none;"></div>
+
 
 		</div>
 
@@ -705,12 +591,7 @@
 			</div>
 		</div>
 
-		<!--공지사항 리스트 티켓오픈시간 추가 레이어(팬클럽 선예매)-->
-		<div class="noti-pop">
-			<div class="noti-pop-box"></div>
-		</div>
 
-		<!-- 콘텐츠 //-->
 	</div>
 
 	<jsp:include page="../common/footer.jsp" />
