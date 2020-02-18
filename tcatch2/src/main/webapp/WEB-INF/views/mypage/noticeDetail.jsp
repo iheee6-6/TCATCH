@@ -5,6 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<!-- 부트스트랩 -->
+ <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	
 <link href="resources/css/mypage/notice.css" rel="stylesheet" />
 <style>
 .wrapper {
@@ -71,37 +78,7 @@
 			</div>
 
 
-			<!-- Modal -->
-			<div class="modal fade" id="exampleModalCenter" tabindex="-1"
-				role="dialog" aria-labelledby="exampleModalCenterTitle"
-				aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalCenterTitle">티켓오픈 알림 신청</h5>
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-						<div class="modal-notice">
-						<p style="text-align:center">티켓오픈 알림 신청 시 티켓
-						<span style="color: red">오픈 시간 1시간 전</span>에 회원님께 이메일을 보내드립니다.</p>
-						<div class="modal-email" style="border:1px solid orange; padding:30px;"> ${loginUser.email}</div>
-						<p> 일반 티켓 오픈 시간을 기준으로
-						발송됩니다. 알림 받을 이메일 주소 변경을 원하시면, 마이페이지>회원정보관리 에서 변경하신 후 신청하시면 됩니다.</p>
-						</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">신청하기</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Modal // -->
+			
 
 			<div class="noti-view-con">
 				<!--공연개요, 할인정보, 기획사정보-->
@@ -176,97 +153,38 @@
 					class="noti-list">목록보기</a>
 				<!--<a href="#" class="noti-next">다음글</a>-->
 			</div>
-
-			<!--팝업-->
-			<div tabindex="-1" role="dialog"
-				class="ui-dialog ui-widget ui-widget-content ui-front ui-draggable"
-				aria-describedby="dialogPopup" aria-labelledby="ui-id-1"
-				style="padding: 0px; height: auto; width: 380px; top: 842.5px; left: 486px; z-index: 101;">
-				<div
-					class="ui-dialog-titlebar ui-corner-all ui-widget-header ui-helper-clearfix ui-draggable-handle"
-					style="display: none;">
-					<span id="ui-id-1" class="ui-dialog-title">yes24.com ticket
-						- SMS 알림 서비스</span>
-					<button type="button"
-						class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close"
-						title="Close">
-						<span class="ui-button-icon ui-icon ui-icon-closethick"></span> <span
-							class="ui-button-icon-space"> </span> Close
-					</button>
+			
+	<!-- Modal -->
+			<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+				role="dialog" aria-labelledby="exampleModalCenterTitle"
+				aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalCenterTitle">티켓오픈 알림 신청</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+						<div class="modal-notice">
+						<p style="text-align:center; margin:30px;">티켓오픈 알림 신청 시 <br>티켓
+						<span style="color: red;">오픈 시간 1시간 전</span>에 회원님께 이메일을 보내드립니다.</p>
+						<div class="modal-email" style="border:1px solid orange; padding:30px;margin:30px;"> ${loginUser.email}</div>
+						<p style="margin:30px;"> * 알림 받을 이메일 주소 변경을 원하시면, 마이페이지>회원정보관리 에서 변경하신 후 신청하시면 됩니다.</p>
+						</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">신청하기</button>
+						</div>
+					</div>
 				</div>
-				<div id="dialogPopup"
-					style="padding: 0px; width: auto; min-height: 0px; max-height: none; height: 408px; overflow: hidden;"
-					class="ui-dialog-content ui-widget-content">티켓오픈 알림 신청 시 티켓
-					오픈 시간 1시간 전에 회원님께 SMS 를 보내드립니다. 010-9744-3253 일반 티켓 오픈 시간을 기준으로
-					발송됩니다. (팬클럽 선예매 등은 발송 대상이 아닙니다.) 알림 받을 휴대전화번호 변경을 원하시면,
-					마이페이지>회원정보관리 에서 변경하신 후 신청하시면 됩니다.</div>
 			</div>
-
-
-
-
-
-			<script type="text/javascript">
-
-
-                $(document).ready(function () {
-
-                    $("html, body").animate({ scrollTop: 0 }, 'fast');
-
-                    if ($.trim($('#title1').text()) == '') {
-                        $('#noti1').css('display', 'none');
-                    }
-
-                    if ($.trim($('#title2').text()) == '') {
-                        $('#noti2').css('display', 'none');
-                    }
-
-                    if ($.trim($('#title3').text()) == '') {
-                        $('#noti3').css('display', 'none');
-                    }
-
-                    if ($.trim($("#not_discount div").text()) == '')
-                        $("#not_discount").css('display', 'none');
-
-                    if ($.trim($("#not_seller div").text()) == '')
-                        $("#not_seller").css('display', 'none');
-
-                    $("html, body").animate({ scrollTop: 0 }, 'fast');
-
-                    fax_AddRecentItem("N", $("#hdNotiTitle").val(), $("#hdNotiID").val());
-                });
-
-                $("#divtoplist").css('display', 'Block');
-            
-                function fax_AddRecentItem(pType, pContent, pContentID) {
-                    $.ajax({
-                        async: true,
-                        type: "POST",
-                        url: "/New/Controls/Header/Ajax/axRecentItem.aspx/AddRecentItem",
-                        data: JSON.stringify({
-                            Type: pType
-                            , Content: pContent
-                            , ContentID: pContentID
-                        }),
-                        dataType: "json",
-                        contentType: "application/json",
-                        success: function (data, textStatus) {
-                            if (data != "") {
-                                if (data.d.Result == "1") {
-                                }
-                            }
-                        },
-                        error: function (xhr, textStatus, errorThrown) {
-                            //$("#dialogAlert").jAlert({ "msg": "데이터 조회 에러가 발생하였습니다." });
-                        },
-                        beforeSend: function (xhr, settings) {
-                            //jsf_com_AjaxLoader(jcAJAX_BEFORESEND, 0, 0, "", ".entry");
-                        },
-                        complete: function (xhr, textStatus) {
-                        }
-                    });
-                }
-            </script>
+			<!-- Modal // -->
+			
 		</div>
 
 	</div>
@@ -290,5 +208,7 @@
 		</div>
 	</div>
 	<jsp:include page="../common/footer.jsp" />
+	
+
 </body>
 </html>
