@@ -18,7 +18,7 @@
 	href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap"
 	rel="stylesheet">
 
-<title>Insert title here</title>
+<title>TCATCH 회원가입</title>
 <style>
 .bd-placeholder-img {
 	font-size: 1.125rem;
@@ -111,7 +111,7 @@ span.error {
 
 			<tr>
 				<th>생년월일</th>
-				<td><input type="text" name="birth" id="userBirth"></td>
+				<td><input type="text" name="birth"></td>
 			</tr>
 			<tr>
 				<th>성별 *</th>
