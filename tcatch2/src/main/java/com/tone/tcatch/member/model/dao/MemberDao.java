@@ -19,6 +19,17 @@ public class MemberDao {
 	public int checkIdDup(String id) {
 		
 		return sqlSession.selectOne("memberMapper.idCheck", id);
+		
+	}
+
+	public Member selectMember(Member m) {
+		System.out.println("m 은 ? " + m);
+		return sqlSession.selectOne("memberMapper.selectOne",m);
+	}
+
+	public int deleteMember(String id) {
+		
+		return sqlSession.delete("memberMapper.deleteMember",id);
 	}
 
 }

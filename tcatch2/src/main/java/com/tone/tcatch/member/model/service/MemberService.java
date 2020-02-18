@@ -8,4 +8,8 @@ public interface MemberService {
 
 	int checkIdDup(String id);
 
+	Member loginMember(Member m);
+
+	int deleteMember(String id);
+
 }

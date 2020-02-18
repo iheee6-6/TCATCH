@@ -70,7 +70,7 @@
 
 .pf-right a{display:inline-block; height:22px; line-height:24px;font-size:12px;position:absolute; top:0;font-family: 'Noto Sans KR', 'NanumBarunGothic', '맑은 고딕', 'Malgun Gothic', sans-serif;}
 .pf-right a span{opacity:0; transition:all 0.5s; color:#fff;}
-.pf-right .my-ticket{background:url('http://tkfile.yes24.com/imgNew/common/pf-ticket-w.png')no-repeat center top;right:33px;padding-top:22px;}
+.pf-right .my-ticket{background:url('http://tkfile.yes24.com/imgNew/common/pf-ticket-w.png')no-repeat center top;right:0px;padding-top:22px;}
 .pf-right .global{background:url('http://tkfile.yes24.com/imgNew/common/pf-global-w.png')no-repeat center top;right:-11px;padding-top:22px;}
 .pf-right a:hover span{color:#fff;}
 .pf-right a:hover span{opacity:1;}

@@ -31,4 +31,24 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.checkIdDup(id);
 	}
 
+	@Override
+	public Member loginMember(Member m) {
+		
+		Member loginUser = mDao.selectMember(m);
+		
+		// select 된 아이디 값은 있으나 비밀번호가 매칭되지 않은 경우
+		// 앞의 조건이 빠지면 우리가 원하는 MemberException이 아닌
+		// nullPointerException이 발생함
+		if(loginUser != null && !bcryptPasswordEncoder.matches(m.getPwd(), loginUser.getPwd())) {
+			loginUser = null;
+		}
+		return loginUser;
+	}
+
+	@Override
+	public int deleteMember(String id) {
+		
+		return mDao.deleteMember(id);
+	}
+
 }

@@ -9,12 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tone.tcatch.member.model.vo.Member;
+import com.tone.tcatch.member.model.exception.MemberException;
 import com.tone.tcatch.member.controller.MemberController;
 import com.tone.tcatch.member.model.service.MemberService;
 
@@ -28,7 +31,36 @@ public class MemberController {
 	
 	private Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
-	@RequestMapping("/login.do")
+	@RequestMapping(value="login.do", method=RequestMethod.POST)
+	public String memberLogin(Member m, Model model) { 
+		// HttpSession 커맨드 객체 생략
+		System.out.println("mmmmm = " +m);
+		Member loginUser = mService.loginMember(m);
+		if(loginUser != null) {
+			// 로깅 수업 시 작성 2_3.
+			if(logger.isDebugEnabled())
+				// logger의 레벨이 DEBUG인지 확인하는 조건 문
+				// logginEvent로 발생되는 시간을 절약
+				logger.info(loginUser.getId() + " 로그인");
+			
+			// 조회 성공 시 Model에 loginUser 정보를 담는다.
+			model.addAttribute("loginUser", loginUser);
+			// -> 이렇게만 작성하면 requestScope에만 담김
+			// 가장 위로 올라가서 @SessionAttributes라는 어노테이션을 추가한다.
+			return "common/main";
+		} else {
+			// Exception을 이용하여 errorPage 연결
+			throw new MemberException("로그인 실패!!");
+			// RuntimeException으로 상속 받았을 때의 차이점
+			// -> throws를 넘길 필요 없으며 try-catch로 잡을 필요도 없음
+			
+			// 에러페이지로 연결하는 방법 -> web.xml에 공용 에러 페이지를 등록하여
+			// 모든 예외가 발생 시 그 페이지가 뜨게끔 설정
+		}
+		
+	} 
+	
+	@RequestMapping("/loginPage.do")
 	public String login() {
 		return "member/login";
 	}
@@ -44,6 +76,9 @@ public class MemberController {
 				@RequestParam("post") String post,
 				@RequestParam("address1") String address1,
 				@RequestParam("address2") String address2,
+				@RequestParam("phone1") String phone1,
+				@RequestParam("phone2") String phone2,
+				@RequestParam("phone3") String phone3,
 				Model model,
 				RedirectAttributes rd
 				) {
@@ -56,6 +91,7 @@ public class MemberController {
 			
 			// 주소값은 , 구분자를 두고 저장
 			m.setAddress(post + "," + address1 + "," + address2);
+			m.setPhone(phone1 + "-" + phone2 + "-" +phone3);
 			
 			int result = mService.insertMember(m);
 			
@@ -88,6 +124,32 @@ public class MemberController {
 			mv.setViewName("jsonView");
 			
 			return mv; // json객체로 넘어감
+		}
+		
+		@RequestMapping("logout.do")
+		public String logout(SessionStatus status) {
+			// 로그아웃 처리를 위해 커맨드 객체로 세션의 상태를 관리할 수 있는 SessionStatus 객체가 필요
+			
+			status.setComplete();
+			// 세션의 상태를 확정 지어주는 메소드 호출이 필요함.
+			
+			// return "home"; : forward 방식
+			return "redirect:home.do"; // redirect 방식
+		}
+		
+		@RequestMapping("mdelete.do")
+		public String memberDelete(String id, Model model, SessionStatus status, RedirectAttributes rd) {
+			
+			int result = mService.deleteMember(id); 
+			
+			if(result>0) {
+				rd.addFlashAttribute("msg", "회원 탈퇴가 완료 되었습니다.");
+				status.setComplete();
+				return "redirect:home.do";
+			}else {
+				model.addAttribute("msg", "회원 탈퇴 실패");
+				return "common/errorPage";
+			}
 		}
 	
 	

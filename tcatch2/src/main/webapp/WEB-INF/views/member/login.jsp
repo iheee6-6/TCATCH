@@ -49,7 +49,7 @@
 
 <body>
 <jsp:include page="../common/menubar.jsp"/>
-    <form class="form-signin">
+    <form class="form-signin" action="login.do" method="post">
   <div class="text-center mb-4">
     <!-- <img class="mb-4" src="로고.png" alt="" width="100" height="90"> -->
     <h1 class="mb-4" style="font-family: 'Do Hyeon', sans-serif;">Ticket Catch</h1>
@@ -58,19 +58,19 @@
 
   <div class="form-label-group">
       <label for="inputEmail" style="font-family: 'Do Hyeon', sans-serif;">I D</label>
-    <input type="text" id="inputId" class="form-control" placeholder="ID" required autofocus>
+    <input type="text" id="inputId" class="form-control" placeholder="ID" name="id" required autofocus>
   </div>
   <br>
 
   <div class="form-label-group">
       <label for="inputPassword" style="font-family: 'Do Hyeon', sans-serif;">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="PWD" required>
+    <input type="password" id="inputPassword" class="form-control" placeholder="PWD" name="pwd" required>
     
   </div>
   <br>
 
-  <button class="btn btn-lg btn-primary btn-block1" type="submit" style="font-family: 'Do Hyeon', sans-serif;">로그인</button>
-  <button class="btn btn-lg btn-primary btn-block2" type="submit" onclick="location.href='enrollView.do'" style="font-family: 'Do Hyeon', sans-serif;">회원가입</button>
+  <button class="btn btn-lg btn-primary btn-block1" style="font-family: 'Do Hyeon', sans-serif;">로그인</button>
+  <button class="btn btn-lg btn-primary btn-block2" type="button" onclick="location.href='enrollView.do'" style="font-family: 'Do Hyeon', sans-serif;">회원가입</button>
   <p class="mt-5 mb-3 text-muted text-center" style="font-family: 'Do Hyeon', sans-serif;">T CATCH에 오신 것을 환영합니다.</p>
   <p class="mt-5 mb-3 text-muted text-center" style="font-family: 'Do Hyeon', sans-serif;">로그인하시면 더욱 많은 서비스를 이용가능합니다.</p>
 </form>

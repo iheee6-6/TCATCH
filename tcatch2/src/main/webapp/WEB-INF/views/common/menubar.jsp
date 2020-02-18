@@ -8,8 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 
 <title>Ticket Catch</title>
@@ -97,8 +96,17 @@ body {
 					src="http://tkfile.yes24.com/imgNew/common/pf-srch-w.png" alt=""
 					class="fixed" /></a>
 			</div>
-			<a href="login.do" class="my-ticket"><span>로그인</span></a>
+			<div class="pf-top-right">
+			<c:if test="${ empty sessionScope.loginUser }">
+			<a href="loginPage.do" class="my-ticket"><span>로그인</span></a>
+			</c:if>
+			<c:if test="${ !empty sessionScope.loginUser }">
+			<a href="enterMyPage.do" class="my-ticket"><span>${ loginUser.name } MY</span></a>
+			<a href="logout.do" class="global"><span>로그아웃</span></a>
+			</c:if>
+			</div>
 		</div>
+		<%-- <img src="${contextPath }/resources/images/common/logout.png" style="width:25px; height:25px; float:right;"> --%>
 	</header>
 
 </body>

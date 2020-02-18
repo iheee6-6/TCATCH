@@ -4,17 +4,17 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="memberMapper">
 	<resultMap id="memberResultSet" type="Member">
-		<id property="id" column="ID"/>
-		<result property="pwd" column="PWD"/>
-		<result property="name" column="NAME"/>
+		<id property="id" column="M_ID"/>
+		<result property="pwd" column="M_PWD"/>
+		<result property="name" column="M_NAME"/>
 		<result property="email" column="EMAIL"/>
 		<result property="gender" column="GENDER"/>
-		<result property="age" column="AGE"/>
+		<result property="birth" column="BIRTH"/>
 		<result property="phone" column="PHONE"/>
 		<result property="address" column="ADDRESS"/>
-		<result property="enrollDate" column="ENROLL_DATE"/>
-		<result property="updateDate" column="UPDATE_DATE"/>
 		<result property="mStatus" column="M_STATUS"/>
+		<result property="enrollDate" column="ENROLL_DATE"/>
+
 	</resultMap>
 	<select id="selectOne" parameterType="Member" resultMap="memberResultSet">
 		<!-- SELECT *
@@ -25,8 +25,8 @@
 		<!-- 암호화 이후 쿼리문 -->
 		SELECT *
 		FROM MEMBER
-		WHERE ID=#{id}
-		AND M_STATUS='Y'
+		WHERE M_ID=#{id}
+		AND STATUS='Y'
 	</select>
 
 	<insert id="insertMember" parameterType="Member">
@@ -46,13 +46,13 @@
 	<update id="deleteMember" parameterType="string">
 		UPDATE MEMBER
 		SET M_STATUS='N'
-		WHERE ID=#{id}
+		WHERE M_ID=#{id}
 	</update>
 	
 	<select id="idCheck" parameterType="string" resultType="_int">
 		SELECT COUNT(*)
 		FROM MEMBER
-		WHERE ID=#{id}
+		WHERE M_ID=#{id}
 	</select>
 	
 	
