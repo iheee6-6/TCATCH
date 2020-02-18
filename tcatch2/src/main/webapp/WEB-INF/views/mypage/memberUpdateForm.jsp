@@ -176,7 +176,7 @@ span.error {
 
 					</table>
 					<div class="joinbtn">
-						<button class="btn btn-lg btn-primary btn-block2">회원가입</button>
+						<button class="btn btn-lg btn-primary btn-block2">수정완료</button>
 						&emsp;
 						<button type="button" class="btn btn-danger"
 							onclick="location.href='home.do'">메인으로</button>
