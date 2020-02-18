@@ -4,7 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Insert title here</title>
+
 <!--     Fonts and icons     -->
 <link
 	href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"
@@ -30,8 +33,8 @@ section,div {
 }
 .wrapper{
 display:block;
-/* width:1500px;
-height:1800px;  */
+width:1300px;
+/*height:1800px;  */
 margin-top: 150px;  
 margin-left:200px; 
 margin-right:200px;
@@ -72,7 +75,7 @@ margin-bottom: 150px;
 						<p>나의 맞춤 설정</p>
 				</a></li>
 				<li id="userU"><a href="memberUpdateView.do"> <i class="fa fa-* fa-user"></i>
-						<p>회원정보 수정</p>
+						<p>회원 정보 관리</p>
 				</a></li>
 
 			</ul>

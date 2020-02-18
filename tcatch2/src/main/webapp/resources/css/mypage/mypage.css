@@ -964,7 +964,7 @@ ul.gbox_notice li em{ text-decoration:underline;}
 .date_list ul li input.date{ border:1px solid #CCC; height:16px; margin-right:3px; vertical-align:middle;}
 .date_list ul li.sec{ margin-left:30px; position:relative; top:-3px;}
 
-.memo{ background:url(../images/viewticket.gif) no-repeat; height:265px; margin-bottom:10px; position:relative;}
+.memo{ background:url(../../images/mypage/viewticket.gif) no-repeat; height:265px; margin-bottom:10px; position:relative;}
 .memo h3{ padding:7px 8px 8px 25px;}
 .memo h3 span{ font:bold 24px Tahoma; color:#3c3c3c; position:relative; display:block; height:25px; float:left;}
 .memo h3 em{ position:absolute; bottom:0; right:0;}
@@ -999,9 +999,9 @@ ul.gbox_notice li em{ text-decoration:underline;}
 
 .memo.end{ margin-bottom:50px;}
 
-.sms_alram{/*  background:url(http://tkfile.yes24.com/img/mypage/bg_address02.gif) no-repeat;  height:150px;*/ margin-bottom:30px; padding:7px 10px 10px 10px;}
+.sms_alram{/*  background:url(http://tkfile.yes24.com/img/mypage/bg_address02.gif) no-repeat; height:136px;*/ width: 800px; margin-bottom:30px; padding:7px 10px 10px 10px;}
 .sms_alram h3 span{ font-size:11px; margin-left:3px; font-weight:normal; position:relative; top:3px; color:#666666; }
-.sms_alram em{ background:url(http://tkfile.yes24.com/img/mypage/bg_address.gif) no-repeat; padding:15px; text-align:center; display:block; width:309px; height:17px; margin:4px auto; font-size:14px; font-weight:bold; color:#676767; }
+.sms_alram em{ background:url(http://tkfile.yes24.com/img/mypage/bg_address.gif) no-repeat; padding:15px; text-align:center; display:block; width:340px;  margin:4px auto; font-size:14px; font-weight:bold; color:#676767; }
 .sms_alram ul{ margin-top:10px; display:inline-block; margin-left:106px;}
 .sms_alram ul li{ font-size:11px; color:#bfbfc0;}
 

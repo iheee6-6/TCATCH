@@ -4194,9 +4194,7 @@ License - nucleoapp.com/license/
   content: "\ea37";
 }
 
-.nc-map-big::before {
-  content: "\ea38";
-}
+
 
 .nc-minimal-down::before {
   content: "\ea39";
@@ -5429,13 +5427,7 @@ License - nucleoapp.com/license/
   margin-top: 10px;
 }
 
-.card .map {
-  border-radius: 3px;
-}
 
-.card .map.map-big {
-  height: 400px;
-}
 
 .card[data-background-color="orange"] {
   background-color: #51cbce;
@@ -5638,9 +5630,7 @@ License - nucleoapp.com/license/
   text-align: center;
 }
 
-.map {
-  height: 500px;
-}
+
 
 .card-stats .card-body {
   padding: 15px 15px 0px;

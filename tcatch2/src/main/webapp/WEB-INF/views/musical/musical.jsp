@@ -24,7 +24,7 @@
 	<div class="cp-top-wrap">
 		<section class='m2-sec02'>
 			<p class='m2-tit'>
-				<img src='${contextPath}/resources/images/musical/mLogo.png' alt='' />
+				<img src='${contextPath}/resources/images/musical/mLogo.png'/>
 			</p>
 
 
