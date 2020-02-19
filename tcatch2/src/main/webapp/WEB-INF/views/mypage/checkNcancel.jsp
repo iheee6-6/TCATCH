@@ -39,6 +39,7 @@
 										<th>공연명</th>
 										<th>관람일시</th>
 										<th>매수</th>
+										<th>구분</th>
 									</thead>
 									<tbody>
 										<tr>
@@ -47,6 +48,7 @@
 											<td>뮤지컬 [쓰릴 미]</td>
 											<td>2020.01.01</td>
 											<td>2</td>
+											<td>예매완료</td>
 										</tr>
 										<tr>
 											<td>Minerva Hooper</td>

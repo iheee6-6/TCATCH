@@ -7,11 +7,17 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.tone.tcatch.attachment.vo.Attachment;
 import com.tone.tcatch.member.model.vo.Member;
 import com.tone.tcatch.mypage.model.service.MyPageService;
+import com.tone.tcatch.mypage.model.vo.Alarm;
 import com.tone.tcatch.mypage.model.vo.Performance;
 import com.tone.tcatch.mypage.model.vo.Ticket;
 
@@ -20,26 +26,40 @@ public class MyPageController {
 	@Autowired
 	private MyPageService mpService;
 	
-	@RequestMapping("enterMyPage.do")
+	/*@RequestMapping("enterMyPage.do")
 	public String enterMypage() {
 		
 		return "mypage/firstPage";
-	}
+	}*/
 	
-	/*@RequestMapping("enterMyPage.do")
+	@RequestMapping("enterMyPage.do")
 	public ModelAndView enterMypage(ModelAndView mv, HttpSession session) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
-		ArrayList<Performance> recentHistoryList = mpService.selectRecentHistoryList(loginUser.getId());
-		ArrayList<Ticket> recentTicketList = mpService.selectRecentTicketList(loginUser.getId());
-		ArrayList<Performance> recentInterestList = mpService.selectRecentInterestList(loginUser.getId());
+		ArrayList<Ticket> recentHistoryList = mpService.selectRecentHistoryList(loginUser.getId());
+		//ArrayList<Ticket> recentViewList = mpService.selectRecentViewList(loginUser.getId());
+		//ArrayList<Performance> recentInterestList = mpService.selectRecentInterestList(loginUser.getId());
 		
+		/*//공연 사진 
+		for (int i = 0; i < recentViewList.size(); i++) {
+			Attachment t = mpService.selectPathRename(recentViewList.get(i).getPerformanceId());
+			recentViewList.get(i).setPath(t.getPath());
+			recentViewList.get(i).setReName(t.getReName());
+		}
+			
+		for (int i = 0; i < recentInterestList.size(); i++) {
+			Attachment t = mpService.selectPathRename(recentInterestList.get(i).getId());
+			recentInterestList.get(i).setPath(t.getPath());
+			recentInterestList.get(i).setReName(t.getReName());
+		}*/
+		 System.out.println(recentHistoryList);
+		 //System.out.println(recentViewList);
 		mv.addObject("recentHistoryList",recentHistoryList);
-		mv.addObject("recentTicketList",recentTicketList);
-		mv.addObject("recentInterestList",recentInterestList);
+		//mv.addObject("recentTicketList",recentViewList);
+		//mv.addObject("recentInterestList",recentInterestList);
 		mv.setViewName("mypage/firstPage");
 		return mv;
-	}*/
+	}
 	
 	/*@RequestMapping("interestPerformance.do")
 	public ModelAndView interestPerformance(ModelAndView mv, HttpSession session) {
@@ -56,7 +76,7 @@ public class MyPageController {
 	public ModelAndView alarmList(ModelAndView mv, HttpSession session) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
-		ArrayList<Performance> alarmList = mpService.selectAlarmList(loginUser.getId());
+		ArrayList<Alarm> alarmList = mpService.selectAlarmList(loginUser.getId());
 		
 		mv.addObject("alarmList",alarmList);
 		mv.setViewName("mypage/alarmList");
@@ -228,8 +248,15 @@ public class MyPageController {
 		return "mypage/viewPerformance";
 	}
 	
+	@RequestMapping("mInformationSetting.do")
+	public String mInformationSetting() {
+		
+		return "mypage/informationSetting";
+	}
+	
 	@RequestMapping("memberUpdateView.do")
 	public String memberUpdateView() {
+		
 		return "mypage/memberUpdateForm";
 	}
 	
@@ -247,6 +274,43 @@ public class MyPageController {
 	public String noticeDetailView() {
 		return "mypage/noticeDetail";
 	}
+	
+	@RequestMapping("mupdate.do")
+	public String memberUpdate(Member m, Model model,
+							   @RequestParam("post") String post,
+							   @RequestParam("address1") String addr1,
+							   @RequestParam("address2") String addr2,
+							   RedirectAttributes rd) {
+		
+		m.setAddress(post+","+addr1+","+addr2);
+		
+		int result = mpService.updateMember(m); 
+		
+		if(result > 0) {
+			rd.addFlashAttribute("msg", "회원정보가 수정 되었습니다.");
+			model.addAttribute("loginUser", m);
+			return "redirect:mInformationSetting.do";
+		}else {
+			model.addAttribute("msg", "회원 가입 실패");
+			return "common/errorPage";
+		}
+	}
+	
+	
+	/*@RequestMapping("mdelete.do")
+	public String memberDelete(String id, Model model, SessionStatus status, RedirectAttributes rd) {
+		
+		int result = mpService.deleteMember(id); 
+		
+		if(result>0) {
+			rd.addFlashAttribute("msg", "회원 탈퇴가 완료 되었습니다.");
+			status.setComplete();
+			return "redirect:home.do";
+		}else {
+			model.addAttribute("msg", "회원 탈퇴 실패");
+			return "common/errorPage";
+		}
+	}*/
 	
 	@Scheduled(cron="0 59 15 * * *")
 	public void test() {

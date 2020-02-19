@@ -74,7 +74,7 @@ margin-bottom: 150px;
 				<li id="alarmS"><a href="alarmList.do"> <i class="fa fa-* fa-bell"></i>
 						<p>나의 맞춤 설정</p>
 				</a></li>
-				<li id="userU"><a href="memberUpdateView.do"> <i class="fa fa-* fa-user"></i>
+				<li id="userU"><a href="mInformationSetting.do"> <i class="fa fa-* fa-user"></i>
 						<p>회원 정보 관리</p>
 				</a></li>
 
