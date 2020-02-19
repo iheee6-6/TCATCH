@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+"-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myPageMapper">
+	<resultMap id="ticketResultSet" type="Ticket">
+		<id property="tNo" column="purchase_no" />
+		<result property="tDate" column="buy_date" />
+		<result property="performanceName" column="art_title" />
+		<result property="viewDate" column="date_time" />
+		<result property="ticketCount" column="purchase_count" />
+		<result property="performanceId" column="art_no" />
+		<result property="status" column="refund_no" /> <!-- 가짜이룸 -->
+		<result property="wayBill" column="wayBill_number" />
+		<result property="place" column="address" />
+		<result property="seat" column="seat_name" />
+		<result property="receiveMethod" column="type" />
+
+		<result property="path" column="path" />
+		<result property="reName" column="rename" />
+		<result property="price" column="price" />
+		<result property="category" column="art_type" />
+	</resultMap>
+
+	<!-- <resultMap id="PerformanceResultSet" type="Performance"> <id property="id" 
+		column="M_ID"/> <result property="pwd" column="M_PWD"/> <result property="name" 
+		column="M_NAME"/> <result property="email" column="EMAIL"/> <result property="gender" 
+		column="GENDER"/> <result property="birth" column="BIRTH"/> <result property="phone" 
+		column="PHONE"/> <result property="address" column="ADDRESS"/> <result property="mStatus" 
+		column="M_STATUS"/> <result property="enrollDate" column="ENROLL_DATE"/> 
+		</resultMap> -->
+
+	<resultMap id="alarmResultSet" type="Alarm">
+		<id property="alarmNo" column="per_no" />
+		<result property="performanceName" column="art_name" />
+		<result property="performanceNo" column="art_no" />
+		<result property="userId" column="M_No" />
+		<result property="enrollDate" column="per_enrolldate" />
+		<result property="alarmDate" column="alarm_Date" />
+	</resultMap>
+
+	<select id="selectRHistory" parameterType="Ticket"
+		resultMap="ticketResultSet">
+		 SELECT  p.purchase_no, buy_date, art_title, date_time, purchase_count, p.art_no, REFUND_NO, wayBill_number FROM PURCHASE p
+		JOIN ART a on(p.ART_NO=a.ART_NO)
+		JOIN ART_TIME td on(td.ART_NO=a.art_no)
+		JOIN REFUND r
+		on(p.PURCHASE_NO=r.purchase_no)
+		WHERE M_NO=#{id} AND BUY_DATE<![CDATA[  <=  ]]>
+		add_months(sysdate,-3)
+		ORDER BY 'DATE_TIME' DESC;
+	</select>
+
+	<select id="selectRView" parameterType="Ticket"
+		resultMap="ticketResultSet">
+		SELECT * FROM PURCHASE p
+		JOIN ART a on(p.ART_NO=a.ART_NO)
+		JOIN TICKET_DATE td on(td.ART_NO=a.art_no)
+		WHERE M_NO=#{id}
+		AND
+		'DATE_TIME' < TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS') AND
+		ROWNUM <=3
+		ORDER
+		BY 'DATE_TIME' DESC;
+	</select>
+
+	<select id="selectAlarmList" parameterType="ALarm"
+		resultMap="alarmResultSet">
+		SELECT * FROM PERSONAL
+		JOIN ART USING(ART_NO)
+		WHERE PER_TYPE=2 AND M_NO= #{ID}
+	</select>
+
+
+
+
+
+</mapper>

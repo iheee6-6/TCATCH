@@ -85,18 +85,7 @@
 												</tr>
 											</table>
 
-											<!-- <div id="divButtonGroup" class="btn">
-                        <div class="fr">
-
-
-                          <a href='/Pages/Perf/Detail/Detail.aspx?IdPerf=35104'><img
-                              src='http://tkfile.yes24.com/img/mypage/btn_minfor.gif' alt='공연정보' /></a>
-                          <a class='dcursor' onclick='jsf_otv_SetFavoritePerformance(35104);'><img
-                              src='http://tkfile.yes24.com/img/mypage/btn_basket03.gif' alt='관심공연담기' /></a>
-                          <a class='dcursor' onclick='jsf_otv_SetAlarm(35104);'><img
-                              src='http://tkfile.yes24.com/img/mypage/btn_alram.gif' alt='나의 맞춤알림 설정' /></a>
-                        </div>
-                      </div> -->
+									
 											<div id="divFamily_info" class="user_info"></div>
 										</div>
 										<div id="divFamilyNoticeinfo" class="stxt fr"></div>
