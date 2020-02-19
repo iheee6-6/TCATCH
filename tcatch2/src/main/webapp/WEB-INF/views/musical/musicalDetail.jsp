@@ -20,7 +20,7 @@
 
   <style type="text/css">
   	body{font-family: 'NanumBarunGothic', '¸¼Àº °íµñ', 'Malgun Gothic', sans-serif;}
-  </style>
+  </style> 
  </head>
  <body> 
 <jsp:include page="../common/menubar.jsp"/>

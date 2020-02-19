@@ -12,7 +12,7 @@ import com.tone.tcatch.art.model.vo.Art;
 public class ArtDao {
 	
 	@Autowired
-	SqlSession sqlSession;
+	SqlSession sqlSession; 
 
 	public ArrayList<Art> selectList() {
 		

@@ -10,7 +10,7 @@ public class Art {
 	private int companyNo;//회사번호
 	private int rating;//관람번호
 	private String status;//상태(삭제)
-	private String originalFile;//원본 파일명
+	private String originalFile;//원본 파일명 
 	private String renameFile;//변경파일명
 	private int durationTime;//소요시간(분) 
 	 

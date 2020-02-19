@@ -13,7 +13,7 @@ public class ArtServiceImpl implements ArtService{
 	
 	@Autowired
 	private ArtDao aDao;
-	 
+	  
 	
 	@Override
 	public ArrayList<Art> selectList() {

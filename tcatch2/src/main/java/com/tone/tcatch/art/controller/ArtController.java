@@ -18,7 +18,7 @@ import com.tone.tcatch.art.model.vo.Art;
 
 @Controller
 public class ArtController {
-	@Autowired
+	@Autowired 
 	private ArtService aService;
 	
 	

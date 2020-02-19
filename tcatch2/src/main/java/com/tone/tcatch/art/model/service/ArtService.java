@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.tone.tcatch.art.model.vo.Art;
 
-public interface ArtService {
+public interface ArtService { 
 	
 	ArrayList<Art> selectList();
 	
