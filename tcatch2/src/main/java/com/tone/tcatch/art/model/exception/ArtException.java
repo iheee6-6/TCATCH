@@ -5,3 +5,4 @@ public class ArtException extends RuntimeException{
 		super(msg);
 	}
 }
+ 

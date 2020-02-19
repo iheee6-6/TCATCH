@@ -12,7 +12,7 @@
 		<typeAlias type="com.tone.tcatch.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.tone.tcatch.art.model.vo.Art" alias="Art"/>
 	</typeAliases>
-	
+	 
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/art-mapper.xml"/>

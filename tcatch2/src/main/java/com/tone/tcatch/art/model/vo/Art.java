@@ -13,7 +13,7 @@ public class Art {
 	private String originalFile;//원본 파일명
 	private String renameFile;//변경파일명
 	private int durationTime;//소요시간(분)
-	
+	 
 	public Art() {}
 	
 	public Art(int artNo, int artType, String artTitle, String artExplain, int count, String address, int companyNo,

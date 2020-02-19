@@ -21,7 +21,7 @@
 	<select id="selectList" resultMap="ArtResultSet">
 		SELECT *
 		FROM ART
-		WHERE STATUS='Y'
+		WHERE STATUS='Y' 
 		ORDER BY ART_NO DESC 
 	</select>
 	

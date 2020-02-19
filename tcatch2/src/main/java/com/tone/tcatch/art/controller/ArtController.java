@@ -69,7 +69,7 @@ public class ArtController {
 			mv.addObject("art", art);
 			mv.setViewName("musical/musicalDetail"); // 메소드 체이닝 방식
 		}else {
-			throw new ArtException("게시글 상세조회 실패!!");
+			throw new ArtException("게시글 상세조회 실패!!"); 
 		}
 		return mv;
 	}

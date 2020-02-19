@@ -6,7 +6,7 @@
 
 
 
-<!doctype html>
+<!doctype html> 
 <html lang="ko">
  <head>
   <title>김대성/디테일</title>

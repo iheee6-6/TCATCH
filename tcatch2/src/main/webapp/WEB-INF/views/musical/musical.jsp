@@ -34,7 +34,7 @@
 
 						
 			<div class='ms-list-imgs'>
-				<c:forEach var="a" items="${ list }">
+				<c:forEach var="a" items="${ list }"> 
 						<c:url var="adetail" value="musicalDetail.do">
 							<c:param name="artNo" value="${ a.artNo }"/>
 						</c:url>
