@@ -26,7 +26,7 @@ public class ArtController {
 	public ModelAndView boardList(ModelAndView mv) {
 
 		ArrayList<Art> list = aService.selectList();
-		
+		 
 		if(list != null) {
 			mv.addObject("list", list);
 			mv.setViewName("musical/musical");

@@ -16,7 +16,7 @@
 		<result property="originalFile" column="ORIGINAL_FILE"/>
 		<result property="renameFile" column="RENAME_FILE"/>
 		<result property="durationTime" column="DURATION_TIME"/>
-	</resultMap>
+	</resultMap> 
 
 	<select id="selectList" resultMap="ArtResultSet">
 		SELECT *

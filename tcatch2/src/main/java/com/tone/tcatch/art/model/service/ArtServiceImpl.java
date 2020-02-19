@@ -17,7 +17,7 @@ public class ArtServiceImpl implements ArtService{
 	
 	@Override
 	public ArrayList<Art> selectList() {
-		
+		 
 		return aDao.selectList();
 	}
 

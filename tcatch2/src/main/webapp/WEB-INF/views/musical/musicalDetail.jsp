@@ -22,7 +22,7 @@
   	body{font-family: 'NanumBarunGothic', '¸¼Àº °íµñ', 'Malgun Gothic', sans-serif;}
   </style>
  </head>
- <body>
+ <body> 
 <jsp:include page="../common/menubar.jsp"/>
 <br><br><br><br>
  

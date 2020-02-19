@@ -19,12 +19,12 @@
 <link rel='stylesheet' type='text/css'
 	href="${ contextPath }/resources/css/product/productImg.css" />
 <!-- body-->
-</head>
+</head> 
 <body>
 	<jsp:include page="../common/menubar.jsp" />
 	<br>
 	<br>
-	<br>
+	<br> 
 	<br>
 	<div class="cp-top-wrap">
 		<section class='m2-sec02'>

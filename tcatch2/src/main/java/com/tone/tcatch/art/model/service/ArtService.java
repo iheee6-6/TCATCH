@@ -11,4 +11,4 @@ public interface ArtService {
 	Art selectArt(int artNo , boolean flag);
 
 }
- 
+  

@@ -18,7 +18,7 @@ public class ArtDao {
 		
 		return (ArrayList)sqlSession.selectList("artMapper.selectList");
 	}
- 
+  
 	public Art selectArt(int artNo) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("artMapper.selectOne", artNo);
