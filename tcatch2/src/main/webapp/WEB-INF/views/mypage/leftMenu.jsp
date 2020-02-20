@@ -56,7 +56,7 @@ margin-bottom: 150px;
 <body>
 	<div class="sidebar" data-color="black" data-active-color="danger">
 		<div class="logo"  style="margin-top:20px;">
-			<a href="enterMyPage.do" class="simple-text logo-normal" style="margin-left:30px;"> 신하은님의 MYPAGE
+			<a href="enterMyPage.do" class="simple-text logo-normal" style="margin-left:30px;"> ${loginUser.name }님의 MYPAGE
 			</a>
 		</div>
 		<div class="sidebar-wrapper">

@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>TCATCH</title>
 <style>
-	td a{
+td a {
 	font-size: 14px;
-	color:blue;
-	}
+	color: blue;
+}
 </style>
 </head>
 <body class="">
@@ -42,31 +43,28 @@
 										<th>구분</th>
 									</thead>
 									<tbody>
-										<tr>
-											<td>2019.02.12</td>
-											<td><a href="cncDetail.do">23232</a></td>
-											<td>뮤지컬 [쓰릴 미]</td>
-											<td>2020.01.01</td>
-											<td>2</td>
-											<td>예매완료</td>
-										</tr>
-										<tr>
-											<td>Minerva Hooper</td>
-											<td>Curaçao</td>
-											<td>Sinaai-Waas</td>
+										<c:choose>
+											<c:when test="${empty recentHistoryList }">
+												<tr>
+													<td colspan="6" style="text-align:center">예매내역이 없습니다.</td>
+												</tr>
+											</c:when>
+											<c:otherwise>
+											<c:forEach var="b" items="${ recentHistoryList }">
+												<tr>
+													<td>${b.tDate }</td>
 
-										</tr>
-										<tr>
-											<td>Sage Rodriguez</td>
-											<td>Netherlands</td>
-											<td>Baileux</td>
-										</tr>
-										<tr>
-											<td>Philip Chaney</td>
-											<td>Korea, South</td>
-											<td>Overland Park</td>
-
-										</tr>
+													<td><c:url var="tDetail" value="tDetail.do">
+															<c:param name="tNo" value="${b.tNo }" />
+														</c:url> <a href="${tDetail}">${b.tNo}</a></td>
+													<td>${b.performanceName }</td>
+													<td>${b.viewDate }</td>
+													<td>${b.ticketCount}</td>
+													<td>${b.status }</td>
+												</tr>
+											</c:forEach>
+											</c:otherwise>
+										</c:choose>
 
 
 									</tbody>
@@ -81,11 +79,11 @@
 		</div>
 	</div>
 	<script>
-	$(function(){
-		$("#cnc").addClass("active");
-	});
+		$(function() {
+			$("#cnc").addClass("active");
+		});
 	</script>
-	<jsp:include page="../common/footer.jsp"/>
+	<jsp:include page="../common/footer.jsp" />
 </body>
 
 </html>
