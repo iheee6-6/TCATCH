@@ -10,8 +10,9 @@
 
 	<typeAliases>
 		<typeAlias type="com.tone.tcatch.member.model.vo.Member" alias="Member"/>
-		<typeAlias type="com.tone.tcatch.mypage.model.vo.Ticket" alias="Ticket"/>
+		<typeAlias type="com.tone.tcatch.ticket.model.vo.Ticket" alias="Ticket"/>
 		<typeAlias type="com.tone.tcatch.mypage.model.vo.Alarm" alias="Alarm"/>
+		<typeAlias type="com.tone.tcatch.mypage.model.vo.Performance" alias="Performance"/>
 		<typeAlias type="com.tone.tcatch.art.model.vo.Art" alias="Art"/>
 	</typeAliases>
 	 

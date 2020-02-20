@@ -5,12 +5,11 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tone.tcatch.attachment.vo.Attachment;
 import com.tone.tcatch.member.model.vo.Member;
 import com.tone.tcatch.mypage.model.dao.MyPageDao;
 import com.tone.tcatch.mypage.model.vo.Alarm;
 import com.tone.tcatch.mypage.model.vo.Performance;
-import com.tone.tcatch.mypage.model.vo.Ticket;
+import com.tone.tcatch.ticket.model.vo.Ticket;
 
 @Service("mpService")
 public class MyPageServiceImpl implements MyPageService{
@@ -48,13 +47,43 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public Attachment selectPathRename(int i) {
-		return mpDao.selectPathRename(i);
+	public ArrayList<Performance> selectInterestPerformanceList(String id) {
+		return mpDao.selectInterestPerformanceList(id);
 	}
 
 	@Override
-	public ArrayList<Performance> selectInterestPerformanceList(String id) {
-		return mpDao.selectInterestPerformanceList(id);
+	public int deleteAlarm(String id, String artNo) {
+		return mpDao.deleteAlarm(id,artNo);
+	}
+
+	@Override
+	public int deleteInterest(String id, String artNo) {
+		return mpDao.deleteInterest(id,artNo);
+	}
+
+	@Override
+	public Ticket selectTicketDetail(String id, int tNo) {
+		return mpDao.selectTicketDetail(id,tNo);
+	}
+
+	@Override
+	public ArrayList<Ticket> selectTicketList(String id) {
+		return mpDao.selectTicketList(id);
+	}
+
+	@Override
+	public ArrayList<Ticket> selectViewPerformanceList(String id) {
+		return mpDao.selectViewPerformanceList(id);
+	}
+
+	@Override
+	public int insertInterest(String id, int pId) {
+		return mpDao.insertInterest(id,pId);
+	}
+
+	@Override
+	public int insertAlarm(String id, int aId) {
+		return mpDao.insertAlarm(id,aId);
 	}
 
 

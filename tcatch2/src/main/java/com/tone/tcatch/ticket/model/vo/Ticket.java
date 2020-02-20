@@ -1,26 +1,26 @@
-package com.tone.tcatch.mypage.model.vo;
+package com.tone.tcatch.ticket.model.vo;
 
 import java.sql.Date;
 
 public class Ticket {
 	private String tNo; //예매번호
 	private Date tDate; //예매일
-	private String performanceName;  //공연명
+	private String artTitle;  //공연명
 	private Date viewDate; //관람일
 	private int ticketCount; //매수
-	private int performanceId; //공연 아이디
+	private int artNo; //공연번호
 	private String status; //예매상태 //refund번호
 	
 	private int wayBill; //운송장 번호
 	
 	///////////////////////////////////
 	private String userName; //예매자
-	private String place; //공연장 
+	private String address; //공연장 
 	private String seat; //좌석
 	private String receiveMethod; //티켓 수령 방법
 	
-	private String path; //썸네일 경로
-	private String reName;//썸네일 변경된 이름.
+	private String originalFile; //썸네일 경로
+	private String renameFile;//썸네일 변경된 이름.
 	
 	////////////////////////////////
 	private	int price; //결제금액
@@ -28,93 +28,93 @@ public class Ticket {
 	
 	////////////////////////////////
 	private boolean reviewStatus; //리뷰 작성 여부 확인 //
-	private String category; //장르
+	private String artType; //장르
 	
 	public Ticket() {}
 
 
-	public Ticket(String tNo, String performanceName, Date viewDate, int ticketCount, int performanceId,
-			String place, String seat, String path, String reName, boolean reviewStatus,String category) {
+	public Ticket(String tNo, String artTitle, Date viewDate, int ticketCount, int artNo,
+			String address, String seat, String originalFile, String reName, boolean reviewStatus,String artType) {
 		super();
 		this.tNo = tNo;
-		this.performanceName = performanceName;
+		this.artTitle = artTitle;
 		this.viewDate = viewDate;
 		this.ticketCount = ticketCount;
-		this.performanceId = performanceId;
-		this.place = place;
+		this.artNo = artNo;
+		this.address = address;
 		this.seat = seat;
-		this.path = path;
-		this.reName = reName;
+		this.originalFile = originalFile;
+		this.renameFile = renameFile;
 		this.reviewStatus = reviewStatus;
-		this.category = category;
+		this.artType = artType;
 	}
 
 
-	public Ticket(String tNo, String performanceName, Date viewDate, int performanceId, String path, String reName,
+	public Ticket(String tNo, String artTitle, Date viewDate, int artNo, String originalFile, String renameFile,
 			boolean reviewStatus) {
 		super();
 		this.tNo = tNo;
-		this.performanceName = performanceName;
+		this.artTitle = artTitle;
 		this.viewDate = viewDate;
-		this.performanceId = performanceId;
-		this.path = path;
-		this.reName = reName;
+		this.artNo = artNo;
+		this.originalFile = originalFile;
+		this.renameFile = renameFile;
 		this.reviewStatus = reviewStatus;
 	}
 
 
-	public Ticket(String tNo, Date tDate, String performanceName, Date viewDate, int ticketCount, int performanceId,
-			String status, String userName, String place, String seat, String receiveMethod, String path, String reName,
+	public Ticket(String tNo, Date tDate, String artTitle, Date viewDate, int ticketCount, int artNo,
+			String status, String userName, String address, String seat, String receiveMethod, String originalFile, String renameFile,
 			int price, Date cancelDeadline) {
 		super();
 		this.tNo = tNo;
 		this.tDate = tDate;
-		this.performanceName = performanceName;
+		this.artTitle = artTitle;
 		this.viewDate = viewDate;
 		this.ticketCount = ticketCount;
-		this.performanceId = performanceId;
+		this.artNo = artNo;
 		this.status = status;
 		this.userName = userName;
-		this.place = place;
+		this.address = address;
 		this.seat = seat;
 		this.receiveMethod = receiveMethod;
-		this.path = path;
-		this.reName = reName;
+		this.originalFile = originalFile;
+		this.renameFile = renameFile;
 		this.price = price;
 		this.cancelDeadline = cancelDeadline;
 	}
 
 
-	public Ticket(String tNo, Date tDate, String performanceName, Date viewDate, int ticketCount, int performanceId,
+	public Ticket(String tNo, Date tDate, String artTitle, Date viewDate, int ticketCount, int artNo,
 			String status) {
 		super();
 		this.tNo = tNo;
 		this.tDate = tDate;
-		this.performanceName = performanceName;
+		this.artTitle = artTitle;
 		this.viewDate = viewDate;
 		this.ticketCount = ticketCount;
-		this.performanceId = performanceId;
+		this.artNo = artNo;
 		this.status = status;
 	}
 
 
-	public Ticket(String tNo, Date tDate, String performanceName, Date viewDate, int ticketCount, int performanceId,
-			String status, String userName, String place, String seat, String receiveMethod, String path, String reName,
+	public Ticket(String tNo, Date tDate, String artTitle, Date viewDate, int ticketCount, int artNo,
+			String status, String userName, String address, String seat, String receiveMethod, String originalFile, String renameFile,
 			int price, Date cancelDeadline, boolean reviewStatus) {
 		super();
 		this.tNo = tNo;
 		this.tDate = tDate;
-		this.performanceName = performanceName;
+		this.artTitle = artTitle;
 		this.viewDate = viewDate;
 		this.ticketCount = ticketCount;
-		this.performanceId = performanceId;
+		this.artNo = artNo;
 		this.status = status;
 		this.userName = userName;
-		this.place = place;
+		this.address = address;
 		this.seat = seat;
 		this.receiveMethod = receiveMethod;
-		this.path = path;
-		this.reName = reName;
+		this.originalFile = originalFile;
+		this.renameFile = renameFile;
 		this.price = price;
 		this.cancelDeadline = cancelDeadline;
 		this.reviewStatus = reviewStatus;
@@ -141,13 +141,13 @@ public class Ticket {
 	}
 
 
-	public String getPerformanceName() {
-		return performanceName;
+	public String getArtTitle() {
+		return artTitle;
 	}
 
 
-	public void setPerformanceName(String performanceName) {
-		this.performanceName = performanceName;
+	public void setArtTitle(String artTitle) {
+		this.artTitle = artTitle;
 	}
 
 
@@ -171,13 +171,13 @@ public class Ticket {
 	}
 
 
-	public int getPerformanceId() {
-		return performanceId;
+	public int getArtNoo() {
+		return artNo;
 	}
 
 
-	public void setPerformanceId(int performanceId) {
-		this.performanceId = performanceId;
+	public void setArtNo(int artNo) {
+		this.artNo = artNo;
 	}
 
 
@@ -201,13 +201,13 @@ public class Ticket {
 	}
 
 
-	public String getPlace() {
-		return place;
+	public String getAddress() {
+		return address;
 	}
 
 
-	public void setPlace(String place) {
-		this.place = place;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 
@@ -229,27 +229,6 @@ public class Ticket {
 	public void setReceiveMethod(String receiveMethod) {
 		this.receiveMethod = receiveMethod;
 	}
-
-
-	public String getPath() {
-		return path;
-	}
-
-
-	public void setPath(String path) {
-		this.path = path;
-	}
-
-
-	public String getReName() {
-		return reName;
-	}
-
-
-	public void setReName(String reName) {
-		this.reName = reName;
-	}
-
 
 	public int getPrice() {
 		return price;
@@ -281,23 +260,42 @@ public class Ticket {
 	}
 
 
-	public String getCategory() {
-		return category;
+	public String getArtType() {
+		return artType;
 	}
 
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setArtType(String artType) {
+		this.artType = artType;
+	}
+
+	public String getOriginalFile() {
+		return originalFile;
 	}
 
 
-	@Override
-	public String toString() {
-		return "Ticket [tNo=" + tNo + ", tDate=" + tDate + ", performanceName=" + performanceName + ", viewDate="
-				+ viewDate + ", ticketCount=" + ticketCount + ", performanceId=" + performanceId + ", status=" + status
-				+ ", userName=" + userName + ", place=" + place + ", seat=" + seat + ", receiveMethod=" + receiveMethod
-				+ ", path=" + path + ", reName=" + reName + ", price=" + price + ", cancelDeadline=" + cancelDeadline
-				+ ", reviewStatus=" + reviewStatus + ", category=" + category + "]";
+	public void setOriginalFile(String originalFile) {
+		this.originalFile = originalFile;
+	}
+
+
+	public String getRenameFile() {
+		return renameFile;
+	}
+
+
+	public void setRenameFile(String renameFile) {
+		this.renameFile = renameFile;
+	}
+
+
+	public int getWayBill() {
+		return wayBill;
+	}
+
+
+	public void setWayBill(int wayBill) {
+		this.wayBill = wayBill;
 	}
 	
 	
