@@ -38,9 +38,9 @@
 	
 	<update id="updateMember" parameterType="Member">
 		UPDATE MEMBER
-		SET EMAIL=#{email}, AGE=#{age}, PHONE=#{phone}, 
-		ADDRESS=#{address}, UPDATE_DATE=SYSDATE
-		WHERE ID=#{id}
+		SET EMAIL=#{email}, BIRTH=#{birth}, PHONE=#{phone},
+		ADDRESS=#{address}
+		WHERE M_ID=#{id}
 	</update>
 	
 	<update id="deleteMember" parameterType="string">
