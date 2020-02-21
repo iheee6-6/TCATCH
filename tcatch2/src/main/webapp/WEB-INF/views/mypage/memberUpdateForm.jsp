@@ -103,7 +103,7 @@ span.error {
 		<div class="main-panel">
 			<div class="content" style="margin-top: 20px;">
 
-				<form class="form-signin" action="mupdate.do" method="post"
+				<form class="form-signin" action="memupdate.do" method="post"
 					id="updateForm" onsubmit="return validate()">
 					<h4 class="card-title text-danger"
 						style="float: left; margin-bottom: 30px">
