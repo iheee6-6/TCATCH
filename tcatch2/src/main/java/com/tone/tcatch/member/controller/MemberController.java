@@ -152,6 +152,27 @@ public class MemberController {
 			}
 		}
 	
+		
+		@RequestMapping("mupdate.do")
+		public String memberUpdate(Member m, Model model,
+								   @RequestParam("post") String post,
+								   @RequestParam("address1") String addr1,
+								   @RequestParam("address2") String addr2,
+								   RedirectAttributes rd) {
+			
+			m.setAddress(post+","+addr1+","+addr2);
+			
+			int result = mService.updateMember(m); 
+			
+			if(result > 0) {
+				rd.addFlashAttribute("msg", "회원정보가 수정 되었습니다.");
+				model.addAttribute("loginUser", m);
+				return "redirect:home.do";
+			}else {
+				model.addAttribute("msg", "회원 가입 실패");
+				return "common/errorPage";
+			}
+		}
 	
 
 }
