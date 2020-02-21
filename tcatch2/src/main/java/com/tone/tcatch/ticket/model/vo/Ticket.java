@@ -3,38 +3,43 @@ package com.tone.tcatch.ticket.model.vo;
 import java.sql.Date;
 
 public class Ticket {
+	private String userName; //예매자 이름
+	private String userNo; //회원번호
 	private String tNo; //예매번호
 	private Date tDate; //예매일
-	private String artTitle;  //공연명
-	private Date viewDate; //관람일
-	private int ticketCount; //매수
 	private int artNo; //공연번호
-	private String status; //예매상태 //refund번호
-	
-	private int wayBill; //운송장 번호
-	
-	///////////////////////////////////
-	private String userName; //예매자
+	private String artTitle;  //공연명
+	private String artType; //장르
+	private int ticketCount; //매수
+	private int timeNo; //회차번호
+	private String dateCount; //회차수
+	private Date viewDate; //관람일
 	private String address; //공연장 
 	private String seat; //좌석
 	private String receiveMethod; //티켓 수령 방법
-	
 	private String originalFile; //썸네일 경로
 	private String renameFile;//썸네일 변경된 이름.
 	
-	////////////////////////////////
 	private	int price; //결제금액
+	
+	private String status; //예매상태 //refund번호랑 관리자 승인에 따른 
+	
+	private int refundNo; //환불 번호
+	private Date refundEnrollDate; //환불 신청 날짜 
+	private String refundStatus; //환불 승인여부
+	
+	private int wayBill; //운송장 번호
+	
 	private Date cancelDeadline; //취소마감시간 //
 	
-	////////////////////////////////
 	private boolean reviewStatus; //리뷰 작성 여부 확인 //
-	private String artType; //장르
+
 	
 	public Ticket() {}
 
 
 	public Ticket(String tNo, String artTitle, Date viewDate, int ticketCount, int artNo,
-			String address, String seat, String originalFile, String reName, boolean reviewStatus,String artType) {
+			String address, String seat, String originalFile, String renameFile, boolean reviewStatus,String artType) {
 		super();
 		this.tNo = tNo;
 		this.artTitle = artTitle;
@@ -118,6 +123,71 @@ public class Ticket {
 		this.price = price;
 		this.cancelDeadline = cancelDeadline;
 		this.reviewStatus = reviewStatus;
+	}
+
+
+	public String getUserNo() {
+		return userNo;
+	}
+
+
+	public void setUserNo(String userNo) {
+		this.userNo = userNo;
+	}
+
+
+	public int getTimeNo() {
+		return timeNo;
+	}
+
+
+	public void setTimeNo(int timeNo) {
+		this.timeNo = timeNo;
+	}
+
+
+	public String getDateCount() {
+		return dateCount;
+	}
+
+
+	public void setDateCount(String dateCount) {
+		this.dateCount = dateCount;
+	}
+
+
+	public int getRefundNo() {
+		return refundNo;
+	}
+
+
+	public void setRefundNo(int refundNo) {
+		this.refundNo = refundNo;
+	}
+
+
+	public Date getRefundEnrollDate() {
+		return refundEnrollDate;
+	}
+
+
+	public void setRefundEnrollDate(Date refundEnrollDate) {
+		this.refundEnrollDate = refundEnrollDate;
+	}
+
+
+	public String getRefundStatus() {
+		return refundStatus;
+	}
+
+
+	public void setRefundStatus(String refundStatus) {
+		this.refundStatus = refundStatus;
+	}
+
+
+	public int getArtNo() {
+		return artNo;
 	}
 
 
