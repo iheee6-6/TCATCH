@@ -19,7 +19,7 @@ import com.tone.tcatch.member.model.vo.Member;
 import com.tone.tcatch.mypage.model.exception.MypageException;
 import com.tone.tcatch.mypage.model.service.MyPageService;
 import com.tone.tcatch.mypage.model.vo.Alarm;
-import com.tone.tcatch.mypage.model.vo.Performance;
+import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.ticket.model.vo.Ticket;
 
 @Controller
@@ -42,7 +42,7 @@ public class MyPageController {
 		
 		ArrayList<Ticket> recentHistoryList = mpService.selectRecentHistoryList(loginUser.getId());
 		ArrayList<Ticket> recentViewList = mpService.selectRecentViewList(loginUser.getId());
-		ArrayList<Performance> recentInterestList = mpService.selectRecentInterestList(loginUser.getId());
+		ArrayList<ArtDetail> recentInterestList = mpService.selectRecentInterestList(loginUser.getId());
 		
 		
 		 System.out.println(recentHistoryList);
@@ -84,7 +84,7 @@ public class MyPageController {
 	public ModelAndView interestPerformance(ModelAndView mv, HttpSession session) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
-		ArrayList<Performance> interestList = mpService.selectInterestPerformanceList(loginUser.getId());
+		ArrayList<ArtDetail> interestList = mpService.selectInterestPerformanceList(loginUser.getId());
 		
 		mv.addObject("interestList",interestList);
 		mv.setViewName("mypage/interestPerformance");
@@ -241,7 +241,7 @@ public class MyPageController {
 		return "mypage/noticeDetail";
 	}
 	
-	@RequestMapping("mupdate.do")
+	@RequestMapping("memupdate.do")
 	public String memberInsert(Member m, 
 			@RequestParam("post") String post,
 			@RequestParam("address1") String address1,
