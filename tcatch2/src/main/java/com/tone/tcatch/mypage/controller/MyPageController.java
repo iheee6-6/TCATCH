@@ -1,5 +1,6 @@
 package com.tone.tcatch.mypage.controller;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
@@ -31,6 +32,10 @@ public class MyPageController {
 		Member loginUser = new Member();
 		loginUser.setId("ㅇㅇ");
 		loginUser.setName("하하");
+		loginUser.setEmail("tcatch@kh.com");
+		loginUser.setAddress("1232,경기도 군포시 고산로 185번길,105동 12302호");
+		loginUser.setPhone("010-232-3222");
+		loginUser.setGender("M");
 		//Member loginUser = (Member)session.getAttribute("loginUser");
 		session.setAttribute("loginUser", loginUser);
 		model.addAttribute("loginUser", loginUser);
@@ -130,7 +135,7 @@ public class MyPageController {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		int result=0;
 		for(int i=0;i<dAlarm.size();i++) {
-		 result+= mpService.deleteAlarm(loginUser.getId(),dAlarm.get(i));
+			result+= mpService.deleteAlarm(loginUser.getId(),dAlarm.get(i));
 		}
 		if(result>0) 
 		mv.setViewName("redirect:alarmList.do");
@@ -166,6 +171,18 @@ public class MyPageController {
 		return mv;
 	}
 	
+	/*@RequestMapping("searchViewD.do")
+	public ModelAndView noticeDetailViewD(ModelAndView mv, HttpSession session, Date sd, Date ed,
+			String artType) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		Performance notice = mpService.selectViewD(loginUser.getId(),sd,ed,artType);
+		
+		mv.addObject("notice",notice);
+		mv.setViewName("mypage/noticeDetailView");
+		return mv;
+	}*/
+	
 	/*@RequestMapping("refund.do")
 	public ModelAndView refund(ModelAndView mv, HttpSession session,int tId ) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
@@ -176,34 +193,11 @@ public class MyPageController {
 		return mv;
 	}*/
 	
-	
-	
-	/*@RequestMapping("memberUpdateView.do")
-	public ModelAndView memberUpdateView(ModelAndView mv, HttpSession session) {
-		Member loginUser = (Member)session.getAttribute("loginUser");
-		
-		Member member = mService.selectMember(loginUser.getId());
-		
-		mv.addObject("member",member);
-		mv.setViewName("mypage/memberUpdateForm");
-		return mv;
-	}*/
-	
-	/*@RequestMapping("memberUpdate.do")
-	public ModelAndView memberUpdate(ModelAndView mv, Member member) {
-		
-		int result= mService.updateMember(member);
-		
-		mv.addObject("member",member);
-		mv.setViewName("mypage/memberUpdateForm");
-		return mv;
-	}*/
-	
 	/*@RequestMapping("noticeView.do")
 	public ModelAndView noticeView(ModelAndView mv, HttpSession session) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
-		Performance noticeList = mpService.selecNoticeList(loginUser.getId());
+		Performance noticeList = mpService.selectNoticeList(loginUser.getId());
 		
 		mv.addObject("noticeList",noticeList);
 		mv.setViewName("mypage/memberUpdateForm");
@@ -248,26 +242,32 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("mupdate.do")
-	public String memberUpdate(Member m, Model model,
-							   @RequestParam("post") String post,
-							   @RequestParam("address1") String addr1,
-							   @RequestParam("address2") String addr2,
-							   RedirectAttributes rd) {
+	public String memberInsert(Member m, 
+			@RequestParam("post") String post,
+			@RequestParam("address1") String address1,
+			@RequestParam("address2") String address2,
+			@RequestParam("phone1") String phone1,
+			@RequestParam("phone2") String phone2,
+			@RequestParam("phone3") String phone3,
+			Model model,
+			RedirectAttributes rd
+			) {
 		
-		m.setAddress(post+","+addr1+","+addr2);
+		m.setAddress(post + "," + address1 + "," + address2);
+		m.setPhone(phone1 + "-" + phone2 + "-" +phone3);
 		
-		int result = mpService.updateMember(m); 
+		int result = mpService.updateMember(m);
+		
 		
 		if(result > 0) {
-			rd.addFlashAttribute("msg", "회원정보가 수정 되었습니다.");
-			model.addAttribute("loginUser", m);
+			rd.addFlashAttribute("msg", "회원정보 수정이 정상적으로 이루어졌습니다. ");
 			return "redirect:mInformationSetting.do";
 		}else {
-			model.addAttribute("msg", "회원 가입 실패");
+			model.addAttribute("msg", "회원정보 수정 실패!!");
 			return "common/errorPage";
 		}
+		
 	}
-	
 	
 	/*@RequestMapping("mdelete.do")
 	public String memberDelete(String id, Model model, SessionStatus status, RedirectAttributes rd) {

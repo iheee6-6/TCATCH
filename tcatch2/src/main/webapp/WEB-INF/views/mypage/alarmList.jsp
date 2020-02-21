@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv='X-UA-Compatible' content='IE=edge'>
 <title>TCATCH</title>
 
 
@@ -61,7 +60,7 @@
 												<c:otherwise>
 													<c:forEach var="a" items="${alarmList }">
 														<tr>
-															<td><input class="alarmP" name="chkInterestPerf"
+															<td><input class="chkAlarm" name="chkAlarm"
 																type="checkbox" value="${a.pNo }"></td>
 															<td>${a.pName }</td>
 															<td>${a.alarmDate }</td>
@@ -84,7 +83,7 @@
 											onclick="location.href='${ noticeView }'">공지사항 확인</button>
 										<button type="button" class="btn btn-sm" id="allCheck">전체
 											선택</button>
-										<button class="btn btn-sm" id="deletech">선택 삭제</button>
+										<button type="button"  class="btn btn-sm" id="deleteCh">선택 삭제</button>
 									</div>
 								</div>
 							</form>
@@ -113,10 +112,11 @@
 
 		});
 
-		$("#deleteP").click(function() {
-
+		$("#deleteCh").click(function() {
+			if($(".chkAlarm:checked").val()){
 			if (confirm("정말 삭제하시겠습니까?")) {
 				$("#checkForm").submit();
+			}
 			}
 		});
 	</script>

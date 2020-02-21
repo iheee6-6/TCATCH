@@ -50,8 +50,8 @@ p span {
 												<c:otherwise>
 													<c:forEach var="I" items="interestList">
 														<tr>
-															<td><input class="interestP" name="chkInterestPerf"
-																type="checkbox" value="35104"> &nbsp; 2019.02.12</td>
+															<td><input class="chkInterest" name="chkInterest"
+																type="checkbox" value="${I.artNo }"> &nbsp; 2019.02.12</td>
 															<td>
 																<p class="list">
 																<p class="pImage">
@@ -65,7 +65,7 @@ p span {
 																</p>
 															</td>
 															<td><c:url var="pDetail" value="musicalDetail.do">
-																	<c:param name="artNo" value="${v.performanceNo }" />
+																	<c:param name="artNo" value="${I.artNo }" />
 																</c:url>
 																<button class="btn" onclick="location.href='${pDetail}'">예매하기</button></td>
 
@@ -78,6 +78,7 @@ p span {
 									</table>
 
 								</div>
+								<%-- <c:if test="${!empty interestList }"> --%>
 								<div>
 									<div style="float: right; margin-right: 50px;">
 										<button type="button" class="btn btn-sm" id="allCheck">전체
@@ -85,9 +86,10 @@ p span {
 										<%-- <c:url var="deleteP" value="deleteP.do">
 										<c:param name="art_no" value="<%=arr %>"/>
 									</c:url> --%>
-										<button class="btn btn-sm" id="deleteP">선택 삭제</button>
+										<button type="button" class="btn btn-sm" id="deleteP">선택 삭제</button>
 									</div>
 								</div>
+								<%-- </c:if> --%>
 							</form>
 						</div>
 					</div>
@@ -113,9 +115,11 @@ p span {
 		});
 
 		$("#deleteP").click(function() {
-
-			if (confirm("정말 삭제하시겠습니까?")) {
-				$("#checkForm").submit();
+			if($(".chkInterest:checked").val()){
+				if (confirm("정말 삭제하시겠습니까?")) {
+					$("#checkForm").submit();
+				}
+			
 			}
 
 		});

@@ -225,12 +225,12 @@ Copyright (c) 2015 Daniel Eden
   }
 }
 
-@media screen and (-ms-high-contrast: active),
+/* @media screen and (-ms-high-contrast: active),
 (-ms-high-contrast: none) {
   .ps-container {
     overflow: auto !important;
   }
-}
+} */
 
 .ps-container.ps-active-x>.ps-scrollbar-x-rail,
 .ps-container.ps-active-y>.ps-scrollbar-y-rail {
@@ -3468,52 +3468,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
   right: auto;
 }
 
-@media screen and (min-width: 768px) {
-  .navbar-form {
-    margin-top: 21px;
-    margin-bottom: 21px;
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-  .navbar-search-form {
-    display: none;
-  }
-  .navbar-nav .dropdown-item .dropdown-menu,
-  .dropdown .dropdown-menu,
-  .dropdown-btn .dropdown-menu {
-    transform: translate3d(0px, -40px, 0px);
-    transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0s, opacity 0.3s ease 0s, height 0s linear 0.35s;
-  }
-  .navbar-nav .dropdown-item.show .dropdown-menu,
-  .dropdown.show .dropdown-menu,
-  .dropdown-btn.show .dropdown-menu {
-    transform: translate3d(0px, 0px, 0px);
-    visibility: visible !important;
-  }
-  .bootstrap-select .dropdown-menu {
-    -webkit-transition: all 150ms linear;
-    -moz-transition: all 150ms linear;
-    -o-transition: all 150ms linear;
-    -ms-transition: all 150ms linear;
-    transition: all 150ms linear;
-  }
-  .bootstrap-datetimepicker-widget {
-    visibility: visible !important;
-  }
-  .bootstrap-select .show .dropdown-menu {
-    transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0s, opacity 0.3s ease 0s, height 0s linear 0.35s;
-    transform: translate3d(0px, 0px, 0px);
-  }
-  .navbar-nav.navbar-right li .dropdown-menu:before,
-  .navbar-nav.navbar-right li .dropdown-menu:after {
-    left: auto;
-    right: 12px;
-  }
 
-  body>.navbar-collapse.collapse {
-    display: none !important;
-  }
-}
 
 .dropdown-sharing .dropup-item {
   color: #66615b;
@@ -5673,7 +5628,7 @@ License - nucleoapp.com/license/
   line-height: 59px;
 }
 
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 99px) { /* 수정하기/.//////// */
   .navbar {
     padding: 0;
   }
@@ -6171,166 +6126,6 @@ float:left;
   }
 }
 
-@media (max-width: 991px) and (min-width: 768px) {
-  .nav-tabs-navigation.verical-navs {
-    padding: 0px 2px;
-  }
-}
 
-@media screen and (min-width: 768px) {
-  .footer .footer-nav {
-    padding-left: 21px;
-  }
-  .footer .credits {
-    padding-right: 15px;
-  }
-}
-
-@media screen and (min-width: 992px) {
-  .navbar-collapse {
-    background: none !important;
-  }
-  .navbar .navbar-toggle {
-    display: none;
-  }
-  .navbar-nav .nav-link.profile-photo {
-    padding: 0;
-    margin: 7px 0.7rem;
-  }
-  .section-nucleo-icons .icons-container {
-    margin: 0 0 0 auto;
-  }
-  .dropdown-menu .dropdown-item {
-    color: inherit;
-  }
-  .footer .copyright {
-    float: right;
-    padding-right: 15px;
-  }
-  .sidebar .sidebar-wrapper li.active>a:not([data-toggle="collapse"]):before,
-  .sidebar .sidebar-wrapper li.active>[data-toggle="collapse"]+div .nav li:before {
-    border-right: 17px solid black;
-    border-top: 17px solid transparent;
-    border-bottom: 17px solid transparent;
-    content: "";
-    display: inline-block;
-    position: absolute;
-    right: -16px;
-    opacity: 1;
-    top: 7px;
-    transition: opacity 150ms ease-in;
-  }
-  .sidebar .sidebar-wrapper li.active>a:not([data-toggle="collapse"]):after,
-  .sidebar .sidebar-wrapper li.active>[data-toggle="collapse"]+div .nav li:after {
-    border-right: 17px solid #f4f3ef;
-    border-top: 17px solid transparent;
-    border-bottom: 17px solid transparent;
-    content: "";
-    display: inline-block;
-    position: absolute;
-    right: -17px;
-    opacity: 1;
-    top: 7px;
-    transition: opacity 150ms ease-in;
-  }
-  .sidebar .sidebar-wrapper li.active>[data-toggle="collapse"]+div .nav li a:before,
-  .sidebar .sidebar-wrapper li.active>[data-toggle="collapse"]+div .nav li a:after {
-    top: 0;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .card-stats [class*="col-"] .statistics::after {
-    display: none;
-  }
-  .main-panel .content {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  
-  .landing-page .section-story-overview .image-container:nth-child(2) {
-    margin-left: 0;
-    margin-bottom: 30px;
-  }
-  .card .form-horizontal .col-md-3.col-form-label {
-    text-align: left;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .nav-tabs-navigation.verical-navs {
-    padding: 0 28px;
-  }
-  .typography-line {
-    padding-left: 23% !important;
-  }
-  .typography-line span {
-    width: 60px !important;
-  }
-  .login-page .navbar,
-  .lock-page .navbar,
-  .register-page .navbar {
-    padding: .5rem 1rem;
-  }
-  
-  .register-page .content {
-    padding-top: 5vh;
-  }
-  .register-page .footer {
-    position: relative;
-  }
-  .register-page .info-area.info-horizontal {
-    margin-top: 0;
-  }
-}
-
-@media screen and (max-width: 374px) {
-  .login-page .content {
-    padding-top: 10vh;
-  }
-}
-
-@media screen and (max-width: 413px) {
-  .fixed-plugin .dropdown.show-dropdown.show .dropdown-menu.show {
-    width: 225px !important;
-  }
-  .fixed-plugin .dropdown.show-dropdown.show .dropdown-menu.show[x-placement=top-start] {
-    transform: translate3d(0, 400px, 0) !important;
-  }
-  .fixed-plugin .dropdown.show-dropdown.show .dropdown-menu.show:before,
-  .fixed-plugin .dropdown.show-dropdown.show .dropdown-menu.show:after {
-    bottom: 360px !important;
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .navbar[class*='navbar-toggleable-'] .container {
-    margin-left: 0;
-    margin-right: 0;
-  }
-  .card-contributions .card-stats {
-    flex-direction: column;
-  }
-  .card-contributions .card-stats .bootstrap-switch {
-    margin-bottom: 15px;
-  }
-  .footer .copyright {
-    text-align: center;
-  }
-  .section-nucleo-icons .icons-container i {
-    font-size: 30px;
-  }
-  
-  .section-nucleo-icons .icons-container i:nth-child(6) {
-    font-size: 48px;
-  }
-  .page-header .container h6.category-absolute {
-    width: 90%;
-  }
-  .card-timeline .timeline .timeline-panel {
-    width: 38%;
-    padding: 15px;
-  }
-}
 
 /*# sourceMappingURL=dashboard-free.css.map */
