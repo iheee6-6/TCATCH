@@ -15,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.tone.tcatch.art.model.exception.ArtException;
 import com.tone.tcatch.art.model.service.ArtService;
 import com.tone.tcatch.art.model.vo.Art;
+import com.tone.tcatch.art.model.vo.ArtDetail;
+import com.tone.tcatch.art.model.vo.Seat;
 
 @Controller
 public class ArtController {
@@ -23,7 +25,7 @@ public class ArtController {
 	
 	
 	@RequestMapping("/musical.do")
-	public ModelAndView boardList(ModelAndView mv) {
+	public ModelAndView ArtList(ModelAndView mv) {
 
 		ArrayList<Art> list = aService.selectList();
 		 
@@ -36,14 +38,11 @@ public class ArtController {
 		return mv;
 	}
 	
-	
-	
-	
-	
 	@RequestMapping("/musicalDetail.do")
-	public ModelAndView musicalDetail(ModelAndView mv,int artNo,HttpServletRequest request, HttpServletResponse response) {
-		
+	public ModelAndView selectArtDetail(ModelAndView mv,int artNo,HttpServletRequest request, HttpServletResponse response) {
 		Art art = null;
+		
+		ArtDetail abcd = null;
 		
 		boolean flag = false; 
 		Cookie[] cookies = request.getCookies();
@@ -73,15 +72,32 @@ public class ArtController {
 		}
 		return mv;
 	}
-
-	@RequestMapping("/buy.do")
-	public String buy() {
+	@RequestMapping("/searchArt.do") // 검색
+	public String searchArt(String title) {
+		ArrayList<Art> list = aService.searchArt(title);
 		return "musical/buy";
 	}
 	
+
+	@RequestMapping("/buy.do")
+	public String buy(int timeNo) {
+		//회차 선택 ,좌석 선택
+		ArrayList<Seat> sList = aService.selectSeatList(timeNo); //좌석 불러오기
+		return "musical/buy";
+	}
+	
+	
 	@RequestMapping("/buyTwo.do")
 	public String buyTwo() {
+		//결제 .
 		return "musical/buy_two";
+	}
+	
+	@RequestMapping("/buyEnd")
+	public String buyEnd(Seat s) {
+		int result = aService.insertSeat(s);
+		
+		return null;
 	}
 	
 	

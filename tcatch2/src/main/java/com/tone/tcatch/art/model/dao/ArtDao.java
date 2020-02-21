@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.tone.tcatch.art.model.vo.Art;
+import com.tone.tcatch.art.model.vo.Seat;
 
 @Repository("aDao")
 public class ArtDao {
@@ -27,6 +28,20 @@ public class ArtDao {
 	public int addReadCount(int artNo) {
 		return sqlSession.update("artMapper.updateCount", artNo);
 		
+	}
+
+	public ArrayList<Art> searchArt(String title) {
+		
+		return (ArrayList)sqlSession.selectList("artMapper.searchArt" , title);
+	}
+
+	public ArrayList<Seat> selectSeatList(int timeNo) { // ÁÂ¼® ¼¿·º
+		
+		return (ArrayList)sqlSession.selectList("artMapper.selectSeatList" , timeNo);
+	}
+
+	public int insertSeat(Seat s )  { // ÁÂ¼® °áÁ¦
+		return sqlSession.insert("artMapper.updateCount", s);
 	}
 
 }
