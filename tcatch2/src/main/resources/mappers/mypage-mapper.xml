@@ -22,7 +22,7 @@
 		<result property="artType" column="art_type" />
 	</resultMap>
 
-	<resultMap id="PerformanceResultSet" type="Performance">
+	<resultMap id="PerformanceResultSet" type="ArtDetail">
 		<id property="artNo" column="ART_NO" />
 		<result property="artType" column="ART_TYPE" />
 		<result property="artTitle" column="ART_TITLE" />
@@ -110,7 +110,7 @@
 	</select>
 	
 	
-	<select id="selectInterest" parameterType="Performance"
+	<select id="selectInterest" parameterType="ArtDetail"
 		resultMap="PerformanceResultSet">
 		SELECT * FROM PERSONAL
 		JOIN ART USING(ART_NO)

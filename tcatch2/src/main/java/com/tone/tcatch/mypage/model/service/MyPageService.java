@@ -1,9 +1,10 @@
 package com.tone.tcatch.mypage.model.service;
 
 import java.util.ArrayList;
+
+import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.member.model.vo.Member;
 import com.tone.tcatch.mypage.model.vo.Alarm;
-import com.tone.tcatch.mypage.model.vo.Performance;
 import com.tone.tcatch.ticket.model.vo.Ticket;
 
 public interface MyPageService {
@@ -16,9 +17,9 @@ public interface MyPageService {
 
 	ArrayList<Ticket> selectRecentViewList(String id);
 
-	ArrayList<Performance> selectRecentInterestList(String id);
+	ArrayList<ArtDetail> selectRecentInterestList(String id);
 
-	ArrayList<Performance> selectInterestPerformanceList(String id);
+	ArrayList<ArtDetail> selectInterestPerformanceList(String id);
 
 	ArrayList<Alarm> selectAlarmList(String id);
 
