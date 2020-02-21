@@ -217,8 +217,8 @@ cursor:pointer;
 		            alert("통신데이터 값 : " + Parse_data);
 		        }
 		         
-		    }); */
-		}); 
+		    }); 
+		}); */
  
 	</script>
 	<jsp:include page="../common/footer.jsp" />
