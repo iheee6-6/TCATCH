@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.member.model.vo.Member;
 import com.tone.tcatch.mypage.model.dao.MyPageDao;
 import com.tone.tcatch.mypage.model.vo.Alarm;
-import com.tone.tcatch.mypage.model.vo.Performance;
 import com.tone.tcatch.ticket.model.vo.Ticket;
 
 @Service("mpService")
@@ -42,12 +42,12 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public ArrayList<Performance> selectRecentInterestList(String id) {
+	public ArrayList<ArtDetail> selectRecentInterestList(String id) {
 		return mpDao.selectRecentInterestList(id);
 	}
 
 	@Override
-	public ArrayList<Performance> selectInterestPerformanceList(String id) {
+	public ArrayList<ArtDetail> selectInterestPerformanceList(String id) {
 		return mpDao.selectInterestPerformanceList(id);
 	}
 

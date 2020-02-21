@@ -8,9 +8,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.member.model.vo.Member;
 import com.tone.tcatch.mypage.model.vo.Alarm;
-import com.tone.tcatch.mypage.model.vo.Performance;
 import com.tone.tcatch.ticket.model.vo.Ticket;
 
 @Repository("mpDao")
@@ -43,7 +43,7 @@ public class MyPageDao {
 	}
 
 	// 최근 관심 내역
-	public ArrayList<Performance> selectRecentInterestList(String id) {
+	public ArrayList<ArtDetail> selectRecentInterestList(String id) {
 		return (ArrayList) sqlSession.selectList("myPageMapper.selectRInterest", id);
 
 	}
@@ -64,7 +64,7 @@ public class MyPageDao {
 	}
 
 	// 관심 목록
-	public ArrayList<Performance> selectInterestPerformanceList(String id) {
+	public ArrayList<ArtDetail> selectInterestPerformanceList(String id) {
 		return (ArrayList) sqlSession.selectList("myPageMapper.selectInterest", id);
 
 	}

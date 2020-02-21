@@ -4,7 +4,7 @@
   <class id="1" language="java" name="com.tone.tcatch.mypage.controller.MyPageController" project="tcatch" 
     file="/tcatch/src/main/java/com/tone/tcatch/mypage/controller/MyPageController.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1066" y="229"/>    
+    <position height="369" width="474" x="2304" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -13,7 +13,7 @@
   </class>  
   <class id="2" language="java" name="com.tone.tcatch.mypage.model.dao.MyPageDao" project="tcatch" 
     file="/tcatch/src/main/java/com/tone/tcatch/mypage/model/dao/MyPageDao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="244" y="639"/>    
+    <position height="351" width="328" x="2828" y="572"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -23,7 +23,7 @@
   <class id="3" language="java" name="com.tone.tcatch.mypage.model.exception.MypageException" project="tcatch" 
     file="/tcatch/src/main/java/com/tone/tcatch/mypage/model/exception/MypageException.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1440" y="142"/>    
+    <position height="81" width="186" x="2150" y="572"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -33,7 +33,7 @@
   <interface id="4" language="java" name="com.tone.tcatch.mypage.model.service.MyPageService" project="tcatch" 
     file="/tcatch/src/main/java/com/tone/tcatch/mypage/model/service/MyPageService.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="590" y="208"/>    
+    <position height="315" width="328" x="2418" y="572"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -43,7 +43,7 @@
   <class id="5" language="java" name="com.tone.tcatch.mypage.model.service.MyPageServiceImpl" project="tcatch" 
     file="/tcatch/src/main/java/com/tone/tcatch/mypage/model/service/MyPageServiceImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="225" y="252"/>    
+    <position height="333" width="328" x="2818" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -52,7 +52,7 @@
   </class>  
   <class id="6" language="java" name="com.tone.tcatch.mypage.model.vo.Alarm" project="tcatch" 
     file="/tcatch/src/main/java/com/tone/tcatch/mypage/model/vo/Alarm.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1514" y="463"/>    
+    <position height="351" width="157" x="2788" y="1755"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -61,102 +61,462 @@
   </class>  
   <class id="7" language="java" name="com.tone.tcatch.ticket.model.vo.Ticket" project="tcatch" 
     file="/tcatch/src/main/java/com/tone/tcatch/ticket/model/vo/Ticket.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1137" y="1032"/>    
+    <position height="1485" width="496" x="2252" y="1755"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="com.tone.tcatch.mypage.model.vo.Performance" project="tcatch" 
-    file="/tcatch/src/main/java/com/tone/tcatch/mypage/model/vo/Performance.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="661" y="704"/>    
+  <class id="8" language="java" name="com.tone.tcatch.art.controller.ArtController" project="tcatch" 
+    file="/tcatch/src/main/java/com/tone/tcatch/art/controller/ArtController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="469" x="799" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="9">    
+  <class id="9" language="java" name="com.tone.tcatch.art.model.service.ArtServiceImpl" project="tcatch" 
+    file="/tcatch/src/main/java/com/tone/tcatch/art/model/service/ArtServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="171" width="195" x="522" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="com.tone.tcatch.art.model.vo.Art" project="tcatch" 
+    file="/tcatch/src/main/java/com/tone/tcatch/art/model/vo/Art.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="765" width="316" x="562" y="1755"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="11" language="java" name="com.tone.tcatch.art.model.service.ArtService" project="tcatch" 
+    file="/tcatch/src/main/java/com/tone/tcatch/art/model/service/ArtService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="195" x="562" y="572"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="12" language="java" name="com.tone.tcatch.art.model.vo.Seat" project="tcatch" 
+    file="/tcatch/src/main/java/com/tone/tcatch/art/model/vo/Seat.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="333" width="160" x="362" y="1755"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="com.tone.tcatch.art.model.exception.ArtException" project="tcatch" 
+    file="/tcatch/src/main/java/com/tone/tcatch/art/model/exception/ArtException.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="81" width="163" x="1431" y="572"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="com.tone.tcatch.art.model.dao.ArtDao" project="tcatch" 
+    file="/tcatch/src/main/java/com/tone/tcatch/art/model/dao/ArtDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="195" x="306" y="572"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="com.tone.tcatch.art.model.vo.ArtDetail" project="tcatch" 
+    file="/tcatch/src/main/java/com/tone/tcatch/art/model/vo/ArtDetail.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1143" width="552" x="839" y="572"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="16" language="java" name="com.tone.tcatch.community.model.service.CommunityService" project="tcatch" 
+    file="/tcatch/src/main/java/com/tone/tcatch/community/model/service/CommunityService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="171" width="192" x="1655" y="572"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="17" language="java" name="com.tone.tcatch.community.model.service.CommunityServiceImpl" project="tcatch" 
+    file="/tcatch/src/main/java/com/tone/tcatch/community/model/service/CommunityServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="192" x="1868" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="com.tone.tcatch.community.controller.CommunityController" project="tcatch" 
+    file="/tcatch/src/main/java/com/tone/tcatch/community/controller/CommunityController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="279" width="169" x="1615" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="com.tone.tcatch.community.model.dao.CommunityDao" project="tcatch" 
+    file="/tcatch/src/main/java/com/tone/tcatch/community/model/dao/CommunityDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="181" x="1908" y="572"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="com.tone.tcatch.community.model.vo.PageInfo" project="tcatch" 
+    file="/tcatch/src/main/java/com/tone/tcatch/community/model/vo/PageInfo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="495" width="171" x="311" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="com.tone.tcatch.community.model.vo.Community" project="tcatch" 
+    file="/tcatch/src/main/java/com/tone/tcatch/community/model/vo/Community.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="603" width="299" x="1655" y="1755"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="com.tone.tcatch.community.model.vo.Reply" project="tcatch" 
+    file="/tcatch/src/main/java/com/tone/tcatch/community/model/vo/Reply.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="495" width="229" x="42" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="23" language="java" name="com.tone.tcatch.member.model.service.MemberService" project="tcatch" 
+    file="/tcatch/src/main/java/com/tone/tcatch/member/model/service/MemberService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="153" width="177" x="3464" y="572"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="24" language="java" name="com.tone.tcatch.member.controller.MemberController" project="tcatch" 
+    file="/tcatch/src/main/java/com/tone/tcatch/member/controller/MemberController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="243" width="474" x="3198" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="com.tone.tcatch.member.model.exception.MemberException" project="tcatch" 
+    file="/tcatch/src/main/java/com/tone/tcatch/member/model/exception/MemberException.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="81" width="186" x="3238" y="572"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="com.tone.tcatch.member.model.dao.MemberDao" project="tcatch" 
+    file="/tcatch/src/main/java/com/tone/tcatch/member/model/dao/MemberDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="181" x="3681" y="572"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="com.tone.tcatch.member.model.service.MemberServiceImpl" project="tcatch" 
+    file="/tcatch/src/main/java/com/tone/tcatch/member/model/service/MemberServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="189" width="276" x="3712" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="com.tone.tcatch.member.model.vo.Member" project="tcatch" 
+    file="/tcatch/src/main/java/com/tone/tcatch/member/model/vo/Member.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="711" width="398" x="3198" y="1755"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <dependency id="29">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="30">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="28"/>  
+  </dependency>  
+  <dependency id="31">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="32">    
+    <bendpoint x="808" y="572"/>    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <dependency id="33">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="28"/>  
+  </dependency>  
+  <association id="34">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="35" name="aService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="36" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="37">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="38">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="28"/>  
+  </dependency>  
+  <dependency id="39">    
+    <bendpoint x="275" y="572"/>    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="40">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <dependency id="41">    
+    <bendpoint x="3207" y="572"/>    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="28"/>  
+  </dependency>  
+  <dependency id="42">    
+    <bendpoint x="2776" y="572"/>    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="28"/>  
+  </dependency>  
+  <dependency id="43">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <dependency id="44">    
+    <bendpoint x="3186" y="572"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="28"/>  
+  </dependency>  
+  <association id="45">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="10" name="mpService">        
+      <attribute id="46" name="mpService">        
         <position height="0" width="0" x="389" y="20"/>      
       </attribute>      
-      <multiplicity id="11" minimum="0" maximum="1">        
+      <multiplicity id="47" minimum="0" maximum="1">        
         <position height="0" width="0" x="389" y="20"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="12">    
+  <association id="48">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="49" name="mDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="50" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="51">    
+    <bendpoint x="3892" y="572"/>    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="28"/>  
+  </dependency>  
+  <dependency id="52">    
+    <bendpoint x="1877" y="572"/>    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="21"/>  
+  </dependency>  
+  <realization id="53">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="23"/>  
+  </realization>  
+  <dependency id="54">    
+    <bendpoint x="531" y="572"/>    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <dependency id="55">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="56">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="10"/>  
+  </dependency>  
+  <realization id="57">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="16"/>  
+  </realization>  
+  <association id="58">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="59" name="cService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="60" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="61">    
+    <bendpoint x="2366" y="572"/>    
     <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <dependency id="13">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="7"/>  
-  </dependency>  
-  <dependency id="14">    
-    <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="6"/>  
   </dependency>  
-  <dependency id="15">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="6"/>  
+  <dependency id="62">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="13"/>  
   </dependency>  
-  <dependency id="16">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <dependency id="17">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="7"/>  
-  </dependency>  
-  <dependency id="18">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="6"/>  
-  </dependency>  
-  <dependency id="19">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="7"/>  
-  </dependency>  
-  <dependency id="20">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="6"/>  
-  </dependency>  
-  <dependency id="21">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <realization id="22">    
+  <realization id="63">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
-  <association id="23">    
+  <dependency id="64">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="65">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="25"/>  
+  </dependency>  
+  <association id="66">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="24" name="mpDao">        
+      <attribute id="67" name="mpDao">        
         <position height="0" width="0" x="-320" y="24"/>      
       </attribute>      
-      <multiplicity id="25" minimum="0" maximum="1">        
+      <multiplicity id="68" minimum="0" maximum="1">        
         <position height="0" width="0" x="-320" y="24"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="26">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="8"/>  
+  <dependency id="69">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="21"/>  
   </dependency>  
-  <dependency id="27">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="8"/>  
+  <dependency id="70">    
+    <bendpoint x="1624" y="572"/>    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="21"/>  
   </dependency>  
-  <dependency id="28">    
+  <association id="71">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="72" name="aDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="73" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="74">    
+    <bendpoint x="2387" y="572"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <dependency id="75">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="76">    
+    <bendpoint x="787" y="572"/>    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <association id="77">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="78" name="cDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="79" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="80">    
+    <bendpoint x="2119" y="572"/>    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="7"/>  
   </dependency>  
+  <dependency id="81">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="28"/>  
+  </dependency>  
+  <realization id="82">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="11"/>  
+  </realization>  
+  <dependency id="83">    
+    <bendpoint x="2797" y="572"/>    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="84">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <association id="85">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="86" name="mService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="87" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
