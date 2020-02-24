@@ -3,6 +3,7 @@
 "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="artMapper">
+
 	<resultMap id="ArtResultSet" type="Art">
 		<id property="artNo" column="ART_NO"/>
 		<result property="artType" column="ART_TYPE"/>
@@ -17,7 +18,34 @@
 		<result property="renameFile" column="RENAME_FILE"/>
 		<result property="durationTime" column="DURATION_TIME"/>
 	</resultMap>  
-
+	
+	<resultMap id="DetailResultSet" type="ArtDetail">
+		<id property="artNo" column="ART_NO"/>
+		<result property="artType" column="ART_TYPE"/>
+		<result property="artTitle" column="ART_TITLE"/>
+		<result property="artExplain" column="ART_EXPLAIN"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="companyNo" column="COMPANY_NO"/>
+		<result property="age" column="AGE"/>
+		<result property="originalFile" column="ORIGINAL_FILE"/>
+		<result property="renameFile" column="RENAME_FILE"/>
+		<result property="durationTime" column="DURATION_TIME"/>
+		<result property="companyName" column="COMPANY_NAME"/>
+		<result property="companyPhone" column="PHONE"/>
+		<result property="companyInfo" column="CONPANY_INFO"/>
+		<result property="startDate" column="START_DATE"/>
+		<result property="endDate" column="END_DATE"/>
+	</resultMap>
+	
+	<resultMap id="ATResultSet" type="ArtTime">
+		<id property="timeNo" column="TIME_NO"/>
+		<result property="actor" column="ACTOR"/>
+		<result property="dateTime" column="DATE_TIME"/>
+		<result property="dateCount" column="DATE_COUNT"/>	
+		<result property="artNo" column="ART_NO"/>	
+	</resultMap>
+	
+	<!-- CONPANY_INFO 수정해야함 -->
 	<select id="selectList" resultMap="ArtResultSet">
 		SELECT *
 		FROM ART
@@ -25,15 +53,39 @@
 		ORDER BY ART_NO DESC 
 	</select>
 	
-	<select id="selectOne" resultMap="ArtResultSet">
-		SELECT *
-		FROM ART
-		WHERE ART_NO = #{artNo}
+	<select id="selectOne" resultMap="DetailResultSet">
+		SELECT ART_NO,
+		ART_TYPE,
+		ART_TITLE ,
+		ART_EXPLAIN,
+		ADDRESS,
+		COMPANY_NO,
+		AGE,
+		ORIGINAL_FILE,
+		RENAME_FILE,
+		DURATION_TIME,
+		COMPANY_NAME,
+		PHONE,
+		CONPANY_INFO,
+		START_DATE,
+		END_DATE
+		FROM ART  A
+		JOIN COMPANY C USING(COMPANY_NO)
+		JOIN TICKET_DATE USING(ART_NO)
+		JOIN RATING USING(RATING)
+		WHERE ART_NO=#{artNo}
 	</select>
 	
 	<update id="updateCount">
 		UPDATE ART SET COUNT=COUNT+1 
 		WHERE ART_NO = #{artNo}
 	</update>
+	
+	<select id="selectATime" resultMap="ATResultSet">
+		SELECT * 
+		FROM ART_TIME
+		WHERE ART_NO =#{artNo}
+		AND DATE_COUNT=1
+	</select>
 	
 </mapper>

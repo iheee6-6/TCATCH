@@ -31,9 +31,9 @@
 <div class="renew-wrap">
 	<div class="renew-content">
 		<div class="rn-02"><!--제목-->
-			<p class="rn-big-title">[제목] 제목제목</p>
+			<p class="rn-big-title">[제목] ${art.artTitle }</p>
 			<div class="rn-product-short-data">
-				<p><span class="ps-date">날짜 ~ 날짜</span><span class="ps-location"> ~위치~ </span></p>	
+				<p><span class="ps-date">${art.startDate } ~ ${art.endDate }</span><span class="ps-location"> ${art.address } </span></p>	
 			</div>			
         </div><!--rn-02-->  
 	</div>	
@@ -76,21 +76,21 @@
 						
 				</div>				
             </div><!--rn-03-left-->
-            
-            
+         <%--    <c:if test="${art.rating eq 0 }">
+            	ㅎㅇ
+            </c:if>
+             --%>
 			<div class="rn-03-right"><!--상품정보-->
 				<div class="rn-product-area1"><!--등급, 관람시간, 출연, 가격, 혜택-->
 					<dl>
 						<dt>등급</dt>
-						<dd>&nbsp;만 19세이상</dd>
+						<dd>&nbsp;만
+							${ art.age }	
+						세이상</dd>
 						<dt>관람시간</dt>
-						<dd>&nbsp;총 999분(인터미션 없음)</dd>
+						<dd>&nbsp;총 ${art.durationTime }분(인터미션 없음)</dd>
 						<dt>출연</dt>
-						<dd>&nbsp;
-                            고태훈 바보(기타) ,
-                            킹고태 병맛(베이스) , 
-                            코태훈 코고는소리(드럼)
-                            
+						<dd>&nbsp;${aT.actor}     
 						<dt id="dtPrice">좌석</dt>
 						<dd>
 						 <span class='rn-red'>100</span>/100
@@ -114,8 +114,6 @@
 				
 				<div class="rn-product-area3"><!--공연시간안내, 배송정보-->
 					<dl>
-						<dt>공연시간 안내</dt>
-						<dd>2020년 3월 8일(일) 오후 6시</dd>
 						<dt>배송정보</dt>
                         <dd>현장 수령 <span class='rn-red'>가능</span></dd>
                         <dd>택배 배송 <span class='rn-red'>가능</span></dd>
@@ -142,12 +140,12 @@
 			<div class="rn-tab-area rn-08 on" id="rn-tab01" style="display:block;"><!--탭1 상세정보-->
 				<div class="rn-0801"><!--유의사항-->
 					<p class="rn08-tit" id="titPerfNotice">유의사항</p>
-                    <div><p>어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고</p></div>
+                    <div><p>조심세용조심하세용조</p></div>
 				</div><!--rn-0801-->
 				<div class="rn-0803"><!--공연정보-->
 					<p class="rn08-tit">공연정보</p>
 					<div class="rn08-txt" id="divPerfContent">
-                        <div><p>어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고 어쩌고 저쩌고</p></div>
+                        <div><p>${ art.artExplain }</p></div>
 					</div>
 				</div><!--rn-0803-->
 				<div class="rn-0804"><!--캐스팅일정-->
@@ -160,7 +158,7 @@
 							</colgroup>
 							<tbody>
 								<tr><th scope="row" class="rn08-tbl-tit">기획사 정보</th>
-								<td id="divPerfOrganization">회사 정보 가져오기 </td>
+								<td id="divPerfOrganization">${art.companyInfo } </td>
                                 </tr>
 							</tbody>
 						</table>
@@ -182,21 +180,23 @@
 								<tbody>
 									<tr>
                                         <th scope="row" class="rn08-tbl-tit2">주최/기획</th>
-                                        <td>회사 이름 </td>
+                                        <td>(주)${art.companyName } </td>
                                         <th scope="row" class="rn08-tbl-tit2">소비자상담</th>
-                                        <td>회사 번호</td>
+                                        <td>${art.companyPhone }</td>
                                     </tr>
 									<tr>
                                         <th scope="row" class="rn08-tbl-tit2">주연</th>
-                                        <td>주연 정보</td>
+                                        <td>${aT.actor}</td>           
                                         <th scope="row" class="rn08-tbl-tit2">관람등급</th>
-                                        <td>만 ()세이상</td>
+                                        <td>
+											만  ${ art.age } 세이상 
+										</td>
                                     </tr>
 									<tr>
                                         <th scope="row" class="rn08-tbl-tit2">공연시간</th>
-                                        <td>시간 )</td>
+                                        <td> ${art.durationTime }분</td>
                                         <th scope="row" class="rn08-tbl-tit2">공연장소</th>
-                                        <td>장소 </td>
+                                        <td> ${art.address }</td>
                                     </tr>
 									<tr><th scope="row"class="rn08-tbl-tit2">취소/환불방법</th><td colspan="3">
 										<div class="rn08-detail-box">
@@ -224,7 +224,7 @@
 											</div>						
 											<p>
 												예매수수료는 예매 당일 밤 12시 이전 취소 시에만 환불되며, 그 이후 기간에는 환불되지 않습니다.<br />
-												취소는 MY공연>예매확인/취소 에서 직접 취소 또는 고객센터(1544-6399)를 통해 취소 가능합니다.<br />
+												취소는 MY공연>예매확인/취소 에서 직접 취소 또는 고객센터(010-4927-0935)를 통해 취소 가능합니다.<br />
 												티켓이 배송된 후에는 PC/모바일 취소가 불가, 취소마감시간 이전에 고객센터로 티켓이 반송되어야 취소 가능합니다.<br />
 												(취소수수료는 티켓 도착일 기준으로 부과되며, 배송비는 환불되지 않습니다.)<br />
 												각 상품별로 취소 정책이 다르게 적용될 수 있으니, 각 상품 안내 사항을 확인해주시기 바랍니다. 

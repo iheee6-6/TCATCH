@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.tone.tcatch.art.model.dao.ArtDao;
 import com.tone.tcatch.art.model.vo.Art;
+import com.tone.tcatch.art.model.vo.ArtDetail;
+import com.tone.tcatch.art.model.vo.ArtTime;
 import com.tone.tcatch.art.model.vo.Seat;
 
 @Service("aService")
@@ -24,7 +26,7 @@ public class ArtServiceImpl implements ArtService{
 
 
 	@Override
-	public Art selectArt(int artNo, boolean flag) { // 디테일
+	public ArtDetail selectArt(int artNo, boolean flag) { // 디테일
 		// 1. 조회수 증가
 		if(!flag) { // 해당 글을 읽지 않았다면(flag가 false)
 			aDao.addReadCount(artNo);
@@ -49,6 +51,12 @@ public class ArtServiceImpl implements ArtService{
 	@Override
 	public int insertSeat(Seat s) { // 좌석 거ㅕㄹ제
 		return aDao.insertSeat(s);
+	}
+
+
+	@Override
+	public ArtTime selectATime(int artNo) {
+		return aDao.selectATime(artNo);
 	}
 	
 	
