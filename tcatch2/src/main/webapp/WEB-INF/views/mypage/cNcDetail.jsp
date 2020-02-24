@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,28 +30,29 @@
 									<div class="mycont">
 
 										<div class="blu_box">
-											<p class="tit">뮤지컬 [쓰릴 미]</p>
+											<p class="tit">${artTitle } 
+														<span style="color: red;">:: ${status}</span></p>
 											<p class="poster">
 												<a href='/Pages/Perf/Detail/Detail.aspx?IdPerf=35104'
-													Title='뮤지컬 [쓰릴 미]'><img
+													Title='${artTitle }'><img
 													src='http://tkfile.yes24.com/upload2/PerfBlog/202001/20200106/20200106-35104_1.jpg'
 													width='180' height='224' alt='' /></a>
 											</p>
 											<table id="tblOrderInfo" class="table_sm">
 												<tr>
 													<th class="le">예매번호</th>
-													<td><strong>Y1530778690</strong></td>
+													<td><strong>${tNo }</strong></td>
 													<th>예매자</th>
-													<td class="ri">신하은</td>
+													<td class="ri">${userName }</td>
 												</tr>
 												<tr id="trPerfDateTime">
 													<th class="le">관람일</th>
-													<td colspan="3" class="ri"><strong>2020.02.09
-															15:00</strong></td>
+													<td colspan="3" class="ri"><strong>${viewDate}</strong></td>
+													<!-- 2020.02.09 15:00 -->
 												</tr>
 												<tr id="trTheater">
 													<th class="le">공연장</th>
-													<td colspan="3" class="ri">예스24스테이지 2관 <a
+													<td colspan="3" class="ri">${address } <a
 														class='dcursor' onclick='jsf_otv_ViewTheaterMap(3422);'><img
 															src='http://tkfile.yes24.com/img/mypage/btn_map.gif'
 															alt='약도' /></a></td>
@@ -65,7 +67,7 @@
 													</th>
 													<td colspan="3" class="ri">
 														<div class="scroll">
-															S석 1층 L열 014번<br />
+															${seat }<br /><!-- S석 1층 L열 014번 -->
 														</div>
 													</td>
 												</tr>
@@ -74,12 +76,20 @@
 														<p></p>
 													</th>
 													<td colspan="3" class="ri">
-
-
 														<div id="divDeliveryNone">
+														<c:choose>
+														<c:when test="${receiveMethod eq 2}">
 															<span class="blu">현장수령</span> <span>- 공연 당일
 																티켓교부처에서 티켓을 받으시면 됩니다.</span> <span>- 예매내역서(프린트)와 신분증을
 																지참해주세요.</span>
+														</c:when>
+														<c:otherwise>
+														<span class="blu">택배</span> 
+														<c:if test="${ !empty wayBill}">
+															<span>${wayBill}</span> 
+														</c:if>
+														</c:otherwise>
+														</c:choose>
 														</div>
 													</td>
 												</tr>

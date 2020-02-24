@@ -22,19 +22,19 @@
 <body>
 	<jsp:include page="../common/menubar.jsp" />
 	<div class="wrapper">
-		<!-- 공지사항 상세 -->
+	
 		<div id="NoticeRead" style="display: block;">
 			<div class="noti-view-tit">
 				<span class="noti-tit-tag01">티켓오픈</span>
-				<p>롯데콘서트홀 블로썸 유어 데이 2020 티켓오픈 안내</p>
+				<p>${artTitle }</p>
 
 			</div>
 
 			<input type="hidden" id="hdNotiTitle"
-				value="롯데콘서트홀 블로썸 유어 데이 2020 티켓오픈 안내"> <input type="hidden"
-				id="hdNotiID" value="10140">
+				value="${artTitle }"> <input type="hidden"
+				id="hdNotiID" value="${artNo }">
 			<div class="noti-view-date">
-				<span>등록일 : 2020-01-31</span><span>조회수 : 280</span>
+				<span>조회수 :${count }</span>
 			</div>
 
 
@@ -46,14 +46,14 @@
 							width="180" height="252">
 					</div>
 					<div class="noti-vt-right">
-						<p class="noti-vt-tit">롯데콘서트홀 블로썸 유어 데이 2020 티켓오픈 안내</p>
+						<p class="noti-vt-tit">${artTitle } 티켓 오픈 안내</p>
 						<div class="noti-vt-box">
 							<div>
 
 								<p class="noti" id="noti1"></p>
 								<div class="noti-vt-open">
-									<span><em>티켓오픈</em></span> <span id="title1">2020.02.06(목)
-										오후 2:00</span>
+									<span><em>티켓오픈</em></span> <span id="title1"><%-- ${ticketingDate } --%></span>
+									<!-- 2020.02.06(목) 오후 2:00 -->
 								</div>
 								<p></p>
 
@@ -85,7 +85,7 @@
 				<div class="noti-view-coment">
 					<p class="noti-view-comen-tit">공연 개요</p>
 					<div class="noti-view-comen-txt">
-						4.3(금) 11:30 &lt;시네콘서트 Ⅰ. 히사이시 조&gt; <br>티켓가: 전석 3만원 <br>
+						 &lt;시네콘서트 Ⅰ. 히사이시 조&gt; <br>티켓가: 전석 3만원 <br>
 						<br>4.3(금) 20:00 &lt;한스 짐머 vs 존 윌리엄스&gt; <br>티켓가: R석
 						12만원, S석 9만원, A석 7만원, B석 4만원 <br> <br>4.5(일) 19:30
 						&lt;케빈 오 ＆ 슈퍼밴드 meets 오케스트라&gt; <br>티켓가: R석 9만원, S석 7만원, A석

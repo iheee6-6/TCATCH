@@ -1,7 +1,9 @@
 package com.tone.tcatch.mypage.model.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
+import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.member.model.vo.Member;
 import com.tone.tcatch.mypage.model.vo.Alarm;
@@ -36,5 +38,13 @@ public interface MyPageService {
 	int insertInterest(String id, int pId);
 
 	int insertAlarm(String id, int aId);
+
+	ArrayList<Ticket> searchView(String id, Date sd, Date ed, String artType, String pName);
+
+	ArrayList<Art> selectNoticeList();
+
+	Art selectNotice(int nId);
+
+	int refundTicket(String id, int tId);
 
 }

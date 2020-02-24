@@ -22,8 +22,6 @@
 
 			<div id="NoticeMainDisplay" style="display: block;">
 				<!-- 공지사항 상단 배너 -->
-
-
 				<div class="notice-slide">
 					<div
 						class="swiper-container ticketo swiper-container-initialized swiper-container-horizontal">
@@ -153,7 +151,7 @@
 										<p class="ticket-tit">〈신과 함께_저승편〉</p>
 									</div></a>
 							</div>
-							<script>
+							<!-- <script>
 								function displayDonut() {
 									config.data.datasets[0].data = [
 											12.5 * (8 - 1), 12.5 * 1 ];
@@ -192,7 +190,7 @@
 													'chart-area10123')
 													.getContext('2d'), config);
 								}
-							</script>
+							</script> -->
 						</div>
 						<span class="swiper-notification" aria-live="assertive"
 							aria-atomic="true"></span>
@@ -207,7 +205,7 @@
 
 
 
-				<script type="text/javascript">
+				<!-- <script type="text/javascript">
 					var config = {
 						type : 'doughnut',
 						data : {
@@ -241,13 +239,13 @@
 					//            num = 0;
 					//        }
 					//    });
-				</script>
+				</script> -->
 				<!-- 공지사항 상단 배너 -->
 
 
 
 				<!-- 공지사항 필터,검색 -->
-				<div class="category" id="SelectOrder">
+				<!-- <div class="category" id="SelectOrder">
 					<a href="javascript:;" categoryid="1" class="on">등록순</a> <a
 						href="javascript:;" categoryid="2">오픈일순</a> <a href="javascript:;"
 						categoryid="3">조회순</a>
@@ -256,7 +254,7 @@
 							placeholder="궁금하신 내용을 입력해주세요" autocomplete="off"><a
 							onclick="jsf_notice_Search();" style="cursor: pointer"></a>
 					</div>
-				</div>
+				</div> -->
 
 
 				<!-- 공지사항 리스트 -->
@@ -277,274 +275,44 @@
 									<th scope="col">조회수</th>
 								</tr>
 
-								<tr>
-									<td>변경/취소</td>
-									<c:url var="ndetail" value="ndetail.do">
-										<c:param name="bId" value="${ b.bId }" />
-										<c:param name="page" value="${ pi.currentPage }" />
-									</c:url>
-									<td><a href="ndetail"><em>줄리안 라지 트리오(Julian Lage
-												Trio) 내한공연 취소안내</em></a></td>
-									<td></td>
-									<td>41</td>
-								</tr>
+								<c:choose>
+									<c:when test="${empty noticeList }">
+										<tr>
+											<td colspan="4" style="text-align: center">현재 오픈 예정인 티켓이
+												없습니다.</td>
+										</tr>
+									</c:when>
+									<c:otherwise>
+										<c:forEach var="n" items="${noticeList }">
+											<tr>
+												<td>티켓오픈</td>
+												<c:url var="ndetail" value="noticeDetailView.do">
+													<c:param name="bId" value="${ n.artNo }" />
+													<%-- <c:param name="page" value="${ pi.currentPage }" /> --%>
+												</c:url>
+												<td><a href="ndetail"><em>${n.artTitle}</em></a></td>
+												<td></td>
+												<!-- 2020.02.12(수) 17:00 -->
+												<td>${ n.count}</td>
+											</tr>
 
-								<tr>
-									<td>티켓오픈</td>
-									<td><a href="#id=10145"><em><span>단독판매</span></em><em>드림
-												씨어터 (Dream Theater) 내한 티켓 오픈 안내</em></a></td>
-									<td>2020.02.12(수) 17:00<a class="noti-btn-pop"
-										presaletit1="선예매" presaletit2=""
-										presaletime1="2020.02.10(월) 15:00" presaletime2=""><img
-											src="http://tkfile.yes24.com/imgNew/common/btn-notice1.png"
-											alt=""></a></td>
-									<td>85</td>
-								</tr>
-
-								<tr>
-									<td>변경/취소</td>
-									<td><a href="#id=10144"><em>지창욱 2020 팬미팅 in
-												SEOUL［Waiting for you］ 공연 잠정연기 안내</em></a></td>
-									<td></td>
-									<td>728</td>
-								</tr>
-
-								<tr>
-									<td>변경/취소</td>
-									<td><a href="#id=10143"><em>가족뮤지컬 [레이디버그] 공연 취소
-												안내</em></a></td>
-									<td></td>
-									<td>151</td>
-								</tr>
-
-								<tr>
-									<td>티켓오픈</td>
-									<td><a href="#id=10142"><em>케빈오 콘서트〈Here &amp;
-												Now: Anytime, Anywhere〉티켓오픈안내</em></a></td>
-									<td>2020.02.04(화) 20:00</td>
-									<td>376</td>
-								</tr>
-
-								<tr>
-									<td>티켓오픈</td>
-									<td><a href="#id=10141"><em><span>단독판매</span></em><em>줄리안
-												라지 트리오(Julian Lage Trio) 내한공연 및 마스터클래스 티켓</em></a></td>
-									<td>2020.02.04(화) 18:00</td>
-									<td>330</td>
-								</tr>
-
-								<tr>
-									<td>티켓오픈</td>
-									<td><a href="#id=10140"><em>롯데콘서트홀 블로썸 유어 데이 2020
-												티켓오픈 안내</em></a></td>
-									<td>2020.02.06(목) 14:00</td>
-									<td>279</td>
-								</tr>
-
-								<tr>
-									<td>티켓오픈</td>
-									<td><a href="#id=10139"><em>헐리우드 필름 콘서트 2차 티켓오픈
-												안내</em></a></td>
-									<td>2020.02.07(금) 14:00</td>
-									<td>72</td>
-								</tr>
-
-								<tr>
-									<td>변경/취소</td>
-									<td><a href="#id=10138"><em>동현 팬미팅〈you’re my BEST
-												FRIEND〉공연 연기안내</em></a></td>
-									<td></td>
-									<td>958</td>
-								</tr>
-
-								<tr>
-									<td>티켓오픈</td>
-									<td><a href="#id=10137"><em>내일은 미스트롯 전국투어 청춘 콘서트
-												- 창원 회차 추가 안내</em></a></td>
-									<td>2020.01.30(목) 12:00</td>
-									<td>153</td>
-								</tr>
-
-								<tr>
-									<td>티켓오픈</td>
-									<td><a href="#id=10136"><em>뮤지컬 [은밀하게 위대하게 -THE
-												LAST] 2차 티켓오픈 안내</em></a></td>
-									<td>2020.02.05(수) 14:00</td>
-									<td>291</td>
-								</tr>
-
-								<tr>
-									<td>티켓오픈</td>
-									<td><a href="#id=10135"><em><span class="ver2">좋은좌석</span></em><em>내일은
-												미스트롯 전국투어 청춘 콘서트 - 서울 앵콜 티켓오픈 안내</em></a></td>
-									<td>2020.01.30(목) 12:00</td>
-									<td>658</td>
-								</tr>
-
-								<tr>
-									<td>티켓오픈</td>
-									<td><a href="#id=10134"><em>번개맨 뮤지컬 [검은 번개맨의
-												정체는?] -광주 티켓오픈 안내</em></a></td>
-									<td>2020.02.06(목) 14:00</td>
-									<td>41</td>
-								</tr>
-
-								<tr>
-									<td>티켓오픈</td>
-									<td><a href="#id=10133"><em>동요콘서트 [구름빵] 시즌2 2월
-												티켓오픈</em></a></td>
-									<td>2020.01.31(금) 14:00</td>
-									<td>55</td>
-								</tr>
-
-								<tr>
-									<td>티켓오픈</td>
-									<td><a href="#id=10132"><em><span>단독판매</span></em><em>토리
-												켈리 첫 내한공연（Tori Kelly 1st Live in Seoul）티켓 오픈 안내</em></a></td>
-									<td>2020.02.05(수) 12:00<a class="noti-btn-pop"
-										presaletit1="선예매" presaletit2=""
-										presaletime1="2020.02.04(화) 10:00" presaletime2=""><img
-											src="http://tkfile.yes24.com/imgNew/common/btn-notice1.png"
-											alt=""></a></td>
-									<td>1,016</td>
-								</tr>
-
-								<tr>
-									<td>변경/취소</td>
-									<td><a href="#id=10131"><em>[제주] 기리보이 [치명적인 앨범
-												III] 발매 기념 공연 취소 안내</em></a></td>
-									<td></td>
-									<td>364</td>
-								</tr>
-
-								<tr>
-									<td>티켓오픈</td>
-									<td><a href="#id=10130"><em><span>단독판매</span></em><em>연극
-												[헤라,아프로디테, 아르테미스] 티켓오픈 안내</em></a></td>
-									<td>2020.02.05(수) 14:00</td>
-									<td>526</td>
-								</tr>
-
-								<tr>
-									<td>티켓오픈</td>
-									<td><a href="#id=10129"><em>트롯SHOW뮤지컬[트롯연가] 티켓오픈
-												안내</em></a></td>
-									<td>2020.01.30(목) 14:00</td>
-									<td>690</td>
-								</tr>
-
-								<tr>
-									<td>티켓오픈</td>
-									<td><a href="#id=10128"><em><span>단독판매</span></em><em>뮤지컬
-												〈최후진술〉 티켓오픈 안내</em></a></td>
-									<td>2020.01.29(수) 13:00</td>
-									<td>3,454</td>
-								</tr>
-
-								<tr>
-									<td>티켓오픈</td>
-									<td><a href="#id=10127"><em><span>단독판매</span></em><em>홈쉐이크
-												내한공연 Homeshake Live In Seoul 티켓오픈안내</em></a></td>
-									<td>2020.01.29(수) 14:00</td>
-									<td>1,092</td>
-								</tr>
-
-
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
 
 							</tbody>
 						</table>
 						<input name="ListTotalCnt" type="hidden" id="ListTotalCnt"
 							value="9424">
-						<script type="text/javascript">
-							$(document)
-									.ready(
-											function() {
-												//팬클럽 선예매 타이틀,오픈시간 바인딩
-												$(".noti-btn-pop")
-														.on(
-																'mouseenter',
-																function(e) {
-																	e
-																			.preventDefault();
-																	var crtTop = $(
-																			this)
-																			.offset().top;
-																	var crtLeft = $(
-																			this)
-																			.offset().left;
 
-																	$(
-																			".noti-pop-box")
-																			.html(
-																					"");
-																	if ($(this)
-																			.attr(
-																					"presaleTime1") != "") {
-																		$(
-																				".noti-pop-box")
-																				.append(
-																						"<div><p>"
-																								+ $(
-																										this)
-																										.attr(
-																												"presaleTit1")
-																								+ "</p><p>"
-																								+ $(
-																										this)
-																										.attr(
-																												"presaleTime1")
-																								+ "</p></div>");
-																	}
-																	if ($(this)
-																			.attr(
-																					"presaleTime2") != "") {
-																		$(
-																				".noti-pop-box")
-																				.append(
-																						"<div><p>"
-																								+ $(
-																										this)
-																										.attr(
-																												"presaleTit2")
-																								+ "</p><p>"
-																								+ $(
-																										this)
-																										.attr(
-																												"presaleTime2")
-																								+ "</p></div>");
-																	}
-
-																	$(
-																			".noti-pop")
-																			.css(
-																					{
-																						"display" : "block",
-																						"top" : crtTop
-																								+ 20
-																								+ "px",
-																						"left" : crtLeft
-																								- 120
-																								+ "px"
-																					});
-																});
-												$(".noti-btn-pop").on(
-														'mouseleave',
-														function(e) {
-															$(".noti-pop").css(
-																	"display",
-																	"none");
-														});
-
-											});
-						</script>
 					</div>
 				</div>
 
 				<!-- 검색 후 back버튼 -->
-				<div class="noti-back" id="divListbtn" style="display: none;">
+				<!-- <div class="noti-back" id="divListbtn" style="display: none;">
 					<a style="cursor: pointer" onclick="jsf_notice_home();"
 						class="btn-msback"><span>돌아가기</span></a>
-				</div>
+				</div> -->
 				<!-- paging -->
 				<div class="paging" style="display: block;">
 					<div class="list-pagenation">

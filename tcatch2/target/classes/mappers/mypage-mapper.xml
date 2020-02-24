@@ -22,7 +22,7 @@
 		<result property="artType" column="art_type" />
 	</resultMap>
 
-	<resultMap id="PerformanceResultSet" type="Performance">
+	<resultMap id="PerformanceResultSet" type="ArtDetail">
 		<id property="artNo" column="ART_NO" />
 		<result property="artType" column="ART_TYPE" />
 		<result property="artTitle" column="ART_TITLE" />
@@ -110,7 +110,7 @@
 	</select>
 	
 	
-	<select id="selectInterest" parameterType="Performance"
+	<select id="selectInterest" parameterType="ArtDetail"
 		resultMap="PerformanceResultSet">
 		SELECT * FROM PERSONAL
 		JOIN ART USING(ART_NO)
@@ -137,6 +137,27 @@
 		SELECT COMMENT_NO, CONTENT -->
 	</select>
 
+	<select id="searchView" parameterType="Ticket"
+		resultMap="alarmResultSet">
+		SELECT * FROM PURCHASE
+		JOIN ART USING(ART_NO)
+		JOIN ART_TIME USING(TIME_NO,ART_NO)
+		WHERE DATE_TIME <![CDATA[> ]]>TO_CHAR(#{sdate},'YYYYMMDDHH24MISS')
+		AND DATE_TIME <![CDATA[< ]]>TO_CHAR(#{edate},'YYYYMMDDHH24MISS')
+	
+		<if test="pname != null">
+			AND ART_TITLE LIKE '%' || #{pname} || '%'
+		</if>
+		<if test="ptype!=null">
+			AND ART_TYPE = #{ptype}
+		</if>
+		
+		UNION
+		
+		SELECT COMMENT_NO, CONTENT, M_NO, ENROLL_DATE,STATUS,ART_NO,CNO,STAR FROM COMMENT C
+		JOIN MEMBER M on(C.M_NO=M.M_NO)
+		where M.bid= #{bId}
+	</select>
 	<insert id="insertAlarm">
 		INSERT INTO PERSONAL
 		VALUES(PER_SEQ.NEXTVAL,#{ID},
@@ -150,7 +171,7 @@
 	</insert>
 	
 	
-	<select id="selectNotice" resultMap="PerformanceResultSet">
+	<select id="selectNoticeList" resultMap="PerformanceResultSet">
 		SELECT * FROM ART
 		JOIN TICKET_DATE USING(ART_NO)
 		WHERE TICKETING_DATE <![CDATA[>]]> TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
@@ -161,4 +182,9 @@
 		JOIN ART_TIME USING(ART_NO)
 		WHERE ART_NO=#{artNo}
 	</select>
+	
+	<insert id="insertRefund">
+		INSERT INTO REFUND
+		VALUES(REF_SEQ.NEXTVAL,#{id},#{tid},sysdate,default)
+	</insert>
 </mapper>

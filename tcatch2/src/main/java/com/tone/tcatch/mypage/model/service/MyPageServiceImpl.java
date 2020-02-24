@@ -1,10 +1,12 @@
 package com.tone.tcatch.mypage.model.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.member.model.vo.Member;
 import com.tone.tcatch.mypage.model.dao.MyPageDao;
@@ -84,6 +86,26 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public int insertAlarm(String id, int aId) {
 		return mpDao.insertAlarm(id,aId);
+	}
+
+	@Override
+	public ArrayList<Ticket> searchView(String id, Date sd, Date ed, String artType, String pName) {
+		return mpDao.searchView(id,sd,ed,artType,pName);
+	}
+
+	@Override
+	public ArrayList<Art> selectNoticeList() {
+		return mpDao.selectNoticeList();
+	}
+
+	@Override
+	public Art selectNotice(int nId) {
+		return mpDao.selectNotice(nId);
+	}
+
+	@Override
+	public int refundTicket(String id, int tId) {
+		return mpDao.refundTicket(id,tId);
 	}
 
 
