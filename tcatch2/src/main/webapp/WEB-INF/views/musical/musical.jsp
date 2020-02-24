@@ -39,11 +39,9 @@
 							<c:param name="artNo" value="${ a.artNo }"/>
 						</c:url>
 					<!-- 목록 1 -->
-					<a href='${adetail}' target='_self'
-						title='뮤지컬 (은밀하게 위대하게 - THE LAST)'>
+					<a href='${adetail}' target='_self' title='뮤지컬 (은밀하게 위대하게 - THE LAST)'>
 						<div class='list-bigger-wrap'>
-							<img class='lazyload'
-								src="http://tkfile.yes24.com/upload2/PerfBlog/202001/20200122/20200122-36049_1.jpg"
+							<img class='lazyload'src="http://tkfile.yes24.com/upload2/PerfBlog/202001/20200122/20200122-36049_1.jpg"
 								alt='뮤지컬 (은밀하게 위대하게 - THE LAST)' />
 							<div class='list-bigger-txt'>
 								<p class='list-b-tit1'>${a.artTitle}</p>

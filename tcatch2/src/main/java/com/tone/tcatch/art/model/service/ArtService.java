@@ -3,6 +3,8 @@ package com.tone.tcatch.art.model.service;
 import java.util.ArrayList;
 
 import com.tone.tcatch.art.model.vo.Art;
+import com.tone.tcatch.art.model.vo.ArtDetail;
+import com.tone.tcatch.art.model.vo.ArtTime;
 import com.tone.tcatch.art.model.vo.Seat;
 
 public interface ArtService { 
@@ -11,7 +13,9 @@ public interface ArtService {
 	ArrayList<Art> selectList();
 	
 	//디테일
-	Art selectArt(int artNo , boolean flag);
+	ArtDetail selectArt(int artNo , boolean flag);
+	//디테일 회차
+	ArtTime selectATime(int artNo);
 
 	
 	//검색
@@ -22,6 +26,7 @@ public interface ArtService {
 	
 	//좌석 결제
 	int insertSeat(Seat s);
+	
 
 }
   

@@ -16,6 +16,7 @@ import com.tone.tcatch.art.model.exception.ArtException;
 import com.tone.tcatch.art.model.service.ArtService;
 import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
+import com.tone.tcatch.art.model.vo.ArtTime;
 import com.tone.tcatch.art.model.vo.Seat;
 
 @Controller
@@ -40,9 +41,8 @@ public class ArtController {
 	
 	@RequestMapping("/musicalDetail.do")
 	public ModelAndView selectArtDetail(ModelAndView mv,int artNo,HttpServletRequest request, HttpServletResponse response) {
-		Art art = null;
-		
-		ArtDetail abcd = null;
+		ArtDetail art = null;
+		ArtTime aT = null;
 		
 		boolean flag = false; 
 		Cookie[] cookies = request.getCookies();
@@ -62,10 +62,12 @@ public class ArtController {
 			}
 			
 			art = aService.selectArt(artNo, flag);
+			aT = aService.selectATime(artNo);
 		}
 		
 		if(art != null) {
 			mv.addObject("art", art);
+			mv.addObject("aT", aT);
 			mv.setViewName("musical/musicalDetail"); // 메소드 체이닝 방식
 		}else {
 			throw new ArtException("게시글 상세조회 실패!!"); 
@@ -80,9 +82,9 @@ public class ArtController {
 	
 
 	@RequestMapping("/buy.do")
-	public String buy(int timeNo) {
+	public String buy(/*int timeNo*/) {
 		//회차 선택 ,좌석 선택
-		ArrayList<Seat> sList = aService.selectSeatList(timeNo); //좌석 불러오기
+		//ArrayList<Seat> sList = aService.selectSeatList(timeNo); //좌석 불러오기
 		return "musical/buy";
 	}
 	

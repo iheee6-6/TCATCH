@@ -14,6 +14,7 @@
 		<typeAlias type="com.tone.tcatch.mypage.model.vo.Alarm" alias="Alarm"/>
 		<typeAlias type="com.tone.tcatch.art.model.vo.ArtDetail" alias="ArtDetail"/>
 		<typeAlias type="com.tone.tcatch.art.model.vo.Art" alias="Art"/>
+		<typeAlias type="com.tone.tcatch.art.model.vo.ArtTime" alias="ArtTime"/>
 	</typeAliases>
 	 
 	<mappers>
