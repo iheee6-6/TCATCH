@@ -34,7 +34,6 @@ public class MemberController {
 	@RequestMapping(value="login.do", method=RequestMethod.POST)
 	public String memberLogin(Member m, Model model) { 
 		// HttpSession 커맨드 객체 생략
-		System.out.println("mmmmm = " +m);
 		Member loginUser = mService.loginMember(m);
 		if(loginUser != null) {
 			// 로깅 수업 시 작성 2_3.

@@ -14,7 +14,7 @@
 <title>Ticket Catch</title>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"
 	scope="application" />
-<link rel='stylesheet' type='text/css'
+	<link rel='stylesheet' type='text/css'
 	href="${ contextPath }/resources/css/menu/main2.css" />
 <link rel='stylesheet' type='text/css'
 	href="${ contextPath }/resources/css/menu/menu.css" />
@@ -27,7 +27,6 @@
 	src='${ contextPath }/resources/js/main/main1.js'></script>
 <script type='text/javascript'
 	src='${ contextPath }/resources/js/main/main2.js'></script>
-
 <script type='text/javascript'
 	src='${ contextPath }/resources/js/main/main3.js'></script>
 
@@ -41,6 +40,9 @@ body {
 }
 .pf-top-srch{
 	margin-left: 150px;
+}
+a{
+	text-decoration: none;
 }
 </style>
 
@@ -56,9 +58,10 @@ body {
 			<h1>
 				<a href="home.do" class="pf-logo"><img
 					src="http://tkfile.yes24.com/imgNew/common/pf-logo.png" alt=""
-					class="trans" /><img
-					src="http://tkfile.yes24.com/imgNew/common/pf-logo-w.png" alt=""
-					class="fixed" /></a>
+					class="trans" />
+					<img
+					src="${ contextPath }/resources/images/common/logo.png" alt=""
+					class="fixed" width="150px" height="100px" style="margin-top:-35px;"/></a>
 			</h1>
 		</div>
 		<div class="pf-center">

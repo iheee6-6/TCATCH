@@ -26,7 +26,7 @@ public class CommunityController {
 	@RequestMapping("cinsertView.do")
 	public String communityInsertView() {
 		
-		return "community/communityInsertForm";
+		return "community/communityInsert";
 	}
 	
 	@RequestMapping("cinsert.do")
