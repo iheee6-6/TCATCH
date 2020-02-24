@@ -119,6 +119,10 @@
 			}
 			}
 		});
+		
+		function test(){
+			var id = id.get
+		}
 	</script>
 
 	<jsp:include page="../common/footer.jsp" />

@@ -1,8 +1,11 @@
 package com.tone.tcatch.mypage.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -19,6 +21,7 @@ import com.tone.tcatch.member.model.vo.Member;
 import com.tone.tcatch.mypage.model.exception.MypageException;
 import com.tone.tcatch.mypage.model.service.MyPageService;
 import com.tone.tcatch.mypage.model.vo.Alarm;
+import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.ticket.model.vo.Ticket;
 
@@ -171,51 +174,45 @@ public class MyPageController {
 		return mv;
 	}
 	
-	/*@RequestMapping("searchViewD.do")
-	public ModelAndView noticeDetailViewD(ModelAndView mv, HttpSession session, Date sd, Date ed,
-			String artType) {
+	@RequestMapping("searchView.do")
+	public void searchView(HttpServletResponse response,HttpSession session, Date sd, Date ed,
+			String artType,String pName) throws IOException {
 		Member loginUser = (Member)session.getAttribute("loginUser");
+		PrintWriter out = response.getWriter();
+		ArrayList<Ticket> tList = mpService.searchView(loginUser.getId(),sd,ed,artType,pName);
 		
-		Performance notice = mpService.selectViewD(loginUser.getId(),sd,ed,artType);
 		
-		mv.addObject("notice",notice);
-		mv.setViewName("mypage/noticeDetailView");
-		return mv;
-	}*/
+	}
 	
-	/*@RequestMapping("refund.do")
+	@RequestMapping("refund.do")
 	public ModelAndView refund(ModelAndView mv, HttpSession session,int tId ) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		int result = mpService.refundTicket(loginUser.getId(),tId);
-		
+		session.setAttribute("msg", "예매취소가 완료되었습니다.");
 		mv.setViewName("redirect:checknCancel.do");
 		return mv;
-	}*/
+	}
 	
-	/*@RequestMapping("noticeView.do")
-	public ModelAndView noticeView(ModelAndView mv, HttpSession session) {
-		Member loginUser = (Member)session.getAttribute("loginUser");
+	@RequestMapping("noticeView.do")
+	public ModelAndView noticeView(ModelAndView mv) {
 		
-		Performance noticeList = mpService.selectNoticeList(loginUser.getId());
+		ArrayList<Art> noticeList = mpService.selectNoticeList();
 		
 		mv.addObject("noticeList",noticeList);
-		mv.setViewName("mypage/memberUpdateForm");
+		mv.setViewName("mypage/notice");
 		return mv;
-	}*/
+	}
 	
-	/*@RequestMapping("noticeDetailView.do")
+	@RequestMapping("noticeDetailView.do")
 	public ModelAndView noticeDetailView(ModelAndView mv, HttpSession session, int nId) {
-		Member loginUser = (Member)session.getAttribute("loginUser");
 		
-		Performance notice = mpService.selectNotice(loginUser.getId(),nId);
+		Art notice = mpService.selectNotice(nId);
 		
 		mv.addObject("notice",notice);
-		mv.setViewName("mypage/noticeDetailView");
+		mv.setViewName("mypage/noticeDetail");
 		return mv;
-	}*/
-	
-	
+	}
 	
 	
 	@RequestMapping("mInformationSetting.do")
@@ -230,16 +227,6 @@ public class MyPageController {
 		return "mypage/memberUpdateForm";
 	}
 	
-
-	@RequestMapping("noticeView.do")
-	public String noticeView() {
-		return "mypage/notice";
-	}
-	
-	@RequestMapping("noticeDetailView.do")
-	public String noticeDetailView() {
-		return "mypage/noticeDetail";
-	}
 	
 	@RequestMapping("memupdate.do")
 	public String memberInsert(Member m, 

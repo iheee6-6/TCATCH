@@ -1,5 +1,6 @@
 package com.tone.tcatch.mypage.model.dao;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.member.model.vo.Member;
 import com.tone.tcatch.mypage.model.vo.Alarm;
@@ -109,6 +111,31 @@ public class MyPageDao {
 	// 관람내역 조회
 	public ArrayList<Ticket> selectViewPerformanceList(String id) {
 		return (ArrayList) sqlSession.selectList("myPageMapper.selectViewList", id);
+	}
+
+	public ArrayList<Ticket> searchView(String id, Date sd, Date ed, String artType, String pName) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("sd", sd);
+		map.put("ed", ed);
+		map.put("artType", artType);
+		map.put("pName", pName);
+		return (ArrayList)sqlSession.selectList("myPageMapper.searchView",map);
+	}
+
+	public ArrayList<Art> selectNoticeList() {
+		return (ArrayList)sqlSession.selectList("myPageMapper.selectNoticeList");
+	}
+
+	public Art selectNotice(int nId) {
+		return sqlSession.selectOne("myPageMapper.selectNoticeDetail",nId);
+	}
+
+	public int refundTicket(String id, int tId) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("id",id);
+		map.put("tId", tId);
+		return sqlSession.insert("myPageMapper.insertRefund",map);
 	}
 
 }

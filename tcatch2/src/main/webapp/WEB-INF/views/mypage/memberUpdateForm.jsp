@@ -262,6 +262,9 @@ span.error {
 
 	</script>
 	
+	
+
+	<jsp:include page="../common/footer.jsp" />
 	<link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
@@ -274,7 +277,5 @@ span.error {
 			$("#postcodify_search_button").postcodifyPopUp();
 		});
 	</script>
-
-	<jsp:include page="../common/footer.jsp" />
 </body>
 </html>
