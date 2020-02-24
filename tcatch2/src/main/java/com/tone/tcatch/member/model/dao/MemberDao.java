@@ -23,7 +23,6 @@ public class MemberDao {
 	}
 
 	public Member selectMember(Member m) {
-		System.out.println("m 은 ? " + m);
 		return sqlSession.selectOne("memberMapper.selectOne",m);
 	}
 

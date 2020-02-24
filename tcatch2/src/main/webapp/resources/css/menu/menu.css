@@ -4,7 +4,7 @@
 .perform-top{display:block; width:100%; height:100px; min-width:1300px; position:absolute; top:0; left:0;z-index:50;}
 .perform-top.fixed{position:fixed; top:0px; background:#fff;border-bottom:1px solid #ddd;}
 .perform-top.movie{background:#fff;border-bottom:1px solid #ddd;}
-.pf-left{position:absolute; left:30px; top:40px;width:150px;height:30px;z-index:10;background:rgba(0,0,0,0);}
+.pf-left{position:absolute; left:30px; top:0px;width:150px;height:30px;z-index:10;background:rgba(0,0,0,0);}
 
 .pf-left a span{display:block; height:2px; background:#fff;}
 .perform-top.fixed .pf-left a span{background:#000;}
@@ -14,25 +14,7 @@
 .pf-left a span.pf-ham2{width:22px;margin-bottom:5px;}
 .pf-left a span.pf-ham3{width:15px;}
 
-.pf-left a.open span.pf-ham1{width:22px !important;}
-.pf-left a.open span.pf-ham2{width:15px !important;}
-.pf-left a.open span.pf-ham3{width:22px !important;}
-@keyframes ham1 {
-  0%   {width:15px;}
-  100% {width:22px;}
-}
-@keyframes ham2 {
-  0%   {width:22px;}
-  100% {width:15px;}
-}
-@keyframes ham3 {
-  0%   {width:22px;}
-  100% {width:15px;}
-}
-@keyframes ham4 {
-  0%   {width:15px;}
-  100% {width:22px;}
-}
+
 .pf-left h1{display:inline; position:absolute; left:32px;top:1px;}
 .pf-left h1 img{vertical-align:top;}
 .pf-left h1 img.trans{display:inline-block;}

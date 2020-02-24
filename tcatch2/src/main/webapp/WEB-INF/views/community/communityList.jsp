@@ -34,6 +34,9 @@ table th{
 	font-size:20px;
 	font-family: 'Do Hyeon', sans-serif;
 }
+.btn{
+	float:right;
+}
 </style>
 
 </head>
@@ -47,7 +50,7 @@ table th{
 		총 게시글 개수 : ${ pi.listCount }
 		<c:if test="${ !empty loginUser }">
 		&nbsp;&nbsp;&nbsp;
-		<button onclick="location.href='binsertView.do'">글쓰기</button>
+		<button class="btn btn-lg btn-primary btn-block1" style="font-family: 'Do Hyeon', sans-serif;" onclick="location.href='cinsertView.do'">글쓰기</button>
 		</c:if>
 	</h2>
 		<table id="boardTable">
@@ -113,7 +116,8 @@ table th{
 
 <jsp:include page="../common/footer.jsp"/>
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous">
 </body>
 </html>

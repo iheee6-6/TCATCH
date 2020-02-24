@@ -29,7 +29,7 @@
 		    
 	    </div>
 	    <div class="footer-txt">
-		    <a href="/New/Main.aspx?Gcode=009_201" class="flogo"><img src="http://tkfile.yes24.com/imgNew/common/flogo.png" alt="" /></a>
+		    <a href="/New/Main.aspx?Gcode=009_201" class="flogo"><img src="${contextPath }/resources/images/common/logo.png" alt="" width="200px" height="150px" style="margin-top:-40px;"/></a>
 		    <div class="footxt">
 			    <p>TCATCH</p>
 			    <p class="gray">KH정보교육원 강남지원 2관 : 서울특별시 강남구 테헤란로10길 9 그랑프리 빌딩 4F, 5F, 7F<br />삼위일체조  신하은  |  고태훈  | 김대성<br />핸드폰번호  010-6539-0032
@@ -37,7 +37,7 @@
 			    <p>Copyright © TCATCH Corp. All Rights Reserved.</p>
 		    </div>
 		    <div class="foo-right">
-			    <p class="mark"><img src="http://tkfile.yes24.com/imgNew/common/fmark.png" alt="" /><a href="https://mall.sgic.co.kr/csh/iutf/sh/shop/CSHINFO004VM0.mvc?tm=3&q_sk=2&q_sv=2298137000" target="_blank">서비스가입사실확인</a></p>
+			    
 			    <p class="fservice">고객님은 안전거래를 위한 현금 등으로 결제 시<br /> 
 			    저희 쇼핑몰에서 가입한 구매안전서비스를 <br />
 			    이용하실 수 있습니다.    

@@ -56,7 +56,7 @@ body {
 			</div>
 			<div>
 				<p>
-					<span>1:1문의</span><a href="http://www.yes24.com/Mall/Help/CS/Apply"
+					<span>1:1문의</span><a href="#"
 						target="_blank">문의하기</a>
 				</p>
 				<p>
@@ -146,14 +146,6 @@ body {
 		</div>
 		<!--guidebox gb01 예매방법-->
 
-
-		<div class="guidebox gb02"></div>
-		<!--guidebox gb02 결제방법-->
-		<div class="guidebox gb03"></div>
-		<!--guidebox gb03 수수료-->
-		<div class="guidebox gb04"></div>
-		<!--guidebox gb04 취소/환불-->
-		<div class="guidebox gb07"></div>
 	</div>
 
 	<jsp:include page="../common/footer.jsp" />
