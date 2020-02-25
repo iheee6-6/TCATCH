@@ -46,7 +46,7 @@
 							<div class='list-bigger-txt'>
 								<p class='list-b-tit1'>${a.artTitle}</p>
 								<p class='list-b-tit2'>Á¶È¸¼ö ${a.count }</p>
-								<p class='list-b-circle'>30%</p>
+								<p class='list-b-circle'>${ a.sale }%</p>
 							</div>
 						</div>
 					</a>

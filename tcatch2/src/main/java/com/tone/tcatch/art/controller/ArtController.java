@@ -43,6 +43,7 @@ public class ArtController {
 	public ModelAndView selectArtDetail(ModelAndView mv,int artNo,HttpServletRequest request, HttpServletResponse response) {
 		ArtDetail art = null;
 		ArtTime aT = null;
+		Seat s = null;
 		
 		boolean flag = false; 
 		Cookie[] cookies = request.getCookies();
@@ -63,6 +64,7 @@ public class ArtController {
 			
 			art = aService.selectArt(artNo, flag);
 			aT = aService.selectATime(artNo);
+			s = aService.selectSeatCount(aT.getTimeNo(),artNo);
 		}
 		
 		if(art != null) {
