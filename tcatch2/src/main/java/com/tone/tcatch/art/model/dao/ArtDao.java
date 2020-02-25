@@ -52,4 +52,9 @@ public class ArtDao {
 		
 	}
 
+	public Seat selectSeatCount(int timeNo, int artNo) { //ÁÂ¼® ¼ö 
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -180,7 +180,7 @@
 								<tbody>
 									<tr>
                                         <th scope="row" class="rn08-tbl-tit2">주최/기획</th>
-                                        <td>(주)${art.companyName } </td>
+                                        <td>${art.companyName } </td>
                                         <th scope="row" class="rn08-tbl-tit2">소비자상담</th>
                                         <td>${art.companyPhone }</td>
                                     </tr>

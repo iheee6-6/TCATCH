@@ -58,6 +58,13 @@ public class ArtServiceImpl implements ArtService{
 	public ArtTime selectATime(int artNo) {
 		return aDao.selectATime(artNo);
 	}
+
+
+	@Override
+	public Seat selectSeatCount(int timeNo, int artNo) { //ÁÂ¼®¼ö , ³²Àº ÁÂ¼®¼ö 
+		// TODO Auto-generated method stub
+		return aDao.selectSeatCount(timeNo,artNo);
+	}
 	
 	
 	

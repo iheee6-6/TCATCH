@@ -13,11 +13,12 @@ public class Art {
 	private String originalFile;//원본 파일명 
 	private String renameFile;//변경파일명
 	private int durationTime;//소요시간(분) 
+	private int sale; //세일가
 	 
 	public Art() {}
-	
+
 	public Art(int artNo, int artType, String artTitle, String artExplain, int count, String address, int companyNo,
-			int rating, String status, String originalFile, String renameFile, int durationTime) {
+			int rating, String status, String originalFile, String renameFile, int durationTime, int sale) {
 		super();
 		this.artNo = artNo;
 		this.artType = artType;
@@ -31,85 +32,119 @@ public class Art {
 		this.originalFile = originalFile;
 		this.renameFile = renameFile;
 		this.durationTime = durationTime;
+		this.sale = sale;
 	}
+
 	public int getArtNo() {
 		return artNo;
 	}
+
 	public void setArtNo(int artNo) {
 		this.artNo = artNo;
 	}
+
 	public int getArtType() {
 		return artType;
 	}
+
 	public void setArtType(int artType) {
 		this.artType = artType;
 	}
+
 	public String getArtTitle() {
 		return artTitle;
 	}
+
 	public void setArtTitle(String artTitle) {
 		this.artTitle = artTitle;
 	}
+
 	public String getArtExplain() {
 		return artExplain;
 	}
+
 	public void setArtExplain(String artExplain) {
 		this.artExplain = artExplain;
 	}
+
 	public int getCount() {
 		return count;
 	}
+
 	public void setCount(int count) {
 		this.count = count;
 	}
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	public int getCompanyNo() {
 		return companyNo;
 	}
+
 	public void setCompanyNo(int companyNo) {
 		this.companyNo = companyNo;
 	}
+
 	public int getRating() {
 		return rating;
 	}
+
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
+
 	public String getStatus() {
 		return status;
 	}
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 	public String getOriginalFile() {
 		return originalFile;
 	}
+
 	public void setOriginalFile(String originalFile) {
 		this.originalFile = originalFile;
 	}
+
 	public String getRenameFile() {
 		return renameFile;
 	}
+
 	public void setRenameFile(String renameFile) {
 		this.renameFile = renameFile;
 	}
+
 	public int getDurationTime() {
 		return durationTime;
 	}
+
 	public void setDurationTime(int durationTime) {
 		this.durationTime = durationTime;
 	}
+
+	public int getSale() {
+		return sale;
+	}
+
+	public void setSale(int sale) {
+		this.sale = sale;
+	}
+
 	@Override
 	public String toString() {
 		return "Art [artNo=" + artNo + ", artType=" + artType + ", artTitle=" + artTitle + ", artExplain=" + artExplain
 				+ ", count=" + count + ", address=" + address + ", companyNo=" + companyNo + ", rating=" + rating
 				+ ", status=" + status + ", originalFile=" + originalFile + ", renameFile=" + renameFile
-				+ ", durationTime=" + durationTime + "]";
+				+ ", durationTime=" + durationTime + ", sale=" + sale + "]";
 	}
 	
 	

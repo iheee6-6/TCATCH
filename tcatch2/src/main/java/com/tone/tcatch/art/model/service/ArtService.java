@@ -26,6 +26,8 @@ public interface ArtService {
 	
 	//ÁÂ¼® °áÁ¦
 	int insertSeat(Seat s);
+
+	Seat selectSeatCount(int timeNo, int artNo);
 	
 
 }

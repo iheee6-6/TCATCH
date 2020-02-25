@@ -17,6 +17,7 @@
 		<result property="originalFile" column="ORIGINAL_FILE"/>
 		<result property="renameFile" column="RENAME_FILE"/>
 		<result property="durationTime" column="DURATION_TIME"/>
+		<result property="sale" column="SALE"/>
 	</resultMap>  
 	
 	<resultMap id="DetailResultSet" type="ArtDetail">
@@ -32,7 +33,7 @@
 		<result property="durationTime" column="DURATION_TIME"/>
 		<result property="companyName" column="COMPANY_NAME"/>
 		<result property="companyPhone" column="PHONE"/>
-		<result property="companyInfo" column="CONPANY_INFO"/>
+		<result property="companyInfo" column="COMPANY_INFO"/>
 		<result property="startDate" column="START_DATE"/>
 		<result property="endDate" column="END_DATE"/>
 	</resultMap>
@@ -66,7 +67,7 @@
 		DURATION_TIME,
 		COMPANY_NAME,
 		PHONE,
-		CONPANY_INFO,
+		COMPANY_INFO,
 		START_DATE,
 		END_DATE
 		FROM ART  A
