@@ -108,6 +108,16 @@ public class MyPageServiceImpl implements MyPageService{
 		return mpDao.refundTicket(id,tId);
 	}
 
+	@Override
+	public ArrayList<Art> confirmTicketingTime(Date d) {
+		return mpDao.confirmTicketingTime(d);
+	}
+
+	@Override
+	public ArrayList<Member> selectAlarmMember(Art art) {
+		return mpDao.selectAlarmMember(art);
+	}
+
 
 	
 }

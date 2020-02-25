@@ -138,4 +138,14 @@ public class MyPageDao {
 		return sqlSession.insert("myPageMapper.insertRefund",map);
 	}
 
+	public ArrayList<Art> confirmTicketingTime(Date d) {
+		//return (ArrayList)sqlSession.selectList("myPageMapper.selectTicketingArt", d);
+		return null;
+	}
+
+	public ArrayList<Member> selectAlarmMember(Art art) {
+		//return (ArrayList)sqlSession.selectList("myPageMapper.selectAlarmMember",art);
+		return null;
+	}
+
 }

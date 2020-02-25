@@ -3,13 +3,19 @@ package com.tone.tcatch.mypage.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+/*import java.util.Date;*/
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +36,9 @@ import com.tone.tcatch.ticket.model.vo.Ticket;
 public class MyPageController {
 	@Autowired
 	private MyPageService mpService;
+
+	@Autowired
+	private JavaMailSender mailSender;
 
 	@RequestMapping("enterMyPage.do")
 	public ModelAndView enterMypage(ModelAndView mv, HttpSession session, Model model) {
@@ -113,19 +122,6 @@ public class MyPageController {
 		return mv;
 	}
 
-	@RequestMapping("insertInterest.do")
-	public ModelAndView insertInterest(ModelAndView mv, HttpSession session, int pNo) throws MypageException {
-		Member loginUser = (Member) session.getAttribute("loginUser");
-
-		int result = mpService.insertInterest(loginUser.getId(), pNo);
-
-		if (result > 0)
-			mv.setViewName("redirect:interestPerformance.do");
-		else
-			throw new MypageException("관심공연 추가 실패");
-		return mv;
-	}
-
 	@RequestMapping("alarmList.do")
 	public ModelAndView alarmList(ModelAndView mv, HttpSession session) {
 		Member loginUser = (Member) session.getAttribute("loginUser");
@@ -178,14 +174,16 @@ public class MyPageController {
 		return mv;
 	}
 
-	/*@RequestMapping("searchView.do")
-	public void searchView(HttpServletResponse response, HttpSession session, Date sd, Date ed, String artType,
-			String pName) throws IOException {
-		Member loginUser = (Member) session.getAttribute("loginUser");
-		PrintWriter out = response.getWriter();
-		ArrayList<Ticket> tList = mpService.searchView(loginUser.getId(), sd, ed, artType, pName);
-		
-	}*/
+	/*
+	 * @RequestMapping("searchView.do") public void searchView(HttpServletResponse
+	 * response, HttpSession session, Date sd, Date ed, String artType, String
+	 * pName) throws IOException { Member loginUser = (Member)
+	 * session.getAttribute("loginUser"); PrintWriter out = response.getWriter();
+	 * ArrayList<Ticket> tList = mpService.searchView(loginUser.getId(), sd, ed,
+	 * artType, pName);
+	 * 
+	 * }
+	 */
 
 	@RequestMapping("refund.do")
 	public ModelAndView refund(ModelAndView mv, HttpSession session, int tId) throws MypageException {
@@ -264,18 +262,47 @@ public class MyPageController {
 	 * model.addAttribute("msg", "회원 탈퇴 실패"); return "common/errorPage"; } }
 	 */
 
-	@Scheduled(cron = "0 59 15 * * *")
+	// @Scheduled(cron = "0 0 * * * *") //매일 매시 정각마다(티켓팅은 정각에 이루어지기 때문)
 	public void test() {
-		/*
-		 * Calendar datetime = Calendar.getInstance();
-		 * datetime.set(Calendar.HOUR_OF_DAY, stime); datetime.set(Calendar.MINUTE,
-		 * smin); datetime.set(Calendar.SECOND, 0); datetime.set(Calendar.MILLISECOND,
-		 * 0);
-		 * 
-		 * Timer timer = new Timer(); timer.schedule(new runTask(), datetime.getTime(),
-		 * 1000*86400);
-		 */
+		java.util.Date sysd = new java.util.Date();
+		Date d = new Date(sysd.getTime());
+		ArrayList<Art> artList = mpService.confirmTicketingTime(d);
 
-		System.out.println("@Scheduled 테스트");
+		if (artList != null) {
+			for (Art art : artList) {
+				ArrayList<Member> mList = mpService.selectAlarmMember(art);
+				for (Member mem : mList) {
+					sendEmail(mem.getEmail(), art.getArtTitle());
+				}
+			}
+		} else {
+			System.out.println("티켓팅 1시간 전인 공연 없음.");
+		}
+		System.out.println("완료");
+
 	}
+
+	public void sendEmail(String email, String artTitle) {
+		System.out.println("wow");
+		String setfrom = "tcatch@gmail.com";
+		String tomail = email; // 받는 사람 이메일
+		String title = artTitle + "티켓팅 알림입니다.!!!";
+		String content = artTitle + "티켓팅 한시간 전입니다! 잊지말고 준비하세요!!!! "; // 내용
+
+		try {
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+
+			messageHelper.setFrom(setfrom);
+			messageHelper.setTo(tomail);
+			messageHelper.setSubject(title);
+			messageHelper.setText(content);
+
+			mailSender.send(message);
+			System.out.println("이메일 전송 완료");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+
 }
