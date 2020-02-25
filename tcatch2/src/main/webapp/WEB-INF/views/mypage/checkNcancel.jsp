@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,13 +54,16 @@ td a {
 											<c:otherwise>
 											<c:forEach var="b" items="${ recentHistoryList }">
 												<tr>
-													<td>${b.tDate }</td>
+												<fmt:parseDate var="tdateString" value="${b.tDate}" pattern="yyyy.MM.dd : aaa hh:mm" />
+												<fmt:parseDate var="vdateString" value="${b.viewDate}" pattern="yyyy.MM.dd : aaa hh:mm" />
+														
+													<td>${tdateString }</td>
 
 													<td><c:url var="tDetail" value="tDetail.do">
 															<c:param name="tNo" value="${b.tNo }" />
 														</c:url> <a href="${tDetail}">${b.tNo}</a></td>
 													<td>${b.performanceName }</td>
-													<td>${b.viewDate }</td>
+													<td>${vdateString }</td>
 													<td>${b.ticketCount}</td>
 													<td>${b.status }</td>
 												</tr>
