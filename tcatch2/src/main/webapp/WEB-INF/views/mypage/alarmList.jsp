@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,7 +65,9 @@
 															<td><input class="chkAlarm" name="chkAlarm"
 																type="checkbox" value="${a.pNo }"></td>
 															<td>${a.pName }</td>
-															<td>${a.alarmDate }</td>
+															<fmt:parseDate var="dateString" value="${a.alarmDate}" pattern="yyyy.MM.dd : aaa hh:mm" />
+															
+															<td>dateString</td>
 															<!--  <td>2019.02.12 : 오후 9시</td>-->
 															<td>${a.alarmDate }</td>
 														</tr>

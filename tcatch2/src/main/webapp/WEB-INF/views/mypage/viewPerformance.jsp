@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -138,7 +139,9 @@ body {
 															<li><em>예매번호</em><span class="bold">${v.tNo }</span></li>
 															<li><em>장르</em><span>${v.artType}</span></li>
 															<!-- 2014.08.16 06:00 -->
-															<li><em>관람일시</em><span>${v.viewDate }</span></li>
+															<fmt:parseDate var="dateString" value="${v.viewDate }" pattern="yyyy.MM.dd : aaa hh:mm" />
+															
+															<li><em>관람일시</em><span>${dateString }</span></li>
 															<li><em>공연장</em><span>${v.address }</span></li>
 															<li><em>좌석(<span class="red">${v.seat }</span>)
 															</em><span> </span></li>
