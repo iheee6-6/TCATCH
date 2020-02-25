@@ -47,4 +47,8 @@ public interface MyPageService {
 
 	int refundTicket(String id, int tId);
 
+	ArrayList<Art> confirmTicketingTime(Date d);
+
+	ArrayList<Member> selectAlarmMember(Art art);
+
 }

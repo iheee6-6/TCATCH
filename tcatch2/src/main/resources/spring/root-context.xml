@@ -6,71 +6,90 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
-	
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	
-	<!-- DataSource 등록
-		- DataSource는 서버 구동 시 동시에 연결이 되어야 하며
-		  연결 정보 설정 시 root-context 가장 위쪽에 작성한다. 
-		  그래야만 아래 작성 되는 설정에서 DataSource를 참조해서 사용할 수 있다. -->
-	<!-- destroy-method = "close"
-		주어진 세션을 자동으로 close 하라는 의미 -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" 
-	destroy-method="close">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-		<property name="username" value="final"/>
-		<property name="password" value="final"/>
-		<property name="defaultAutoCommit" value="false"/>
+
+	<!-- DataSource 등록 - DataSource는 서버 구동 시 동시에 연결이 되어야 하며 연결 정보 설정 시 root-context 
+		가장 위쪽에 작성한다. 그래야만 아래 작성 되는 설정에서 DataSource를 참조해서 사용할 수 있다. -->
+	<!-- destroy-method = "close" 주어진 세션을 자동으로 close 하라는 의미 -->
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="final" />
+		<property name="password" value="final" />
+		<property name="defaultAutoCommit" value="false" />
 	</bean>
-	
-	<!-- 트랜잭션 처리(commit/rollback)
-		JDBC : Connection 객체
-		MyBatis : SqlSession 객체
-		Spring : TransactionManager 객체
-	 -->
-	<bean id="transactionManager" 
-	class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"/>
+
+	<!-- 트랜잭션 처리(commit/rollback) JDBC : Connection 객체 MyBatis : SqlSession 
+		객체 Spring : TransactionManager 객체 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
 	</bean>
-	
+
 	<!-- 트랜잭션 매니저 추가 후 namespace에서 tx 추가 -->
 	<!-- 트랜잭션 사용 방법 aop, 어노테이션 -->
-	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+	<tx:advice id="txAdvice"
+		transaction-manager="transactionManager">
 		<tx:attributes>
-			<tx:method name="select*" read-only="true" rollback-for="Exception"/>
-			<tx:method name="insert*" rollback-for="Exception"/>
-			<tx:method name="update*" rollback-for="Exception"/>
-			<tx:method name="delete*" rollback-for="Exception"/>
+			<tx:method name="select*" read-only="true"
+				rollback-for="Exception" />
+			<tx:method name="insert*" rollback-for="Exception" />
+			<tx:method name="update*" rollback-for="Exception" />
+			<tx:method name="delete*" rollback-for="Exception" />
 		</tx:attributes>
 	</tx:advice>
-	
+
 	<!-- namespace에서 aop 추가 -->
 	<aop:config proxy-target-class="true">
-		<aop:pointcut expression="execution(* com.tone.tcatch..*Impl.*(..))" 
-		id="serviceMethod"/>
-		<aop:advisor id="transactionAdvisor" pointcut-ref="serviceMethod"
-		advice-ref="txAdvice"/>
+		<aop:pointcut
+			expression="execution(* com.tone.tcatch..*Impl.*(..))"
+			id="serviceMethod" />
+		<aop:advisor id="transactionAdvisor"
+			pointcut-ref="serviceMethod" advice-ref="txAdvice" />
 	</aop:config>
-	
-	
+
+
 	<!-- 마이바티스 sqlSession 등록하기 -->
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!-- mybatis-config.xml 설정 불러오기 -->
-		<property name="configLocation" value="classpath:mybatis-config.xml"/>
-		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation"
+			value="classpath:mybatis-config.xml" />
+		<property name="dataSource" ref="dataSource" />
 	</bean>
-	
-	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg ref="sqlSession"/>
+
+	<bean id="sqlSessionTemplate"
+		class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSession" />
 	</bean>
-	
+
 	<!-- 파일 업로드 관련 Bean 등록 -->
 	<!-- MultipartResolver -->
 	<bean id="multipartResolver"
-	class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="100000000"/>
-		<property name="maxInMemorySize" value="100000000"/>
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000000" />
+		<property name="maxInMemorySize" value="100000000" />
 	</bean>
-		
+
+	<!-- 이메일 Bean 등록-->
+	<bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" /> <!-- gmail을 사용 -->
+		<property name="port" value="587" />
+		<property name="username" value="tcatch3" />
+		<property name="password" value="tcatch123!" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+
 </beans>
