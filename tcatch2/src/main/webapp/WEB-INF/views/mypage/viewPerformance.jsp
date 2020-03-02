@@ -216,6 +216,7 @@ body {
 			
 			var content = $('div.mypage_contain #divResult');
 			
+			
 		    $.ajax({
 		        type : "POST", 
 		        url : "searchView.do",

@@ -93,6 +93,7 @@ public class MyPageServiceImpl implements MyPageService{
 		return mpDao.searchView(id,sdate,edate,artType,pName);
 	}
 
+	
 	@Override
 	public ArrayList<Art> selectNoticeList() {
 		return mpDao.selectNoticeList();

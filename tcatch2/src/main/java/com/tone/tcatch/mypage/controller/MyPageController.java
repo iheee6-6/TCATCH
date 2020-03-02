@@ -174,6 +174,7 @@ public class MyPageController {
 		return mv;
 	}
 
+	
 	@RequestMapping("searchView.do")
 	public String searchView(HttpServletResponse response, HttpSession session, Date sdate, Date edate, String artType,
 			String pName,Model model) throws IOException {

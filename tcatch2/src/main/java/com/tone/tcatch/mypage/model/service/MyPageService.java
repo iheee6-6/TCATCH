@@ -11,6 +11,7 @@ import com.tone.tcatch.ticket.model.vo.Ticket;
 
 public interface MyPageService {
 
+	
 	int deleteMember(String id);
 
 	int updateMember(Member m);
