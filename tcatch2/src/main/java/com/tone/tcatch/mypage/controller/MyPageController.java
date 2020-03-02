@@ -174,16 +174,19 @@ public class MyPageController {
 		return mv;
 	}
 
-	/*
-	 * @RequestMapping("searchView.do") public void searchView(HttpServletResponse
-	 * response, HttpSession session, Date sd, Date ed, String artType, String
-	 * pName) throws IOException { Member loginUser = (Member)
-	 * session.getAttribute("loginUser"); PrintWriter out = response.getWriter();
-	 * ArrayList<Ticket> tList = mpService.searchView(loginUser.getId(), sd, ed,
-	 * artType, pName);
-	 * 
-	 * }
-	 */
+	@RequestMapping("searchView.do")
+	public String searchView(HttpServletResponse response, HttpSession session, Date sdate, Date edate, String artType,
+			String pName,Model model) throws IOException {
+		System.out.println(sdate+" ~ "+edate);
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		//PrintWriter out = response.getWriter();
+		//ArrayList<Ticket> tList = mpService.searchView(loginUser.getId(), sdate, edate, artType, pName);
+		ArrayList<Ticket> tList= new ArrayList<>();
+		System.out.println("hihi "+tList);
+		model.addAttribute("viewPerformanceList", tList);
+		
+		return "mypage/viewPSearch";
+	}
 
 	@RequestMapping("refund.do")
 	public ModelAndView refund(ModelAndView mv, HttpSession session, int tId) throws MypageException {

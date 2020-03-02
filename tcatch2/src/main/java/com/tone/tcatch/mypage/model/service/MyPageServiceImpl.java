@@ -89,8 +89,8 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public ArrayList<Ticket> searchView(String id, Date sd, Date ed, String artType, String pName) {
-		return mpDao.searchView(id,sd,ed,artType,pName);
+	public ArrayList<Ticket> searchView(String id, Date sdate, Date edate, String artType, String pName) {
+		return mpDao.searchView(id,sdate,edate,artType,pName);
 	}
 
 	@Override

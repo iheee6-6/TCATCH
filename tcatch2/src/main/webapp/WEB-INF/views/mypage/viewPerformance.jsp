@@ -195,7 +195,7 @@ body {
             $('#date2').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
         });
     </script>
-	<!-- <script type="text/javascript">
+	<script type="text/javascript">
  
 		$(document).ready(function(){
 		   $('#loading').hide(); //첫 시작시 로딩바를 숨겨준다.
@@ -208,6 +208,7 @@ body {
 		});
 		 
 		function searchDate(){
+			console.log("hi");
 			var sd = $("#date1").val();
 			var ed = $("#date2").val();
 			var pType = $("#ptype").val();
@@ -219,21 +220,23 @@ body {
 		        type : "POST", 
 		        url : "searchView.do",
 		        data : {
-		        	sdate : sdate,
-		        	edate : edate,
-		        	ptype : ptype,
-		        	pname : pname
-				},error : function(data){
+		        	sdate : sd,
+		        	edate : ed,
+		        	ptype : pType,
+		        	pname : pName
+				},
+				dataType: "html",
+				success : function(data){
 		            content.html(data);
 		        },
-		        success : function(){
+		        error : function(){
 		            console.log("조회 실패");
 		        }
 		         
 		    }); 
 		} 
  
-	</script> -->
+	</script>
 	<jsp:include page="../common/footer.jsp" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
