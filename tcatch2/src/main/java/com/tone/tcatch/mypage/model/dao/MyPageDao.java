@@ -113,11 +113,12 @@ public class MyPageDao {
 		return (ArrayList) sqlSession.selectList("myPageMapper.selectViewList", id);
 	}
 
-	public ArrayList<Ticket> searchView(String id, Date sd, Date ed, String artType, String pName) {
+	
+	public ArrayList<Ticket> searchView(String id, Date sdate, Date edate, String artType, String pName) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("id", id);
-		map.put("sd", sd);
-		map.put("ed", ed);
+		map.put("sd", sdate);
+		map.put("ed", edate);
 		map.put("artType", artType);
 		map.put("pName", pName);
 		return (ArrayList)sqlSession.selectList("myPageMapper.searchView",map);

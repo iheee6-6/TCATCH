@@ -64,7 +64,7 @@
 		WHERE M_NO=#{id}
 		AND
 		DATE_TIME<![CDATA[ <  ]]>
-		TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS') AND
+		TO_DATE(SYSDATE,'YYYYMMDDHH24MISS') AND
 		ROWNUM <![CDATA[ <=]]>
 		3
 		ORDER
@@ -130,7 +130,7 @@
 		SELECT * FROM PURCHASE
 		JOIN ART USING(ART_NO)
 		JOIN ART_TIME USING(TIME_NO,ART_NO)
-		WHERE DATE_TIME <![CDATA[< ]]>TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
+		WHERE DATE_TIME <![CDATA[< ]]>TO_DATE(SYSDATE,'YYYYMMDDHH24MISS')
 
 		<!-- UNION
 		
@@ -141,22 +141,24 @@
 		resultMap="alarmResultSet">
 		SELECT * FROM PURCHASE
 		JOIN ART USING(ART_NO)
-		JOIN ART_TIME USING(TIME_NO,ART_NO)
-		WHERE DATE_TIME <![CDATA[> ]]>TO_CHAR(#{sdate},'YYYYMMDDHH24MISS')
-		AND DATE_TIME <![CDATA[< ]]>TO_CHAR(#{edate},'YYYYMMDDHH24MISS')
+		JOIN ART_TIME USING(ART_NO)
+		WHERE DATE_TIME BETWEEN TO_DATE(#{sdate},'YYYY-MM-DD')
+		AND TO_DATE(#{edate},'YYYY-MM-DD')
 	
-		<if test="pname != null">
-			AND ART_TITLE LIKE '%' || #{pname} || '%'
+		<if test="pName != null">
+			AND ART_TITLE LIKE '%' || #{pName} || '%'
 		</if>
-		<if test="ptype!=null">
-			AND ART_TYPE = #{ptype}
+		<if test="artType!=null">
+			AND ART_TYPE = #{artType}
 		</if>
 		
 		UNION
 		
-		SELECT COMMENT_NO, CONTENT, M_NO, ENROLL_DATE,STATUS,ART_NO,CNO,STAR FROM COMMENT C
-		JOIN MEMBER M on(C.M_NO=M.M_NO)
-		where M.bid= #{bId}
+		
+		SELECT COMMENT_NO, CONTENT,ART_NO,CNO, STAR
+		FROM RCOMMENT C
+		JOIN MEMBER M on(C.RWRITER=M.M_NO)
+		where M.M_ID= #{id} AND C.STATUS='Y'
 	</select>
 	<insert id="insertAlarm">
 		INSERT INTO PERSONAL
@@ -174,7 +176,7 @@
 	<select id="selectNoticeList" resultMap="PerformanceResultSet">
 		SELECT * FROM ART
 		JOIN TICKET_DATE USING(ART_NO)
-		WHERE TICKETING_DATE <![CDATA[>]]> TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
+		WHERE TICKETING_DATE <![CDATA[>]]> TO_DATE(SYSDATE,'YYYYMMDDHH24MISS')
 	</select>
 	
 	<select id="selectNoticeDetail" resultMap="PerformanceResultSet">

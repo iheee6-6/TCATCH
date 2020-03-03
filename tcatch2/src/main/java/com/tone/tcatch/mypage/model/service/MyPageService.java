@@ -11,6 +11,7 @@ import com.tone.tcatch.ticket.model.vo.Ticket;
 
 public interface MyPageService {
 
+	
 	int deleteMember(String id);
 
 	int updateMember(Member m);
@@ -39,7 +40,7 @@ public interface MyPageService {
 
 	int insertAlarm(String id, int aId);
 
-	ArrayList<Ticket> searchView(String id, Date sd, Date ed, String artType, String pName);
+	ArrayList<Ticket> searchView(String id, Date sdate, Date edate, String artType, String pName);
 
 	ArrayList<Art> selectNoticeList();
 
