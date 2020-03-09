@@ -88,7 +88,7 @@ li a {
 								</p> --%>
 							</div>
 							<div class="card-body">
-								<ul id="ulInteresetPerfList" class="my_list01">
+								<ul id="ulInteresetPerfList" class="my_list01" style="list-style-type:none;padding-left:0px;">
 									<c:choose>
 										<c:when test="${empty recentInterestList }">
 											<li>
@@ -131,7 +131,7 @@ li a {
 							</div>
 
 							<div class="card-body">
-								<ul class="my_list01 rv_bor">
+								<ul class="my_list01 rv_bor" style="list-style-type:none; padding-left:0px;">
 									<c:choose>
 										<c:when test="${empty recentViewList}">
 											<li>

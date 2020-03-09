@@ -32,11 +32,11 @@
 								<div class="card-body">
 									<div class="sms_alram"
 										style="height: 180px; background-color: ghostwhite; border: 1px solid black">
-										<span>* 티켓 오픈 소식, 관심 공연 등의 정보를 받을 휴대전화번호를 확인해주세요. </span> <br>
+										<span>* 티켓 오픈 소식, 관심 공연 등의 정보를 받을 EMAIL 주소를 확인해주세요. </span> <br>
 										<br> <em>수신 EMAIL : <span>${loginUser.email }</span>
 										</em>
 										<ul>
-											<li>- 맞춤 알람 SMS는 회원정보상의 SMS 수신동의여부와 상관없이 맞춤 알람 설정에 따라
+											<li>- 맞춤 알람 서비스는 회원정보상의 수신동의여부와 상관없이 맞춤 알람 설정에 따라
 												발송됩니다.</li>
 											<li>- SMS 받을 휴대전화번호 변경을 원하는 회원님은 <a
 												href="memberUpdateView.do" title="회원정보 변경으로 이동"><span

@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -30,6 +29,7 @@ import com.tone.tcatch.mypage.model.service.MyPageService;
 import com.tone.tcatch.mypage.model.vo.Alarm;
 import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
+import com.tone.tcatch.common.Pagination;
 import com.tone.tcatch.ticket.model.vo.Ticket;
 
 @Controller
@@ -69,12 +69,17 @@ public class MyPageController {
 	}
 
 	@RequestMapping("checknCancel.do")
-	public ModelAndView checknCancel(ModelAndView mv, HttpSession session) {
+	public ModelAndView checknCancel(ModelAndView mv, HttpSession session,
+			@RequestParam(value="page",required=false)Integer page) {
+		
+		int currentPage = page != null ? page : 1;
+		
 		Member loginUser = (Member) session.getAttribute("loginUser");
 
-		ArrayList<Ticket> ticketList = mpService.selectTicketList(loginUser.getId());
+		ArrayList<Ticket> ticketList = mpService.selectTicketList(loginUser.getId(),currentPage);
 
 		mv.addObject("ticketList", ticketList);
+		mv.addObject("pi", Pagination.getPageInfo());
 		mv.setViewName("mypage/checkNcancel");
 		return mv;
 	}
@@ -203,12 +208,21 @@ public class MyPageController {
 	}
 
 	@RequestMapping("noticeView.do")
-	public ModelAndView noticeView(ModelAndView mv) {
-
-		ArrayList<Art> noticeList = mpService.selectNoticeList();
-
-		mv.addObject("noticeList", noticeList);
-		mv.setViewName("mypage/notice");
+	public ModelAndView noticeView(ModelAndView mv,
+			@RequestParam(value="page", required=false) Integer page) throws MypageException {
+			
+		int currentPage = page != null ? page : 1;
+		
+		ArrayList<Art> noticeList = mpService.selectNoticeList(currentPage);
+		
+		if(noticeList != null) {
+			mv.addObject("noticeList", noticeList);
+			mv.addObject("pi", Pagination.getPageInfo());
+			mv.setViewName("mypage/notice");
+		}else {
+			throw new MypageException("예정없음");
+		}
+		
 		return mv;
 	}
 

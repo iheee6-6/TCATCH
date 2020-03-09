@@ -32,14 +32,14 @@ public class Ticket {
 	
 	private Date cancelDeadline; //취소마감시간 //
 	
-	private boolean reviewStatus; //리뷰 작성 여부 확인 //
-
+	private String review_no; //리뷰 작성 여부 확인 //
+	private String review_content; //리뷰 내용
 	
 	public Ticket() {}
 
 
 	public Ticket(String tNo, String artTitle, Date viewDate, int ticketCount, int artNo,
-			String address, String seat, String originalFile, String renameFile, boolean reviewStatus,String artType) {
+			String address, String seat, String originalFile, String renameFile, String review_no,String artType) {
 		super();
 		this.tNo = tNo;
 		this.artTitle = artTitle;
@@ -50,13 +50,13 @@ public class Ticket {
 		this.seat = seat;
 		this.originalFile = originalFile;
 		this.renameFile = renameFile;
-		this.reviewStatus = reviewStatus;
+		this.review_no = review_no;
 		this.artType = artType;
 	}
 
 
 	public Ticket(String tNo, String artTitle, Date viewDate, int artNo, String originalFile, String renameFile,
-			boolean reviewStatus) {
+			String review_no) {
 		super();
 		this.tNo = tNo;
 		this.artTitle = artTitle;
@@ -64,7 +64,7 @@ public class Ticket {
 		this.artNo = artNo;
 		this.originalFile = originalFile;
 		this.renameFile = renameFile;
-		this.reviewStatus = reviewStatus;
+		this.review_no = review_no;
 	}
 
 
@@ -105,7 +105,7 @@ public class Ticket {
 
 	public Ticket(String tNo, Date tDate, String artTitle, Date viewDate, int ticketCount, int artNo,
 			String status, String userName, String address, String seat, String receiveMethod, String originalFile, String renameFile,
-			int price, Date cancelDeadline, boolean reviewStatus) {
+			int price, Date cancelDeadline, String review_no) {
 		super();
 		this.tNo = tNo;
 		this.tDate = tDate;
@@ -122,7 +122,7 @@ public class Ticket {
 		this.renameFile = renameFile;
 		this.price = price;
 		this.cancelDeadline = cancelDeadline;
-		this.reviewStatus = reviewStatus;
+		this.review_no = review_no;
 	}
 
 
@@ -320,13 +320,16 @@ public class Ticket {
 	}
 
 
-	public boolean isReviewStatus() {
-		return reviewStatus;
+	
+
+
+	public String getReview_no() {
+		return review_no;
 	}
 
 
-	public void setReviewStatus(boolean reviewStatus) {
-		this.reviewStatus = reviewStatus;
+	public void setReview_no(String review_no) {
+		this.review_no = review_no;
 	}
 
 
@@ -366,6 +369,16 @@ public class Ticket {
 
 	public void setWayBill(int wayBill) {
 		this.wayBill = wayBill;
+	}
+
+
+	public String getReview_content() {
+		return review_content;
+	}
+
+
+	public void setReview_content(String review_content) {
+		this.review_content = review_content;
 	}
 	
 	
