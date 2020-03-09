@@ -3,10 +3,6 @@
 .consice.on{display:block;}
 .perform-top{position:absolute;top:34px;}
 .perform-top{background:#fff;border-bottom:1px solid #ddd;}
-.perform-top .pf-left a span{background:#000;}
-.perform-top .pf-left a span.on{background:#fff;}
-.perform-top .pf-left h1 img.trans{display:none;}
-.perform-top .pf-left h1 img.fixed{display:inline-block;}
 .perform-top .pf-center a{color:#000;}
 .perform-top .pf-center h2{position:relative;}
 .perform-top .pf-center h2 div{display:none;position:absolute; top:48px; width:500px; font-size:0;}

@@ -9,7 +9,9 @@
 	</settings>
 
 	<typeAliases>
+		<typeAlias type="com.tone.tcatch.community.model.vo.Reply" alias="Reply"/>
 		<typeAlias type="com.tone.tcatch.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.tone.tcatch.community.model.vo.Community" alias="Community"/>
 		<typeAlias type="com.tone.tcatch.ticket.model.vo.Ticket" alias="Ticket"/>
 		<typeAlias type="com.tone.tcatch.mypage.model.vo.Alarm" alias="Alarm"/>
 		<typeAlias type="com.tone.tcatch.art.model.vo.ArtDetail" alias="ArtDetail"/>
@@ -19,6 +21,7 @@
 	 
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/community-mapper.xml"/>
 		<mapper resource="mappers/mypage-mapper.xml"/>
 		<mapper resource="mappers/art-mapper.xml"/>
 	</mappers>

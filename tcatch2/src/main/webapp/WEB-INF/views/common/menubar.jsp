@@ -21,14 +21,8 @@
 <link rel='stylesheet' type='text/css'
 	href="${ contextPath }/resources/css/menu/main1.css" />
 
-<link rel='stylesheet' type='text/css'
-	href='${ contextPath }/resources/css/main/swiper.css' />
-<script type='text/javascript'
-	src='${ contextPath }/resources/js/main/main1.js'></script>
-<script type='text/javascript'
-	src='${ contextPath }/resources/js/main/main2.js'></script>
-<script type='text/javascript'
-	src='${ contextPath }/resources/js/main/main3.js'></script>
+
+
 
 <style type="text/css">
 body {
@@ -61,7 +55,7 @@ a{
 					class="trans" />
 					<img
 					src="${ contextPath }/resources/images/common/logo.png" alt=""
-					class="fixed" width="150px" height="100px" style="margin-top:-35px;"/></a>
+					class="fixed" width="150px" height="100px"/></a>
 			</h1>
 		</div>
 		<div class="pf-center">

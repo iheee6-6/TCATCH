@@ -31,7 +31,7 @@
 
 	<insert id="insertMember" parameterType="Member">
 		INSERT INTO MEMBER
-		VALUES( SEQ_MNO.NEXTVAL ,#{id}, #{pwd}, #{name}, #{email}, #{gender}, 
+		VALUES( SEQ_M_NO.NEXTVAL ,#{id}, #{pwd}, #{name}, #{email}, #{gender}, 
 			   #{birth}, #{phone}, #{address},
 			    DEFAULT ,SYSDATE)
 	</insert> 

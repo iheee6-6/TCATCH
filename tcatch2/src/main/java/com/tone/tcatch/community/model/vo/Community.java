@@ -4,7 +4,6 @@ import java.sql.Date;
 
 public class Community {
 	private int cNo;
-	private int mNo;
 	private String cWriter;
 	private String cTitle;
 	private String cContent;
@@ -15,11 +14,10 @@ public class Community {
 	
 	public Community() {}
 
-	public Community(int cNo, int mNo, String cWriter, String cTitle, String cContent, Date writeDate, Date modifyDate,
+	public Community(int cNo, String cWriter, String cTitle, String cContent, Date writeDate, Date modifyDate,
 			String status, int count) {
 		super();
 		this.cNo = cNo;
-		this.mNo = mNo;
 		this.cWriter = cWriter;
 		this.cTitle = cTitle;
 		this.cContent = cContent;
@@ -37,13 +35,6 @@ public class Community {
 		this.cNo = cNo;
 	}
 
-	public int getmNo() {
-		return mNo;
-	}
-
-	public void setmNo(int mNo) {
-		this.mNo = mNo;
-	}
 
 	public String getcWriter() {
 		return cWriter;
@@ -103,7 +94,7 @@ public class Community {
 
 	@Override
 	public String toString() {
-		return "Community [cNo=" + cNo + ", mNo=" + mNo + ", cWriter=" + cWriter + ", cTitle=" + cTitle + ", cContent="
+		return "Community [cNo=" + cNo + ", cWriter=" + cWriter + ", cTitle=" + cTitle + ", cContent="
 				+ cContent + ", writeDate=" + writeDate + ", modifyDate=" + modifyDate + ", status=" + status
 				+ ", count=" + count + "]";
 	}
