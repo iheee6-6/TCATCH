@@ -9,6 +9,7 @@ import com.tone.tcatch.art.model.dao.ArtDao;
 import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.art.model.vo.ArtTime;
+import com.tone.tcatch.art.model.vo.Purchase;
 import com.tone.tcatch.art.model.vo.Seat;
 
 @Service("aService")
@@ -43,27 +44,44 @@ public class ArtServiceImpl implements ArtService{
 
 
 	@Override
-	public ArrayList<Seat> selectSeatList(int timeNo) { // 좌석 불러오기
-		return aDao.selectSeatList(timeNo);
-	}
-
-
-	@Override
 	public int insertSeat(Seat s) { // 좌석 거ㅕㄹ제
 		return aDao.insertSeat(s);
 	}
 
 
 	@Override
-	public ArtTime selectATime(int artNo) {
+	public ArtTime selectATime(int artNo) { // 회차 검색
 		return aDao.selectATime(artNo);
 	}
 
 
 	@Override
-	public Seat selectSeatCount(int timeNo, int artNo) { //좌석수 , 남은 좌석수 
-		// TODO Auto-generated method stub
-		return aDao.selectSeatCount(timeNo,artNo);
+	public int selectSeatAllCount(Seat s) { // 총 좌석 수
+		return aDao.selectSeatAllCount(s);
+	}
+
+
+	@Override
+	public int selectSeatYCount(Seat s) { //남은  좌석 수 
+		return aDao.selectSeatYCount(s);
+	}
+
+
+	@Override
+	public ArrayList<Seat> selectSeatList(Seat s) { //좌석 불러오기
+		return aDao.selectSeatList(s);
+	}
+
+
+	@Override
+	public int insertArt(Art a) { // 공연 insert
+		return aDao.insertArt(a);
+	}
+
+
+	@Override
+	public int insertPurchase(Purchase p) { // 예매 insert
+		return aDao.insertPurchase(p);
 	}
 	
 	

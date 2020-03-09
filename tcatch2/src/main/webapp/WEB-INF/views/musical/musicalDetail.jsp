@@ -3,7 +3,7 @@
 
 
 
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <!doctype html> 
@@ -93,7 +93,7 @@
 						<dd>&nbsp;${aT.actor}     
 						<dt id="dtPrice">좌석</dt>
 						<dd>
-						 <span class='rn-red'>100</span>/100
+						 <span class='rn-red'>${ yS }</span>/${allS}
 						</dd>
 						
 						<dt id="dtPrice">가격</dt>
@@ -122,11 +122,15 @@
 
                 <!--자동주문방지적용-->
                 
-		<div class="rn-05"><!--예매버튼-->         
-            <a href="#" onclick="window.open('buy.do', 'www.naver.com', 'width=715, height=650');" class='rn-bb03'>예매하기</a>
+		<div class="rn-05"><!--예매버튼-->    
+		<c:url var="buy" value="buy.do">
+							<c:param name="artNo" value="${ art.artNo }"/>
+							<c:param name="timeNo" value="${ aT.timeNo }"/>
+		</c:url>     
+            <a href="#" onclick="window.open('${buy}', 'www.naver.com', 'width=715, height=650');" class='rn-bb03'>예매하기</a>
             
 		</div><!--rn-05-->
-			</div><!--rn-03-right-->
+			</div><!--rn-03-right-->  
 		</div><!--rn-03-->
 
 
@@ -245,7 +249,7 @@
 					<img src="D:\HTML\티캐취\imges\address.png">
 					KH 정보교육원 오시는 길 
 					<br><br><br>
-                    <img src="D:\HTML\티캐취\imges\zz.PNG">
+                    ${art.address }
                     <!--지도 부분-->
                 </div>
 

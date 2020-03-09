@@ -1,5 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="communityMapper">
-  
+  <resultMap id="communityResultSet" type="Community">
+		<id property="cNo" column="CNO"/>
+		<result property="cTitle" column="CTITLE"/>
+		<result property="cContent" column="CCONTENT"/>
+		<result property="writeDate" column="WRITE_DATE"/>
+		<result property="modifyDate" column="MODIFY_DATE"/>
+		<result property="status" column="STATUS"/>
+		<result property="count" column="COUNT"/>
+		<result property="cWriter" column="CWRITER"/>
+	</resultMap>
+	
+	<resultMap type="Reply" id="replyResultSet">
+		<id property="rId" column="R_NO"/>
+		<result property="rContent" column="RCONTENT"/>
+		<result property="rWriter" column="RWRITER"/>
+		<result property="rCreateDate" column="ENROLL_DATE"/>
+		<result property="refAno" column="ART_NO"/>
+		<result property="refCno" column="CNO"/>
+		<result property="star" column="STAR"/>
+		<result property="rStatus" column="STATUS"/>
+	</resultMap>
+	
+	<insert id="insertCommunity" parameterType="Community">
+		INSERT INTO COMMUNITY VALUES(
+			SEQ_C_NO.NEXTVAL, #{cTitle} , #{cContent}, #{cWriter}, SYSDATE, DEFAULT , 'Y' ,DEFAULT
+			
+		)
+	
+	</insert>
+	
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM COMMUNITY
+		WHERE STATUS ='Y'
+	</select>
+	
+	<select id="selectList" resultMap="communityResultSet">
+		SELECT *
+		FROM COMMUNITY
+		WHERE STATUS ='Y'
+		ORDER BY CNO DESC
+	</select>
+	
+	<update id="updateCount" parameterType="_int">
+		UPDATE COMMUNITY
+		SET COUNT = COUNT +1
+		WHERE CNO=#{cNo}
+	</update>
+	
+	<select id="selectCommunity" resultMap="communityResultSet">
+		SELECT *
+		FROM COMMUNITY
+		WHERE CNO=#{cNo}
+		AND STATUS='Y'
+	</select>
+	
+	<delete id="deleteCommunity" parameterType="_int">
+		UPDATE COMMUNITY
+		SET STATUS='N'
+		WHERE CNO = #{cNo}
+	</delete>
+	
+	<insert id="insertReply" parameterType="Reply">
+		INSERT INTO REPLY VALUES
+		(SEQ_RNO.NEXTVAL,#{rContent},#{rWriter},SYSDATE,#{refAno},#{refCno},DEFAULT,DEFAULT)
+	</insert>
+	
+	<select id="selectReply" resultMap="replyResultSet">
+		SELECT *
+		FROM REPLY R
+		JOIN COMMUNITY C ON(R.CNO = C.CNO)
+		WHERE R.CNO = #{cNo}
+		AND R.STATUS = 'Y'
+		ORDER BY R_NO DESC
+	</select>
+	
 </mapper>

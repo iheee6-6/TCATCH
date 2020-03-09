@@ -3,6 +3,7 @@ package com.tone.tcatch.common;
 import com.tone.tcatch.common.model.vo.PageInfo;
 
 public class Pagination {
+
 	private static PageInfo pi = null;
 
 	public static PageInfo getPageInfo() {
@@ -25,6 +26,7 @@ public class Pagination {
 		
 		endPage = startPage + pageLimit - 1;
 		
+
 		if(maxPage < endPage) {
 			endPage = maxPage;
 		}

@@ -10,15 +10,13 @@ public class Art {
 	private int companyNo;//회사번호
 	private int rating;//관람번호
 	private String status;//상태(삭제)
-	private String originalFile;//원본 파일명 
-	private String renameFile;//변경파일명
 	private int durationTime;//소요시간(분) 
 	private int sale; //세일가
 	 
 	public Art() {}
 
 	public Art(int artNo, int artType, String artTitle, String artExplain, int count, String address, int companyNo,
-			int rating, String status, String originalFile, String renameFile, int durationTime, int sale) {
+			int rating, String status, int durationTime, int sale) {
 		super();
 		this.artNo = artNo;
 		this.artType = artType;
@@ -29,8 +27,6 @@ public class Art {
 		this.companyNo = companyNo;
 		this.rating = rating;
 		this.status = status;
-		this.originalFile = originalFile;
-		this.renameFile = renameFile;
 		this.durationTime = durationTime;
 		this.sale = sale;
 	}
@@ -107,22 +103,6 @@ public class Art {
 		this.status = status;
 	}
 
-	public String getOriginalFile() {
-		return originalFile;
-	}
-
-	public void setOriginalFile(String originalFile) {
-		this.originalFile = originalFile;
-	}
-
-	public String getRenameFile() {
-		return renameFile;
-	}
-
-	public void setRenameFile(String renameFile) {
-		this.renameFile = renameFile;
-	}
-
 	public int getDurationTime() {
 		return durationTime;
 	}
@@ -143,8 +123,7 @@ public class Art {
 	public String toString() {
 		return "Art [artNo=" + artNo + ", artType=" + artType + ", artTitle=" + artTitle + ", artExplain=" + artExplain
 				+ ", count=" + count + ", address=" + address + ", companyNo=" + companyNo + ", rating=" + rating
-				+ ", status=" + status + ", originalFile=" + originalFile + ", renameFile=" + renameFile
-				+ ", durationTime=" + durationTime + ", sale=" + sale + "]";
+				+ ", status=" + status + ", durationTime=" + durationTime + ", sale=" + sale + "]";
 	}
 	
 	
