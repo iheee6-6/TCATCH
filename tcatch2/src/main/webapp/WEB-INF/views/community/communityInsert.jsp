@@ -17,7 +17,7 @@ table, td {
 	width: 100%;
 }
 
-#title {
+#cTitle {
 	width: 700px;
 	border-radius: 3px;
 }
@@ -26,8 +26,8 @@ table, td {
 	height: 500px;
 }
 
-.btn {
-	float: right;
+.btnDiv{
+	text-align:center;
 }
 </style>
 </head>
@@ -49,15 +49,21 @@ table, td {
 				<tr>
 					<td style="text-align: center;"><h3
 							style="font-family: 'Do Hyeon', sans-serif;">제목</h3></td>
-					<td><input type="text" name="title" id="title"></td>
+					<td><input type="text" name="cTitle" id="cTitle"></td>
 				</tr>
 			</table>
-			<input type="text" id="HC" name="content" hidden> <input
-				type="text" id="bId" name="bId" hidden>
+			<input type="text" id="HC" name="cContent" hidden> 
+				<input type="text" name="cWriter" value="${loginUser.name}" hidden>
 		</div>
 		<div id="summernote"></div>
-		<button class="btn btn-lg btn-primary btn-block1"
+		<div class="btnDiv">
+			<button class="btn btn-lg btn-primary btn-block1"
+			style="font-family: 'Do Hyeon', sans-serif;" type="button" onclick="location.href='clist.do'">목록으로</button>
+			<button class="btn btn-lg btn-primary btn-block1"
 			style="font-family: 'Do Hyeon', sans-serif;" type="submit">작성완료</button>
+		
+		</div>
+		
 	</form>
 
 
@@ -67,10 +73,20 @@ table, td {
 		});
 	</script>
 	<script>
+		$(document).ready(function(){
+			/* $("#title").val('')
+			$(".note-editable").html('') */
+			$("button").mouseenter(function(){
+				$("#HC").val($(".note-editable").html())
+				console.log($("summernote").summernote('code'))
+				
+			});
+			
+		});	
 		function joinValidate() {
-			if ($("input[name=title]").val().length < 1) {
+			if ($("input[name=cTitle]").val().length < 1) {
 				alert('제목을 입력해주세요');
-				$("input[name=title]").select();
+				$("input[name=cTitle]").select();
 				return false;
 			}
 

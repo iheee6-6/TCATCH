@@ -7,11 +7,6 @@
 
 <title>커뮤니티 안내</title>
 
-
-<link rel='stylesheet' type='text/css'
-	href='http://tkfile.yes24.com/New/Css/reset.css' />
-<link rel='stylesheet' type='text/css'
-	href='http://tkfile.yes24.com/New/Css/common.css' />
 <link rel='stylesheet' type='text/css'
 	href='http://tkfile.yes24.com/New/Css/main2.css?v=2020012203' />
 <link rel='stylesheet' type='text/css'

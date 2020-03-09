@@ -5,20 +5,22 @@ import java.util.Date;
 public class Reply {
 	private int rId;
 	private String rContent;
-	private int refBid;
+	private int refCno;
+	private int refAno;
 	private String rWriter;
 	private Date rCreateDate;
 	private Date rModifyDate;
+	private int star;
 	private String rStatus;
 	
 	public Reply() {}
 
-	public Reply(int rId, String rContent, int refBid, String rWriter, Date rCreateDate, Date rModifyDate,
+	public Reply(int rId, String rContent, int refCno, String rWriter, Date rCreateDate, Date rModifyDate,
 			String rStatus) {
 		super();
 		this.rId = rId;
 		this.rContent = rContent;
-		this.refBid = refBid;
+		this.refCno = refCno;
 		this.rWriter = rWriter;
 		this.rCreateDate = rCreateDate;
 		this.rModifyDate = rModifyDate;
@@ -41,12 +43,12 @@ public class Reply {
 		this.rContent = rContent;
 	}
 
-	public int getRefBid() {
-		return refBid;
+	public int getRefCno() {
+		return refCno;
 	}
 
-	public void setRefBid(int refBid) {
-		this.refBid = refBid;
+	public void setRefCno(int refCno) {
+		this.refCno = refCno;
 	}
 
 	public String getrWriter() {
@@ -83,9 +85,11 @@ public class Reply {
 
 	@Override
 	public String toString() {
-		return "Reply [rId=" + rId + ", rContent=" + rContent + ", refBid=" + refBid + ", rWriter=" + rWriter
+		return "Reply [rId=" + rId + ", rContent=" + rContent + ", refCno=" + refCno + ", rWriter=" + rWriter
 				+ ", rCreateDate=" + rCreateDate + ", rModifyDate=" + rModifyDate + ", rStatus=" + rStatus + "]";
 	}
+
+	
 	
 	
 }

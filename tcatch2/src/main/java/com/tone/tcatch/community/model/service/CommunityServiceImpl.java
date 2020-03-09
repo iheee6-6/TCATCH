@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tone.tcatch.common.Pagination;
 import com.tone.tcatch.community.model.dao.CommunityDao;
 import com.tone.tcatch.community.model.vo.Community;
+import com.tone.tcatch.community.model.vo.PageInfo;
+import com.tone.tcatch.community.model.vo.Reply;
 
 @Service("cService")
 public class CommunityServiceImpl implements CommunityService{
@@ -16,21 +19,20 @@ public class CommunityServiceImpl implements CommunityService{
 	private CommunityDao cDao;
 
 	@Override
-	public ArrayList<Community> selectList() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Community> selectList(int currentPage) {
+
+		int listCount = cDao.getListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);
+
+		
+		return cDao.selectList(pi);
 	}
 
 	@Override
 	public int insertCommunity(Community c) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Community selectCommunity() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return cDao.insertCommunity(c);
 	}
 
 	@Override
@@ -39,15 +41,30 @@ public class CommunityServiceImpl implements CommunityService{
 		return 0;
 	}
 
+
 	@Override
-	public int deleteCommunity() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int insertReply(Reply r) {
+		return cDao.insertReply(r);
 	}
 
 	@Override
-	public int insertReply() {
-		// TODO Auto-generated method stub
-		return 0;
+	public Community selectCommunity(int cNo, boolean flag) {
+		
+		if(!flag) {
+			cDao.addReadCount(cNo);
+		}
+		
+		return cDao.selectCommunity(cNo);
+	}
+
+	@Override
+	public int deleteCommunity(int cNo) {
+		return cDao.deleteCommunity(cNo);
+	}
+
+	@Override
+	public ArrayList<Reply> selectReplyList(int cNo) {
+		
+		return cDao.selectReplyList(cNo);
 	}
 }
