@@ -96,9 +96,9 @@ body {
 				<dt>시간</dt>
 				<dd>&nbsp;[2회]19시 00 분</dd>
 				<dt>매수</dt>
-				<dd>3 매</dd>
+				<dd>${count } 매</dd>
 				<dt id="dtPrice">좌석</dt>
-				<dd>A-10 , A-11 , D-11</dd>
+				<dd>${seatName}</dd>
 
 			</dl>
 
@@ -108,11 +108,21 @@ body {
 				<dd>2020년 3월 8일(일) 오후 6시</dd>
 				<dt>배송정보</dt>
 				<dd>
-					현장 수령  <input type="checkbox" value="현장">
+					택배 배송  <input type="radio" name="r" value="택배" id="xorqo">
 				</dd>
 				<dd>
-					택배 배송  <input type="checkbox" value="택배">
+					현장 수령  <input type="radio" name="r" value="현장" id="guswkd">
 				</dd>
+				
+				<script>
+				$(document).ready(function () {
+			        $('input[type=radio]').click(function () {
+			          // getter
+			          var radioVal = $('input[name="r"]:checked').val();
+			          $("#type").val(radioVal);
+			        });
+			      });
+				</script>
 			</dl>
 			<pre>
 ※ 구매 금액에 따라 배송비 차등 적용됩니다.(50,000원 미만: 3,000원)
@@ -120,7 +130,15 @@ body {
 ※ 제주도 3000원, 제주도 외 도서산간 2000원
 </pre>
 			<!--자동주문방지적용-->
-			
+		<form action="buyEnd.do" method="post" id="joinForm">
+			<input type="text" name="mNo" value="${ loginUser.id }">
+			<input type="text" name="seatName" value="${seatName}">
+			<input type="text" name="seatSal" value="${count * 40000}원">
+			<input type="text" name="type" id="type" value="">
+			<input type="text" name="buyDate" value="SYSDATE">
+			<input type="text" name="purchaseCount" value="${count}">
+			<input type="text" name="timeNo" value="${timeNo }">
+			<input type="text" name="artNo" value="${artNo }">
 			<table>
 			<tr>
 				<th>이름</th>
@@ -150,12 +168,19 @@ body {
 			</table>
 			<div class="rn-05">
 				<!--예매버튼-->
-				<a href="#" onclick="alert('결제 완료');"
+				<a href="buyEnd.do"
 					class='rn-bb03'>예매하기</a>
 				<!--취소버튼-->
-				<a href="#"  onclick="window.close();"
+				<a href="#"  onclick="cancel();"
 					class='rn-bb03'>취소하기</a>
 			</div>
+		</form>
+			<script>
+			
+				function cancel(){
+					window.close();
+				}
+			</script>
 			
 
 

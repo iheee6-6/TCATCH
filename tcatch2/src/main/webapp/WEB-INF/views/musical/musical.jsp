@@ -31,7 +31,8 @@
 			<p class='m2-tit'>
 				<img src='${contextPath}/resources/images/musical/mLogo.png' />
 			</p>
-
+		<button onclick="location.href='insert.do'">dd</button>
+	
 						
 			<div class='ms-list-imgs'>
 				<c:forEach var="a" items="${ list }"> 
@@ -78,7 +79,6 @@
 				</a>
 			</div>
 			<!-- 일반 상품 -->
-			
 			
 			
 			

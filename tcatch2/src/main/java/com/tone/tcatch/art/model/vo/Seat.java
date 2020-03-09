@@ -17,6 +17,14 @@ public class Seat {
 		this.status = status;
 		this.price = price;
 	}
+	
+	
+
+	public Seat(int timeNo, int artNo) {
+		super();
+		this.timeNo = timeNo;
+		this.artNo = artNo;
+	}
 
 	public String getSeatName() {
 		return seatName;

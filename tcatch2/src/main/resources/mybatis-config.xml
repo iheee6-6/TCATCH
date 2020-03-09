@@ -17,6 +17,7 @@
 		<typeAlias type="com.tone.tcatch.art.model.vo.ArtDetail" alias="ArtDetail"/>
 		<typeAlias type="com.tone.tcatch.art.model.vo.Art" alias="Art"/>
 		<typeAlias type="com.tone.tcatch.art.model.vo.ArtTime" alias="ArtTime"/>
+		<typeAlias type="com.tone.tcatch.art.model.vo.Seat" alias="Seat"/>
 	</typeAliases>
 	 
 	<mappers>

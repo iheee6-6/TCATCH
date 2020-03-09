@@ -10,12 +10,11 @@ public class ArtDetail {
 	private String address;//공연장소
 	private int companyNo;//회사번호
 	private int age; //관람 등급
-	private String originalFile;//원본 파일명 
-	private String renameFile;//변경파일명
 	private int durationTime;//소요시간(분) 
 	private String companyName; //회사 이름
 	private String companyPhone;// 회사 번호 
 	private String companyInfo; // 회사 정보
+	private Date ticketingDate; //티켓팅 시작 날짜
 	private Date startDate; //공연 시작 날짜 
 	private Date endDate; // 공연 종료 날짜
 
@@ -24,8 +23,8 @@ public class ArtDetail {
 
 
 	public ArtDetail(int artNo, int artType, String artTitle, String artExplain, String address, int companyNo, int age,
-			String originalFile, String renameFile, int durationTime, String companyName, String companyPhone,
-			String companyInfo, Date startDate, Date endDate) {
+			int durationTime, String companyName, String companyPhone, String companyInfo, Date ticketingDate,
+			Date startDate, Date endDate) {
 		super();
 		this.artNo = artNo;
 		this.artType = artType;
@@ -34,12 +33,11 @@ public class ArtDetail {
 		this.address = address;
 		this.companyNo = companyNo;
 		this.age = age;
-		this.originalFile = originalFile;
-		this.renameFile = renameFile;
 		this.durationTime = durationTime;
 		this.companyName = companyName;
 		this.companyPhone = companyPhone;
 		this.companyInfo = companyInfo;
+		this.ticketingDate = ticketingDate;
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
@@ -115,26 +113,6 @@ public class ArtDetail {
 	}
 
 
-	public String getOriginalFile() {
-		return originalFile;
-	}
-
-
-	public void setOriginalFile(String originalFile) {
-		this.originalFile = originalFile;
-	}
-
-
-	public String getRenameFile() {
-		return renameFile;
-	}
-
-
-	public void setRenameFile(String renameFile) {
-		this.renameFile = renameFile;
-	}
-
-
 	public int getDurationTime() {
 		return durationTime;
 	}
@@ -175,6 +153,16 @@ public class ArtDetail {
 	}
 
 
+	public Date getTicketingDate() {
+		return ticketingDate;
+	}
+
+
+	public void setTicketingDate(Date ticketingDate) {
+		this.ticketingDate = ticketingDate;
+	}
+
+
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -198,13 +186,11 @@ public class ArtDetail {
 	@Override
 	public String toString() {
 		return "ArtDetail [artNo=" + artNo + ", artType=" + artType + ", artTitle=" + artTitle + ", artExplain="
-				+ artExplain + ", address=" + address + ", companyNo=" + companyNo + ", age=" + age + ", originalFile="
-				+ originalFile + ", renameFile=" + renameFile + ", durationTime=" + durationTime + ", companyName="
-				+ companyName + ", companyPhone=" + companyPhone + ", companyInfo=" + companyInfo + ", startDate="
-				+ startDate + ", endDate=" + endDate + "]";
+				+ artExplain + ", address=" + address + ", companyNo=" + companyNo + ", age=" + age + ", durationTime="
+				+ durationTime + ", companyName=" + companyName + ", companyPhone=" + companyPhone + ", companyInfo="
+				+ companyInfo + ", ticketingDate=" + ticketingDate + ", startDate=" + startDate + ", endDate=" + endDate
+				+ "]";
 	}
-	
-	
 	
 	
 	
