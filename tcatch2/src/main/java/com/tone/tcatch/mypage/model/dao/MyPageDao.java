@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
+import com.tone.tcatch.common.model.vo.PageInfo;
 import com.tone.tcatch.member.model.vo.Member;
 import com.tone.tcatch.mypage.model.vo.Alarm;
 import com.tone.tcatch.ticket.model.vo.Ticket;
@@ -51,9 +53,17 @@ public class MyPageDao {
 	}
 
 	////////////////////////
+	//리스트 
+	public int getTListCount() {
+		return sqlSession.selectOne("myPageMapper.getTListCount");
+	}
+	
 	// 예매내역
-	public ArrayList<Ticket> selectTicketList(String id) {
-		return (ArrayList) sqlSession.selectList("myPageMapper.selectTicketList", id);
+	public ArrayList<Ticket> selectTicketList(String id, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		return (ArrayList) sqlSession.selectList("myPageMapper.selectTicketList", id,rowBounds);
 	}
 
 	// 예매 내역 상세 보기
@@ -124,8 +134,15 @@ public class MyPageDao {
 		return (ArrayList)sqlSession.selectList("myPageMapper.searchView",map);
 	}
 
-	public ArrayList<Art> selectNoticeList() {
-		return (ArrayList)sqlSession.selectList("myPageMapper.selectNoticeList");
+	public int getNListCount() {
+		return sqlSession.selectOne("myPageMapper.getNListCount");
+	}
+
+	public ArrayList<Art> selectNoticeList(PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("myPageMapper.selectNoticeList",null,rowBounds);
 	}
 
 	public Art selectNotice(int nId) {
@@ -148,5 +165,8 @@ public class MyPageDao {
 		//return (ArrayList)sqlSession.selectList("myPageMapper.selectAlarmMember",art);
 		return null;
 	}
+
+	
+	
 
 }

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
+import com.tone.tcatch.common.Pagination;
+import com.tone.tcatch.common.model.vo.PageInfo;
 import com.tone.tcatch.member.model.vo.Member;
 import com.tone.tcatch.mypage.model.dao.MyPageDao;
 import com.tone.tcatch.mypage.model.vo.Alarm;
@@ -69,8 +71,12 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public ArrayList<Ticket> selectTicketList(String id) {
-		return mpDao.selectTicketList(id);
+	public ArrayList<Ticket> selectTicketList(String id, int currentPage) {
+		int listCount = mpDao.getTListCount();
+				
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+				
+		return mpDao.selectTicketList(id,pi);
 	}
 
 	@Override
@@ -95,8 +101,12 @@ public class MyPageServiceImpl implements MyPageService{
 
 	
 	@Override
-	public ArrayList<Art> selectNoticeList() {
-		return mpDao.selectNoticeList();
+	public ArrayList<Art> selectNoticeList(int currentPage) {
+		int listCount = mpDao.getNListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+				
+		return mpDao.selectNoticeList(pi);
 	}
 
 	@Override

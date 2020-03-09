@@ -32,7 +32,7 @@ public interface MyPageService {
 
 	Ticket selectTicketDetail(String id, int tNo);
 
-	ArrayList<Ticket> selectTicketList(String id);
+	ArrayList<Ticket> selectTicketList(String id, int currentPage);
 
 	ArrayList<Ticket> selectViewPerformanceList(String id);
 
@@ -42,7 +42,7 @@ public interface MyPageService {
 
 	ArrayList<Ticket> searchView(String id, Date sdate, Date edate, String artType, String pName);
 
-	ArrayList<Art> selectNoticeList();
+	ArrayList<Art> selectNoticeList(int currentPage);
 
 	Art selectNotice(int nId);
 
