@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.art.model.vo.ArtTime;
+import com.tone.tcatch.art.model.vo.Purchase;
 import com.tone.tcatch.art.model.vo.Seat;
 
 public interface ArtService { 
@@ -22,12 +23,23 @@ public interface ArtService {
 	ArrayList<Art> searchArt(String title);
 	
 	//좌석 리스트 불러오기
-	ArrayList<Seat> selectSeatList(int timeNo);
+	ArrayList<Seat> selectSeatList(Seat s);
 	
 	//좌석 결제
 	int insertSeat(Seat s);
 
-	Seat selectSeatCount(int timeNo, int artNo);
+	//총 좌석 수 
+	int selectSeatAllCount(Seat s); 
+	
+	//남은 좌석 수 
+	int selectSeatYCount(Seat s);
+	
+	//공연 작성
+	int insertArt(Art a);
+	
+	//예매하기
+	int insertPurchase(Purchase p);
+	
 	
 
 }

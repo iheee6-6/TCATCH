@@ -46,7 +46,17 @@
 		<result property="artNo" column="ART_NO"/>	
 	</resultMap>
 	
-	<!-- CONPANY_INFO 수정해야함 -->
+	<resultMap id="SeatResultSet" type="Seat">
+		<id property="seatName" column="SEAT_NAME"/>
+		<result property="timeNo" column="TIME_NO"/>
+		<result property="artNo" column="ART_NO"/>
+		<result property="status" column="STATUS"/>	
+		<result property="price" column="PRICE"/>	
+	</resultMap>
+	
+	
+	
+	
 	<select id="selectList" resultMap="ArtResultSet">
 		SELECT *
 		FROM ART
@@ -88,5 +98,74 @@
 		WHERE ART_NO =#{artNo}
 		AND DATE_COUNT=1
 	</select>
+	
+	<select id="seat" resultMap="SeatResultSet">	
+		SELECT  (SELECT COUNT(*) 
+		                FROM SEAT
+		                WHERE ART_NO=${artNo}
+		                AND TIME_NO =${timeNo}
+		                AND STATUS='Y') AS 남은좌석  , COUNT(*) AS 총좌석
+		FROM SEAT
+		WHERE ART_NO=${artNo}
+		AND TIME_NO=${timeNo}
+		GROUP BY ART_NO
+	</select>
+	
+	<select id="selectSeatAllCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM SEAT
+		WHERE ART_NO=#{artNo}
+		AND TIME_NO=#{timeNo}
+	</select>
+	
+	<select id="selectSeatYCount"  resultType="_int">
+		SELECT COUNT(*)
+		FROM SEAT
+		WHERE ART_NO=#{artNo}
+		AND TIME_NO =#{timeNo}
+		AND STATUS='Y' 
+	</select>
+	
+	<select id="selectSeatList" resultMap="SeatResultSet">
+		SELECT *
+		FROM SEAT
+		WHERE TIME_NO =#{timeNo}
+		AND ART_NO=#{artNo}
+		ORDER BY 1
+	</select>
+	
+	<insert id="insertArt">
+		INSERT INTO ART VALUES(
+			SEQ_ANO.NEXTVAL,
+			#{artType},
+			#{artTitle},
+			NULL,
+			DEFAULT,
+			#{address},
+			#{companyNo},
+			#{rating},
+			DEFAULT,
+			NULL,
+			NULL,
+			#{durationTime},
+			#{sale}
+		)
+	</insert>
+	
+	<insert id="insertPurchase">
+		INSERT INTO PURCHASE VALUES(
+			SEQ_PNO.NEXTVAL,
+			#{mNo},
+			#{seatName},
+			#{seatSal},
+			#{type},
+			DEFAULE,
+			#{purchaseCount},
+			DEFAULT,
+			#{timeNo},
+			#{artNo}
+		)
+	
+	</insert>
 	
 </mapper>
