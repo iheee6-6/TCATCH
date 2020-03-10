@@ -1,6 +1,7 @@
 package com.tone.tcatch.mypage.model.dao;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -82,8 +83,8 @@ public class MyPageDao {
 	}
 
 	// 알림 목록
-	public ArrayList<Alarm> selectAlarmList(String userId) {
-		return (ArrayList) sqlSession.selectList("myPageMapper.selectAlarmList", userId);
+	public ArrayList<Alarm> selectAlarmList(String id) {
+		return (ArrayList) sqlSession.selectList("myPageMapper.selectAlarmList", id);
 	}
 
 	// 알림 삭제
@@ -164,6 +165,25 @@ public class MyPageDao {
 	public ArrayList<Member> selectAlarmMember(Art art) {
 		//return (ArrayList)sqlSession.selectList("myPageMapper.selectAlarmMember",art);
 		return null;
+	}
+
+	public String selectAView(String id) {
+	return	sqlSession.selectOne("myPageMapper.selectAView",id);
+		
+		
+		/*Ticket t =sqlSession.selectOne("myPageMapper.selectAView",id);
+		
+		String select="";
+		if(t!=null) {
+			Date d = t.gettDate();
+			
+			SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd");
+			select=s.format(d);
+				
+		}else {
+			select="null";
+		}
+		return select;*/
 	}
 
 	

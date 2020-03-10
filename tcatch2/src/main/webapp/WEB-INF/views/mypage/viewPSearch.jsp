@@ -3,17 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-
+<meta charset="UTF-8">
 	<c:choose>
 		<c:when test="${empty viewPerformanceList }">
 			<div
 				style="width: 700px; height: 300px; padding: 100px; text-align: center; border-top: 1px solid black; border-bottom: 1px solid black">
-				관람내역이 없습니다.</div>
+				no list</div>
 		</c:when>
 		<c:otherwise>
-			<%
-													int index = 1;
-												%>
+			<%	int index = 1;%>
 			<c:forEach var="v" items="${viewPerformanceList }">
 
 				<div class="memo end">
