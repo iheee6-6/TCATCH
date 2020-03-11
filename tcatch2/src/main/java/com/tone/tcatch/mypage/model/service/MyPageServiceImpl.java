@@ -129,6 +129,11 @@ public class MyPageServiceImpl implements MyPageService{
 		return mpDao.selectAlarmMember(art);
 	}
 
+	@Override
+	public String selectAView(String id) {
+		return mpDao.selectAView(id);
+	}
+
 
 	
 }

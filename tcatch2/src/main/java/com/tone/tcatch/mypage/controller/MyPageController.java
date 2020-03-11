@@ -172,9 +172,13 @@ public class MyPageController {
 	public ModelAndView viewPerformance(ModelAndView mv, HttpSession session) {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 
-		ArrayList<Ticket> viewPerformanceList = mpService.selectViewPerformanceList(loginUser.getId());
-
-		mv.addObject("viewPerformanceList", viewPerformanceList);
+		String d= mpService.selectAView(loginUser.getId());
+		
+		/*if(d==null) {
+			d= "null";
+		}*/
+		System.out.println("="+d);
+		mv.addObject("aDate", d);
 		mv.setViewName("mypage/viewPerformance");
 		return mv;
 	}
@@ -185,9 +189,9 @@ public class MyPageController {
 			String pName,Model model) throws IOException {
 		System.out.println(sdate+" ~ "+edate);
 		Member loginUser = (Member) session.getAttribute("loginUser");
-		//PrintWriter out = response.getWriter();
-		//ArrayList<Ticket> tList = mpService.searchView(loginUser.getId(), sdate, edate, artType, pName);
-		ArrayList<Ticket> tList= new ArrayList<>();
+		PrintWriter out = response.getWriter();
+		ArrayList<Ticket> tList = mpService.searchView(loginUser.getId(), sdate, edate, artType, pName);
+		//ArrayList<Ticket> tList= new ArrayList<>();
 		System.out.println("hihi "+tList);
 		model.addAttribute("viewPerformanceList", tList);
 		

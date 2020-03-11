@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
 <link href="resources/css/mypage/notice.css" rel="stylesheet" />
 <style>
 .wrapper {
@@ -18,11 +20,18 @@
 	<div class="wrapper">
 		<!-- 콘텐츠 //-->
 		<div class="content-min-wrap">
-			<p class="big-title">공지사항</p>
+			<p class="big-title">update!!</p>
 
 			<div id="NoticeMainDisplay" style="display: block;">
 				<!-- 공지사항 상단 배너 -->
 				<div class="notice-slide">
+				 
+     
+  
+  
+  
+  
+				
 					<div
 						class="swiper-container ticketo swiper-container-initialized swiper-container-horizontal">
 						<div class="swiper-wrapper"
@@ -151,7 +160,7 @@
 										<p class="ticket-tit">〈신과 함께_저승편〉</p>
 									</div></a>
 							</div>
-							<!-- <script>
+							 <script>
 								function displayDonut() {
 									config.data.datasets[0].data = [
 											12.5 * (8 - 1), 12.5 * 1 ];
@@ -190,7 +199,7 @@
 													'chart-area10123')
 													.getContext('2d'), config);
 								}
-							</script> -->
+							</script> 
 						</div>
 						<span class="swiper-notification" aria-live="assertive"
 							aria-atomic="true"></span>
@@ -205,7 +214,7 @@
 
 
 
-				<!-- <script type="text/javascript">
+				 <script type="text/javascript">
 					var config = {
 						type : 'doughnut',
 						data : {
@@ -239,7 +248,7 @@
 					//            num = 0;
 					//        }
 					//    });
-				</script> -->
+				</script> 
 				<!-- 공지사항 상단 배너 -->
 
 
@@ -376,7 +385,32 @@
 
 
 	</div>
+  <jsp:include page="../common/footer.jsp" />
+  
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type='text/javascript' src='resources/css/mypage/swiper.js'></script>
+    <script type='text/javascript' src='http://tkfile.yes24.com/New/Js/Chart.bundle_min.js'></script>
+    <script type='text/javascript' src='http://tkfile.yes24.com/New/Js/utils.js'></script>
+    <script type='text/javascript' src='http://tkfile.yes24.com/New/Js/jquery.mCustomScrollbar_min.js'></script>
+    <script type='text/javascript' src='http://tkfile.yes24.com/New/Js/common.js?v=158'></script>
+    <script type='text/javascript' src='http://tkfile.yes24.com/New/Js/jquery.lazy.min.js'></script>
+    <script type='text/javascript' src='http://tkfile.yes24.com/New/Js/jquery.cookie.js'></script>
+    <script type='text/javascript' src='http://tkfile.yes24.com/New/Js/jquery.url.js'></script>
+    <script type='text/javascript' src='http://tkfile.yes24.com/New/Js/base64.js'></script>
+    <script type='text/javascript' src='http://tkfile.yes24.com/New/Js/babel.js'></script>
+    <script type='text/javascript' src='http://tkfile.yes24.com/New/Js/polyfill.js'></script>
+    <script type='text/javascript' src='/inc/js/custom-1.8.21/ui/jquery-ui-1.8.21.custom.min.js'></script>
 
-	<jsp:include page="../common/footer.jsp" />
+    <link rel='shortcut icon' href='http://tkfile.yes24.com/img/favicon.ico?ver=150825a' type='image/x-icon' />
+    <script type='text/javascript' src='http://tkfile.yes24.com/New/Js/jry_home_jdefault.js'></script>
+    <script type='text/javascript' src='http://tkfile.yes24.com/New/Js/jry_home_jdialog.js'></script>
+    <script type='text/javascript' src='http://tkfile.yes24.com/New/Js/jry_default.js?v=158'></script>
+
+    <script type='text/javascript' src='http://tkfile.yes24.com/New/Js/Main.js?v=158'></script>
+
+    <link rel='stylesheet' type='text/css' href='http://tkfile.yes24.com/New/Css/main_2.css?v=2020012203' />
+    <link rel='stylesheet' type='text/css' href='http://tkfile.yes24.com/New/Css/swiper_min.css' />
+    <link rel='stylesheet' type='text/css' href='http://tkfile.yes24.com/New/Css/jquery.mCustomScrollbar.css' />
+	
 </body>
 </html>

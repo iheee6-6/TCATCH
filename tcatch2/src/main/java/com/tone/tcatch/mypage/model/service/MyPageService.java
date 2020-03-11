@@ -52,4 +52,6 @@ public interface MyPageService {
 
 	ArrayList<Member> selectAlarmMember(Art art);
 
+	String selectAView(String id);
+
 }
