@@ -60,10 +60,10 @@
 		JOIN
 		ART a on(p.ART_NO=a.ART_NO)
 		JOIN ART_TIME td on(td.ART_NO=a.art_no)
-		JOIN REFUND r on(p.PURCHASE_NO=r.purchase_no)
 		JOIN MEMBER USING(M_NO)
+		left JOIN REFUND r on(p.PURCHASE_NO=r.purchase_no)
 		WHERE M_ID=#{id} AND
-		BUY_DATE<![CDATA[  <=  ]]>
+		BUY_DATE<![CDATA[  >=  ]]>
 		add_months(sysdate,-3)
 		ORDER BY DATE_TIME DESC
 	</select>
@@ -106,7 +106,7 @@
 	<select id="selectTicketList" resultMap="ticketResultSet">
 		SELECT p.purchase_no, buy_date, art_title, date_time,
 		purchase_count, p.art_no,
-		 CASE WHEN r.STATUS='Y' THEN '환불대기중'
+		CASE WHEN r.STATUS='Y' THEN '환불대기중'
 		WHEN r.STATUS='Y' THEN '환불 완료'
 		ELSE '예매완료'
 		END AS REFUNDS,
@@ -114,9 +114,9 @@
 		JOIN ART a
 		on(p.ART_NO=a.ART_NO)
 		JOIN ART_TIME td on(td.ART_NO=a.art_no)
-		JOIN REFUND r on(p.PURCHASE_NO=r.purchase_no)
-		JOIN IMG i on(p.art_no=i.art_no)
+		left JOIN IMG i on(p.art_no=i.art_no)
 		JOIN MEMBER USING(M_NO)
+		left JOIN REFUND r on(p.PURCHASE_NO=r.purchase_no)
 		WHERE M_ID=#{id}
 		ORDER BY
 		DATE_TIME DESC

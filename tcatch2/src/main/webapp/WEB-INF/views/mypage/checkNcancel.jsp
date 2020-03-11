@@ -46,13 +46,13 @@ td a {
 									</thead>
 									<tbody>
 										<c:choose>
-											<c:when test="${empty recentHistoryList }">
+											<c:when test="${empty ticketList }">
 												<tr>
 													<td colspan="6" style="text-align:center">예매내역이 없습니다.</td>
 												</tr>
 											</c:when>
 											<c:otherwise>
-											<c:forEach var="b" items="${ recentHistoryList }">
+											<c:forEach var="b" items="${ ticketList }">
 												<tr>
 												<fmt:parseDate var="tdateString" value="${b.tDate}" pattern="yyyy.MM.dd : aaa hh:mm" />
 												<fmt:parseDate var="vdateString" value="${b.viewDate}" pattern="yyyy.MM.dd : aaa hh:mm" />
@@ -123,7 +123,7 @@ td a {
 			$("#cnc").addClass("active");
 		});
 	</script>
-	<jsp:include page="../common/footer.jsp" />
+	 <jsp:include page="../common/footer.jsp" /> 
 </body>
 
 </html>

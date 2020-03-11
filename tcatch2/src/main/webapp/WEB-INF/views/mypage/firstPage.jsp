@@ -60,9 +60,12 @@ li a {
 											<tr>
 												<td>${b.tDate }</td>
 
-												<td><c:url var="tDetail" value="tDetail.do">
-														<c:param name="tNo" value="${b.tNo }" />
-													</c:url> <a href="${tDetail}">${b.tNo}</a></td>
+												<td>
+													<c:url var="tDetail" value="tDetail.do">
+														<c:param name="tNo" value="${b.tNo}" />
+													</c:url>
+												<a href="${tDetail}">${b.tNo}</a>
+												</td>
 												<td>${b.artTitle }</td>
 												<td>${b.viewDate }</td>
 												<td>${b.ticketCount}</td>

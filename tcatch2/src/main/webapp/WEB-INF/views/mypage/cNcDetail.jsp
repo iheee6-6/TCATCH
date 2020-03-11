@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +48,10 @@
 												</tr>
 												<tr id="trPerfDateTime">
 													<th class="le">관람일</th>
-													<td colspan="3" class="ri"><strong>${viewDate}</strong></td>
+													<fmt:parseDate var="dateString" value="${viewDate }"
+							pattern="yyyy.MM.dd : aaa hh:mm" />
+													
+													<td colspan="3" class="ri"><strong>${dateString}</strong></td>
 													<!-- 2020.02.09 15:00 -->
 												</tr>
 												<tr id="trTheater">
@@ -67,7 +71,10 @@
 													</th>
 													<td colspan="3" class="ri">
 														<div class="scroll">
-															${seat }<br /><!-- S석 1층 L열 014번 -->
+														<c:forTokens items="${seat}" var="s" delims=" ">
+															${s}
+														</c:forTokens>
+														<br/><!-- S석 1층 L열 014번 -->
 														</div>
 													</td>
 												</tr>
@@ -84,10 +91,10 @@
 																지참해주세요.</span>
 														</c:when>
 														<c:otherwise>
-														<span class="blu">택배</span> 
-														<c:if test="${ !empty wayBill}">
-															<span>${wayBill}</span> 
-														</c:if>
+															<span class="blu">택배</span> 
+															<c:if test="${ !empty wayBill}">
+																<span>${wayBill}</span> 
+															</c:if>
 														</c:otherwise>
 														</c:choose>
 														</div>
@@ -118,17 +125,19 @@
 												</colgroup>
 												<tr>
 													<th class="le">예매일시</th>
-													<td class="ri">2020.01.30 19:09</td>
+													<fmt:parseDate var="tDateString" value="${tDate }"
+							pattern="yyyy.MM.dd : aaa hh:mm" />
+													<td class="ri">${tDateString }</td>
 													<th>예매상태</th>
-													<td class="ri">예약 - 결제전</td>
+													<td class="ri">${status}</td>
 												</tr>
 												<tr>
 													<th class="le">총결제금액</th>
-													<td class="ri"><span class='red tit'><strong>41,000</strong>원</span><br />
-													<span class='sm'>(티켓금액 <strong>40,000</strong>원 +
+													<td class="ri"><span class='red tit'><strong>${price }</strong>원</span><br />
+													<span class='sm'>(티켓금액 <strong>${price}</strong>원 +
 															예매수수료 <strong>1,000</strong>원 + 배송비 <strong>0</strong>원)
 													</span></td>
-													<th>현금영수증<a class="dcursor"
+													<!--  <th>현금영수증<a class="dcursor"
 														onclick="jsf_otv_CashReceiptGuide();"><img
 															src="http://tkfile.yes24.com/img/mypage/btn_ques.gif"
 															alt="현금영수증 안내" /></a></th>
@@ -137,7 +146,7 @@
 														onclick='jsf_otv_CashReceiptIssue(1530778690,1);'><img
 															src='http://tkfile.yes24.com/img/mypage/btn_prop.gif'
 															alt='현금영수증 신청' /></a>&nbsp;
-													</td>
+													</td>-->
 												</tr>
 												<tr>
 													<th class="le">결제수단</th>
@@ -158,18 +167,6 @@
 											</table>
 
 										</div>
-										<!-- //A. 무통장입금이 포함된 CASE -->
-										<!-- B. 신용카드가 포함된 CASE -->
-
-										<!-- //B. 신용카드가 포함된 CASE -->
-										<!-- C. Yes24 결제수단만 포함된 CASE -->
-
-										<!-- //C. Yes24 결제수단만 포함된 CASE -->
-										<!-- D. 0원 결제(A.B.C 이외) CASE -->
-
-										<!-- //D. 0원 결제(A.B.C 이외) CASE -->
-										<!-- //NEW 결제내역 -->
-										<!-- 좌석정보 리스트 -->
 
 										<!-- 취소안내 -->
 										<div class="mycont">
@@ -180,8 +177,9 @@
 											</h2>
 											<div class="gray_box02 " style="padding: 10px;">
 												<h4 style="margin-top: 10px;">
-													※ 취소 마감시간 :<span class='text-danger'> 2020.02.08 (토)
-														11:00</span> 까지
+												<fmt:parseDate var="cancelDateString" value="${viewDate}"
+							pattern="yyyy.MM.dd(E) aaa hh:mm" />
+													※ 취소 마감시간 :<span class='text-danger'> ${cancelDateString}</span> 까지
 												</h4>
 												<div id="tblCancelinfo2">
 													<h3>취소 수수료 안내></h3>

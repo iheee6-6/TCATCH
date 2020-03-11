@@ -28,7 +28,7 @@
 								</div>
 								<hr>
 								<div style="margin:40px; padding:20px;">
-									<c:url var="mdelete" value="mdelete.do">
+									<c:url var="mdelete" value="memdelete.do">
 										<c:param name="id" value="${ loginUser.id }"/>
 									</c:url>
 									<button class="btn" onclick="location.href='${mdelete}'">탈퇴하기</button>
