@@ -8,7 +8,7 @@
 		<c:when test="${empty viewPerformanceList }">
 			<div
 				style="width: 700px; height: 300px; padding: 100px; text-align: center; border-top: 1px solid black; border-bottom: 1px solid black">
-				no list</div>
+				no list 관람내역이 없습니다.</div>
 		</c:when>
 		<c:otherwise>
 			<%	int index = 1;%>

@@ -30,10 +30,15 @@
 		<result property="artType" column="ART_TYPE" />
 		<result property="artTitle" column="ART_TITLE" />
 		<result property="address" column="ADDRESS" />
-		<result property="originalFile" column="ORIGIN_name" />
-		<result property="renameFile" column="change_name" />
+		<result property="ticketingDate" column="ticketing_Date"/>
 		<result property="startDate" column="start_date" />
 		<result property="endDate" column="end_date" />
+	</resultMap>
+	
+	<resultMap id="ImgResultSet" type="Img">
+		<id property="artNo" column="art_no"/>
+		<result property="filePath" column="file_path"/>
+		<result property="changeName" column="change_name" />
 	</resultMap>
 
 
@@ -193,9 +198,15 @@
 		FROM (select BUY_DATE 
 					FROM PURCHASE
 					JOIN MEMBER USING(M_NO)
-					WHERE M_ID=#{id} order by 1 DESC)
+					WHERE M_ID=#{id} order by 1 ASC)
 		
 		WHERE ROWNUM <![CDATA[<= ]]>1
+	</select>
+	
+	<select id="selectEnrollDate" resultType="string">
+		SELECT TO_CHAR(ENROLL_DATE,'YYYY-MM-DD')
+		FROM MEMBER
+		WHERE M_ID=#{id}
 	</select>
 	
 	<!-- <select id="searchView" resultMap="ticketResultSet">
@@ -253,12 +264,11 @@
 	<select id="selectNoticeList" resultMap="PerformanceResultSet">
 		SELECT * FROM ART A
 		JOIN TICKET_DATE TD ON(A.ART_NO=TD.ART_NO)
-		 JOIN IMG I ON(A.ART_NO=I.ART_NO)
 		WHERE TO_CHAR(TICKETING_DATE,'YYYYMMDDHH24MISS') <![CDATA[>]]>
 		TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
 		ORDER BY TICKETING_DATE ASC
 	</select>
-
+	
 	<select id="selectNoticeDetail" resultMap="PerformanceResultSet">
 		SELECT * FROM ART A
 		JOIN ART_TIME AT ON(A.ART_NO=AD.ART_NO)
@@ -270,4 +280,17 @@
 		INSERT INTO REFUND
 		VALUES(REF_SEQ.NEXTVAL,#{tNo},sysdate,default)
 	</insert>
+	
+	<select id="selectNImgList" resultMap="ImgResultSet" parameterType="_int">
+		SELECT  art_no, file_path, change_name FROM IMG
+			<if test="list != null">
+                WHERE ART_NO IN 
+                <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+                    #{item}
+                </foreach> 
+             </if>
+	</select>
+	
+	
+	
 </mapper>

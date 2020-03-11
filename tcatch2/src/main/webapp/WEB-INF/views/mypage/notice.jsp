@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,17 +22,41 @@
 		<!-- 콘텐츠 //-->
 		<div class="content-min-wrap">
 			<p class="big-title">update!!</p>
-
+			<c:if test="${ !empty noticeList }">
+				<div class="notice-slide">
+					<div class="swiper-container ticketo swiper-container-initialized swiper-container-horizontal">
+						<div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
+							<c:forEach var="notice" items="noticeList">
+								<div class="swiper-slide swiper-slide-active" style="width: 222.2px; margin-right: 24px;">
+								<a href="noticeDetailView.do?${notice.getArtNo }">
+								<img src=""/>
+								<div class="donut-area">
+										<iframe class="chartjs-hidden-iframe" tabindex="-1"
+											style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;"></iframe>
+										<canvas id="chart-area10141" class="donut"
+											style="display: block; width: 220px; height: 220px;"
+											width="220" height="220"></canvas>
+									</div>
+									<div class="donut-dday">D-1</div>
+									<div class="ticket-txt">
+										<fmt:parseDate var="dateString" value="${notice.getTicketingDate }"
+							pattern="yyyy.MM.dd(E) : aaa hh:mm" />
+										<p class="ticket-date">dateString</p>
+										<p class="ticket-tit">${notice.getArtTitle}</p>
+									</div>
+									<p class="ticket-tail">
+										<span class="re">단독</span>
+									</p></a>
+									</div>
+							</c:forEach>
+							
+						</div>
+					</div>
+				</div>
+			</c:if>
 			<div id="NoticeMainDisplay" style="display: block;">
 				<!-- 공지사항 상단 배너 -->
 				<div class="notice-slide">
-				 
-     
-  
-  
-  
-  
-				
 					<div
 						class="swiper-container ticketo swiper-container-initialized swiper-container-horizontal">
 						<div class="swiper-wrapper"
