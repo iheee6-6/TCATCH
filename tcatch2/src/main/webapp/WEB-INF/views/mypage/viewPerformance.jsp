@@ -35,10 +35,10 @@ body {
 
 
 
-.ui-state-default,
+/* .ui-state-default,
 .ui-state-default ui-state-active{
     height: 20px !important;
-}
+} */
 </style>
 <!-- datepicker -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -83,15 +83,6 @@ body {
 													type="button" value="달력"
 													onclick="$('#date2').datepicker('show');" />
 													
-													
-													 <!-- <input id="txtTo" name="txtTo"
-												type="text" class="date w70 hasDatepicker"
-												value="2020-02-03"
-												style="width: 90px; z-index: 999; position: relative;"
-												autocomplete="off"><img
-												class="ui-datepicker-trigger"
-												src="http://tkfile.yes24.com/img/mypage/btn_cal.gif"
-												alt="날짜를 선택하세요. title="날짜를선택하세요."> --></li>
 												<li class="sec"><img
 													src="http://tkfile.yes24.com/img/mypage/th_03.gif"
 													alt="장르별"> <select name="ptype" id="ptype">
@@ -149,16 +140,7 @@ body {
 			
             //To의 초기값을 내일로 설정
             $('#date2').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
-            
-            //From의 초기값 
-            <c:choose>
-				<c:when test="${ empty aDate }">
-					$('#date1').datepicker('setDate','-3Y');
-				</c:when>
-				<c:otherwise>
-					$("#date1").val("${aDate}");
-				</c:otherwise>
-			</c:choose> 
+            $('#date1').val("${aDate}");
         });
     </script>
  

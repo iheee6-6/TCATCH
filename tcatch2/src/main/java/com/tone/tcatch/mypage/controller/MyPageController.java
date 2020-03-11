@@ -29,6 +29,7 @@ import com.tone.tcatch.mypage.model.service.MyPageService;
 import com.tone.tcatch.mypage.model.vo.Alarm;
 import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
+import com.tone.tcatch.art.model.vo.Img;
 import com.tone.tcatch.common.Pagination;
 import com.tone.tcatch.ticket.model.vo.Ticket;
 
@@ -43,13 +44,13 @@ public class MyPageController {
 	@RequestMapping("enterMyPage.do")
 	public ModelAndView enterMypage(ModelAndView mv, HttpSession session, Model model) {
 		Member loginUser = new Member();
-		loginUser.setId("ㅇㅇ");
+		loginUser.setId("test");
 		loginUser.setName("하하");
 		loginUser.setEmail("tcatch@kh.com");
 		loginUser.setAddress("1232,경기도 군포시 고산로 185번길,105동 12302호");
 		loginUser.setPhone("010-232-3222");
 		loginUser.setGender("M");
-
+		
 		// Member loginUser = (Member)session.getAttribute("loginUser");
 		session.setAttribute("loginUser", loginUser);
 		model.addAttribute("loginUser", loginUser);
@@ -184,7 +185,7 @@ public class MyPageController {
 	}
 
 	
-	@RequestMapping("searchView.do")
+	@RequestMapping(value="searchView.do",produces = "application/text; charset=utf8")
 	public String searchView(HttpServletResponse response, HttpSession session, Date sdate, Date edate, String artType,
 			String pName,Model model) throws IOException {
 		System.out.println(sdate+" ~ "+edate);
@@ -213,20 +214,25 @@ public class MyPageController {
 
 	@RequestMapping("noticeView.do")
 	public ModelAndView noticeView(ModelAndView mv,
-			@RequestParam(value="page", required=false) Integer page) throws MypageException {
+			@RequestParam(value="page", required=false) Integer page) {
 			
 		int currentPage = page != null ? page : 1;
 		
-		ArrayList<Art> noticeList = mpService.selectNoticeList(currentPage);
-		
-		if(noticeList != null) {
-			mv.addObject("noticeList", noticeList);
-			mv.addObject("pi", Pagination.getPageInfo());
-			mv.setViewName("mypage/notice");
-		}else {
-			throw new MypageException("예정없음");
+		ArrayList<ArtDetail> noticeList = mpService.selectNoticeList(currentPage);
+		System.out.println(noticeList);
+		if(!noticeList.isEmpty()) {
+			ArrayList<Integer> list= new ArrayList<>();
+			for(ArtDetail a:noticeList) {
+				list.add(a.getArtNo());
+			}
+			ArrayList<Img> imgList= mpService.selectNImgList(list);
+
+			mv.addObject("imgList", imgList);
 		}
-		
+		mv.addObject("noticeList", noticeList);
+		mv.addObject("pi", Pagination.getPageInfo());
+		mv.setViewName("mypage/notice");
+			
 		return mv;
 	}
 
