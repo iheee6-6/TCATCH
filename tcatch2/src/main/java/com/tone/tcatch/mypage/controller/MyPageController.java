@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -279,16 +280,18 @@ public class MyPageController {
 
 	}
 
-	/*
-	 * @RequestMapping("mdelete.do") public String memberDelete(String id, Model
-	 * model, SessionStatus status, RedirectAttributes rd) {
-	 * 
-	 * int result = mpService.deleteMember(id);
-	 * 
-	 * if(result>0) { rd.addFlashAttribute("msg", "회원 탈퇴가 완료 되었습니다.");
-	 * status.setComplete(); return "redirect:home.do"; }else {
-	 * model.addAttribute("msg", "회원 탈퇴 실패"); return "common/errorPage"; } }
-	 */
+	
+	  @RequestMapping("memdelete.do") public String memberDelete(String id, Model
+	  model, SessionStatus status, RedirectAttributes rd) {
+	 
+		 int result = mpService.deleteMember(id);
+		 
+		  if(result>0) { rd.addFlashAttribute("msg", "회원 탈퇴가 완료 되었습니다.");
+		 status.setComplete(); return "redirect:home.do"; }else {
+		 model.addAttribute("msg", "회원 탈퇴 실패"); return "common/errorPage"; 
+		 } 
+	}
+	
 
 	// @Scheduled(cron = "0 0 * * * *") //매일 매시 정각마다(티켓팅은 정각에 이루어지기 때문)
 	public void test() {

@@ -49,9 +49,11 @@
 						<p class="noti-vt-tit">${artTitle } 티켓 오픈 안내</p>
 						<div class="noti-vt-box">
 							<div>
-
+								
 								<p class="noti" id="noti1"></p>
 								<div class="noti-vt-open">
+								<fmt:parseDate var="cancelDateString" value="${viewDate}"
+										pattern="yyyy.MM.dd(E) aaa hh:mm" />
 									<span><em>티켓오픈</em></span> <span id="title1"><%-- ${ticketingDate } --%></span>
 									<!-- 2020.02.06(목) 오후 2:00 -->
 								</div>
