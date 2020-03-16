@@ -3,6 +3,7 @@ package com.tone.tcatch.member.model.vo;
 import java.sql.Date;
 
 public class Member {
+	private int no;
 	private String id;
 	private String pwd;
 	private String name;
@@ -18,9 +19,10 @@ public class Member {
 	public Member() {}
 	
 	
-	public Member(String id, String pwd, String name, String email, String gender, String birth, String phone,
+	public Member(int no,String id, String pwd, String name, String email, String gender, String birth, String phone,
 			String address, Date enrollDate, Date updateDate, String mStatus) {
 		super();
+		this.no = no;
 		this.id = id;
 		this.pwd = pwd;
 		this.name = name;
@@ -32,6 +34,20 @@ public class Member {
 		this.enrollDate = enrollDate;
 		this.updateDate = updateDate;
 		this.mStatus = mStatus;
+	}
+
+
+	
+	
+
+
+	public int getNo() {
+		return no;
+	}
+
+
+	public void setNo(int no) {
+		this.no = no;
 	}
 
 

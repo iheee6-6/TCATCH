@@ -58,5 +58,10 @@ public class CommunityDao {
 		
 		return (ArrayList)sqlSession.selectList("communityMapper.selectReply",cNo);
 	}
+
+	public int updateCommunity(Community c) {
+		
+		return sqlSession.update("communityMapper.updateCommunity",c);
+	}
 	
 }

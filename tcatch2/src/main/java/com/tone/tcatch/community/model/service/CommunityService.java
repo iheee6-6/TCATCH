@@ -13,7 +13,7 @@ public interface CommunityService {
 
 	Community selectCommunity(int cNo, boolean flag);
 
-	int updateCommunity();
+	int updateCommunity(Community c);
 
 	int deleteCommunity(int cNo);
 

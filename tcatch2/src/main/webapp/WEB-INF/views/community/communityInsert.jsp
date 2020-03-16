@@ -32,7 +32,7 @@ table, td {
 </style>
 </head>
 <body>
-	<jsp:include page="../common/menubar.jsp" />
+	<jsp:include page="../common/menubar2.jsp" />
 	<br>
 	<br>
 	<br>
@@ -98,13 +98,7 @@ table, td {
 			return true;
 		}
 	</script>
-	<link
-		href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-		rel="stylesheet">
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-	<!-- include summernote css/js -->
 	<link
 		href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css"
 		rel="stylesheet">

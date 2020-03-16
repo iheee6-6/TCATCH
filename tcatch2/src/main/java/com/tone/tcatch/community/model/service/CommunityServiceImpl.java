@@ -35,12 +35,6 @@ public class CommunityServiceImpl implements CommunityService{
 		return cDao.insertCommunity(c);
 	}
 
-	@Override
-	public int updateCommunity() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 
 	@Override
 	public int insertReply(Reply r) {
@@ -66,5 +60,11 @@ public class CommunityServiceImpl implements CommunityService{
 	public ArrayList<Reply> selectReplyList(int cNo) {
 		
 		return cDao.selectReplyList(cNo);
+	}
+
+	@Override
+	public int updateCommunity(Community c) {
+		
+		return cDao.updateCommunity(c);
 	}
 }

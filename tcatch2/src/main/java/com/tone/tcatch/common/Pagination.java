@@ -1,6 +1,6 @@
 package com.tone.tcatch.common;
 
-import com.tone.tcatch.common.model.vo.PageInfo;
+import com.tone.tcatch.community.model.vo.PageInfo;
 
 public class Pagination {
 

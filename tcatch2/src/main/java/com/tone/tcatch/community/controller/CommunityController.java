@@ -54,7 +54,35 @@ public class CommunityController {
 	@RequestMapping("cinsertView.do")
 	public String communityInsertView() {
 		
+		
+		
 		return "community/communityInsert";
+	}
+	
+	@RequestMapping("cupdateView.do")
+	public ModelAndView communityUpdateView(ModelAndView mv , int cNo,
+			@RequestParam("page") Integer page) {
+		
+		Community commu = cService.selectCommunity(cNo, true);
+		commu.setcContent(commu.getcContent());
+		
+		mv.addObject("commu",commu).addObject("currentPage",page).setViewName("community/communityUpdate");
+		
+		return mv;
+	}
+	@RequestMapping("cupdate.do")
+	public ModelAndView communityUpdate(ModelAndView mv , Community c,
+			HttpServletRequest request,
+			@RequestParam("page") Integer page) {
+		System.out.println("c : " + c);
+		int result = cService.updateCommunity(c);
+		if(result>0) {
+			mv.addObject("page",page).setViewName("redirect:clist.do");
+		}else {
+			throw new CommunityException("커뮤니티 게시글 수정 실패!");
+		}
+		
+		return mv;
 	}
 	
 	@RequestMapping("cinsert.do")
@@ -123,19 +151,13 @@ public class CommunityController {
 		
 	}
 	
-	@RequestMapping("cupdate.do")
-	public String communityUpdate() {
-		
-		int result = cService.updateCommunity();
-		
-		return null;
-	}
+	
 	
 	@RequestMapping(value="rList.do", produces="application/json; charset=utf-8")
 	@ResponseBody
 	public String getReplyList(int cNo) {
 		ArrayList<Reply> rList = cService.selectReplyList(cNo);
-		
+		System.out.println(rList);
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 		// 시분초 다루고 싶다면 java.util.Date 사용
 		return gson.toJson(rList);

@@ -27,16 +27,62 @@
 }
 
 .navbar-nav {
-	margin-left:400px;
-}
-ul li{
-	font-size: 25px;
-	font-family: 'Do Hyeon', sans-serif;
+	margin-left: 250px;
 }
 
+ul li {
+	font-size: 15px;
+	margin: 2px;
+}
+
+.navbar-nav li:hover {
+	font-weight: 900;
+}
 
 .pf-top-right {
-	margin-left:300px;
+	margin-left:200px;
+}
+
+
+.my {
+	background: url(${contextPath}/resources/images/common/user.png)
+		no-repeat;
+	border: none;
+	width: 50px;
+	height: 25px;
+	margin-top:10px;
+
+	pading:0;
+}
+
+.logout {
+	background: url(${contextPath}/resources/images/common/logout.png)
+		no-repeat;
+	border: none;
+	width:50px;
+	height: 25px;
+	margin:auto;
+	padding: 0;
+}
+
+#span1 {
+	float:left;
+	
+	margin-left:-10px;
+	font-size: 10px;
+	visibility: hidden;
+
+}
+
+#span2 {
+	float:left;
+	margin-left:-10px;
+	font-size: 10px;
+	visibility: hidden;
+
+}
+.fixed{
+	margin-bottom:5px;
 }
 </style>
 <body style="height: 1500px">
@@ -60,24 +106,43 @@ ul li{
 				style="color: black;">커뮤니티</a></li>
 			<li class="nav-item"><a class="nav-link" href="cnotice.do"
 				style="color: black;">안내</a></li>
+			<li class="nav-item"><a class="nav-link" href="admin.do"
+				style="color: black;">관리자페이지</a></li>
 		</ul>
 
 		<div class="pf-top-right">
 			<a href="#" onclick=""> <img
 				src="http://tkfile.yes24.com/imgNew/common/pf-srch-w.png" alt=""
-				class="fixed" /></a>
-			&emsp;
+				class="fixed" /></a> &emsp;&emsp;&emsp;
 			<c:if test="${ empty sessionScope.loginUser }">
-				<a href="loginPage.do" class="my-ticket"><span>로그인</span></a>
+					<button class="my" onclick="location.href='loginPage.do'"><br><span id="span1">로그인</span></button>
+
 			</c:if>
 			<c:if test="${ !empty sessionScope.loginUser }">
-				<a href="enterMyPage.do" class="my-ticket"><span>${ loginUser.name }
-						MY</span></a>
-				<a href="logout.do" class="global"><span>로그아웃</span></a>
+				<button class="my" onclick="location.href='enterMyPage.do'"><br><span id="span1">${loginUser.name }님</span></button>
+				&emsp;
+				<button class="logout" onclick="location.href='logout.do'"><br><span id="span2">로그아웃</span></button>
+
 			</c:if>
 		</div>
 	</nav>
-	
+	<script>
+		$(function() {
+			$(".my").on("mouseenter", function() {
+				$("#span1").css("visibility", "visible");
+			});
+			$(".my").on("mouseout", function() {
+				$("#span1").css("visibility", "hidden");
+			});
+			$(".logout").on("mouseenter", function() {
+				$("#span2").css("visibility", "visible");
+			});
+			$(".logout").on("mouseout", function() {
+				$("#span2").css("visibility", "hidden");
+			});
+		});
+	</script>
+
 	<link
 		href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap"
 		rel="stylesheet">
