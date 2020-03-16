@@ -48,9 +48,9 @@ p span {
 													</tr>
 												</c:when>
 												<c:otherwise>
-													<c:forEach var="I" items="interestList">
+													<c:forEach var="I" items="${ interestList}">
 														<tr>
-															<td><input class="chkInterest" name="chkInterest"
+															<td><input class="interestP" name="interestP"
 																type="checkbox" value="${I.artNo }"> &nbsp; 2019.02.12</td>
 															<td>
 																<p class="list">
@@ -61,7 +61,7 @@ p span {
 																</p>
 																<p class="pIntro">
 																	<strong>${I.artTitle }</strong> <br> <span>${I.startDate }~${I.endDate }</span>
-																	<br> <span>I.address</span>
+																	<br> <span>${ I.address}</span>
 																</p>
 															</td>
 															<td><c:url var="pDetail" value="musicalDetail.do">
@@ -115,7 +115,7 @@ p span {
 		});
 
 		$("#deleteP").click(function() {
-			if($(".chkInterest:checked").val()){
+			if($(".interestP:checked").val()){
 				if (confirm("정말 삭제하시겠습니까?")) {
 					$("#checkForm").submit();
 				}

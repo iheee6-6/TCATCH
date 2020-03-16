@@ -1,15 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.*,java.text.SimpleDateFormat "%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
 <link href="resources/css/mypage/notice.css" rel="stylesheet" />
 <style>
 .wrapper {
 	margin-top: 120px;
+}
+
+.ticketo .swiper-slide .ticket-txt:after {
+	top: 30px;
+}
+
+.ticketo .swiper-slide .ticket-txt .ticket-tit {
+	margin-top: 30px;
+}
+
+.ticketo .swiper-slide .ticket-txt .ticket-date {
+	padding: 0px;
 }
 </style>
 </head>
@@ -18,8 +33,61 @@
 	<div class="wrapper">
 		<!-- 콘텐츠 //-->
 		<div class="content-min-wrap">
-			<p class="big-title">공지사항</p>
+			<p class="big-title">update!!</p>
+			<c:if test="${ !empty noticeList }">
+				<%--현재 날짜 --%>
+				<jsp:useBean id="today" class="java.util.Date" />
+				<fmt:parseNumber value="${today.time / (1000*60*60*24)}"
+					integerOnly="true" var="now" />
 
+				<div class="notice-slide">
+					<div
+						class="swiper-container ticketo swiper-container-initialized swiper-container-horizontal">
+						<div class="swiper-wrapper"
+							style="transform: translate3d(0px, 0px, 0px);">
+							<c:forEach var="notice" items="${ noticeList}">
+								<div class="swiper-slide swiper-slide-active"
+									style="width: 222.2px; margin-right: 24px;">
+									<a href="noticeDetailView.do?artNo=${notice.artNo }"> <img
+										src="" />
+										<div class="donut-area">
+											<iframe class="chartjs-hidden-iframe" tabindex="-1"
+												style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;"></iframe>
+											<canvas id="chart-area10141" class="donut"
+												style="display: block; width: 220px; height: 220px;"
+												width="220" height="220"></canvas>
+										</div> <fmt:parseDate var="dateString" value="${notice.ticketingDate }" pattern="yyyy-MM-dd" /> 
+											<fmt:formatDate var="tdate1" value="${dateString }" pattern="yyyy-MM-dd HH:mm:ss" />
+											<fmt:parseNumber value="${dateString.time / (1000*60*60*24)}"
+					integerOnly="true" var="tdate12" />
+											
+											<fmt:formatDate var="tdate2" value="${dateString }"
+											pattern="yyyy.MM.dd(E) : aaa hh:mm" />
+										<div class="donut-dday">
+											<c:choose>
+												<c:when test="${tdate12-now  >=1}">
+													D-${tdate12-now}
+												</c:when>
+												<c:otherwise>
+													today ${tdate12-now}
+												</c:otherwise>
+											</c:choose>
+										</div>
+										<div class="ticket-txt">
+
+											<p class="ticket-date">${tdate2 }</p>
+											<p class="ticket-tit">${notice.artTitle}</p>
+										</div>
+										<p class="ticket-tail">
+											<span class="re">단독</span>
+										</p></a>
+								</div>
+							</c:forEach>
+
+						</div>
+					</div>
+				</div>
+			</c:if>
 			<div id="NoticeMainDisplay" style="display: block;">
 				<!-- 공지사항 상단 배너 -->
 				<div class="notice-slide">
@@ -151,7 +219,7 @@
 										<p class="ticket-tit">〈신과 함께_저승편〉</p>
 									</div></a>
 							</div>
-							<!-- <script>
+							<script>
 								function displayDonut() {
 									config.data.datasets[0].data = [
 											12.5 * (8 - 1), 12.5 * 1 ];
@@ -190,7 +258,7 @@
 													'chart-area10123')
 													.getContext('2d'), config);
 								}
-							</script> -->
+							</script>
 						</div>
 						<span class="swiper-notification" aria-live="assertive"
 							aria-atomic="true"></span>
@@ -205,7 +273,7 @@
 
 
 
-				<!-- <script type="text/javascript">
+				<script type="text/javascript">
 					var config = {
 						type : 'doughnut',
 						data : {
@@ -239,7 +307,7 @@
 					//            num = 0;
 					//        }
 					//    });
-				</script> -->
+				</script>
 				<!-- 공지사항 상단 배너 -->
 
 
@@ -291,9 +359,12 @@
 													<%-- <c:param name="page" value="${ pi.currentPage }" /> --%>
 												</c:url>
 												<td><a href="ndetail"><em>${n.artTitle}</em></a></td>
-												<td></td>
+												<td><fmt:parseDate var="dateString"
+														value="${n.ticketingDate }" pattern="yyyy-MM-dd" /> <fmt:formatDate
+														var="tdate" value="${dateString }"
+														pattern="yyyy.MM.dd(E) : aaa hh:mm" /> ${tdate }</td>
 												<!-- 2020.02.12(수) 17:00 -->
-												<td>${ n.count}</td>
+												<td>조회수</td>
 											</tr>
 
 										</c:forEach>
@@ -331,7 +402,7 @@
 							</c:if>
 							<c:if test="${p ne pi.currentPage }">
 								<c:url var="pagination" value="noticeView.do">
-									<c:param name="page" value="${ p }"/>
+									<c:param name="page" value="${ p }" />
 								</c:url>
 								<a href="${pagination }">${ p }</a> &nbsp;
 							</c:if>
@@ -346,7 +417,7 @@
 							</c:url>
 							<a href="${ after }">[다음]</a>
 						</c:if>
-						
+
 					</div>
 				</div>
 
@@ -376,7 +447,53 @@
 
 
 	</div>
-
 	<jsp:include page="../common/footer.jsp" />
+
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script type='text/javascript' src='resources/css/mypage/swiper.js'></script>
+	<script type='text/javascript'
+		src='http://tkfile.yes24.com/New/Js/Chart.bundle_min.js'></script>
+	<script type='text/javascript'
+		src='http://tkfile.yes24.com/New/Js/utils.js'></script>
+	<script type='text/javascript'
+		src='http://tkfile.yes24.com/New/Js/jquery.mCustomScrollbar_min.js'></script>
+	<script type='text/javascript'
+		src='http://tkfile.yes24.com/New/Js/common.js?v=158'></script>
+	<script type='text/javascript'
+		src='http://tkfile.yes24.com/New/Js/jquery.lazy.min.js'></script>
+	<script type='text/javascript'
+		src='http://tkfile.yes24.com/New/Js/jquery.cookie.js'></script>
+	<script type='text/javascript'
+		src='http://tkfile.yes24.com/New/Js/jquery.url.js'></script>
+	<script type='text/javascript'
+		src='http://tkfile.yes24.com/New/Js/base64.js'></script>
+	<script type='text/javascript'
+		src='http://tkfile.yes24.com/New/Js/babel.js'></script>
+	<script type='text/javascript'
+		src='http://tkfile.yes24.com/New/Js/polyfill.js'></script>
+	<script type='text/javascript'
+		src='/inc/js/custom-1.8.21/ui/jquery-ui-1.8.21.custom.min.js'></script>
+
+	<link rel='shortcut icon'
+		href='http://tkfile.yes24.com/img/favicon.ico?ver=150825a'
+		type='image/x-icon' />
+	<script type='text/javascript'
+		src='http://tkfile.yes24.com/New/Js/jry_home_jdefault.js'></script>
+	<script type='text/javascript'
+		src='http://tkfile.yes24.com/New/Js/jry_home_jdialog.js'></script>
+	<script type='text/javascript'
+		src='http://tkfile.yes24.com/New/Js/jry_default.js?v=158'></script>
+
+	<script type='text/javascript'
+		src='http://tkfile.yes24.com/New/Js/Main.js?v=158'></script>
+
+	<link rel='stylesheet' type='text/css'
+		href='http://tkfile.yes24.com/New/Css/main_2.css?v=2020012203' />
+	<link rel='stylesheet' type='text/css'
+		href='http://tkfile.yes24.com/New/Css/swiper_min.css' />
+	<link rel='stylesheet' type='text/css'
+		href='http://tkfile.yes24.com/New/Css/jquery.mCustomScrollbar.css' />
+
 </body>
 </html>

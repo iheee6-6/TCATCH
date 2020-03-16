@@ -33,6 +33,12 @@ body {
 }
 .ui-datepicker { width: 17em; padding: .2em .2em 0; display: none; font-size: 20px;}
 
+
+
+/* .ui-state-default,
+.ui-state-default ui-state-active{
+    height: 20px !important;
+} */
 </style>
 <!-- datepicker -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -66,22 +72,16 @@ body {
 									<form action="selectViewP.do" method="post">
 										<div class="date_list" style="border: 1px solid gray;">
 											<ul style="list-style: none">
-											
 												<li><img
 													src="http://tkfile.yes24.com/img/mypage/th_02.gif"
 													alt="기간별"> <input type="text" name="date1" id="date1"
-													size="11"/> <input type="button" value="달력"
+													size="11"/>
+													<input type="button" value="달력"
 													onclick="$('#date1').datepicker('show');" /> ~ <input
 													type="text" name="date2" id="date2" size="11" /> <input
 													type="button" value="달력"
-													onclick="$('#date2').datepicker('show');" /> <!-- <input id="txtTo" name="txtTo"
-												type="text" class="date w70 hasDatepicker"
-												value="2020-02-03"
-												style="width: 90px; z-index: 999; position: relative;"
-												autocomplete="off"><img
-												class="ui-datepicker-trigger"
-												src="http://tkfile.yes24.com/img/mypage/btn_cal.gif"
-												alt="날짜를 선택하세요. title="날짜를선택하세요."> --></li>
+													onclick="$('#date2').datepicker('show');" />
+													
 												<li class="sec"><img
 													src="http://tkfile.yes24.com/img/mypage/th_03.gif"
 													alt="장르별"> <select name="ptype" id="ptype">
@@ -103,63 +103,11 @@ body {
 											</ul>
 										</div>
 									</form>
-									<!-- 로딩바 -->
-									<!-- <div id="loading" style="margin:auto;">
-										<img src="resources/images/mypage/loadingbar.gif" />
-									</div> -->
+								
 									<div id="divResult">
-										<div id="loading"></div>
-										<c:choose>
-											<c:when test="${empty viewPerformanceList }">
-												<div
-													style="width: 700px; height: 300px; padding: 100px; text-align: center; border-top: 1px solid black; border-bottom: 1px solid black">
-													관람내역이 없습니다.</div>
-											</c:when>
-											<c:otherwise>
-												<%
-													int index = 1;
-												%>
-												<c:forEach var="v" items="${viewPerformanceList }">
-
-													<div class="memo end">
-														<h3 style="margin: 0">
-															<div class="number">
-																<span><%=index++%></span>
-															</div>
-															<strong>${v.artTitle }</strong>
-														</h3>
-														<p class="poster"
-															style="margin-right: 50px; margin-left: 30px; padding: 0px;">
-															<img
-																src="http://tkfile.yes24.com/upload2/PerfBlog/201408/20140807/20140807-18681_1.jpg"
-																width="141" height="174" alt="Ripple Effect the Concert">
-														</p>
-
-														<ul>
-															<li><em>예매번호</em><span class="bold">${v.tNo }</span></li>
-															<li><em>장르</em><span>${v.artType}</span></li>
-															<!-- 2014.08.16 06:00 -->
-															<fmt:parseDate var="dateString" value="${v.viewDate }" pattern="yyyy.MM.dd : aaa hh:mm" />
-															
-															<li><em>관람일시</em><span>${dateString }</span></li>
-															<li><em>공연장</em><span>${v.address }</span></li>
-															<li><em>좌석(<span class="red">${v.seat }</span>)
-															</em><span> </span></li>
-														</ul>
-														<br>
-														<div>
-															<c:url var="pDetail" value="musicalDetail.do">
-																<c:param name="artNo" value="${v.artNo }" />
-															</c:url>
-															<button class="btn btn-sm"
-																onclick="location.href='${pDetail}'">공연정보</button>
-															<button class="btn btn-sm"
-																onclick="location.href='${pDetail}'">관람후기 작성</button>
-														</div>
-													</div>
-												</c:forEach>
-											</c:otherwise>
-										</c:choose>
+										<div id="loading" style="text-align:center"> 
+											<img src="resources/images/mypage/loadingbar.gif" />
+										</div> 
 									</div>
 								</div>
 							</div>
@@ -189,16 +137,17 @@ body {
 				}
 			});
 			
-			 //From의 초기값을 오늘 날짜로 설정
-            $('#date1').datepicker('setDate','-3Y'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
             //To의 초기값을 내일로 설정
             $('#date2').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+            $('#date1').val("${aDate}");
         });
     </script>
+ 
 	<script type="text/javascript">
  
 		$(document).ready(function(){
 		   $('#loading').hide(); //첫 시작시 로딩바를 숨겨준다.
+		   searchDate();
 		})
 		.ajaxStart(function(){
 			$('#loading').show(); //ajax실행시 로딩바를 보여준다.
@@ -209,22 +158,22 @@ body {
 		 
 		function searchDate(){
 			console.log("hi");
-			var sd = $("#date1").val();
-			var ed = $("#date2").val();
+			var sdate = $("#date1").val();
+			var edate = $("#date2").val();
 			var pType = $("#ptype").val();
 			var pName= $("#pnameSearch").val();
+			console.log(pType);
 			
 			var content = $('div.mypage_contain #divResult');
-			
 			
 		    $.ajax({
 		        type : "POST", 
 		        url : "searchView.do",
 		        data : {
-		        	sdate : sd,
-		        	edate : ed,
-		        	ptype : pType,
-		        	pname : pName
+		        	sdate : sdate,
+		        	edate : edate,
+		        	pType : pType,
+		        	pName : pName
 				},
 				dataType: "html",
 				success : function(data){
@@ -239,10 +188,12 @@ body {
  
 	</script>
 	<jsp:include page="../common/footer.jsp" />
+	
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="resources/js/jquery-ui-1.12.1/datepicker-ko.js"></script>
+
 </body>
 
 </html>

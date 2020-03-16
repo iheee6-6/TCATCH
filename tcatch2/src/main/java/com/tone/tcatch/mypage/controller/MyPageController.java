@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -29,6 +30,7 @@ import com.tone.tcatch.mypage.model.service.MyPageService;
 import com.tone.tcatch.mypage.model.vo.Alarm;
 import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
+import com.tone.tcatch.art.model.vo.Img;
 import com.tone.tcatch.common.Pagination;
 import com.tone.tcatch.ticket.model.vo.Ticket;
 
@@ -43,13 +45,13 @@ public class MyPageController {
 	@RequestMapping("enterMyPage.do")
 	public ModelAndView enterMypage(ModelAndView mv, HttpSession session, Model model) {
 		Member loginUser = new Member();
-		loginUser.setId("ㅇㅇ");
+		loginUser.setId("test");
 		loginUser.setName("하하");
 		loginUser.setEmail("tcatch@kh.com");
 		loginUser.setAddress("1232,경기도 군포시 고산로 185번길,105동 12302호");
 		loginUser.setPhone("010-232-3222");
 		loginUser.setGender("M");
-
+		
 		// Member loginUser = (Member)session.getAttribute("loginUser");
 		session.setAttribute("loginUser", loginUser);
 		model.addAttribute("loginUser", loginUser);
@@ -58,11 +60,11 @@ public class MyPageController {
 		ArrayList<Ticket> recentViewList = mpService.selectRecentViewList(loginUser.getId());
 		ArrayList<ArtDetail> recentInterestList = mpService.selectRecentInterestList(loginUser.getId());
 
-		System.out.println(recentHistoryList);
-		System.out.println(recentViewList);
-		System.out.println(recentInterestList);
+		System.out.println("h"+recentHistoryList);
+		System.out.println("v"+recentViewList);
+		System.out.println("i"+recentInterestList);
 		mv.addObject("recentHistoryList", recentHistoryList);
-		mv.addObject("recentTicketList", recentViewList);
+		mv.addObject("recentViewList", recentViewList);
 		mv.addObject("recentInterestList", recentInterestList);
 		mv.setViewName("mypage/firstPage");
 		return mv;
@@ -90,6 +92,7 @@ public class MyPageController {
 
 		Ticket ticket = mpService.selectTicketDetail(loginUser.getId(), tNo);
 
+		System.out.println("t"+ticket);
 		mv.addObject("ticket", ticket);
 		mv.setViewName("mypage/cNcDetail");
 		return mv;
@@ -106,15 +109,17 @@ public class MyPageController {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 
 		ArrayList<ArtDetail> interestList = mpService.selectInterestPerformanceList(loginUser.getId());
-
+		System.out.println("inp  "+interestList);
 		mv.addObject("interestList", interestList);
 		mv.setViewName("mypage/interestPerformance");
 		return mv;
 	}
 
 	@RequestMapping("deleteInterest.do")
-	public ModelAndView noticeDetailView(ModelAndView mv, HttpSession session, ArrayList<String> dInterest)
+	public ModelAndView noticeDetailView(ModelAndView mv, HttpSession session, 
+			@RequestParam(value="interestP", required=false)ArrayList<String> dInterest)
 			throws MypageException {
+		System.out.println(dInterest);
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		int result = 0;
 		for (int i = 0; i < dInterest.size(); i++)
@@ -132,14 +137,16 @@ public class MyPageController {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 
 		ArrayList<Alarm> alarmList = mpService.selectAlarmList(loginUser.getId());
-
+		
+		System.out.println("inp  "+alarmList);
 		mv.addObject("alarmList", alarmList);
 		mv.setViewName("mypage/alarmList");
 		return mv;
 	}
 
 	@RequestMapping("deleteAlarm.do")
-	public ModelAndView deleteAlarm(ModelAndView mv, HttpSession session, ArrayList<String> dAlarm)
+	public ModelAndView deleteAlarm(ModelAndView mv, HttpSession session,
+			@RequestParam(value="chkAlarm", required=false) ArrayList<String> dAlarm)
 			throws MypageException {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		int result = 0;
@@ -172,22 +179,33 @@ public class MyPageController {
 	public ModelAndView viewPerformance(ModelAndView mv, HttpSession session) {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 
-		ArrayList<Ticket> viewPerformanceList = mpService.selectViewPerformanceList(loginUser.getId());
-
-		mv.addObject("viewPerformanceList", viewPerformanceList);
+		String d= mpService.selectAView(loginUser.getId());
+		
+		/*if(d==null) {
+			d= "null";
+		}*/
+		System.out.println("="+d);
+		mv.addObject("aDate", d);
 		mv.setViewName("mypage/viewPerformance");
 		return mv;
 	}
 
 	
-	@RequestMapping("searchView.do")
-	public String searchView(HttpServletResponse response, HttpSession session, Date sdate, Date edate, String artType,
-			String pName,Model model) throws IOException {
+	@RequestMapping(value="searchView.do",produces = "application/text; charset=utf8")
+	public String searchView(HttpServletResponse response, HttpSession session, 
+			 String sdate,String edate,String pType,
+			String pName,
+			Model model) throws IOException {
 		System.out.println(sdate+" ~ "+edate);
+		if(pName=="") {
+			pName="null";
+		}
+		System.out.println(pType+" , "+pName);
 		Member loginUser = (Member) session.getAttribute("loginUser");
-		//PrintWriter out = response.getWriter();
-		//ArrayList<Ticket> tList = mpService.searchView(loginUser.getId(), sdate, edate, artType, pName);
-		ArrayList<Ticket> tList= new ArrayList<>();
+		
+		ArrayList<Ticket> tList = mpService.searchView(loginUser.getId(), sdate, edate, pType, pName);
+		//ArrayList<Ticket> tList= new ArrayList<>();
+		
 		System.out.println("hihi "+tList);
 		model.addAttribute("viewPerformanceList", tList);
 		
@@ -195,7 +213,8 @@ public class MyPageController {
 	}
 
 	@RequestMapping("refund.do")
-	public ModelAndView refund(ModelAndView mv, HttpSession session, int tId) throws MypageException {
+	public ModelAndView refund(ModelAndView mv, HttpSession session, 
+			@RequestParam(value="tId", required=false)int tId) throws MypageException {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 
 		int result = mpService.refundTicket(loginUser.getId(), tId);
@@ -209,28 +228,34 @@ public class MyPageController {
 
 	@RequestMapping("noticeView.do")
 	public ModelAndView noticeView(ModelAndView mv,
-			@RequestParam(value="page", required=false) Integer page) throws MypageException {
+			@RequestParam(value="page", required=false) Integer page) {
 			
 		int currentPage = page != null ? page : 1;
 		
-		ArrayList<Art> noticeList = mpService.selectNoticeList(currentPage);
-		
-		if(noticeList != null) {
-			mv.addObject("noticeList", noticeList);
-			mv.addObject("pi", Pagination.getPageInfo());
-			mv.setViewName("mypage/notice");
-		}else {
-			throw new MypageException("예정없음");
+		ArrayList<ArtDetail> noticeList = mpService.selectNoticeList(currentPage);
+		System.out.println(noticeList);
+		if(!noticeList.isEmpty()) {
+			ArrayList<Integer> list= new ArrayList<>();
+			for(ArtDetail a:noticeList) {
+				list.add(a.getArtNo());
+			}
+			ArrayList<Img> imgList= mpService.selectNImgList(list);
+
+			mv.addObject("imgList", imgList);
 		}
-		
+		mv.addObject("noticeList", noticeList);
+		mv.addObject("pi", Pagination.getPageInfo());
+		mv.setViewName("mypage/notice");
+			
 		return mv;
 	}
 
 	@RequestMapping("noticeDetailView.do")
-	public ModelAndView noticeDetailView(ModelAndView mv, HttpSession session, int nId) {
+	public ModelAndView noticeDetailView(ModelAndView mv, HttpSession session, int artNo) {
 
-		Art notice = mpService.selectNotice(nId);
+		ArtDetail notice = mpService.selectNotice(artNo);
 
+		System.out.println(notice);
 		mv.addObject("notice", notice);
 		mv.setViewName("mypage/noticeDetail");
 		return mv;
@@ -269,16 +294,18 @@ public class MyPageController {
 
 	}
 
-	/*
-	 * @RequestMapping("mdelete.do") public String memberDelete(String id, Model
-	 * model, SessionStatus status, RedirectAttributes rd) {
-	 * 
-	 * int result = mpService.deleteMember(id);
-	 * 
-	 * if(result>0) { rd.addFlashAttribute("msg", "회원 탈퇴가 완료 되었습니다.");
-	 * status.setComplete(); return "redirect:home.do"; }else {
-	 * model.addAttribute("msg", "회원 탈퇴 실패"); return "common/errorPage"; } }
-	 */
+	
+	  @RequestMapping("memdelete.do") public String memberDelete(String id, Model
+	  model, SessionStatus status, RedirectAttributes rd) {
+	 
+		 int result = mpService.deleteMember(id);
+		 
+		  if(result>0) { rd.addFlashAttribute("msg", "회원 탈퇴가 완료 되었습니다.");
+		 status.setComplete(); return "redirect:home.do"; }else {
+		 model.addAttribute("msg", "회원 탈퇴 실패"); return "common/errorPage"; 
+		 } 
+	}
+	
 
 	// @Scheduled(cron = "0 0 * * * *") //매일 매시 정각마다(티켓팅은 정각에 이루어지기 때문)
 	public void test() {

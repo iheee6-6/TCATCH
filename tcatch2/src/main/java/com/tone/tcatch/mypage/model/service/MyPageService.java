@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
+import com.tone.tcatch.art.model.vo.Img;
 import com.tone.tcatch.member.model.vo.Member;
 import com.tone.tcatch.mypage.model.vo.Alarm;
 import com.tone.tcatch.ticket.model.vo.Ticket;
@@ -40,16 +41,20 @@ public interface MyPageService {
 
 	int insertAlarm(String id, int aId);
 
-	ArrayList<Ticket> searchView(String id, Date sdate, Date edate, String artType, String pName);
+	ArrayList<Ticket> searchView(String id, String sdate, String edate, String artType, String pName);
 
-	ArrayList<Art> selectNoticeList(int currentPage);
+	ArrayList<ArtDetail> selectNoticeList(int currentPage);
 
-	Art selectNotice(int nId);
+	ArtDetail selectNotice(int artNo);
 
 	int refundTicket(String id, int tId);
 
 	ArrayList<Art> confirmTicketingTime(Date d);
 
 	ArrayList<Member> selectAlarmMember(Art art);
+
+	String selectAView(String id);
+
+	ArrayList<Img> selectNImgList(ArrayList<Integer> list);
 
 }
