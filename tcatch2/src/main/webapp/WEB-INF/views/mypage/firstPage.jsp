@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,14 +59,11 @@ li a {
 										<c:otherwise>
 										<c:forEach var="b" items="${ recentHistoryList }">
 											<tr>
-												<td>${b.tDate }</td>
-
-												<td>
-													<c:url var="tDetail" value="tDetail.do">
-														<c:param name="tNo" value="${b.tNo}" />
-													</c:url>
-												<a href="${tDetail}">${b.tNo}</a>
-												</td>
+											<td>${b.tDate }</td>
+												
+												<td> <c:url var="tDetail" value="tDetail.do">
+															<c:param name="tNo" value="1" />
+													</c:url><a href="${tDetail}">${b.tNo}</a></td>
 												<td>${b.artTitle }</td>
 												<td>${b.viewDate }</td>
 												<td>${b.ticketCount}</td>
@@ -99,17 +97,19 @@ li a {
 											</li>
 										</c:when>
 										<c:otherwise>
-										<c:forEach var="I" items="recentInterestList">
+										<c:forEach var="I" items="${recentInterestList}">
 											<li>
 												<div>
 													<c:url var="pDetail" value="musicalDetail.do">
 														<c:param name="artNo" value="${I.artNo }" />
 													</c:url>
-													<a href="${pDetail }"><img
+													<a href="${pDetail}"><img
 														src="http://tkfile.yes24.com/upload2/PerfBlog/202001/20200106/20200106-35104_1.jpg"
 														class="poster_line" width="53" height="65"
-														alt="뮤지컬 [쓰릴 미]"></a><a href="${pDetail }"><strong>${I.artTitle }</strong></a>
-													<span>${I.startDate }~${I.endDate }</span> <span>${I.address }</span>
+														alt="뮤지컬 [쓰릴 미]"></a><a href="${pDetail }"><strong>${I.artTitle }</strong></a> 
+														<%-- <fmt:parseDate var="sdateString" value="${I.startDate}" pattern="yyyy.MM.dd" />
+													<fmt:parseDate var="edateString" value="${I.endDate}" pattern="yyyy.MM.dd" />
+													 --%><span>${I.startDate}~${I.endDate}</span> <span>${I.address }</span>
 													<!-- 2020.03.04 -->
 												</div>
 											</li>
@@ -142,7 +142,7 @@ li a {
 											</li>
 										</c:when>
 										<c:otherwise>
-											<c:forEach var="v" items="recentViewList">
+											<c:forEach var="v" items="${recentViewList}">
 												<li><c:url var="vpDetail" value="musicalDetail.do">
 														<c:param name="artNo" value="${v.artNo }" />
 													</c:url>
@@ -150,7 +150,7 @@ li a {
 														<a href="${vpDetail }"><img
 															src="http://tkfile.yes24.com/upload2/PerfBlog/201408/20140807/20140807-18681_1.jpg"
 															class="poster_line" width="53" height="65"
-															alt="Ripple Effect the Concert"></a><a
+															alt="Ripple Effrect the Concert"></a><a
 															href="${vpDetail }"><strong>${v.artTitle }</strong></a><span
 															class="red"></span> <span>예매번호: ${v.tNo }</span> <span><a
 															href="${vpDetail }"> <img class="firstBtn"

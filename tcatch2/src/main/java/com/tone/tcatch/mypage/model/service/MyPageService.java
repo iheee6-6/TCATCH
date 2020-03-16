@@ -41,11 +41,11 @@ public interface MyPageService {
 
 	int insertAlarm(String id, int aId);
 
-	ArrayList<Ticket> searchView(String id, Date sdate, Date edate, String artType, String pName);
+	ArrayList<Ticket> searchView(String id, String sdate, String edate, String artType, String pName);
 
 	ArrayList<ArtDetail> selectNoticeList(int currentPage);
 
-	Art selectNotice(int nId);
+	ArtDetail selectNotice(int artNo);
 
 	int refundTicket(String id, int tId);
 

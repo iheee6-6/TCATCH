@@ -96,7 +96,7 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public ArrayList<Ticket> searchView(String id, Date sdate, Date edate, String artType, String pName) {
+	public ArrayList<Ticket> searchView(String id, String sdate, String edate, String artType, String pName) {
 		return mpDao.searchView(id,sdate,edate,artType,pName);
 	}
 
@@ -116,8 +116,8 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public Art selectNotice(int nId) {
-		return mpDao.selectNotice(nId);
+	public ArtDetail selectNotice(int artNo) {
+		return mpDao.selectNotice(artNo);
 	}
 
 	@Override

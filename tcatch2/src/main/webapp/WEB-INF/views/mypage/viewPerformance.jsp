@@ -76,7 +76,6 @@ body {
 													src="http://tkfile.yes24.com/img/mypage/th_02.gif"
 													alt="기간별"> <input type="text" name="date1" id="date1"
 													size="11"/>
-													
 													<input type="button" value="달력"
 													onclick="$('#date1').datepicker('show');" /> ~ <input
 													type="text" name="date2" id="date2" size="11" /> <input
@@ -159,22 +158,22 @@ body {
 		 
 		function searchDate(){
 			console.log("hi");
-			var sd = $("#date1").val();
-			var ed = $("#date2").val();
+			var sdate = $("#date1").val();
+			var edate = $("#date2").val();
 			var pType = $("#ptype").val();
 			var pName= $("#pnameSearch").val();
+			console.log(pType);
 			
 			var content = $('div.mypage_contain #divResult');
-			
 			
 		    $.ajax({
 		        type : "POST", 
 		        url : "searchView.do",
 		        data : {
-		        	sdate : sd,
-		        	edate : ed,
-		        	ptype : pType,
-		        	pname : pName
+		        	sdate : sdate,
+		        	edate : edate,
+		        	pType : pType,
+		        	pName : pName
 				},
 				dataType: "html",
 				success : function(data){

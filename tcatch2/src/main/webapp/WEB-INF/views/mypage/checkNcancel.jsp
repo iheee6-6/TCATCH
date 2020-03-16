@@ -54,16 +54,16 @@ td a {
 											<c:otherwise>
 											<c:forEach var="b" items="${ ticketList }">
 												<tr>
-												<fmt:parseDate var="tdateString" value="${b.tDate}" pattern="yyyy.MM.dd : aaa hh:mm" />
-												<fmt:parseDate var="vdateString" value="${b.viewDate}" pattern="yyyy.MM.dd : aaa hh:mm" />
-														
-													<td>${tdateString }</td>
+												<fmt:formatDate var="tdateString" value="${b.tDate}" pattern="yyyy-MM-dd" />
+												<fmt:formatDate var="vdateString" value="${b.viewDate}" pattern="yyyy-MM-dd" />
+												 	
+													<td>${b.tDate}</td>
 
 													<td><c:url var="tDetail" value="tDetail.do">
-															<c:param name="tNo" value="${b.tNo }" />
+															<c:param name="tNo" value="${b.tNo}" />
 														</c:url> <a href="${tDetail}">${b.tNo}</a></td>
-													<td>${b.performanceName }</td>
-													<td>${vdateString }</td>
+													<td>${b.artTitle}</td>
+													<td>${vdateString}</td>
 													<td>${b.ticketCount}</td>
 													<td>${b.status }</td>
 												</tr>

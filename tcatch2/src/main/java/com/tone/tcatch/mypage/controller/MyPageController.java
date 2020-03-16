@@ -60,11 +60,11 @@ public class MyPageController {
 		ArrayList<Ticket> recentViewList = mpService.selectRecentViewList(loginUser.getId());
 		ArrayList<ArtDetail> recentInterestList = mpService.selectRecentInterestList(loginUser.getId());
 
-		System.out.println(recentHistoryList);
-		System.out.println(recentViewList);
-		System.out.println(recentInterestList);
+		System.out.println("h"+recentHistoryList);
+		System.out.println("v"+recentViewList);
+		System.out.println("i"+recentInterestList);
 		mv.addObject("recentHistoryList", recentHistoryList);
-		mv.addObject("recentTicketList", recentViewList);
+		mv.addObject("recentViewList", recentViewList);
 		mv.addObject("recentInterestList", recentInterestList);
 		mv.setViewName("mypage/firstPage");
 		return mv;
@@ -92,6 +92,7 @@ public class MyPageController {
 
 		Ticket ticket = mpService.selectTicketDetail(loginUser.getId(), tNo);
 
+		System.out.println("t"+ticket);
 		mv.addObject("ticket", ticket);
 		mv.setViewName("mypage/cNcDetail");
 		return mv;
@@ -108,15 +109,17 @@ public class MyPageController {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 
 		ArrayList<ArtDetail> interestList = mpService.selectInterestPerformanceList(loginUser.getId());
-
+		System.out.println("inp  "+interestList);
 		mv.addObject("interestList", interestList);
 		mv.setViewName("mypage/interestPerformance");
 		return mv;
 	}
 
 	@RequestMapping("deleteInterest.do")
-	public ModelAndView noticeDetailView(ModelAndView mv, HttpSession session, ArrayList<String> dInterest)
+	public ModelAndView noticeDetailView(ModelAndView mv, HttpSession session, 
+			@RequestParam(value="interestP", required=false)ArrayList<String> dInterest)
 			throws MypageException {
+		System.out.println(dInterest);
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		int result = 0;
 		for (int i = 0; i < dInterest.size(); i++)
@@ -134,14 +137,16 @@ public class MyPageController {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 
 		ArrayList<Alarm> alarmList = mpService.selectAlarmList(loginUser.getId());
-
+		
+		System.out.println("inp  "+alarmList);
 		mv.addObject("alarmList", alarmList);
 		mv.setViewName("mypage/alarmList");
 		return mv;
 	}
 
 	@RequestMapping("deleteAlarm.do")
-	public ModelAndView deleteAlarm(ModelAndView mv, HttpSession session, ArrayList<String> dAlarm)
+	public ModelAndView deleteAlarm(ModelAndView mv, HttpSession session,
+			@RequestParam(value="chkAlarm", required=false) ArrayList<String> dAlarm)
 			throws MypageException {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		int result = 0;
@@ -187,13 +192,20 @@ public class MyPageController {
 
 	
 	@RequestMapping(value="searchView.do",produces = "application/text; charset=utf8")
-	public String searchView(HttpServletResponse response, HttpSession session, Date sdate, Date edate, String artType,
-			String pName,Model model) throws IOException {
+	public String searchView(HttpServletResponse response, HttpSession session, 
+			 String sdate,String edate,String pType,
+			String pName,
+			Model model) throws IOException {
 		System.out.println(sdate+" ~ "+edate);
+		if(pName=="") {
+			pName="null";
+		}
+		System.out.println(pType+" , "+pName);
 		Member loginUser = (Member) session.getAttribute("loginUser");
-		PrintWriter out = response.getWriter();
-		ArrayList<Ticket> tList = mpService.searchView(loginUser.getId(), sdate, edate, artType, pName);
+		
+		ArrayList<Ticket> tList = mpService.searchView(loginUser.getId(), sdate, edate, pType, pName);
 		//ArrayList<Ticket> tList= new ArrayList<>();
+		
 		System.out.println("hihi "+tList);
 		model.addAttribute("viewPerformanceList", tList);
 		
@@ -201,7 +213,8 @@ public class MyPageController {
 	}
 
 	@RequestMapping("refund.do")
-	public ModelAndView refund(ModelAndView mv, HttpSession session, int tId) throws MypageException {
+	public ModelAndView refund(ModelAndView mv, HttpSession session, 
+			@RequestParam(value="tId", required=false)int tId) throws MypageException {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 
 		int result = mpService.refundTicket(loginUser.getId(), tId);
@@ -238,10 +251,11 @@ public class MyPageController {
 	}
 
 	@RequestMapping("noticeDetailView.do")
-	public ModelAndView noticeDetailView(ModelAndView mv, HttpSession session, int nId) {
+	public ModelAndView noticeDetailView(ModelAndView mv, HttpSession session, int artNo) {
 
-		Art notice = mpService.selectNotice(nId);
+		ArtDetail notice = mpService.selectNotice(artNo);
 
+		System.out.println(notice);
 		mv.addObject("notice", notice);
 		mv.setViewName("mypage/noticeDetail");
 		return mv;
