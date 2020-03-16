@@ -28,7 +28,7 @@
 								</h4>
 
 							</div>
-							<form action="deleteAlarm.do" method="post" id="checkFormA">
+							<form action="deleteAlarm.do" method="post" id="checkForm">
 								<div class="card-body">
 									<div class="sms_alram"
 										style="height: 180px; background-color: ghostwhite; border: 1px solid black">
@@ -63,13 +63,17 @@
 													<c:forEach var="a" items="${alarmList }">
 														<tr>
 															<td><input class="chkAlarm" name="chkAlarm"
-																type="checkbox" value="${a.pNo }"></td>
-															<td>${a.pName }</td>
-															<fmt:parseDate var="dateString" value="${a.alarmDate}" pattern="yyyy.MM.dd : aaa hh:mm" />
-															
-															<td>dateString</td>
+																type="checkbox" value="${a.artNo }"></td>
+															<td>${a.artTitle }</td>
+													
+															<fmt:parseDate var="ticketString" value="${a.ticketingDate}" pattern="yyyy-MM-dd" />
+															<fmt:formatDate value="${ ticketString}" var="tdate" pattern="yyyy.MM.dd : aaa hh:mm"/>
+															<td>${tdate}</td>
 															<!--  <td>2019.02.12 : 오후 9시</td>-->
-															<td>${a.alarmDate }</td>
+															<fmt:parseDate var="alarmString" value="${a.alarmDate}" pattern="yyyy-MM-dd" />
+															<fmt:formatDate value="${ alarmString}" var="adate" pattern="yyyy.MM.dd : aaa hh:mm"/>
+															
+															<td>${adate }</td>
 														</tr>
 													</c:forEach>
 												</c:otherwise>
@@ -107,10 +111,10 @@
 
 		$("#allCheck").click(function() {
 			if ($(this).text() == "전체 선택") {
-				$('.alarmP').prop('checked', true);
+				$('.chkAlarm').prop('checked', true);
 				$(this).text("전체 해제");
 			} else {
-				$('.alarmP').prop('checked', false);
+				$('.chkAlarm').prop('checked', false);
 				$(this).text("전체 선택");
 			}
 

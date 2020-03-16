@@ -380,6 +380,19 @@ public class Ticket {
 	public void setReview_content(String review_content) {
 		this.review_content = review_content;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Ticket [userName=" + userName + ", userNo=" + userNo + ", tNo=" + tNo + ", tDate=" + tDate + ", artNo="
+				+ artNo + ", artTitle=" + artTitle + ", artType=" + artType + ", ticketCount=" + ticketCount
+				+ ", timeNo=" + timeNo + ", dateCount=" + dateCount + ", viewDate=" + viewDate + ", address=" + address
+				+ ", seat=" + seat + ", receiveMethod=" + receiveMethod + ", originalFile=" + originalFile
+				+ ", renameFile=" + renameFile + ", price=" + price + ", status=" + status + ", refundNo=" + refundNo
+				+ ", refundEnrollDate=" + refundEnrollDate + ", refundStatus=" + refundStatus + ", wayBill=" + wayBill
+				+ ", cancelDeadline=" + cancelDeadline + ", review_no=" + review_no + ", review_content="
+				+ review_content + "]";
+	}
 	
 	
 }

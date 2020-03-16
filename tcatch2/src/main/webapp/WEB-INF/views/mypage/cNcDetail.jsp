@@ -31,32 +31,32 @@
 									<div class="mycont">
 
 										<div class="blu_box">
-											<p class="tit">${artTitle } 
-														<span style="color: red;">:: ${status}</span></p>
+											<p class="tit">${ticket.artTitle} 
+														<span style="color: red;">:: ${ticket.status}</span></p>
 											<p class="poster">
 												<a href='/Pages/Perf/Detail/Detail.aspx?IdPerf=35104'
-													Title='${artTitle }'><img
+													Title='${ticket.artTitle }'><img
 													src='http://tkfile.yes24.com/upload2/PerfBlog/202001/20200106/20200106-35104_1.jpg'
 													width='180' height='224' alt='' /></a>
 											</p>
 											<table id="tblOrderInfo" class="table_sm">
 												<tr>
 													<th class="le">예매번호</th>
-													<td><strong>${tNo }</strong></td>
+													<td><strong>${ticket.tNo }</strong></td>
 													<th>예매자</th>
-													<td class="ri">${userName }</td>
+													<td class="ri">${ticket.userName }</td>
 												</tr>
 												<tr id="trPerfDateTime">
 													<th class="le">관람일</th>
-													<fmt:parseDate var="dateString" value="${viewDate }"
-							pattern="yyyy.MM.dd : aaa hh:mm" />
 													
-													<td colspan="3" class="ri"><strong>${dateString}</strong></td>
+													<fmt:parseDate value="${ticket.viewDate }" var="viewDate" pattern="yyyy-MM-dd"/>
+													<fmt:formatDate var="viewDatef" value="${viewDate}" pattern="yyyy.MM.dd : aaa hh:mm"/>
+													<td colspan="3" class="ri"><strong>${viewDatef}</strong></td>
 													<!-- 2020.02.09 15:00 -->
 												</tr>
 												<tr id="trTheater">
 													<th class="le">공연장</th>
-													<td colspan="3" class="ri">${address } <a
+													<td colspan="3" class="ri">${ticket.address } <a
 														class='dcursor' onclick='jsf_otv_ViewTheaterMap(3422);'><img
 															src='http://tkfile.yes24.com/img/mypage/btn_map.gif'
 															alt='약도' /></a></td>
@@ -71,7 +71,7 @@
 													</th>
 													<td colspan="3" class="ri">
 														<div class="scroll">
-														<c:forTokens items="${seat}" var="s" delims=" ">
+														<c:forTokens items="${ticket.seat}" var="s" delims=" ">
 															${s}
 														</c:forTokens>
 														<br/><!-- S석 1층 L열 014번 -->
@@ -85,15 +85,15 @@
 													<td colspan="3" class="ri">
 														<div id="divDeliveryNone">
 														<c:choose>
-														<c:when test="${receiveMethod eq 2}">
+														<c:when test="${ticket.receiveMethod eq 2}">
 															<span class="blu">현장수령</span> <span>- 공연 당일
 																티켓교부처에서 티켓을 받으시면 됩니다.</span> <span>- 예매내역서(프린트)와 신분증을
 																지참해주세요.</span>
 														</c:when>
 														<c:otherwise>
 															<span class="blu">택배</span> 
-															<c:if test="${ !empty wayBill}">
-																<span>${wayBill}</span> 
+															<c:if test="${ !empty ticket.wayBill}">
+																<span>${ticket.wayBill}</span> 
 															</c:if>
 														</c:otherwise>
 														</c:choose>
@@ -125,16 +125,17 @@
 												</colgroup>
 												<tr>
 													<th class="le">예매일시</th>
-													<fmt:parseDate var="tDateString" value="${tDate }"
-							pattern="yyyy.MM.dd : aaa hh:mm" />
-													<td class="ri">${tDateString }</td>
+													<fmt:parseDate value="${ticket.tDate }" var="tDate" pattern="yyyy-MM-dd"/>
+													<fmt:formatDate value="${tDate}" var="tDatef" pattern="yyyy.MM.dd : aaa hh:mm"/>
+													
+													<td class="ri">${tDatef }</td>
 													<th>예매상태</th>
-													<td class="ri">${status}</td>
+													<td class="ri">${ticket.status}</td>
 												</tr>
 												<tr>
 													<th class="le">총결제금액</th>
-													<td class="ri"><span class='red tit'><strong>${price }</strong>원</span><br />
-													<span class='sm'>(티켓금액 <strong>${price}</strong>원 +
+													<td class="ri"><span class='red tit'><strong>${ticket.price }</strong>원</span><br />
+													<span class='sm'>(티켓금액 <strong>${ticket.price}</strong>원 +
 															예매수수료 <strong>1,000</strong>원 + 배송비 <strong>0</strong>원)
 													</span></td>
 													<!--  <th>현금영수증<a class="dcursor"
@@ -177,9 +178,10 @@
 											</h2>
 											<div class="gray_box02 " style="padding: 10px;">
 												<h4 style="margin-top: 10px;">
-												<fmt:parseDate var="cancelDateString" value="${viewDate}"
-							pattern="yyyy.MM.dd(E) aaa hh:mm" />
-													※ 취소 마감시간 :<span class='text-danger'> ${cancelDateString}</span> 까지
+												<%-- <fmt:parseDate value="${ticket.viewDate}" var="viewDate" pattern="yyyy-MM-dd"/>
+													<fmt:formatDate var="vDatef" value="${viewDate}" pattern="yyyy.MM.dd(E) : aaa hh:mm"/>
+													 --%>
+													※ 취소 마감시간 :<span class='text-danger'> ${viewDatef}</span> 까지
 												</h4>
 												<div id="tblCancelinfo2">
 													<h3>취소 수수료 안내></h3>
@@ -256,9 +258,9 @@
 												<li>- 티켓 수령 방법 변경(현장수령 -> 배송)은 예매 완료된 건에 한하며, 배송비 결제는
 													신용카드만 결제 가능합니다.(단 공연일 기준 12일 전까지 / 일부 공연 불가)</li>
 												<li>- 다음과 같은 경우 PC/모바일에서는 취소 또는 부분취소가 불가하오니 고객센터로
-													문의해주시기 바랍니다.<br /> &nbsp;&nbsp 1) YES머니, YES상품권, 쿠폰 등 예스24
-													결제수단을 사용하여 예매한 경우<br /> &nbsp;&nbsp 2) 무통장입금 예매 후 신용카드로
-													배송비를 추가 결제한 경우<br /> &nbsp;&nbsp 3) 티켓 배송이 완료되었거나 시작된 경우<br />
+													문의해주시기 바랍니다.<br /> &nbsp;&nbsp; 1) YES머니, YES상품권, 쿠폰 등 예스24
+													결제수단을 사용하여 예매한 경우<br /> &nbsp;&nbsp; 2) 무통장입금 예매 후 신용카드로
+													배송비를 추가 결제한 경우<br /> &nbsp;&nbsp; 3) 티켓 배송이 완료되었거나 시작된 경우<br />
 													&nbsp;&nbsp;&nbsp;&nbsp;(취소마감시간 이전에 고객센터로 반송되어야 취소 가능, 취소
 													수수료는 티켓 도착일 기준으로 부과되며 배송비는 환불 불가)
 												</li>

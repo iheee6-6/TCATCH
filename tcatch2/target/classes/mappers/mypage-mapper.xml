@@ -5,6 +5,7 @@
 <mapper namespace="myPageMapper">
 	<resultMap id="ticketResultSet" type="Ticket">
 		<id property="tNo" column="purchase_no" />
+		<result property="userName" column="m_name"/>
 		<result property="tDate" column="buy_date" />
 		<result property="artTitle" column="art_title" />
 		<result property="viewDate" column="date_time" />
@@ -15,7 +16,7 @@
 		<result property="address" column="address" />
 		<result property="seat" column="seat_name" />
 		<result property="receiveMethod" column="type" />
-		<result property="review_no" column="COMMENT_NO"/>
+		<result property="review_no" column="R_NO"/>
 		
 		<result property="review_content" column="rcontent"/>
 		
@@ -44,10 +45,11 @@
 
 	<resultMap id="alarmResultSet" type="Alarm">
 		<id property="alarmNo" column="per_no" />
-		<result property="performanceName" column="art_name" />
-		<result property="performanceNo" column="art_no" />
+		<result property="artTitle" column="art_title" />
+		<result property="artNo" column="art_no" />
 		<result property="enrollDate" column="per_enrolldate" />
 		<result property="alarmDate" column="alarm_Date" />
+		<result property="ticketingDate" column="ticketing_Date"/>
 	</resultMap>
 
 	<select id="selectRHistory" parameterType="Ticket"
@@ -60,37 +62,39 @@
 		JOIN
 		ART a on(p.ART_NO=a.ART_NO)
 		JOIN ART_TIME td on(td.ART_NO=a.art_no)
-		JOIN REFUND r on(p.PURCHASE_NO=r.purchase_no)
 		JOIN MEMBER USING(M_NO)
+		left JOIN REFUND r on(p.PURCHASE_NO=r.purchase_no)
 		WHERE M_ID=#{id} AND
-		BUY_DATE<![CDATA[  <=  ]]>
+		BUY_DATE<![CDATA[  >=  ]]>
 		add_months(sysdate,-3)
 		ORDER BY DATE_TIME DESC
 	</select>
 
 	<select id="selectRView" parameterType="Ticket"
 		resultMap="ticketResultSet">
-		SELECT * FROM PURCHASE p
-		JOIN ART a on(p.ART_NO=a.ART_NO)
-		JOIN ART_TIME td on(td.ART_NO=P.art_no)
-		JOIN IMG I ON(I.ART_NO=P.ART_NO)
-		JOIN MEMBER USING(M_NO)
-		WHERE M_ID=#{id}
-		AND
-		TO_CHAR(DATE_TIME,'YYYYMMDDHH24MISS')<![CDATA[ <  ]]>
-		TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS') AND
-		ROWNUM <![CDATA[ <=]]> 3
-		ORDER BY DATE_TIME DESC
+		SELECT * FROM (SELECT p.art_no,purchase_no,buy_date,art_title,date_time,purchase_count,wayBill_number FROM PURCHASE p
+				JOIN ART a on(p.ART_NO=a.ART_NO)
+				JOIN ART_TIME td on(td.ART_NO=P.art_no)
+				left JOIN IMG I ON(I.ART_NO=P.ART_NO)
+				JOIN MEMBER USING(M_NO)
+				WHERE M_ID=#{id} AND
+				TO_CHAR(DATE_TIME,'YYYYMMDDHH24MISS')<![CDATA[ <  ]]>
+				TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')  AND NOT EXISTS (SELECT PURCHASE_NO FROM REFUND WHERE STATUS = 'N')
+				ORDER BY DATE_TIME DESC) 
+		WHERE ROWNUM <![CDATA[ <=]]> 3
 	</select>
 
-	<select id="selectRInterest" resultMap="ticketResultSet">
-		SELECT * FROM PERSONAL PER
-		JOIN ART A ON(PER.ART_NO=A.ART_NO)
-		JOIN TICKET_DATE T ON(per.art_no=t.art_no )
-		JOIN MEMBER USING(M_NO)
-		WHERE PER_TYPE=1 AND M_ID=#{ID}
-		AND ROWNUM <![CDATA[<=]]>3
-		ORDER BY PER_ENROLLDATE DESC
+	<select id="selectRInterest" resultMap="PerformanceResultSet">
+	SELECT *  FROM(SELECT A.ART_NO,A.ART_TYPE,A.ART_TITLE,A.ADDRESS,ticketing_Date,start_date,end_date
+     				FROM PERSONAL PER
+					JOIN ART A ON(PER.ART_NO=A.ART_NO)
+					JOIN TICKET_DATE T ON(per.art_no=T.art_no )
+					JOIN MEMBER USING(M_NO)
+					WHERE PER_TYPE=1 AND M_ID=#{ID}
+					ORDER BY per_enrolldate DESC )
+        WHERE ROWNUM <![CDATA[<=]]>3
+         
+       
 	</select>
 
 	<select id="getTListCount" resultType="_int">
@@ -106,17 +110,17 @@
 	<select id="selectTicketList" resultMap="ticketResultSet">
 		SELECT p.purchase_no, buy_date, art_title, date_time,
 		purchase_count, p.art_no,
-		 CASE WHEN r.STATUS='Y' THEN '환불대기중'
-		WHEN r.STATUS='Y' THEN '환불 완료'
+		CASE WHEN r.STATUS='Y' THEN '환불대기중'
+		WHEN r.STATUS='N' THEN '환불 완료'
 		ELSE '예매완료'
 		END AS REFUNDS,
 		wayBill_number,origin_name,change_name FROM PURCHASE p
 		JOIN ART a
 		on(p.ART_NO=a.ART_NO)
 		JOIN ART_TIME td on(td.ART_NO=a.art_no)
-		JOIN REFUND r on(p.PURCHASE_NO=r.purchase_no)
-		JOIN IMG i on(p.art_no=i.art_no)
+		left JOIN IMG i on(p.art_no=i.art_no)
 		JOIN MEMBER USING(M_NO)
+		left JOIN REFUND r on(p.PURCHASE_NO=r.purchase_no)
 		WHERE M_ID=#{id}
 		ORDER BY
 		DATE_TIME DESC
@@ -126,78 +130,90 @@
 	<select id="selectTicketDetail" 
 		resultMap="ticketResultSet">
 		SELECT p.purchase_no, buy_date, art_title, date_time,
-		purchase_count,
-		p.art_no, wayBill_number, p.seat_name, type,
-		at.time_no, art_type, change_name,
+		purchase_count, p.art_no, wayBill_number, p.seat_name, type,
+		td.time_no, art_type, change_name, seat_sal, m_name,
 		CASE WHEN r.STATUS='Y' THEN '환불대기중'
-		WHEN
-		r.STATUS='Y' THEN '환불 완료' ELSE '예매완료'
-		END AS REFUNDSFROM PURCHASE p
-		JOIN IMG I ON(P.ART_NO= I.ART_NO)
+		WHEN r.STATUS='N' THEN '환불 완료' ELSE '예매완료'
+		END AS REFUNDS 
+		FROM PURCHASE p
 		JOIN ART a on(p.ART_NO=a.ART_NO)
-		JOIN ART_TIME at
-		on(at.ART_NO=a.art_no)
-		JOIN REFUND r on(p.PURCHASE_NO=r.purchase_no)
-		JOIN SEAT s on(s.time_no=at.time_no)
+		JOIN ART_TIME td on(td.ART_NO=a.art_no)
+		left JOIN IMG i on(p.art_no=i.art_no)
 		JOIN MEMBER USING(M_NO)
-		WHERE M_ID=#{id}
-		ORDER BY DATE_TIME
-		DESC
+		left JOIN REFUND r on(p.PURCHASE_NO=r.purchase_no)
+		WHERE M_ID=#{id} AND p.purchase_no=#{tNo}
+		
 	</select>
 
 
 	<select id="selectInterest" 
 		resultMap="PerformanceResultSet">
-		SELECT * FROM PERSONAL P
-		JOIN ART A ON(P.ART_NO= A.ART_NO)
-		JOIN IMG I ON(P.ART_NO= I.ART_NO)
-		JOIN MEMBER USING(M_NO)
-		WHERE PER_TYPE=1 
-		AND M_ID= #{ID} 
+		SELECT A.ART_NO,A.ART_TYPE,A.ART_TITLE,A.ADDRESS,ticketing_Date,start_date,end_date
+     				FROM PERSONAL PER
+					JOIN ART A ON(PER.ART_NO=A.ART_NO)
+					JOIN TICKET_DATE T ON(per.art_no=T.art_no )
+					JOIN MEMBER USING(M_NO)
+					WHERE PER_TYPE=1 AND M_ID=#{ID}
+					ORDER BY per_enrolldate DESC
 	</select>
-
+	
+	
+	<delete id="deleteInterest">
+		DELETE FROM PERSONAL 
+		WHERE m_no = (select m_no from member where m_id=#{id})
+		AND 
+		ART_NO=#{artNo} AND PER_TYPE=1
+	</delete>
+	
 	<select id="selectAlarmList" 
 		resultMap="alarmResultSet">
-		SELECT * FROM PERSONAL P
+		SELECT per_no,art_no,art_title,per_enrolldate,alarm_date,ticketing_date FROM PERSONAL P
 		JOIN ART A ON(P.ART_NO= A.ART_NO)
 		JOIN TICKET_DATE TD ON(P.ART_NO= TD.ART_NO)
 		JOIN MEMBER USING(M_NO)
 		WHERE PER_TYPE=2
-		AND M_ID= #{ID} AND TO_CHAR(END_DATE,'YYYYMMDDHH24MISS') <![CDATA[< ]]>TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
+		AND M_ID= #{ID} AND TO_CHAR(TICKETING_DATE,'YYYYMMDDHH24MISS') <![CDATA[> ]]>TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
 	</select>
-
+	
+	<delete id="deleteAlarm">
+		DELETE FROM PERSONAL
+		WHERE m_no = (select m_no from member where m_id=#{id})
+		AND 
+		ART_NO=#{artNo} AND PER_TYPE=2
+	</delete>
+	
 	<select id="searchView" resultMap="ticketResultSet">
 		SELECT p.purchase_no, a.art_title,at.date_time, p.purchase_count,p.art_no,a.address,p.seat_name,p.type,
 		i.change_name,a.art_type, p.seat_sal  ,(SELECT R_NO FROM REPLY C JOIN MEMBER M on(C.RWRITER=M.M_ID)
-									where m.M_ID= #{id} AND C.STATUS='Y') as COMMENT_NO, 
+									where m.M_ID= #{id} AND C.STATUS='Y') as R_NO, 
 							(SELECT rcontent FROM REPLY C JOIN MEMBER M on(C.RWRITER=M.M_ID)
 									where m.M_ID= #{id} AND C.STATUS='Y') as rcontent
 		FROM PURCHASE P
 		JOIN ART a on(p.ART_NO=a.ART_NO)
 		JOIN ART_TIME at on(p.ART_NO=at.ART_NO)
-        JOIN IMG i on(p.ART_NO=i.ART_NO)
+        left JOIN IMG i on(p.ART_NO=i.ART_NO)
         JOIN MEMBER m on(m.M_NO=p.M_NO)
 		WHERE TO_CHAR(DATE_TIME,'YYYYMMDDHH24MISS') <![CDATA[< ]]>TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
 		AND m.M_ID=#{id}
-		<if test="pName != null">
+		<if test="pName != 'null'">
 			AND ART_TITLE LIKE '%' || #{pName} || '%'
 		</if>
-		<if test="artType!=null">
+		<if test="artType != '-1'">
 			AND ART_TYPE = #{artType}
 		</if>
-		<if test="sdate !=null and edate !=null">
-			WHERE TO_CHAR(DATE_TIME,'YYYY-MM-DD') BETWEEN TO_CHAR(#{sd},'YYYY-MM-DD')
-			AND TO_CHAR(#{ed},'YYYY-MM-DD')
+		<if test="sd != null and ed != null">
+			and TO_CHAR(DATE_TIME,'YYYY-MM-DD') BETWEEN #{sd} and #{ed}
 		</if>
 		
 	</select>
 	
 	
 	<select id="selectAView" resultType="string">
-		SELECT TO_CHAR(BUY_DATE,'YYYY-MM-DD') 
-		FROM (select BUY_DATE 
+		SELECT TO_CHAR(DATE_TIME,'YYYY-MM-DD') 
+		FROM (select DATE_TIME 
 					FROM PURCHASE
 					JOIN MEMBER USING(M_NO)
+					JOIN ART_TIME USING(ART_NO)
 					WHERE M_ID=#{id} order by 1 ASC)
 		
 		WHERE ROWNUM <![CDATA[<= ]]>1
@@ -271,9 +287,10 @@
 	
 	<select id="selectNoticeDetail" resultMap="PerformanceResultSet">
 		SELECT * FROM ART A
-		JOIN ART_TIME AT ON(A.ART_NO=AD.ART_NO)
-		 JOIN IMG I ON(A.ART_NO=I.ART_NO)
-		WHERE ART_NO=#{artNo}
+		JOIN ART_TIME AT ON(A.ART_NO=AT.ART_NO)
+		JOIN TICKET_DATE T ON(T.ART_NO=A.ART_NO)
+		Left JOIN IMG I ON(A.ART_NO=I.ART_NO)
+		WHERE A.ART_NO=#{artNo}
 	</select>
 
 	<insert id="insertRefund" >

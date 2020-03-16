@@ -33,7 +33,7 @@ section,div {
 .wrapper{
 display:block;
 width:1300px;
-/*height:1800px;  */
+height:900px;
 margin-top: 150px;  
 margin-left:200px; 
 margin-right:200px;

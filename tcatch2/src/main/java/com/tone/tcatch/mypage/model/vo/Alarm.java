@@ -3,28 +3,40 @@ package com.tone.tcatch.mypage.model.vo;
 import java.sql.Date;
 
 public class Alarm {
-	private int pNo; //공연 번호
-	private String pName; //공연명
+	private int artNo; //공연 번호
+	private String artTitle; //공연명
+	private Date ticketingDate; //티켓팅 일시
 	private Date alarmDate; //알림날짜
 	private Date enrollDate; //등록날짜
 	private int alarmNo; //알림 번호
 	
 	public Alarm() {}
 
-	public int getpNo() {
-		return pNo;
+	
+	public Date getTicketingDate() {
+		return ticketingDate;
 	}
 
-	public void setpNo(int pNo) {
-		this.pNo = pNo;
+
+	public void setTicketingDate(Date ticketingDate) {
+		this.ticketingDate = ticketingDate;
 	}
 
-	public String getpName() {
-		return pName;
+
+	public int getArtNo() {
+		return artNo;
 	}
 
-	public void setpName(String pName) {
-		this.pName = pName;
+	public void setArtNo(int artNo) {
+		this.artNo = artNo;
+	}
+
+	public String getArtTitle() {
+		return artTitle;
+	}
+
+	public void setArtTitle(String artTitle) {
+		this.artTitle = artTitle;
 	}
 
 	public Date getAlarmDate() {
@@ -51,9 +63,11 @@ public class Alarm {
 		this.alarmNo = alarmNo;
 	}
 
-	
-	
-	
+	@Override
+	public String toString() {
+		return "Alarm [artNo=" + artNo + ", artTitle=" + artTitle + ", alarmDate=" + alarmDate + ", enrollDate="
+				+ enrollDate + ", alarmNo=" + alarmNo + ", ticketingDate="+ticketingDate+"]";
+	}
 	
 	
 }

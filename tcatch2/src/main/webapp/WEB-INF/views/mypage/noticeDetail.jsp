@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,13 +29,13 @@
 		<div id="NoticeRead" style="display: block;">
 			<div class="noti-view-tit">
 				<span class="noti-tit-tag01">티켓오픈</span>
-				<p>${artTitle }</p>
+				<p>${notice.artTitle }</p>
 
 			</div>
 
 			<input type="hidden" id="hdNotiTitle"
-				value="${artTitle }"> <input type="hidden"
-				id="hdNotiID" value="${artNo }">
+				value="${notice.artTitle }"> <input type="hidden"
+				id="hdNotiID" value="${notice.artNo }">
 			<div class="noti-view-date">
 				<span>조회수 :${count }</span>
 			</div>
@@ -46,16 +49,17 @@
 							width="180" height="252">
 					</div>
 					<div class="noti-vt-right">
-						<p class="noti-vt-tit">${artTitle } 티켓 오픈 안내</p>
+						<p class="noti-vt-tit">${notice.artTitle } 티켓 오픈 안내</p>
 						<div class="noti-vt-box">
 							<div>
-								
 								<p class="noti" id="noti1"></p>
 								<div class="noti-vt-open">
-								<fmt:parseDate var="cancelDateString" value="${viewDate}"
+								<fmt:parseDate var="tdateString" value="${notice.ticketingDate}"
+										pattern="yyyy-MM-dd" />
+								<fmt:formatDate var="tdate" value="${ tdateString}"
 										pattern="yyyy.MM.dd(E) aaa hh:mm" />
-									<span><em>티켓오픈</em></span> <span id="title1"><%-- ${ticketingDate } --%></span>
-									<!-- 2020.02.06(목) 오후 2:00 -->
+									<span><em>티켓오픈</em></span> <span id="title1">${tdate }</span>
+									
 								</div>
 								<p></p>
 
@@ -71,15 +75,22 @@
 
 							</div>
 						</div>
+					
 						<div class="noti-vt-btns">
-							<button type="button" class="btn btn-primary" data-toggle="modal"
+							<button type="button" id="AlarmE" class="btn btn-primary" data-toggle="modal"
 								data-target="#exampleModalCenter">티켓오픈 알림</button>
 						</div>
 					</div>
 				</div>
 			</div>
 
-
+			<script>
+			$(function(){
+				$("#AlarmE").click(){
+					
+				}
+			});
+			</script>
 			
 
 			<div class="noti-view-con">
