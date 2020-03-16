@@ -116,7 +116,7 @@ public class MyPageDao {
 	public int insertAlarm(String id, int aNo) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("id", id);
-		map.put("pNo", aNo);
+		map.put("aNo", aNo);
 		return sqlSession.insert("myPageMapper.insertAlarm", map);
 	}
 
@@ -126,7 +126,7 @@ public class MyPageDao {
 	}
 
 	
-	public ArrayList<Ticket> searchView(String id, Date sdate, Date edate, String artType, String pName) {
+	public ArrayList<Ticket> searchView(String id, String sdate, String edate, String artType, String pName) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("id", id);
 		map.put("sd", sdate);
@@ -151,8 +151,8 @@ public class MyPageDao {
 		return (ArrayList)sqlSession.selectList("myPageMapper.selectNImgList",list);
 	}
 	
-	public Art selectNotice(int nId) {
-		return sqlSession.selectOne("myPageMapper.selectNoticeDetail",nId);
+	public ArtDetail selectNotice(int artNo) {
+		return sqlSession.selectOne("myPageMapper.selectNoticeDetail",artNo);
 	}
 
 	public int refundTicket(String id, int tId) {

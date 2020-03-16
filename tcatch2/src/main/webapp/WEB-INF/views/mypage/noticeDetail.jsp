@@ -9,12 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<!-- 부트스트랩 -->
- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	
+
 <link href="resources/css/mypage/notice.css" rel="stylesheet" />
 <style>
 .wrapper {
@@ -34,8 +29,7 @@
 			</div>
 
 			<input type="hidden" id="hdNotiTitle"
-				value="${notice.artTitle }"> <input type="hidden"
-				id="hdNotiID" value="${notice.artNo }">
+				value="${notice.artTitle }">
 			<div class="noti-view-date">
 				<span>조회수 :${count }</span>
 			</div>
@@ -77,8 +71,7 @@
 						</div>
 					
 						<div class="noti-vt-btns">
-							<button type="button" id="AlarmE" class="btn btn-primary" data-toggle="modal"
-								data-target="#exampleModalCenter">티켓오픈 알림</button>
+							<button type="button" id="AlarmE" class="btn btn-primary">티켓오픈 알림</button><!-- data-target="#AlarmModal" -->
 						</div>
 					</div>
 				</div>
@@ -86,9 +79,20 @@
 
 			<script>
 			$(function(){
-				$("#AlarmE").click(){
+				$("#AlarmE").click(function(){
+					var login= "${loginUser}";
+					if(login==''){
+						alert("로그인 후 이용가능합니다.");
+						location.href="loginPage.do";
+					}
+					else
+					$("#AlarmModal").modal();
 					
-				}
+				});
+				
+				$("#insertAlarm").click(function(){
+					location.href="insertAlarm.do?aNo="+${notice.artNo };
+				});
 			});
 			</script>
 			
@@ -161,15 +165,13 @@
 			</p>
 
 			<div class="noti-view-control">
-				<!--<a href="#" class="noti-prev">이전글</a>-->
 				<a style="cursor: pointer" onclick="jsf_notice_NoticeList();"
 					class="noti-list">목록보기</a>
-				<!--<a href="#" class="noti-next">다음글</a>-->
 			</div>
 			
 	<!-- Modal -->
-			<div class="modal fade" id="exampleModalCenter" tabindex="-1"
-				role="dialog" aria-labelledby="exampleModalCenterTitle"
+			<div class="modal fade" id="AlarmModal" tabindex="-1"
+				role="dialog" aria-labelledby="AlarmModalTitle"
 				aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
@@ -191,7 +193,7 @@
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary"
 								data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">신청하기</button>
+							<button type="button" class="btn btn-primary" id="insertAlarm">신청하기</button>
 						</div>
 					</div>
 				</div>
@@ -221,6 +223,11 @@
 		</div>
 	</div>
 	<jsp:include page="../common/footer.jsp" />
+	<!-- 부트스트랩 -->
+ <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	
 
 </body>
