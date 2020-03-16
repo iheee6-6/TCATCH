@@ -30,8 +30,8 @@ thead {
 
 label {
 	display: inline-block;
-	width: 15px;
-	height: 15px;
+	width: 16px;
+	height: 16px;
 	border: 2px solid #bcbcbc;
 	cursor: pointer;
 }
@@ -67,22 +67,27 @@ td {
 </head>
 <body>
 	<section class="sec03">
-		<form action="buyTwo.do" method="post" id="joinForm">
+		<form action="buy.do" method="post" id="joinForm">
 		<input type="hidden" name="artNo" value="${ s.artNo }"> 
-		<input type="hidden" name="timeNo" value="${ s.timeNo }"> 
-		<!-- 회차선택 &nbsp; : &nbsp;<select name="timeNo" class="tt">
+		<input type="hidden" id="timeNo" name="timeNo" value=""> 
+				회차선택 &nbsp; : &nbsp;<select id="timeSelect" class="tt">
                                     <option>----</option>
-                                    <option value="0">1회차 날짜 : </option>
-                                    <option value="1">2회차 날짜 : </option>
-                                    <option value="2">3회차 날짜 : </option>
-                                    <option value="3">4회차 날짜 : </option>
-                                    <option value="4">5회차 날짜 : </option>
-                                    <option value="5">6회차 날짜 : </option>
-                                    <option value="6">7회차 날짜 : </option>
-                                    <option value="7">8회차 날짜 : </option>
-                                    <option value="8">9회차 날짜 : </option>
-                                    <option value="9">10회차 날짜 : </option>
-                              </select> -->
+                                    <c:forEach var="t" items="${ aT }">                                   
+                               		     <option value="${t.dateCount }">${t.dateCount }회차 ${ t.dateTime }</option>
+                                    </c:forEach>
+                              </select>
+                    
+                              <script>
+                              		$("#timeSelect").change(selectC);
+                              		
+                              		function selectC(){
+                              			 var value = $("option:selected").val();
+                              			 console.log(value);
+                                         $("#timeNo").val(value);
+                              		}
+                              </script>
+                              <button type="submit">좌석 불러오기</button>
+               </form>
 		<table>
 			<thead>
 					<tr>
@@ -125,6 +130,9 @@ td {
 			</tr>
 			</tbody>
 			</table>
+	<form action="buyTwo.do" method="post" id="joinForm">
+		<input type="hidden" name="artNo" value="${ s.artNo }"> 
+		<input type="hidden" name="timeNo" value="${ s.timeNo }"> 
 			<div id="bor">
 				<p>선택한 좌석:</p>
 						<input type="text" name="seatName[]" id="whktjr">
@@ -132,40 +140,13 @@ td {
 				<button type="button" onclick="re();" id="ree">취소</button>
 			</div>
 			<br>
+
 		</form>
 	</section>
 	
 	<script>
-	var sC =${sCount};
-	console.log(sC);
-	console.log(Math.floor(sC/30));
-	console.log((sC%30));
-	
+
         $(document).ready(function () {
-        	/* var count =0;
-            for(var j = 0 ; j <=(sC/30); j++){          
-                $("tbody").append("<tr>");
-                    for (var i = 1; i <=30; i++) {
-                    	var sI = "${sList[0].status}";
-                        if(i==16){
-                        $("tbody").append("<td  id='a1'>"+String.fromCharCode(j+65)+"</td>");
-                        }
-                        if(sI == "Y"){
-                            $("tbody").append("<td><input type='checkbox' id='c" +j+"_"+i + "' value="+String.fromCharCode(j+65)+"-"+i+"><label class='l'for='c" +j+"_"+i + "'" + "></label></td>");
-                        }else if(sI == "N"){
-                        	console.log("N");
-                        	$("tbody").append("<td><input type='checkbox' id='c" +j+"_"+i + "' value="+String.fromCharCode(j+65)+"-"+i+"><label class='l'for='c" +j+"_"+i + "'" + "></label></td>");
-                            $("#c" +j+"_"+i).next().css({ "background": "red" });
-                            $("#c" +j+"_"+i).attr("disabled", "disabled");
-                        }
-                    if(j==Math.floor(sC/30) && i==(sC%30)){
-                    	//마지막 라운드 뽑아내면 버림 .
-                    	break;                    
-                    }
-                    count++;
-                } 
-                $("tbody").append("</tr>");
-            } */
             $("input[type=checkbox]").change(checkedChange);
         });
         
@@ -186,9 +167,8 @@ td {
         	$("input[type=checkbox]").prop("checked", false);
         	$("label").css({ "background": "white" });
         }
+      </script>
         
-
-        </script>
-
+        
 </body>
 </html>

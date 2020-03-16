@@ -1,24 +1,18 @@
 package com.tone.tcatch.art.model.vo;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class ArtTime {
-/*
- * 		<id property="timeNo" column="TIME_NO"/>
-		<result property="actor" column="ACTOR"/>
-		<result property="dateTime" column="DATE_TIME"/>
-		<result property="dateCount" column="DATE_COUNT"/>	
-		<result property="artNo" column="ART_NO"/>	
- * */
+
 	private int timeNo;
 	private String actor;
-	private Date dateTime;
+	private String dateTime;
 	private int dateCount;
 	private int artNo;
 	
 	public ArtTime() {}
-	
-	public ArtTime(int timeNo, String actor, Date dateTime, int dateCount, int artNo) {
+
+	public ArtTime(int timeNo, String actor, String dateTime, int dateCount, int artNo) {
 		super();
 		this.timeNo = timeNo;
 		this.actor = actor;
@@ -43,11 +37,11 @@ public class ArtTime {
 		this.actor = actor;
 	}
 
-	public Date getDateTime() {
+	public String getDateTime() {
 		return dateTime;
 	}
 
-	public void setDateTime(Date dateTime) {
+	public void setDateTime(String dateTime) {
 		this.dateTime = dateTime;
 	}
 
@@ -72,8 +66,5 @@ public class ArtTime {
 		return "ArtTime [timeNo=" + timeNo + ", actor=" + actor + ", dateTime=" + dateTime + ", dateCount=" + dateCount
 				+ ", artNo=" + artNo + "]";
 	}
-	
-	
-	
 	
 }

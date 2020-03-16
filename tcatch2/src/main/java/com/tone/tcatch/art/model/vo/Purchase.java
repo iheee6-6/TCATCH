@@ -30,6 +30,23 @@ public class Purchase {
 		this.timeNo = timeNo;
 		this.artNo = artNo;
 	}
+	
+	
+	
+
+	public Purchase(int mNo, String seatName, int seatSal, int type, Date buyDate, int purchaseCount, int waybillNumber,
+			int timeNo, int artNo) {
+		super();
+		this.mNo = mNo;
+		this.seatName = seatName;
+		this.seatSal = seatSal;
+		this.type = type;
+		this.buyDate = buyDate;
+		this.purchaseCount = purchaseCount;
+		this.waybillNumber = waybillNumber;
+		this.timeNo = timeNo;
+		this.artNo = artNo;
+	}
 
 	public int getPurchaseNo() {
 		return purchaseNo;

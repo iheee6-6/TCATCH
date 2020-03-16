@@ -12,11 +12,14 @@ public class Art {
 	private String status;//상태(삭제)
 	private int durationTime;//소요시간(분) 
 	private int sale; //세일가
+	private String changeName; //바뀐 파일명
 	 
 	public Art() {}
 
+	
+
 	public Art(int artNo, int artType, String artTitle, String artExplain, int count, String address, int companyNo,
-			int rating, String status, int durationTime, int sale) {
+			int rating, String status, int durationTime, int sale, String changeName) {
 		super();
 		this.artNo = artNo;
 		this.artType = artType;
@@ -29,7 +32,22 @@ public class Art {
 		this.status = status;
 		this.durationTime = durationTime;
 		this.sale = sale;
+		this.changeName = changeName;
 	}
+
+	
+
+	public String getChangeName() {
+		return changeName;
+	}
+
+
+
+	public void setChangeName(String changeName) {
+		this.changeName = changeName;
+	}
+
+
 
 	public int getArtNo() {
 		return artNo;

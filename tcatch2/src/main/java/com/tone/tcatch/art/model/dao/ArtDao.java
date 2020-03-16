@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.art.model.vo.ArtTime;
+import com.tone.tcatch.art.model.vo.Img;
 import com.tone.tcatch.art.model.vo.Purchase;
 import com.tone.tcatch.art.model.vo.Seat;
 
@@ -30,7 +31,6 @@ public class ArtDao {
 
 	public int addReadCount(int artNo) {
 		return sqlSession.update("artMapper.updateCount", artNo);
-		
 	}
 
 	public ArrayList<Art> searchArt(String title) {
@@ -42,8 +42,8 @@ public class ArtDao {
 		return sqlSession.insert("artMapper.updateCount", s);
 	}
 
-	public ArtTime selectATime(int artNo) {
-		return sqlSession.selectOne("artMapper.selectATime" , artNo);
+	public ArrayList<ArtTime> selectATime(int artNo) {
+		return (ArrayList)sqlSession.selectList("artMapper.selectATime" , artNo);
 	}
 
 
@@ -64,7 +64,34 @@ public class ArtDao {
 	}
 
 	public int insertPurchase(Purchase p) {
+		String[] seatList = p.getSeatName().split(" ");
+		
+		for(int i = 0 ; i < seatList.length; i++) {
+			System.out.println("seatList ^^lqkf" + seatList[i]);
+		}	
+		
+		Seat s = null;
+		
+		for(int i = 0 ; i < seatList.length; i++) {
+			s = new Seat(seatList[i] , p.getTimeNo() , p.getArtNo());
+			sqlSession.update("artMapper.updateSeat", s); 
+		}	
+		
 		return sqlSession.insert("artMapper.insertPurchase", p);
+		
+	}
+
+	public int insertImg(Img img) { //사진 넣기
+		return sqlSession.insert("artMapper.insertImg",img);
+	}
+
+	public ArrayList<Img> selectImg(int artNo) { // 사진 불러오기
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("artMapper.selectImg",artNo);
+	}
+
+	public int insertArtTime(ArtTime aT) {
+		return sqlSession.insert("artMapper.insertArtTime" , aT);
 	}
 
 }

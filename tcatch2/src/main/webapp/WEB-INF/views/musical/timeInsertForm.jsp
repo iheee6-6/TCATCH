@@ -47,18 +47,27 @@ margin-bottom:3%;
 										<td colspan="3"><hr></td>
 									</tr>
 									<tr>
-										<td><label>회차</label><input type="number" size="10" name="count" min="0" class="tt"></td>
+										<td><label>회차</label><input type="number" size="10" name="dateCount" min="0" class="tt"></td>
 										<td></td>
-										<td>날짜<br><input type="datetime-local" name="time"></td>
+										<td>날짜<br><input type="datetime-local"  id="tt">
+										<input type="hidden" id="dateTime" name="Time" value=""></td>
+										
+										<script>
+											$("#tt").change(function(){
+												var dd = $("#tt").val();
+												console.log(dd);
+												$("#dateTime").val(dd);
+											});
+										</script>
 									</tr>
 									<tr>
 										<td colspan="3"><label>출연진</label><input type="text" size="58" name="actor" min="0" class="tt"></td>
-									</tr>
+									</tr> 
 									<tr>
 										<td colspan="3"><hr></td>
 									</tr>
 								</table>
-								<input type="button" id="add" value="회차 추가"></button>
+								<input type="button" id="add" value="회차 추가">
 								
 								<div align="center">
 									<button type="submit" value="등록하기"></button>
@@ -67,13 +76,12 @@ margin-bottom:3%;
 							        $(document).on('click', '#add', add);
 							        var i = 1;
 							        function add(e){
-							            console.log(e.target);
 							            $("#wrap").append("<tr>"+
-												'<td><label>회차</label><input type="number" size="10" name="count'+i+'" min="0" class="tt"></td>'+
+												'<td><label>회차</label><input type="number" size="10" name="dateCount" min="0" class="tt"></td>'+
 												'<td></td>'+
-												'<td>날짜<br><input type="datetime-local" name="time'+i+'"></td>'+
+												'<td>날짜<br><input type="datetime-local" name="Time ></td>'+
 												'</tr><tr>'+
-												'<td colspan="3"><label>출연진</label><input type="text" size="58" name="actor'+i+'" min="0" class="tt"></td></tr>'+
+												'<td colspan="3"><label>출연진</label><input type="text" size="58" name="actor" min="0" class="tt"></td></tr>'+
 												'</tr>'+
 												"<tr><td colspan='3'><hr></td></tr>");
 							            i++;

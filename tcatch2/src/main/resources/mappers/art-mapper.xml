@@ -14,10 +14,9 @@
 		<result property="companyNo" column="COMPANY_NO"/>
 		<result property="rating" column="RATING"/>
 		<result property="status" column="STATUS"/>
-		<result property="originalFile" column="ORIGINAL_FILE"/>
-		<result property="renameFile" column="RENAME_FILE"/>
 		<result property="durationTime" column="DURATION_TIME"/>
 		<result property="sale" column="SALE"/>
+		<result property="changeName" column="CHANGE_NAME"/>
 	</resultMap>  
 	
 	<resultMap id="DetailResultSet" type="ArtDetail">
@@ -28,8 +27,6 @@
 		<result property="address" column="ADDRESS"/>
 		<result property="companyNo" column="COMPANY_NO"/>
 		<result property="age" column="AGE"/>
-		<result property="originalFile" column="ORIGINAL_FILE"/>
-		<result property="renameFile" column="RENAME_FILE"/>
 		<result property="durationTime" column="DURATION_TIME"/>
 		<result property="companyName" column="COMPANY_NAME"/>
 		<result property="companyPhone" column="PHONE"/>
@@ -54,14 +51,24 @@
 		<result property="price" column="PRICE"/>	
 	</resultMap>
 	
+	<resultMap id="ImgResultSet" type="Img">
+		<id property="imgNo" column="IMG_NO"/>
+		<result property="artNo" column="ART_NO"/>
+		<result property="originName" column="ORIGIN_NAME"/>
+		<result property="changeName" column="CHANGE_NAME"/>
+		<result property="filePath" column="FILE_PATH"/>
+		<result property="changeDate" column="CHANGE_DATE"/>
+		<result property="fileLevel" column="FILE_LEVEL"/>
+	</resultMap>
 	
 	
 	
 	<select id="selectList" resultMap="ArtResultSet">
 		SELECT *
 		FROM ART
-		WHERE STATUS='Y' 
-		ORDER BY ART_NO DESC 
+		JOIN IMG I USING(ART_NO)
+		WHERE STATUS='Y' AND I.FILE_LEVEL=0
+		ORDER BY ART_NO DESC
 	</select>
 	
 	<select id="selectOne" resultMap="DetailResultSet">
@@ -72,8 +79,6 @@
 		ADDRESS,
 		COMPANY_NO,
 		AGE,
-		ORIGINAL_FILE,
-		RENAME_FILE,
 		DURATION_TIME,
 		COMPANY_NAME,
 		PHONE,
@@ -96,7 +101,6 @@
 		SELECT * 
 		FROM ART_TIME
 		WHERE ART_NO =#{artNo}
-		AND DATE_COUNT=1
 	</select>
 	
 	<select id="seat" resultMap="SeatResultSet">	
@@ -145,8 +149,6 @@
 			#{companyNo},
 			#{rating},
 			DEFAULT,
-			NULL,
-			NULL,
 			#{durationTime},
 			#{sale}
 		)
@@ -159,11 +161,42 @@
 			#{seatName},
 			#{seatSal},
 			#{type},
-			DEFAULE,
-			#{purchaseCount},
 			DEFAULT,
+			#{purchaseCount},
+			NULL,
 			#{timeNo},
 			#{artNo}
+		)
+	</insert>
+	<update id="updateSeat">
+		UPDATE SEAT SET STATUS='N'
+		WHERE SEAT_NAME=#{seatName} AND ART_NO=#{artNo} AND TIME_NO=#{timeNo}
+	</update>
+
+	<insert id="insertImg">
+		INSERT INTO IMG VALUES(
+			SEQ_IMGNO.NEXTVAL,
+			SEQ_ANO.CURRVAL, 
+			#{originName},
+			#{changeName},
+			#{filePath},
+			SYSDATE,
+			#{fileLevel}
+		)
+	</insert>
+	<select id="selectImg" resultMap="ImgResultSet">
+		SELECT * 
+		FROM IMG
+		WHERE ART_NO = #{artNo}
+	</select>
+	
+	<insert id="insertArtTime">
+		INSERT INTO ART_TIME VALUES(
+			SEQ_TNO.NEXTVAL,
+			SEQ_ANO.CURRVAL, 
+			#{dateCount},
+			#{actor},
+			#{dateTime}
 		)
 	
 	</insert>

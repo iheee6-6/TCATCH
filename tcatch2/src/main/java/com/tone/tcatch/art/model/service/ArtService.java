@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.art.model.vo.ArtTime;
+import com.tone.tcatch.art.model.vo.Img;
 import com.tone.tcatch.art.model.vo.Purchase;
 import com.tone.tcatch.art.model.vo.Seat;
 
@@ -15,9 +16,9 @@ public interface ArtService {
 	
 	//디테일
 	ArtDetail selectArt(int artNo , boolean flag);
+	
 	//디테일 회차
-	ArtTime selectATime(int artNo);
-
+	ArrayList<ArtTime> selectATime(int artNo);
 	
 	//검색
 	ArrayList<Art> searchArt(String title);
@@ -39,6 +40,15 @@ public interface ArtService {
 	
 	//예매하기
 	int insertPurchase(Purchase p);
+	
+	//사진 넣기
+	int insertImg(Img img);
+	
+	//디테일 사진 불러오기
+	ArrayList<Img> selectImg(int artNo);
+	
+	//회차 넣기
+	int inserArtTime(ArtTime aT);
 	
 	
 
