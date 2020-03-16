@@ -49,9 +49,9 @@ table th {
 <body>
 	<jsp:include page="../common/menubar2.jsp" />
 
-	<br><br><br><br><br>
-	<h1 align="center" id="h1"
-			style="font-family: 'Do Hyeon', sans-serif;">커뮤니티</h1>
+	<br><br><br><br><br><br>
+	<h2 align="center" id="h1"
+			style="">Community</h2>
 	<div class="wrap">
 		<h2 align="left" id="h2" style="font-family: 'Do Hyeon', sans-serif;">
 			총 게시글 개수 : ${ pi.listCount }

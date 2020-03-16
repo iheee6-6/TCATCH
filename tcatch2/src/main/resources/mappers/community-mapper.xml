@@ -57,11 +57,11 @@
 		AND STATUS='Y'
 	</select>
 	
-	<delete id="deleteCommunity" parameterType="_int">
+	<update id="deleteCommunity" parameterType="_int">
 		UPDATE COMMUNITY
 		SET STATUS='N'
 		WHERE CNO = #{cNo}
-	</delete>
+	</update>
 	
 	<insert id="insertReply" parameterType="Reply">
 		INSERT INTO REPLY VALUES
@@ -76,5 +76,11 @@
 		AND R.STATUS = 'Y'
 		ORDER BY R_NO DESC
 	</select>
+	
+	<update id="updateCommunity" parameterType="Community">
+		UPDATE COMMUNITY
+		SET CTITLE=#{cTitle}, CCONTENT=#{cContent}, MODIFY_DATE=SYSDATE
+		WHERE CNO=#{cNo}
+		</update>
 	
 </mapper>
