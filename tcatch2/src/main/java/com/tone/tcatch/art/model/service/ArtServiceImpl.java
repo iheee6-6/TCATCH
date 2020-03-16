@@ -9,6 +9,7 @@ import com.tone.tcatch.art.model.dao.ArtDao;
 import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.art.model.vo.ArtTime;
+import com.tone.tcatch.art.model.vo.Img;
 import com.tone.tcatch.art.model.vo.Purchase;
 import com.tone.tcatch.art.model.vo.Seat;
 
@@ -50,7 +51,7 @@ public class ArtServiceImpl implements ArtService{
 
 
 	@Override
-	public ArtTime selectATime(int artNo) { // 회차 검색
+	public ArrayList<ArtTime> selectATime(int artNo) { // 회차 검색
 		return aDao.selectATime(artNo);
 	}
 
@@ -82,6 +83,25 @@ public class ArtServiceImpl implements ArtService{
 	@Override
 	public int insertPurchase(Purchase p) { // 예매 insert
 		return aDao.insertPurchase(p);
+	}
+
+
+	@Override
+	public int insertImg(Img img) { // 사진 insert
+		
+		return aDao.insertImg(img);
+	}
+
+
+	@Override
+	public ArrayList<Img> selectImg(int artNo) { //사진 detaile select
+		return aDao.selectImg(artNo);
+	}
+
+
+	@Override
+	public int inserArtTime(ArtTime aT) { //회차 insert 
+		return aDao.insertArtTime(aT);
 	}
 	
 	

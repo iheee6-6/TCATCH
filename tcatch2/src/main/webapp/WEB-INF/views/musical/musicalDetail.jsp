@@ -22,7 +22,8 @@
   	body{font-family: 'NanumBarunGothic', '맑은 고딕', 'Malgun Gothic', sans-serif;}
   </style> 
  </head>
- <body> 
+ <body>
+
 <jsp:include page="../common/menubar.jsp"/>
 <br><br><br><br>
  
@@ -39,6 +40,8 @@
 	</div>	
 </div>
 
+
+
 <div class="movie-pop-wrap">
  <!-- 뭔지 모르지만 공간 차지  -->
 </div>
@@ -49,28 +52,37 @@
 		<div class="rn-03"><!--상단-->
 			<div class="rn-03-left"><!--포스터, 지역, 동영상-->
 				<div class="rn-product-imgbox">
-					<img class='lazyload' src="http://tkfile.yes24.com/upload2/PerfBlog/202001/20200122/20200122-36049_1.jpg"/><!-- 이미지 -->
+					<img class='lazyload' src="${ contextPath }/resources/images/art/${ img[0].changeName }"/><!-- 이미지 -->
 				</div>
 
 				<div class="rn-product-social">
+
 					<a href="javascript:;" class="rn-product-good">
                         <img src="http://tkfile.yes24.com/imgNew/sub/rn-product-good1.png" alt="" id="h1" /><!--좋아요 안누른 하트-->
                         <img src="http://tkfile.yes24.com/imgNew/sub/rn-product-good2.png" alt="" id="h2"/><!--좋아요 누른 하트-->
-                        <span class="rn-pdg-txt2">찜</span>
-                        <span class="rn-pdg-txt1"></span>
+                        <span id="h11" class="rn-pdg-txt1">찜</span>
+                        <span id="h22" class="rn-pdg-txt2">찜</span>
 					</a>
 					<script>
 					var h1 = document.getElementById("h1");
+					var h11 = document.getElementById("h11");
 					var h2 = document.getElementById("h2");
+					var h22 = document.getElementById("h22");
+					$("#h22").hide();
+					
 					var aa = document.getElementsByClassName("rn-product-good");
 
 					$("#h1").click(function(){
 						$("#h1").hide();
+						$("#h11").hide();
 						$("#h2").fadeToggle(0);
+						$("#h22").fadeToggle(1);
 					});
 					$("#h2").click(function(){
 						$("#h2").hide();
+						$("#h22").hide();
 						$("#h1").fadeToggle(0);
+						$("#h11").fadeToggle(0);
 					});
 					</script>
 						
@@ -84,13 +96,18 @@
 				<div class="rn-product-area1"><!--등급, 관람시간, 출연, 가격, 혜택-->
 					<dl>
 						<dt>등급</dt>
+						<c:if test="${ art.age == 0}">
+							<dd>전체 이용가</dd>
+						</c:if>
+						<c:if test="${ art.age != 0}">
 						<dd>&nbsp;만
 							${ art.age }	
 						세이상</dd>
+						</c:if>
 						<dt>관람시간</dt>
 						<dd>&nbsp;총 ${art.durationTime }분(인터미션 없음)</dd>
 						<dt>출연</dt>
-						<dd>&nbsp;${aT.actor}     
+						<dd>&nbsp;${aT[0].actor}     
 						<dt id="dtPrice">좌석</dt>
 						<dd>
 						 <span class='rn-red'>${ yS }</span>/${allS}
@@ -112,7 +129,7 @@
 				</div>
                 <!--포인트-->
 				
-				<div class="rn-product-area3"><!--공연시간안내, 배송정보-->
+				<div class="rn-product-area2"><!--공연시간안내, 배송정보-->
 					<dl>
 						<dt>배송정보</dt>
                         <dd>현장 수령 <span class='rn-red'>가능</span></dd>
@@ -125,10 +142,15 @@
 		<div class="rn-05"><!--예매버튼-->    
 		<c:url var="buy" value="buy.do">
 							<c:param name="artNo" value="${ art.artNo }"/>
-							<c:param name="timeNo" value="${ aT.timeNo }"/>
+							<c:param name="timeNo" value="${ aT[0].timeNo }"/>
 		</c:url>     
-            <a href="#" onclick="window.open('${buy}', 'www.naver.com', 'width=715, height=650');" class='rn-bb03'>예매하기</a>
-            
+                              
+		<c:if test="${ !empty loginUser}">
+            <a href="#" onclick="window.open('${buy}', '', 'width=715, height=650');" class='rn-bb03'>예매하기</a>            
+		</c:if>
+		<c:if test="${ empty loginUser}">
+			<a href="loginPage.do" class="rn-bb03"><span>로그인</span></a>
+		</c:if>
 		</div><!--rn-05-->
 			</div><!--rn-03-right-->  
 		</div><!--rn-03-->
@@ -149,7 +171,8 @@
 				<div class="rn-0803"><!--공연정보-->
 					<p class="rn08-tit">공연정보</p>
 					<div class="rn08-txt" id="divPerfContent">
-                        <div><p>${ art.artExplain }</p></div>
+                        <div><p><img class='lazyload' src="${ contextPath }/resources/images/art/${ img[1].changeName }"/><!-- 이미지 --></p></div>
+                        
 					</div>
 				</div><!--rn-0803-->
 				<div class="rn-0804"><!--캐스팅일정-->
@@ -190,10 +213,15 @@
                                     </tr>
 									<tr>
                                         <th scope="row" class="rn08-tbl-tit2">주연</th>
-                                        <td>${aT.actor}</td>           
+                                        <td>${aT[0].actor}</td>           
                                         <th scope="row" class="rn08-tbl-tit2">관람등급</th>
                                         <td>
+                                        <c:if test="${ art.age == 0}">
+                                        	전체 이용가
+                                        </c:if>
+                                        <c:if test="${ art.age !=0 }">
 											만  ${ art.age } 세이상 
+										</c:if>
 										</td>
                                     </tr>
 									<tr>

@@ -58,7 +58,7 @@ margin-bottom:3%;
 
 									<tr>
 										<td>타입</td>
-										<td><select name="category" class="tt">
+										<td><select name="artType" class="tt">
 												<option>----</option>
 												<option value="0">전시</option>
 												<option value="1">콘서트</option>
@@ -71,21 +71,21 @@ margin-bottom:3%;
 									</tr>
 									<tr>
 										<td>회사</td>
-										<td><select name="company" class="tt">
+										<td><select name="companyNo" class="tt">
 												<option>----</option>
-												<option value="0">(주)회사 1</option>
-												<option value="1">(주)회사 2</option>
-												<option value="2">(주)회사 3</option>
-												<option value="3">(주)회사 4</option>
+												<option value="1">(주)회사 1</option>
+												<option value="2">(주)회사 2</option>
+												<option value="3">(주)회사 3</option>
+												<option value="4">(주)회사 4</option>
 										</select></td>
 										
 										<td>관람등급</td>
 										<td><select name="rating" class="tt">
 												<option>----</option>
-												<option value="0">전체관람가</option>
-												<option value="12">12세</option>
-												<option value="15">15세</option>
-												<option value="19">청소년 관람 불가</option>
+												<option value="1">전체관람가</option>
+												<option value="2">12세</option>
+												<option value="3">15세</option>
+												<option value="4">청소년 관람 불가</option>
 										</select></td>
 										</tr>
 									
@@ -96,7 +96,7 @@ margin-bottom:3%;
 						           </tr>
 						           
 						            <tr>
-						            <td colspan="6"><input type="number" size="45" name="duration" value="0"></td>
+						            <td colspan="6"><input type="number" size="45" name="durationTime" value="0"></td>
 					                </tr>
 					                
 					                <tr>
@@ -105,13 +105,13 @@ margin-bottom:3%;
 						           
 						           <tr>
 						           <td>티켓팅</td>
-						           <td><input type="date" name="ticketing"></td>
+						           <td><input type="date" name="ticketingDate"></td>
 						           </tr>
 						           <tr>
 						           <td>시작날짜</td>
-						           <td><input type="date" name="start"></td>
+						           <td><input type="date" name="startDate"></td>
 						           <td>종료날짜</td>
-						           <td><input type="date" name="end"></td>
+						           <td><input type="date" name="endDate"></td>
 						            
 						             
 						           </tr>
@@ -121,14 +121,14 @@ margin-bottom:3%;
 										<td colspan="6"><h5><strong>공연 명 </strong></h5></td>
 									</tr>
 									<tr>
-										<td colspan="6"><input type="text" size="58" name="title"
+										<td colspan="6"><input type="text" size="58" name="artTitle"
 											class="tt"></td>
 									</tr>
 									<tr>
 										<td colspan="6"><h5><strong>공연 장소 </strong></h5></td>
 									</tr>
 									<tr>
-										<td colspan="6"><input type="text" size="58" name="title"
+										<td colspan="6"><input type="text" size="58" name="address"
 											class="tt"></td>
 									</tr>
 									<tr>
@@ -147,8 +147,8 @@ margin-bottom:3%;
 								<div align="center">
 									<button id="submit" type="submit" class="btn btn-outline-success">다음</button>
 									<div id="fileupload">
-										<input type="file" id="thumbnailImg1" name="thumbnailImg1" onchange="loadImg(this,1)"> 
-										<input type="file" id="thumbnailImg2" name="thumbnailImg2" onchange="loadImg(this,2)">
+										<input type="file" id="thumbnailImg1" name="uploadFile" onchange="loadImg(this,1)"> 
+										<input type="file" id="thumbnailImg2" name="uploadFile2" onchange="loadImg(this,2)">
 									</div>
 									<br>
 									<script>

@@ -108,10 +108,10 @@ body {
 				<dd>2020년 3월 8일(일) 오후 6시</dd>
 				<dt>배송정보</dt>
 				<dd>
-					택배 배송  <input type="radio" name="r" value="택배" id="xorqo">
+					택배 배송  <input type="radio" name="r" value="0" id="xorqo">
 				</dd>
 				<dd>
-					현장 수령  <input type="radio" name="r" value="현장" id="guswkd">
+					현장 수령  <input type="radio" name="r" value="1" id="guswkd">
 				</dd>
 				
 				<script>
@@ -130,53 +130,25 @@ body {
 ※ 제주도 3000원, 제주도 외 도서산간 2000원
 </pre>
 			<!--자동주문방지적용-->
-		<form action="buyEnd.do" method="post" id="joinForm">
-			<input type="text" name="mNo" value="${ loginUser.id }">
-			<input type="text" name="seatName" value="${seatName}">
-			<input type="text" name="seatSal" value="${count * 40000}원">
-			<input type="text" name="type" id="type" value="">
-			<input type="text" name="buyDate" value="SYSDATE">
-			<input type="text" name="purchaseCount" value="${count}">
-			<input type="text" name="timeNo" value="${timeNo }">
-			<input type="text" name="artNo" value="${artNo }">
-			<table>
-			<tr>
-				<th>이름</th>
-				<td><input type="text" name="name" size="30"></td>
-			</tr>
-			<tr>
-				<th scope="row">휴대전화</th>
-				<td><select id="phone1" name="phone1" required>
-						<option value="010">010</option>
-						<option value="011">011</option>
-						<option value="016">016</option>
-						<option value="017">017</option>
-						<option value="018">018</option>
-						<option value="019">019</option>
-				</select>-<input id="phone2" name="phone2" maxlength="4" type="text" required />-<input
-					id="phone3" name="phone3" maxlength="4" type="text" required /></td>
-			</tr>
-			<tr>
-				<th scope="row">이메일</th>
-				<td>
-					<div id="email">
-						<input name="email" class="emailcheck0" id="text">
-					</div>
-				</td>
-			</tr>
+		<form action="buyEnd.do" method="post">
+			<input type="hidden" name="mNo" value="${ loginUser.no }">
+			<input type="hidden" name="seatName" value="${seatName}">
+			<input type="hidden" name="seatSal" value="${count * 40000}">
+			<input type="hidden" name="type" id="type" value="">
+			<input type="hidden" name="purchaseCount" value="${count}">
+			<input type="hidden" name="timeNo" value="${timeNo }">
+			<input type="hidden" name="artNo" value="${artNo }">
 			
-			</table>
+			
 			<div class="rn-05">
 				<!--예매버튼-->
-				<a href="buyEnd.do"
-					class='rn-bb03'>예매하기</a>
+				<button type="submit" class="rn-bb03">예매 하기</button>
 				<!--취소버튼-->
 				<a href="#"  onclick="cancel();"
 					class='rn-bb03'>취소하기</a>
 			</div>
 		</form>
 			<script>
-			
 				function cancel(){
 					window.close();
 				}

@@ -18,7 +18,12 @@ public class Seat {
 		this.price = price;
 	}
 	
-	
+	public Seat(String seatName, int timeNo, int artNo) {
+		super();
+		this.seatName = seatName;
+		this.timeNo = timeNo;
+		this.artNo = artNo;
+	}
 
 	public Seat(int timeNo, int artNo) {
 		super();

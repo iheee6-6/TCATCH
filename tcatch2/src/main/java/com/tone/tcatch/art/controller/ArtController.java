@@ -1,6 +1,7 @@
 package com.tone.tcatch.art.controller;
 
 import java.io.File;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,9 +15,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.tone.tcatch.art.model.exception.ArtException;
 import com.tone.tcatch.art.model.service.ArtService;
 import com.tone.tcatch.art.model.vo.Art;
@@ -49,15 +53,15 @@ public class ArtController {
 	@RequestMapping("/musicalDetail.do")
 	public ModelAndView selectArtDetail(ModelAndView mv,int artNo,HttpServletRequest request, HttpServletResponse response) {
 		ArtDetail art = null;
-		ArtTime aT = null;
+		ArrayList<ArtTime> aT = null;
 		Seat s= null;
+		ArrayList<Img> img = null;
+		boolean flag = false;
 		
-		boolean flag = false; 
 		Cookie[] cookies = request.getCookies();
 		if(cookies != null) {
 			for(Cookie c : cookies) {
 				if(c.getName().equals("artNo"+artNo)) {
-					// 해당 게시글에 대한 쿠키 존재(이미 읽은 게시글)
 					flag = true;
 				}
 			}
@@ -71,10 +75,12 @@ public class ArtController {
 			
 			art = aService.selectArt(artNo, flag);
 			aT = aService.selectATime(artNo);
-			s = new Seat(aT.getTimeNo() , artNo);
+			img=aService.selectImg(artNo);
+			s = new Seat(aT.get(0).getTimeNo() , artNo);
 		}
 		
 		if(art != null) {
+			mv.addObject("img", img);
 			mv.addObject("art", art);
 			mv.addObject("aT", aT);
 			mv.addObject("s" ,s);
@@ -100,13 +106,21 @@ public class ArtController {
 	public ModelAndView buy(ModelAndView mv , 
 			@RequestParam("artNo") Integer artNo , 
 			@RequestParam("timeNo") Integer timeNo) {
+		System.out.println("timeNo"+timeNo);
 		Seat s = new Seat(timeNo , artNo);
 		ArrayList<Seat> sList = aService.selectSeatList(s);
 		int seatCount = aService.selectSeatAllCount(s);
+		
+		
+		
+		ArrayList<ArtTime> aT = aService.selectATime(artNo);
+		
+		
 		if(sList != null) {
 			mv.addObject("s" ,s);
 			mv.addObject("sList", sList);
 			mv.addObject("sCount", seatCount);
+			mv.addObject("aT", aT);
 			mv.setViewName("musical/buy");
 		}else {
 			throw new ArtException("좌석 불러오기 실팽");
@@ -114,17 +128,23 @@ public class ArtController {
 		
 		return mv;
 	}
+		
+	//댓글
+	@RequestMapping(value="sList.do", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public String getReplyList(int timeNo , int artNo) {
+		Seat s = new Seat(timeNo , artNo);
+		ArrayList<Seat> sList = aService.selectSeatList(s);
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+		// 시분초 다루고 싶다면 java.util.Date 사용
+		return gson.toJson(sList);
+	}
+
 	
-	/*@RequestMapping("/time.do")
-	public ModelAndView time(ModelAndView mv)
-	{
-		return mv;
-	}*/
-	
-	@RequestMapping("/buyTwo.do")
+	@RequestMapping("/buyTwo.do") //좌석 선택 후 
 	public ModelAndView buyTwo(int artNo , int timeNo, ModelAndView mv, @RequestParam(value="seatName[]") String seatName) {
 		//결제 .
-		System.out.println("seatName : " + seatName);
 		String[] seatList = seatName.split(" ");
 		int count = 0;
 		
@@ -142,11 +162,11 @@ public class ArtController {
 		return mv;
 	}
 	
-	@RequestMapping("/buyEnd")
+	@RequestMapping("/buyEnd") // 구매 완료 
 	public String buyEnd(Purchase p) {
+		System.out.println(p);
 		int result = aService.insertPurchase(p);
-		
-		return null;
+		return "redirect:musical.do";
 	}
 	
 	@RequestMapping("/insert.do")
@@ -155,39 +175,67 @@ public class ArtController {
 		return "musical/artInsertForm";
 	}
 	
-	@RequestMapping("/insertArt.do")
-	public ModelAndView insertArt(HttpServletRequest request, ModelAndView mv /* Art a,*/
-		/*	@RequestParam(value="uploadFile", required=false) MultipartFile file*/) { // 공연정보 isnert 후 회차 넣기 
+	
+	
+	@RequestMapping("/insertArt.do") // 공연정보 isnert 후 회차 넣기 
+	public String insertArt(HttpServletRequest request, Art a,/* Date startDate , Date endDate , Date ticketingDate,*/
+		@RequestParam(value="uploadFile", required=false) MultipartFile file,
+		@RequestParam(value="uploadFile2", required=false) MultipartFile file2) {
 		
-		Img img = null;
 		
-		/*if(!file.getOriginalFilename().equals("")) {
-			String renameFileName = saveFile(file, request);
-			
-			if(renameFileName != null) {
-				img.setOriginName(file.getOriginalFilename());
-				img.setChangeName(renameFileName);
+		Img img = new Img();
+		
+		int result = aService.insertArt(a); 
+		
+		if(result > 0) {
+			if(!file.getOriginalFilename().equals("")) {
+				String renameFileName = saveFile(file, request);
+	
+				
+				if(renameFileName != null) {
+					String originName = file.getOriginalFilename();
+					img.setOriginName(originName);
+					img.setChangeName(renameFileName);
+					img.setFileLevel(0);
+					String root = request.getSession().getServletContext().getRealPath("resources");
+					String savePath = root + "\\images\\art\\";
+					img.setFilePath(savePath+renameFileName);
+				}
 			}
-		}
+			aService.insertImg(img);
+			
+			Img img2 = new Img();
+			
+			if(!file2.getOriginalFilename().equals("")) {
+				String renameFileName = saveFile(file2, request);
+	
+				
+				if(renameFileName != null) {
+					String originName = file2.getOriginalFilename();
+					img2.setOriginName(originName);
+					img2.setChangeName(renameFileName);
+					img2.setFileLevel(1);
+					String root = request.getSession().getServletContext().getRealPath("resources");
+					String savePath = root + "\\images\\art\\";
+					img2.setFilePath(savePath+renameFileName);
+				}
+			}
+			aService.insertImg(img2);
 		
 		
-		String root = request.getSession().getServletContext().getRealPath("/")
 		
-		//실제 파일 저장 위치
-		String savePath = root + "/resources/productBoard/";
-		
-		int result = aService.insertArt(a); */
-		
-		mv.setViewName("musical/timeInsertForm");
-		
-		return mv;
+			return "musical/timeInsertForm";
+		}else {
+			throw new ArtException("게시글 등록 실패!");
+		}	
+
 	}
 
+	
 	public String saveFile(MultipartFile file, HttpServletRequest request) { //파일 저장
 
 		String root = request.getSession().getServletContext().getRealPath("resources");
-
-		String savePath = root + "\\buploadFiles"; // 파일 경로 수정
+		String savePath = root + "\\images\\art"; // 파일 경로 수정
 
 		File folder = new File(savePath);
 
@@ -195,11 +243,11 @@ public class ArtController {
 			folder.mkdirs();
 		}
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); //년월일시분초
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS"); //년월일시분초.초
 		String originFileName = file.getOriginalFilename();
 		String renameFileName = sdf.format(new Date()) 
 				+ originFileName.substring(originFileName.lastIndexOf("."));
-
+		
 		String renamePath = folder + "\\" + renameFileName;
 
 		try {
@@ -208,18 +256,28 @@ public class ArtController {
 		} catch (Exception e) {
 			System.out.println("파일 전송 에러 : " + e.getMessage());
 		}
-
 		return renameFileName;
-		
-
 	}
 	
 	
 	
 	@RequestMapping("/insertTime.do")
-	public String insertTime() { //회차 삽입
+	public String insertTime(ArtTime aT,
+			@RequestParam("Time")String[] time) { //회차 삽입
 		
-		return "musical/musical";
+			
+			String[] timeGet = time[0].split("T");
+			String date = timeGet[0] + " " + timeGet[1];
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+			aT.setDateTime(date);
+			int result = aService.inserArtTime(aT);
+			return "redirect:musical.do";
+	}
+
+	@RequestMapping("timeInsertForm.do")
+	public String a() {
+		return "musical/timeInsertForm";
 	}
 	
 	
