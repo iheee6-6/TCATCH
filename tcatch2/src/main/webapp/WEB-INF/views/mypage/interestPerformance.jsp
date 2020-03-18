@@ -55,9 +55,11 @@ p span {
 															<td>
 																<p class="list">
 																<p class="pImage">
-																	<img
-																		src="http://tkfile.yes24.com/upload2/PerfBlog/202001/20200106/20200106-35104_1.jpg"
-																		width="72" height="89" alt="뮤지컬 [쓰릴 미]">
+																	<c:forEach var="img" items="${imgList}">
+																		<c:if test="${img.artNo eq I.artNo }">
+																			<img src="resources/images/art/${img.changeName }" width="72" height="89">
+																		</c:if>
+																	</c:forEach>
 																</p>
 																<p class="pIntro">
 																	<strong>${I.artTitle }</strong> <br> <span>${I.startDate }~${I.endDate }</span>

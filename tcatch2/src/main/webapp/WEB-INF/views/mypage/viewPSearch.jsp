@@ -23,9 +23,9 @@
 					</h3>
 					<p class="poster"
 						style="margin-right: 50px; margin-left: 30px; padding: 0px;">
-						<img
-							src="http://tkfile.yes24.com/upload2/PerfBlog/201408/20140807/20140807-18681_1.jpg"
-							width="141" height="174" alt="Ripple Effect the Concert">
+						
+						<img src="resources/images/art/${v.renameFile }" width="141" height="174">
+						
 					</p>
 
 					<ul>
@@ -50,25 +50,27 @@
 						<c:forTokens var="seat" items="${v.seat}" delims=" ">
 							${seat} ,
 						</c:forTokens></span>)</li>
+						
 					</ul>
-					<br>
-					<div>
-						<c:url var="pDetail" value="musicalDetail.do">
+					
+					<div class="btnL">
+					<c:url var="pDetail" value="musicalDetail.do">
 							<c:param name="artNo" value="${v.artNo }" />
 						</c:url>
-						<button class="btn btn-sm" onclick="location.href='${pDetail}'">공연정보</button>
-						<c:choose>
-						<c:when test="${ empty v.review_content}">
+						<button class="btn btn-sm" style="margin:0px;"onclick="location.href='${pDetail}'">공연정보</button>
+						<c:if test="${ empty v.review_content}">
 							<button class="btn btn-sm" onclick="location.href='${pDetail}'">관람후기
 								작성</button>
-						</c:when>
-						<c:otherwise>
-						<br>
-						<em>후기 : </em>
-							<span>${v.review_content }</span>
-						</c:otherwise>
-						</c:choose>
+						</c:if>
 					</div>
+						<c:if test="${ !empty v.review_content}">
+						<br>
+							<em>-후기- </em> 
+							<div style="width: 450px; margin-left: 210px;">
+							<span>${v.review_content }</span>
+							</div>
+						</c:if>
+				
 				</div>
 			</c:forEach>
 		</c:otherwise>

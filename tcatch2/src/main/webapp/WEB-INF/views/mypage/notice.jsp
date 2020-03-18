@@ -26,6 +26,10 @@
 .ticketo .swiper-slide .ticket-txt .ticket-date {
 	padding: 0px;
 }
+
+.noti-tbl td:nth-child(3){
+    text-indent: 20px;
+}
 </style>
 </head>
 <body>
@@ -45,11 +49,17 @@
 						class="swiper-container ticketo swiper-container-initialized swiper-container-horizontal">
 						<div class="swiper-wrapper"
 							style="transform: translate3d(0px, 0px, 0px);">
-							<c:forEach var="notice" items="${ noticeList}">
+							<c:forEach var="notice" items="${ noticeList}" end='5'>
 								<div class="swiper-slide swiper-slide-active"
 									style="width: 222.2px; margin-right: 24px;">
+									<c:forEach var="img" items="${imgList}">
+										<c:if test="${img.artNo eq notice.artNo }">
+											<c:set var="imgName" value="${img.changeName }"/>
+										</c:if>
+									</c:forEach>
 									<a href="noticeDetailView.do?artNo=${notice.artNo }"> <img
-										src="" />
+										src="resources/images/art/${imgName }" />
+										
 										<div class="donut-area">
 											<iframe class="chartjs-hidden-iframe" tabindex="-1"
 												style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;"></iframe>
@@ -59,7 +69,7 @@
 										</div> <fmt:parseDate var="dateString" value="${notice.ticketingDate }" pattern="yyyy-MM-dd" /> 
 											<fmt:formatDate var="tdate1" value="${dateString }" pattern="yyyy-MM-dd HH:mm:ss" />
 											<fmt:parseNumber value="${dateString.time / (1000*60*60*24)}"
-					integerOnly="true" var="tdate12" />
+												integerOnly="true" var="tdate12" />
 											
 											<fmt:formatDate var="tdate2" value="${dateString }"
 											pattern="yyyy.MM.dd(E) : aaa hh:mm" />
@@ -69,7 +79,7 @@
 													D-${tdate12-now}
 												</c:when>
 												<c:otherwise>
-													today ${tdate12-now}
+													Today
 												</c:otherwise>
 											</c:choose>
 										</div>
@@ -88,7 +98,7 @@
 					</div>
 				</div>
 			</c:if>
-			<div id="NoticeMainDisplay" style="display: block;">
+			<%-- <div id="NoticeMainDisplay" style="display: block;">
 				<!-- 공지사항 상단 배너 -->
 				<div class="notice-slide">
 					<div
@@ -308,7 +318,7 @@
 					//        }
 					//    });
 				</script>
-				<!-- 공지사항 상단 배너 -->
+				<!-- 공지사항 상단 배너 --> --%>
 
 
 
@@ -339,7 +349,7 @@
 								<tr>
 									<th scope="col">구분</th>
 									<th scope="col">제목</th>
-									<th scope="col">티켓오픈 일시</th>
+									<th scope="col">티켓오픈 일시  </th>
 									<th scope="col">조회수</th>
 								</tr>
 
@@ -355,15 +365,15 @@
 											<tr>
 												<td>티켓오픈</td>
 												<c:url var="ndetail" value="noticeDetailView.do">
-													<c:param name="bId" value="${ n.artNo }" />
+													<c:param name="artNo" value="${ n.artNo }" />
 													<%-- <c:param name="page" value="${ pi.currentPage }" /> --%>
 												</c:url>
-												<td><a href="ndetail"><em>${n.artTitle}</em></a></td>
+												<td><a href="${ ndetail}"><em>${n.artTitle}</em></a></td>
 												<td><fmt:parseDate var="dateString"
 														value="${n.ticketingDate }" pattern="yyyy-MM-dd" /> <fmt:formatDate
 														var="tdate" value="${dateString }"
 														pattern="yyyy.MM.dd(E) : aaa hh:mm" /> ${tdate }</td>
-												<!-- 2020.02.12(수) 17:00 -->
+												
 												<td>조회수</td>
 											</tr>
 
@@ -449,51 +459,19 @@
 	</div>
 	<jsp:include page="../common/footer.jsp" />
 
-	<script type="text/javascript"
-		src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<script type='text/javascript' src='resources/css/mypage/swiper.js'></script>
-	<script type='text/javascript'
-		src='http://tkfile.yes24.com/New/Js/Chart.bundle_min.js'></script>
-	<script type='text/javascript'
-		src='http://tkfile.yes24.com/New/Js/utils.js'></script>
-	<script type='text/javascript'
-		src='http://tkfile.yes24.com/New/Js/jquery.mCustomScrollbar_min.js'></script>
-	<script type='text/javascript'
-		src='http://tkfile.yes24.com/New/Js/common.js?v=158'></script>
-	<script type='text/javascript'
-		src='http://tkfile.yes24.com/New/Js/jquery.lazy.min.js'></script>
-	<script type='text/javascript'
-		src='http://tkfile.yes24.com/New/Js/jquery.cookie.js'></script>
-	<script type='text/javascript'
-		src='http://tkfile.yes24.com/New/Js/jquery.url.js'></script>
-	<script type='text/javascript'
-		src='http://tkfile.yes24.com/New/Js/base64.js'></script>
-	<script type='text/javascript'
-		src='http://tkfile.yes24.com/New/Js/babel.js'></script>
-	<script type='text/javascript'
-		src='http://tkfile.yes24.com/New/Js/polyfill.js'></script>
-	<script type='text/javascript'
-		src='/inc/js/custom-1.8.21/ui/jquery-ui-1.8.21.custom.min.js'></script>
-
-	<link rel='shortcut icon'
-		href='http://tkfile.yes24.com/img/favicon.ico?ver=150825a'
-		type='image/x-icon' />
-	<script type='text/javascript'
-		src='http://tkfile.yes24.com/New/Js/jry_home_jdefault.js'></script>
-	<script type='text/javascript'
-		src='http://tkfile.yes24.com/New/Js/jry_home_jdialog.js'></script>
-	<script type='text/javascript'
-		src='http://tkfile.yes24.com/New/Js/jry_default.js?v=158'></script>
-
 	<script type='text/javascript'
 		src='http://tkfile.yes24.com/New/Js/Main.js?v=158'></script>
 
 	<link rel='stylesheet' type='text/css'
-		href='http://tkfile.yes24.com/New/Css/main_2.css?v=2020012203' />
-	<link rel='stylesheet' type='text/css'
-		href='http://tkfile.yes24.com/New/Css/swiper_min.css' />
-	<link rel='stylesheet' type='text/css'
-		href='http://tkfile.yes24.com/New/Css/jquery.mCustomScrollbar.css' />
-
+		href='resources/css/mypage/swiper_min.css' />
+		
+	<script>
+	$(function(){
+		$(".ticketo .swiper-wrapper").css({"display":"block","text-align":"center","font-size":"0"});
+		$(".ticketo .swiper-slide").css({"margin-left":"12px","margin-right":"12px","display":"inline-block"});
+		$(".ticketo .swiper-slide:first").css("margin-left","0");
+		$(".ticketo .swiper-slide:last").css("margin-right","0");
+	});
+	</script>
 </body>
 </html>

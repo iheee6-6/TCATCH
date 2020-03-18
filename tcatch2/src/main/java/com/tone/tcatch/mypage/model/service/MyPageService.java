@@ -1,6 +1,7 @@
 package com.tone.tcatch.mypage.model.service;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import com.tone.tcatch.art.model.vo.Art;
@@ -35,8 +36,6 @@ public interface MyPageService {
 
 	ArrayList<Ticket> selectTicketList(String id, int currentPage);
 
-	ArrayList<Ticket> selectViewPerformanceList(String id);
-
 	int insertInterest(String id, int pId);
 
 	int insertAlarm(String id, int aId);
@@ -47,14 +46,19 @@ public interface MyPageService {
 
 	ArtDetail selectNotice(int artNo);
 
-	int refundTicket(String id, int tId);
+	int refundTicket(String id, int tNo);
 
-	ArrayList<Art> confirmTicketingTime(Date d);
+	ArrayList<Alarm> confirmTicketingTime(Timestamp d);
 
-	ArrayList<Member> selectAlarmMember(Art art);
+	ArrayList<Member> selectAlarmMember(int i);
 
 	String selectAView(String id);
 
-	ArrayList<Img> selectNImgList(ArrayList<Integer> list);
+	ArrayList<Img> selectImgList(ArrayList<Integer> list);
+
+	Img selectImgOne(int artNo);
+
+	int selectAlarmUser(String id, int aNo);
+
 
 }
