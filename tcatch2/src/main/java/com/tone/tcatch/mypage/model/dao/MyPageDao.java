@@ -1,6 +1,7 @@
 package com.tone.tcatch.mypage.model.dao;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,13 +29,13 @@ public class MyPageDao {
 	// 회원 정보 관리
 	// 탈퇴
 	public int deleteMember(String id) {
-		return sqlSession.delete("memberMapper.deleteMember", id);
+		return sqlSession.delete("myPageMapper.deleteMember", id);
 
 	}
 
 	// 수정
 	public int updateMember(Member m) {
-		return sqlSession.update("memberMapper.updateMember", m);
+		return sqlSession.update("myPageMapper.updateMember", m);
 	}
 
 	// 마이페이지 첫 화면
@@ -56,8 +57,8 @@ public class MyPageDao {
 
 	////////////////////////
 	//리스트 
-	public int getTListCount() {
-		return sqlSession.selectOne("myPageMapper.getTListCount");
+	public int getTListCount(String id) {
+		return sqlSession.selectOne("myPageMapper.getTListCount",id);
 	}
 	
 	// 예매내역
@@ -112,6 +113,14 @@ public class MyPageDao {
 		return sqlSession.insert("myPageMapper.insertInterest", map);
 	}
 
+	//알림 중복 확인
+	public int selectAlarmUser(String id, int aNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("aNo", aNo);
+		return sqlSession.selectOne("myPageMapper.selectAlarmUser",map);
+	}
+	
 	// 알림 추가
 	public int insertAlarm(String id, int aNo) {
 		Map<String, Object> map = new HashMap<>();
@@ -120,12 +129,8 @@ public class MyPageDao {
 		return sqlSession.insert("myPageMapper.insertAlarm", map);
 	}
 
-	// 관람내역 조회
-	public ArrayList<Ticket> selectViewPerformanceList(String id) {
-		return (ArrayList) sqlSession.selectList("myPageMapper.selectViewList", id);
-	}
 
-	
+	//관람내역 조회 (검색 포함)
 	public ArrayList<Ticket> searchView(String id, String sdate, String edate, String artType, String pName) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("id", id);
@@ -135,50 +140,63 @@ public class MyPageDao {
 		map.put("pName", pName);
 		return (ArrayList)sqlSession.selectList("myPageMapper.searchView",map);
 	}
-
+	
+	//공지사항 수
 	public int getNListCount() {
 		return sqlSession.selectOne("myPageMapper.getNListCount");
 	}
 
+	//공지사항 리스트
 	public ArrayList<ArtDetail> selectNoticeList(PageInfo pi) {
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("myPageMapper.selectNoticeList",null,rowBounds);
 	}
 
-	public ArrayList<Img> selectNImgList(ArrayList<Integer> list) {
+	//사진리스트 불러오기
+	public ArrayList<Img> selectImgList(ArrayList<Integer> list) {
 		System.out.println("hi");
-		return (ArrayList)sqlSession.selectList("myPageMapper.selectNImgList",list);
+		return (ArrayList)sqlSession.selectList("myPageMapper.selectImgList",list);
 	}
 	
+	//공지사항 디테일
 	public ArtDetail selectNotice(int artNo) {
 		return sqlSession.selectOne("myPageMapper.selectNoticeDetail",artNo);
 	}
 
-	public int refundTicket(String id, int tId) {
+	//환불신청
+	public int refundTicket(String id, int tNo) {
 		Map<String,Object> map = new HashMap<>();
 		map.put("id",id);
-		map.put("tId", tId);
+		map.put("tNo", tNo);
 		return sqlSession.insert("myPageMapper.insertRefund",map);
 	}
 
-	public ArrayList<Art> confirmTicketingTime(Date d) {
-		//return (ArrayList)sqlSession.selectList("myPageMapper.selectTicketingArt", d);
-		return null;
+	//티켓팅 시간 확인
+	public ArrayList<Alarm> confirmTicketingTime(Timestamp d) {
+		return (ArrayList)sqlSession.selectList("myPageMapper.selectTicketingArt", d);
 	}
 
-	public ArrayList<Member> selectAlarmMember(Art art) {
-		//return (ArrayList)sqlSession.selectList("myPageMapper.selectAlarmMember",art);
-		return null;
+	//티켓팅 알림 해당 멤버
+	public ArrayList<Member> selectAlarmMember(int art) {
+		return (ArrayList)sqlSession.selectList("myPageMapper.selectAlarmMember",art);
 	}
 
+	//관람공연 조회에서 처음에 날짜 조정(제일 오래된 예매날짜 혹은 회원가입 날짜)
 	public String selectAView(String id) {
 		String aDate = sqlSession.selectOne("myPageMapper.selectAView",id);
-	if(aDate== null) { //예매내역이 없을 시 회원가입 날짜로 한다.
-		aDate = sqlSession.selectOne("myPageMapper.selectEnrollDate",id);
-	}
+		if(aDate== null) { //예매내역이 없을 시 회원가입 날짜로 한다.
+			aDate = sqlSession.selectOne("myPageMapper.selectEnrollDate",id);
+		}
 		return aDate;
 	}
+
+	//사진 가져오기
+	public Img selectImgOne(int artNo) {
+		return sqlSession.selectOne("myPageMapper.selectImgOne",artNo);
+	}
+
+	
 
 	
 

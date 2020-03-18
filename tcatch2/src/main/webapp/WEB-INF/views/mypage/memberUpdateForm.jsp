@@ -54,10 +54,6 @@ body {
 	background-color: white;
 }
 
-h1, label, button, p, table {
-	font-family: 'Do Hyeon', sans-serif;
-}
-
 .joinbtn {
 	text-align: center;
 }
@@ -69,7 +65,7 @@ h1, label, button, p, table {
 }
 
 th {
-	font-size: 20px;
+	font-size: 15px;
 	font-weight: 100;
 }
 
@@ -104,7 +100,7 @@ span.error {
 			<div class="content" style="margin-top: 20px;">
 
 				<form class="form-signin" action="memupdate.do" method="post"
-					id="updateForm" onsubmit="return validate()">
+					id="updateForm">
 					<h4 class="card-title text-danger"
 						style="float: left; margin-bottom: 30px">
 						<i class="fa fa-* fa-bookmark"></i> &nbsp;회원 정보 수정
@@ -112,7 +108,7 @@ span.error {
 
 					<table align="center" width="600" height="600">
 						<tr>
-							<th>이름 *</th>
+							<th>* 이름</th>
 							<td><input type="text" name="name" size="30"
 								value="${loginUser.name }" required></td>
 						</tr>
@@ -123,7 +119,7 @@ span.error {
 								value="${loginUser.birth}"></td>
 						</tr>
 						<tr>
-							<th>성별 *</th>
+							<th> 성별</th>
 							<td><input type="radio" name="gender" value="M" id="m">남 &nbsp;
 									<input type="radio" name="gender" value="F" id="f">여</td>
 							<c:if test="${loginUser.gender eq 'M' }">
@@ -139,18 +135,18 @@ span.error {
 						</tr>
 
 						<tr>
-							<th>아이디 *</th>
+							<th>* 아이디</th>
 							<td><input type="text" name="id" id="userId" size="30"
 								value="${loginUser.id }" readonly></td>
 						</tr>
 						<tr>
-							<th>비밀번호 *</th>
-							<td><input type="password" id="pwd" name="pwd1" size="30"
+							<th>* 비밀번호</th>
+							<td><input type="password" id="pwd1" name="pwd1" size="30"
 								required></td>
 						</tr>
 						<tr>
-							<th>비밀번호 확인 *</th>
-							<td><input type="password" id="pwd2" name="pwd2" size="30"
+							<th>* 비밀번호 확인</th>
+							<td><input type="password" id="pwd2" name="pwd" size="30"
 								required> <span class="guide ok">비밀번호가 일치합니다.</span> <span
 								class="guide error">비밀번호가 일치하지 않습니다.</span> <input type="hidden"
 								name="pwdEqCh" id="pwdEqCh" value="0"></td>
@@ -180,18 +176,18 @@ span.error {
 							</c:if>
 						</c:forTokens>
 						<tr>
-							<td>우편번호</td>
+							<th>우편번호</th>
 							<td><input type="text" name="post"
 								class="postcodify_postcode5" size="10" value="${addr1 }" />
 								<button type="button" id="postcodify_search_button">검색</button></td>
 						</tr>
 						<tr>
-							<td>도로명 주소</td>
+							<th>도로명 주소</th>
 							<td><input type="text" name="address1"
 								class="postcodify_address" size="30" value="${addr2 }" /></td>
 						</tr>
 						<tr>
-							<td>상세 주소</td>
+							<th>상세 주소</th>
 							<td><input type="text" name="address2"
 								class="postcodify_extra_info" size="30" value="${addr3 }" /></td>
 						</tr>
@@ -209,13 +205,11 @@ span.error {
 								maxlength="4" type="text" value="${ phone3}" /></td>
 						</tr>
 						<tr>
-							<th scope="row">* 이메일 (인증 필수)</th>
+							<th scope="row">* 이메일</th>
 							<td>
 								<div id="email">
 									<input name="email" class="emailcheck0" id="text"
-										value="${loginUser.email}">
-									<button class="btn" type="button" onclick="emailCheck();"
-										id="emailcheck1" name="emailcheck">인증하기</button>
+										value="${loginUser.email}" readonly>
 								</div>
 							</td>
 						</tr>
@@ -230,13 +224,7 @@ span.error {
 		</div>
 
 	</div>
-	<link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
-	<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-	crossorigin="anonymous"></script>
-
-	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+	
 	<script>
 	$(function() {
 		$("#userU").addClass("active");
@@ -247,17 +235,20 @@ span.error {
 			var pwd1 = $("#pwd1").val();
 			if(pwd1!=""||pwd2!=""){
 				if(pwd1!=pwd2){
+					console.log("안");
 					$(".guide.error").show();
 					$(".guide.ok").hide();
 				}else{
+					console.log("맞");
 					$(".guide.error").hide();
 					$(".guide.ok").show();
 					$("#submit").removeAttr("disabled");
-					
 				}
 			}
 			
 		});
+		
+		$("")
 	});
 
 	</script>
@@ -265,12 +256,7 @@ span.error {
 	
 
 	<jsp:include page="../common/footer.jsp" />
-	<link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-		crossorigin="anonymous"></script>
-
+	
 	<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 	<script>
 		$(function() {

@@ -34,10 +34,9 @@
 											<p class="tit">${ticket.artTitle} 
 														<span style="color: red;">:: ${ticket.status}</span></p>
 											<p class="poster">
-												<a href='/Pages/Perf/Detail/Detail.aspx?IdPerf=35104'
-													Title='${ticket.artTitle }'><img
-													src='http://tkfile.yes24.com/upload2/PerfBlog/202001/20200106/20200106-35104_1.jpg'
-													width='180' height='224' alt='' /></a>
+												<img
+													src='resources/images/art/${ticket.renameFile }'
+													 alt='' />
 											</p>
 											<table id="tblOrderInfo" class="table_sm">
 												<tr>
@@ -58,14 +57,14 @@
 													<th class="le">공연장</th>
 													<td colspan="3" class="ri">${ticket.address } <a
 														class='dcursor' onclick='jsf_otv_ViewTheaterMap(3422);'><img
-															src='http://tkfile.yes24.com/img/mypage/btn_map.gif'
+															src='resources/images/mypage/btn_map.gif'
 															alt='약도' /></a></td>
 												</tr>
 												<tr id="trSeat">
 													<th class="le">좌석
 														<p>
 															<a href='javascript:;MySeatPopup();'><img
-																src='http://tkfile.yes24.com/img/mypage/btn_chkseat.gif'
+																src='resources/images/mypage/btn_chkseat.gif'
 																alt='좌석위치보기' style='margin-left: -7px' /></a>
 														</p>
 													</th>
@@ -92,7 +91,7 @@
 														</c:when>
 														<c:otherwise>
 															<span class="blu">택배</span> 
-															<c:if test="${ !empty ticket.wayBill}">
+															<c:if test="${ ticket.wayBill ne 0}">
 																<span>${ticket.wayBill}</span> 
 															</c:if>
 														</c:otherwise>
@@ -110,7 +109,7 @@
 									<div class="mycont">
 										<!-- NEW 결제내역 -->
 										<h2 class="tit">
-											<img src="http://tkfile.yes24.com/img/mypage/h2_mtit07.gif"
+											<img src="resources/images/mypage/h2_mtit07.gif"
 												alt="결제내역" />
 										</h2>
 										<!-- A. 무통장입금이 포함된 CASE -->
@@ -173,7 +172,7 @@
 										<div class="mycont">
 
 											<h2 class="tit">
-												<img src="http://tkfile.yes24.com/img/mypage/h2_mtit08.gif"
+												<img src="resources/images/mypage/h2_mtit08.gif"
 													alt="예매취소 안내" />
 											</h2>
 											<div class="gray_box02 " style="padding: 10px;">
@@ -230,17 +229,22 @@
 
 												</div>
 											</div>
-
+											<c:if test="${ticket.status eq '예매완료'}">		
 											<ul class="gbox_notice" style="text-align: right;">
-												<li><a class='dcursor' id='imgCancelPayNone'
-													onclick='jsf_otv_CancelPayNone(0);'><img
-														src='http://tkfile.yes24.com/img/mypage/btn_no_reserv.gif'
+											<c:url var="tdelete" value="refund.do">
+												<c:param name="tNo" value="${ ticket.tNo }"/>
+											</c:url>
+												<li><a class='dcursor' id='imgCancelPayNone'><img
+														src='resources/images/mypage/btn_no_reserv.gif'
 														alt='예매취소 신청' /></a></li>
+														
 											</ul>
+											</c:if>
+											
 											<div style="text-align: center;">
 												<a class='dcursor' id='imgList'
-													onclick='jsf_otv_GoMyOrder();'><img
-													src='http://tkfile.yes24.com/img/mypage/btn_reser_list.gif'
+													onclick='history.back();'><img
+													src='resources/images/mypage/btn_reser_list.gif'
 													alt='예매내역 목록' /></a>
 											</div>
 										</div>
@@ -248,7 +252,7 @@
 									<!-- 유의사항 -->
 									<div class="mycont">
 										<h2 class="tit">
-											<img src="http://tkfile.yes24.com/img/mypage/h2_mtit09.gif"
+											<img src="resources/images/mypage/h2_mtit09.gif"
 												alt="유의사항" />
 										</h2>
 										<div class="gray_box03">
@@ -302,6 +306,12 @@
 	<script>
 	$(function(){
 		$("#cnc").addClass("active");
+		
+		$("#imgCancelPayNone").click(function(){
+			if(confirm("정말 예매취소하시겠습니까?")){
+			location.href='${ tdelete }';
+			}
+		});
 	});
 	</script>
 	<jsp:include page="../common/footer.jsp"/>

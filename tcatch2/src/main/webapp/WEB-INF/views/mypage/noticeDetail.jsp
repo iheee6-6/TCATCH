@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+ <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 
 <link href="resources/css/mypage/notice.css" rel="stylesheet" />
 <style>
@@ -34,12 +35,10 @@
 				<span>조회수 :${count }</span>
 			</div>
 
-
 			<div class="noti-view-ticket">
 				<div class="noti-vt-layout">
 					<div class="noti-vt-left">
-						<img
-							src="http://tkfile.yes24.com/upload2/BoardNotice/202001/20200131/20200131-20200131-o.jpg"
+						<img src="resources/images/art/${img.changeName }"
 							width="180" height="252">
 					</div>
 					<div class="noti-vt-right">
@@ -71,7 +70,8 @@
 						</div>
 					
 						<div class="noti-vt-btns">
-							<button type="button" id="AlarmE" class="btn btn-primary">티켓오픈 알림</button><!-- data-target="#AlarmModal" -->
+						<a id="AlarmEnroll" class="noti-vt-pop" style="cursor:pointer;"><span>티켓오픈 알림</span></a>
+						
 						</div>
 					</div>
 				</div>
@@ -79,7 +79,7 @@
 
 			<script>
 			$(function(){
-				$("#AlarmE").click(function(){
+				$("#AlarmEnroll").click(function(){
 					var login= "${loginUser}";
 					if(login==''){
 						alert("로그인 후 이용가능합니다.");
@@ -87,12 +87,28 @@
 					}
 					else
 					$("#AlarmModal").modal();
-					
 				});
 				
+				
 				$("#insertAlarm").click(function(){
-					location.href="insertAlarm.do?aNo="+${notice.artNo };
+					var aNo=${notice.artNo};
+					 $.ajax({
+					        type : "POST", 
+					        url : "insertAlarm.do",
+					        data : {
+					        	aNo:aNo
+							},
+							dataType: 'text',
+							success : function(data){
+					            alert(data);
+					        },
+					        error : function(){
+					            console.log("등록 실패");
+					        }
+					         
+					    }); 
 				});
+				
 			});
 			</script>
 			
@@ -102,17 +118,35 @@
 				<div class="noti-view-coment">
 					<p class="noti-view-comen-tit">공연 개요</p>
 					<div class="noti-view-comen-txt">
-						 &lt;시네콘서트 Ⅰ. 히사이시 조&gt; <br>티켓가: 전석 3만원 <br>
-						<br>4.3(금) 20:00 &lt;한스 짐머 vs 존 윌리엄스&gt; <br>티켓가: R석
-						12만원, S석 9만원, A석 7만원, B석 4만원 <br> <br>4.5(일) 19:30
-						&lt;케빈 오 ＆ 슈퍼밴드 meets 오케스트라&gt; <br>티켓가: R석 9만원, S석 7만원, A석
-						5만원 <br> <br>공연장소 : 롯데콘서트홀 <br>관람연령 : 만 7세 이상
-						입장(미취학아동 입장불가)
+					<dl>
+                        <dt>등급</dt>
+							<c:if test="${ notice.age == 0}">
+								<dd>전체 이용가</dd>
+							</c:if>
+							<c:if test="${ notice.age != 0}">
+								<dd>&nbsp;만 ${ art.age } 세이상</dd>
+						</c:if>
+						<dt>관람시간</dt>
+						<dd>&nbsp;총 ${notice.durationTime }분(인터미션 없음)</dd>
+						
+						<dt>좌석</dt>
+						<dd><ul style="padding:0px">
+						  <li>R석 <span class='rn-red'>80,000</span>원</li>
+                          <li>S석 <span class='rn-red'>60,000</span>원</li>
+                          <li>조석 <span class='rn-red'>1,890,000</span>원</li>
+						</ul>
+						</dd>
+							<dd><p class='rn-product-price2'>할인 적용 시 최저가 
+                                <span class='rn-red'>48,000</span>원 ~ 최고가 
+                                <span class='rn-red'>88,000</span>원
+                             </p></dd>
+						</dl>
 					</div>
 				</div>
 				<div class="noti-view-coment">
 					<p class="noti-view-comen-tit">공연 소개</p>
 					<div class="noti-view-comen-txt">
+										
 						<p>본격적인 봄을 알리는 4월,</p>
 						<p>꽃이 드리워진 석촌호수의 아름다운 전경을 한 눈에 내려다볼 수 있는 바로 이 곳, 롯데콘서트홀에서</p>
 						<p>감미롭고 유쾌한 음악들로 가장 먼저 봄의 시작을 알립니다.</p>
@@ -186,7 +220,8 @@
 						<div class="modal-notice">
 						<p style="text-align:center; margin:30px;">티켓오픈 알림 신청 시 <br>티켓
 						<span style="color: red;">오픈 시간 1시간 전</span>에 회원님께 이메일을 보내드립니다.</p>
-						<div class="modal-email" style="border:1px solid orange; padding:30px;margin:30px;"> ${loginUser.email}</div>
+						<div class="modal-email" style="border:1px solid orange; padding:30px;margin:30px; font-size: 20px;
+   								 font-weight:bold;text-align: center;background: rgb(254,216,177);"> ${loginUser.email}</div>
 						<p style="margin:30px;"> * 알림 받을 이메일 주소 변경을 원하시면, 마이페이지>회원정보관리 에서 변경하신 후 신청하시면 됩니다.</p>
 						</div>
 						</div>
@@ -223,12 +258,11 @@
 		</div>
 	</div>
 	<jsp:include page="../common/footer.jsp" />
-	<!-- 부트스트랩 -->
- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	
+<!-- 부트스트랩 -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	
-
 </body>
 </html>

@@ -3,6 +3,7 @@ package com.tone.tcatch.mypage.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.sql.Timestamp;
 /*import java.util.Date;*/
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,6 +21,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -34,14 +37,16 @@ import com.tone.tcatch.art.model.vo.Img;
 import com.tone.tcatch.common.Pagination;
 import com.tone.tcatch.ticket.model.vo.Ticket;
 
+@SessionAttributes({"loginUser","msg"})
 @Controller
 public class MyPageController {
+	
 	@Autowired
 	private MyPageService mpService;
 
 	@Autowired
 	private JavaMailSender mailSender;
-
+	
 	@RequestMapping("enterMyPage.do")
 	public ModelAndView enterMypage(ModelAndView mv, HttpSession session, Model model) {
 		Member loginUser = new Member();
@@ -59,7 +64,29 @@ public class MyPageController {
 		ArrayList<Ticket> recentHistoryList = mpService.selectRecentHistoryList(loginUser.getId());
 		ArrayList<Ticket> recentViewList = mpService.selectRecentViewList(loginUser.getId());
 		ArrayList<ArtDetail> recentInterestList = mpService.selectRecentInterestList(loginUser.getId());
-
+		
+		if(recentViewList !=null ||recentInterestList !=null ) {
+			ArrayList<Integer> imageList = new ArrayList<Integer>();
+			
+			for(int i=0;i<recentViewList.size();i++) {
+				imageList.add(recentViewList.get(i).getArtNo());
+			}
+			
+			for(int i=0;i<recentInterestList.size();i++) {
+				for(int j=0;j<imageList.size();j++) {
+					if(recentInterestList.get(i).getArtNo()==imageList.get(j)) {
+						break;
+					}
+					imageList.add(recentInterestList.get(i).getArtNo());
+				}	
+			}
+			
+			ArrayList<Img> artImgList= mpService.selectImgList(imageList);
+			System.out.println("img"+artImgList);
+			mv.addObject("imgList", artImgList);
+		}
+		
+		
 		System.out.println("h"+recentHistoryList);
 		System.out.println("v"+recentViewList);
 		System.out.println("i"+recentInterestList);
@@ -80,6 +107,7 @@ public class MyPageController {
 
 		ArrayList<Ticket> ticketList = mpService.selectTicketList(loginUser.getId(),currentPage);
 
+		System.out.println(currentPage+" "+Pagination.getPageInfo());
 		mv.addObject("ticketList", ticketList);
 		mv.addObject("pi", Pagination.getPageInfo());
 		mv.setViewName("mypage/checkNcancel");
@@ -91,7 +119,7 @@ public class MyPageController {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 
 		Ticket ticket = mpService.selectTicketDetail(loginUser.getId(), tNo);
-
+		
 		System.out.println("t"+ticket);
 		mv.addObject("ticket", ticket);
 		mv.setViewName("mypage/cNcDetail");
@@ -109,6 +137,16 @@ public class MyPageController {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 
 		ArrayList<ArtDetail> interestList = mpService.selectInterestPerformanceList(loginUser.getId());
+		
+		if(interestList !=null) {
+			ArrayList<Integer> imageList = new ArrayList<>();
+			for(ArtDetail a:interestList)
+				imageList.add(a.getArtNo());
+			ArrayList<Img> artImgList= mpService.selectImgList(imageList);
+			System.out.println("img"+artImgList);
+			mv.addObject("imgList", artImgList);
+		}
+		
 		System.out.println("inp  "+interestList);
 		mv.addObject("interestList", interestList);
 		mv.setViewName("mypage/interestPerformance");
@@ -162,17 +200,20 @@ public class MyPageController {
 		return mv;
 	}
 
-	@RequestMapping("insertAlarm.do")
-	public ModelAndView insertAlarm(ModelAndView mv, HttpSession session, int aNo) throws MypageException {
+	@RequestMapping(value="insertAlarm.do", produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String insertAlarm(HttpSession session, int aNo) {
 		Member loginUser = (Member) session.getAttribute("loginUser");
-
+		int checkDup = mpService.selectAlarmUser(loginUser.getId(),aNo);
+		System.out.println(checkDup);
+		if(checkDup>0) {
+			return "이미 등록되어있습니다. [마이페이지-> 알림설정]에서 확인하실 수 있습니다!";
+		}
 		int result = mpService.insertAlarm(loginUser.getId(), aNo);
-
-		if (result > 0)
-			mv.setViewName("redirect:alarmList.do");
-		else
-			throw new MypageException("알림 추가 실패");
-		return mv;
+		if (result > 0) {
+			return"알림 등록이 완료되었습니다. [마이페이지-> 알림설정]에서 확인하실 수 있습니다!";
+		}
+		return "실패!";
 	}
 
 	@RequestMapping("viewPerformance.do")
@@ -181,9 +222,6 @@ public class MyPageController {
 
 		String d= mpService.selectAView(loginUser.getId());
 		
-		/*if(d==null) {
-			d= "null";
-		}*/
 		System.out.println("="+d);
 		mv.addObject("aDate", d);
 		mv.setViewName("mypage/viewPerformance");
@@ -204,7 +242,6 @@ public class MyPageController {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		
 		ArrayList<Ticket> tList = mpService.searchView(loginUser.getId(), sdate, edate, pType, pName);
-		//ArrayList<Ticket> tList= new ArrayList<>();
 		
 		System.out.println("hihi "+tList);
 		model.addAttribute("viewPerformanceList", tList);
@@ -214,13 +251,13 @@ public class MyPageController {
 
 	@RequestMapping("refund.do")
 	public ModelAndView refund(ModelAndView mv, HttpSession session, 
-			@RequestParam(value="tId", required=false)int tId) throws MypageException {
+			@RequestParam(value="tNo", required=false)int tNo) throws MypageException {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 
-		int result = mpService.refundTicket(loginUser.getId(), tId);
+		int result = mpService.refundTicket(loginUser.getId(), tNo);
 		if (result > 0) {
 			session.setAttribute("msg", "예매취소 요청이 완료되었습니다. 관리자의 승인에 의해 이루어집니다.");
-			mv.setViewName("redirect:checknCancel.do");
+			mv.setViewName("rediret:checknCancel.do");
 		} else
 			throw new MypageException("예매취소 요청 실패");
 		return mv;
@@ -239,10 +276,11 @@ public class MyPageController {
 			for(ArtDetail a:noticeList) {
 				list.add(a.getArtNo());
 			}
-			ArrayList<Img> imgList= mpService.selectNImgList(list);
-
+			ArrayList<Img> imgList= mpService.selectImgList(list);
+			System.out.println(imgList);
 			mv.addObject("imgList", imgList);
 		}
+		System.out.println( Pagination.getPageInfo());
 		mv.addObject("noticeList", noticeList);
 		mv.addObject("pi", Pagination.getPageInfo());
 		mv.setViewName("mypage/notice");
@@ -254,7 +292,11 @@ public class MyPageController {
 	public ModelAndView noticeDetailView(ModelAndView mv, HttpSession session, int artNo) {
 
 		ArtDetail notice = mpService.selectNotice(artNo);
-
+		
+		if(notice != null) {
+			Img img= mpService.selectImgOne(notice.getArtNo());
+			mv.addObject("img", img);
+		}
 		System.out.println(notice);
 		mv.addObject("notice", notice);
 		mv.setViewName("mypage/noticeDetail");
@@ -281,7 +323,8 @@ public class MyPageController {
 
 		m.setAddress(post + "," + address1 + "," + address2);
 		m.setPhone(phone1 + "-" + phone2 + "-" + phone3);
-
+		
+		System.out.println(m);
 		int result = mpService.updateMember(m);
 
 		if (result > 0) {
@@ -300,22 +343,26 @@ public class MyPageController {
 	 
 		 int result = mpService.deleteMember(id);
 		 
-		  if(result>0) { rd.addFlashAttribute("msg", "회원 탈퇴가 완료 되었습니다.");
-		 status.setComplete(); return "redirect:home.do"; }else {
-		 model.addAttribute("msg", "회원 탈퇴 실패"); return "common/errorPage"; 
+		  if(result>0) { 
+			  rd.addFlashAttribute("msg", "회원 탈퇴가 완료 되었습니다.");
+			  status.setComplete(); return "redirect:home.do";
+		 }else {
+			 model.addAttribute("msg", "회원 탈퇴 실패"); return "common/errorPage"; 
 		 } 
 	}
 	
 
-	// @Scheduled(cron = "0 0 * * * *") //매일 매시 정각마다(티켓팅은 정각에 이루어지기 때문)
-	public void test() {
+	@Scheduled(cron = "0 0 * * * *") //매일 매시 정각마다(티켓팅은 정각에 이루어지기 때문)
+	  //@Scheduled(cron = "0 41 21 * * *")
+	  public void test() {
 		java.util.Date sysd = new java.util.Date();
-		Date d = new Date(sysd.getTime());
-		ArrayList<Art> artList = mpService.confirmTicketingTime(d);
+		Timestamp d = new Timestamp(sysd.getTime());
+		System.out.println(d);
+		ArrayList<Alarm> artList = mpService.confirmTicketingTime(d);
 
 		if (artList != null) {
-			for (Art art : artList) {
-				ArrayList<Member> mList = mpService.selectAlarmMember(art);
+			for (Alarm art : artList) {
+				ArrayList<Member> mList = mpService.selectAlarmMember(art.getArtNo());
 				for (Member mem : mList) {
 					sendEmail(mem.getEmail(), art.getArtTitle());
 				}

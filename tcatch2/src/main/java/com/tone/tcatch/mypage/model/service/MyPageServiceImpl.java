@@ -1,9 +1,11 @@
 package com.tone.tcatch.mypage.model.service;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.tone.tcatch.art.model.vo.Art;
@@ -21,6 +23,10 @@ public class MyPageServiceImpl implements MyPageService{
 	@Autowired
 	MyPageDao mpDao;
 	
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
+	
 	@Override
 	public ArrayList<Alarm> selectAlarmList(String userId){
 		return mpDao.selectAlarmList(userId);
@@ -33,6 +39,9 @@ public class MyPageServiceImpl implements MyPageService{
 
 	@Override
 	public int updateMember(Member m) {
+		String encPwd= bcryptPasswordEncoder.encode(m.getPwd());
+		m.setPwd(encPwd);
+		
 		return mpDao.updateMember(m);
 	}
 
@@ -73,16 +82,11 @@ public class MyPageServiceImpl implements MyPageService{
 
 	@Override
 	public ArrayList<Ticket> selectTicketList(String id, int currentPage) {
-		int listCount = mpDao.getTListCount();
+		int listCount = mpDao.getTListCount(id);
 				
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 				
 		return mpDao.selectTicketList(id,pi);
-	}
-
-	@Override
-	public ArrayList<Ticket> selectViewPerformanceList(String id) {
-		return mpDao.selectViewPerformanceList(id);
 	}
 
 	@Override
@@ -111,8 +115,8 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 	
 	@Override
-	public ArrayList<Img> selectNImgList(ArrayList<Integer> list) {
-		return mpDao.selectNImgList(list);
+	public ArrayList<Img> selectImgList(ArrayList<Integer> list) {
+		return mpDao.selectImgList(list);
 	}
 
 	@Override
@@ -121,23 +125,33 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public int refundTicket(String id, int tId) {
-		return mpDao.refundTicket(id,tId);
+	public int refundTicket(String id, int tNo) {
+		return mpDao.refundTicket(id,tNo);
 	}
 
 	@Override
-	public ArrayList<Art> confirmTicketingTime(Date d) {
+	public ArrayList<Alarm> confirmTicketingTime(Timestamp d) {
 		return mpDao.confirmTicketingTime(d);
 	}
 
 	@Override
-	public ArrayList<Member> selectAlarmMember(Art art) {
+	public ArrayList<Member> selectAlarmMember(int art) {
 		return mpDao.selectAlarmMember(art);
 	}
 
 	@Override
 	public String selectAView(String id) {
 		return mpDao.selectAView(id);
+	}
+
+	@Override
+	public Img selectImgOne(int artNo) {
+		return mpDao.selectImgOne(artNo);
+	}
+
+	@Override
+	public int selectAlarmUser(String id, int aNo) {
+		return mpDao.selectAlarmUser(id,aNo);
 	}
 
 	

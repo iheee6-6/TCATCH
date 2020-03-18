@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,28 +50,35 @@ li a {
 										<th>구분</th>
 									</thead>
 									<tbody>
-									<c:choose>
-										<c:when test="${empty recentHistoryList }">
-											<tr>
-												<td colspan="6" style="text-align:center"> 예매내역이 없습니다.</td>
-											</tr>
-										</c:when>
-										<c:otherwise>
-										<c:forEach var="b" items="${ recentHistoryList }">
-											<tr>
-											<td>${b.tDate }</td>
-												
-												<td> <c:url var="tDetail" value="tDetail.do">
-															<c:param name="tNo" value="1" />
-													</c:url><a href="${tDetail}">${b.tNo}</a></td>
-												<td>${b.artTitle }</td>
-												<td>${b.viewDate }</td>
-												<td>${b.ticketCount}</td>
-												<td>${b.status }</td>
-											</tr>
-										</c:forEach>
-										</c:otherwise>
-									</c:choose>
+										<c:choose>
+											<c:when test="${empty recentHistoryList }">
+												<tr>
+													<td colspan="6" style="text-align: center">예매내역이 없습니다.</td>
+												</tr>
+											</c:when>
+											<c:otherwise>
+												<c:forEach var="b" items="${ recentHistoryList }">
+													<tr>
+														<fmt:formatDate value="${b.tDate}" var="tdate"
+															pattern="yyyy-MM-dd" />
+
+														<td>${tdate }</td>
+														<c:url var="tDetail" value="tDetail.do">
+															<c:param name="tNo" value="${b.tNo }" />
+														</c:url>
+														<td><a href="${tDetail}"
+															style="font-size: 14px; color: black;">${b.tNo}</a></td>
+														<td>${b.artTitle }</td>
+														<fmt:formatDate value="${b.viewDate}" var="vdate"
+															pattern="yyyy-MM-dd" />
+
+														<td>${vdate }</td>
+														<td>${b.ticketCount}</td>
+														<td>${b.status }</td>
+													</tr>
+												</c:forEach>
+											</c:otherwise>
+										</c:choose>
 									</tbody>
 								</table>
 							</div>
@@ -89,36 +96,44 @@ li a {
 								</p> --%>
 							</div>
 							<div class="card-body">
-								<ul id="ulInteresetPerfList" class="my_list01" style="list-style-type:none;padding-left:0px;">
+								<ul id="ulInteresetPerfList" class="my_list01"
+									style="list-style-type: none; padding-left: 0px;">
 									<c:choose>
 										<c:when test="${empty recentInterestList }">
 											<li>
-												<div class="end" style="width:900px">관심공연이 없습니다.</div>
+												<div class="end" style="width: 900px">관심공연이 없습니다.</div>
 											</li>
 										</c:when>
 										<c:otherwise>
-										<c:forEach var="I" items="${recentInterestList}">
-											<li>
-												<div>
-													<c:url var="pDetail" value="musicalDetail.do">
-														<c:param name="artNo" value="${I.artNo }" />
-													</c:url>
-													<a href="${pDetail}"><img
-														src="http://tkfile.yes24.com/upload2/PerfBlog/202001/20200106/20200106-35104_1.jpg"
-														class="poster_line" width="53" height="65"
-														alt="뮤지컬 [쓰릴 미]"></a><a href="${pDetail }"><strong>${I.artTitle }</strong></a> 
+											<c:forEach var="I" items="${recentInterestList}">
+												<li>
+													<div>
+														<c:url var="pDetail" value="musicalDetail.do">
+															<c:param name="artNo" value="${I.artNo }" />
+														</c:url>
+														<c:forEach var="img" items="${imgList}">
+																<c:if test="${img.artNo eq I.artNo }">
+																	<a href="${pDetail}">
+																	<img src="resources/images/art/${img.changeName }"
+																		class="poster_line" width="53" height="65"></a>
+																	</a>
+																</c:if>
+														</c:forEach>
+														
+														<a href="${pDetail }"><strong>${I.artTitle }</strong></a>
 														<%-- <fmt:parseDate var="sdateString" value="${I.startDate}" pattern="yyyy.MM.dd" />
 													<fmt:parseDate var="edateString" value="${I.endDate}" pattern="yyyy.MM.dd" />
-													 --%><span>${I.startDate}~${I.endDate}</span> <span>${I.address }</span>
-													<!-- 2020.03.04 -->
-												</div>
-											</li>
-										</c:forEach>
-										<c:if test="${fn:length(recentInterestList) <3} ">
-											<li>
-												<div class="end"></div>
-											</li>
-										</c:if>
+													 --%>
+														<span>${I.startDate}~${I.endDate}</span> <span>${I.address }</span>
+														<!-- 2020.03.04 -->
+													</div>
+												</li>
+											</c:forEach>
+											<c:if test="${fn:length(recentInterestList) <3} ">
+												<li>
+													<div class="end"></div>
+												</li>
+											</c:if>
 										</c:otherwise>
 									</c:choose>
 								</ul>
@@ -134,51 +149,65 @@ li a {
 							</div>
 
 							<div class="card-body">
-								<ul class="my_list01 rv_bor" style="list-style-type:none; padding-left:0px;">
+								<ul class="my_list01 rv_bor"
+									style="list-style-type: none; padding-left: 0px;">
 									<c:choose>
 										<c:when test="${empty recentViewList}">
 											<li>
-												<div class="end" style="width:900px">관람내역이 없습니다.</div>
+												<div class="end" style="width: 900px">관람내역이 없습니다.</div>
 											</li>
 										</c:when>
 										<c:otherwise>
 											<c:forEach var="v" items="${recentViewList}">
-												<li><c:url var="vpDetail" value="musicalDetail.do">
-														<c:param name="artNo" value="${v.artNo }" />
-													</c:url>
-													<div>
-														<a href="${vpDetail }"><img
-															src="http://tkfile.yes24.com/upload2/PerfBlog/201408/20140807/20140807-18681_1.jpg"
-															class="poster_line" width="53" height="65"
-															alt="Ripple Effrect the Concert"></a><a
-															href="${vpDetail }"><strong>${v.artTitle }</strong></a><span
-															class="red"></span> <span>예매번호: ${v.tNo }</span> <span><a
-															href="${vpDetail }"> <img class="firstBtn"
-																src="http://tkfile.yes24.com/img/mypage/btn_minfor.gif"
-																alt="공연정보"></a> <a href="${vpDetail }"> <img
-																src="http://tkfile.yes24.com/img/mypage/btn_after.gif"
-																alt="관람후기 작성"></a></span>
-													</div></li>
-											</c:forEach>
-
-
-
-											<c:if test="${fn:length(recentViewList) <3}  ">
 												<li>
-													<div class="end"></div>
-												</li>
-											</c:if>
-										</c:otherwise>
-									</c:choose>
+													<div>
+														<c:url var="vpDetail" value="musicalDetail.do">
+															<c:param name="artNo" value="${v.artNo }" />
+														</c:url>
 
-								</ul>
-							</div>
+														<c:forEach var="img" items="${imgList}">
+																<c:if test="${img.artNo eq v.artNo }">
+																<a href="${vpDetail }">
+																<img src="resources/images/art/${img.changeName }"
+																		class="poster_line" width="53" height="65"></a>
+																</c:if>
+														</c:forEach>
+													<a href="${vpDetail }"><strong>${v.artTitle }</strong></a>
+													<span class="red"></span>
+													<span>예매번호: ${v.tNo }</span>
+													<span> <c:if test="${empty v.review_no }">
+															<a href="${vpDetail }"> <img class="firstBtn"
+																src="resources/images/mypage/btn_minfor.gif" alt="공연정보"></a>
+															<a href="${vpDetail }"> <img
+																src="resources/images/mypage/btn_after.gif" alt="관람후기 작성"></a>
+														</c:if> <c:if test="${!empty v.review_no }">
+															<a href="${vpDetail }"> <img
+																style="margin-top: 10px; margin-left: 100px"
+																class="firstBtn"
+																src="resources/images/mypage/btn_minfor.gif" alt="공연정보">
+															</a>
+														</c:if></span>
+									</div>
+								</li>
+							</c:forEach>
+
+
+							<c:if test="${fn:length(recentViewList) <3}  ">
+								<li>
+									<div class="end"></div>
+								</li>
+							</c:if>
+							</c:otherwise>
+							</c:choose>
+
+							</ul>
 						</div>
-
 					</div>
+
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	<jsp:include page="../common/footer.jsp" />
 </body>
