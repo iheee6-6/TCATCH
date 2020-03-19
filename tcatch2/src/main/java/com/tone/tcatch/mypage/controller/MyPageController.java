@@ -353,7 +353,7 @@ public class MyPageController {
 	
 
 	@Scheduled(cron = "0 0 * * * *") //매일 매시 정각마다(티켓팅은 정각에 이루어지기 때문)
-	  //@Scheduled(cron = "0 41 21 * * *")
+	  //@Scheduled(cron = "* 26 12 * * *")
 	  public void test() {
 		java.util.Date sysd = new java.util.Date();
 		Timestamp d = new Timestamp(sysd.getTime());
@@ -363,8 +363,11 @@ public class MyPageController {
 		if (artList != null) {
 			for (Alarm art : artList) {
 				ArrayList<Member> mList = mpService.selectAlarmMember(art.getArtNo());
-				for (Member mem : mList) {
-					sendEmail(mem.getEmail(), art.getArtTitle());
+				
+				if(mList !=null) {
+					for (Member mem : mList) {
+						sendEmail(mem.getEmail(), art.getArtTitle());
+					}
 				}
 			}
 		} else {
