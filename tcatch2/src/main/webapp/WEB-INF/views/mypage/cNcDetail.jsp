@@ -11,7 +11,7 @@
 
 </head>
 <body class="">
-<jsp:include page="../common/menubar.jsp"/>
+<jsp:include page="../common/menubar2.jsp"/>
 
 	<div class="wrapper">
 		<jsp:include page="leftMenu.jsp"/>

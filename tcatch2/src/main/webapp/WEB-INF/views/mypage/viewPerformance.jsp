@@ -53,7 +53,7 @@ div.btnL {
 </head>
 <body class="">
 
-<jsp:include page="../common/menubar.jsp" />
+<jsp:include page="../common/menubar2.jsp" />
 
 	<div class="wrapper">
 
@@ -69,7 +69,7 @@ div.btnL {
 								</h4>
 								&nbsp;
 								<p class="card-category" style="margin-left: 200px;">
-									<strong>${loginUser.name }</strong>님의 관람 공연은 총 <em>${fn:length(viewPerformanceList) }</em>건
+									<strong>${loginUser.name }</strong>님의 관람 공연은 총 <em>${vCount}</em>건
 									입니다.
 								</p>
 							</div>

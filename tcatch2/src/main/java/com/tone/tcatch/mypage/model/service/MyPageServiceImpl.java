@@ -154,6 +154,11 @@ public class MyPageServiceImpl implements MyPageService{
 		return mpDao.selectAlarmUser(id,aNo);
 	}
 
+	@Override
+	public int selectvCount(String id) {
+		return mpDao.selectvCount(id);
+	}
+
 	
 
 

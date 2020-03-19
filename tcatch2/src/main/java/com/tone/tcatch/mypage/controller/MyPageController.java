@@ -219,11 +219,14 @@ public class MyPageController {
 	@RequestMapping("viewPerformance.do")
 	public ModelAndView viewPerformance(ModelAndView mv, HttpSession session) {
 		Member loginUser = (Member) session.getAttribute("loginUser");
-
-		String d= mpService.selectAView(loginUser.getId());
+		String id= loginUser.getId();
+		String d= mpService.selectAView(id);
+		int vCount= mpService.selectvCount(id);
 		
-		System.out.println("="+d);
+		System.out.println("="+d+" "+vCount);
 		mv.addObject("aDate", d);
+		mv.addObject("vCount", vCount);
+		
 		mv.setViewName("mypage/viewPerformance");
 		return mv;
 	}
@@ -353,7 +356,7 @@ public class MyPageController {
 	
 
 	@Scheduled(cron = "0 0 * * * *") //매일 매시 정각마다(티켓팅은 정각에 이루어지기 때문)
-	  //@Scheduled(cron = "0 41 21 * * *")
+	  //@Scheduled(cron = "* 26 12 * * *")
 	  public void test() {
 		java.util.Date sysd = new java.util.Date();
 		Timestamp d = new Timestamp(sysd.getTime());
@@ -363,8 +366,11 @@ public class MyPageController {
 		if (artList != null) {
 			for (Alarm art : artList) {
 				ArrayList<Member> mList = mpService.selectAlarmMember(art.getArtNo());
-				for (Member mem : mList) {
-					sendEmail(mem.getEmail(), art.getArtTitle());
+				
+				if(mList !=null) {
+					for (Member mem : mList) {
+						sendEmail(mem.getEmail(), art.getArtTitle());
+					}
 				}
 			}
 		} else {

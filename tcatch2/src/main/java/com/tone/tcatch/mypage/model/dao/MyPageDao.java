@@ -196,6 +196,10 @@ public class MyPageDao {
 		return sqlSession.selectOne("myPageMapper.selectImgOne",artNo);
 	}
 
+	public int selectvCount(String id) {
+		return sqlSession.selectOne("myPageMapper.selectvCount",id);
+	}
+
 	
 
 	

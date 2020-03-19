@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-	<jsp:include page="../common/menubar.jsp" />
+	<jsp:include page="../common/menubar2.jsp" />
 	<div class="wrapper">
 	
 		<div id="NoticeRead" style="display: block;">
