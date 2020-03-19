@@ -8,48 +8,61 @@ import com.tone.tcatch.art.model.vo.ArtTime;
 import com.tone.tcatch.art.model.vo.Img;
 import com.tone.tcatch.art.model.vo.Purchase;
 import com.tone.tcatch.art.model.vo.Seat;
+import com.tone.tcatch.mypage.model.vo.Alarm;
 
 public interface ArtService { 
 	
-	//¸®½ºÆ®
-	ArrayList<Art> selectList();
+	//ë¦¬ìŠ¤íŠ¸ ë½‘ì•„ì˜¤ê¸°
+	ArrayList<Art> selectList(int type);
 	
-	//µğÅ×ÀÏ
+	//ë””í…Œì¼
 	ArtDetail selectArt(int artNo , boolean flag);
 	
-	//µğÅ×ÀÏ È¸Â÷
+	//í™”ì°¨ ê²€ìƒ‰
 	ArrayList<ArtTime> selectATime(int artNo);
 	
-	//°Ë»ö
+	//ê³µì—° ì œëª© ê²€ìƒ‰
 	ArrayList<Art> searchArt(String title);
 	
-	//ÁÂ¼® ¸®½ºÆ® ºÒ·¯¿À±â
+	//ì¢Œì„ ë¶ˆëŸ¬ì˜¤ê¸°
 	ArrayList<Seat> selectSeatList(Seat s);
 	
-	//ÁÂ¼® °áÁ¦
+	// ??
 	int insertSeat(Seat s);
 
-	//ÃÑ ÁÂ¼® ¼ö 
+	// ëª¨ë“  ì¢Œì„ ìˆ˜ 
 	int selectSeatAllCount(Seat s); 
 	
-	//³²Àº ÁÂ¼® ¼ö 
+	// ì˜ˆë§¤ ê°€ëŠ¥ ì¢Œì„ ìˆ˜ 
 	int selectSeatYCount(Seat s);
 	
-	//°ø¿¬ ÀÛ¼º
+	// ê³µì—° ì •ë³´ ë„£ê¸°
 	int insertArt(Art a);
 	
-	//¿¹¸ÅÇÏ±â
+	// ì˜ˆë§¤ ë„£ê¸°
 	int insertPurchase(Purchase p);
 	
-	//»çÁø ³Ö±â
+	//ì´ë¯¸ì§€ ë„£ê¸°
 	int insertImg(Img img);
 	
-	//µğÅ×ÀÏ »çÁø ºÒ·¯¿À±â
+	//ì¸ë„¤ì¼ ë° ê³µì—°ì •ë³´ ì°¾ì•„ì˜¤ê¸°
 	ArrayList<Img> selectImg(int artNo);
 	
-	//È¸Â÷ ³Ö±â
+	//ê³µì—°ì •ë³´ ë„£ê¸°
 	int inserArtTime(ArtTime aT);
+
+	//ì°œ
+	int insertJjim(Alarm a);
+
+	//ì°œì·¨ì†Œ
+	int deleteJjim(Alarm a);
 	
+	//ì°œ ê²€ìƒ‰
+	int selectjjim(Alarm a);
+	
+	//ì°œ ìˆ˜ 
+	int selectCountJjim(int artNo);
+
 	
 
 }

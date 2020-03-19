@@ -131,7 +131,7 @@ body {
 </pre>
 			<!--자동주문방지적용-->
 		<form action="buyEnd.do" method="post">
-			<input type="hidden" name="mNo" value="${ loginUser.no }">
+			<input type=""hidden"" name="mNo" value="${ loginUser.no }">
 			<input type="hidden" name="seatName" value="${seatName}">
 			<input type="hidden" name="seatSal" value="${count * 40000}">
 			<input type="hidden" name="type" id="type" value="">

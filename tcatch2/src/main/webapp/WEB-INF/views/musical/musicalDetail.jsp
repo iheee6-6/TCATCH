@@ -2,7 +2,6 @@
     pageEncoding="EUC-KR"%>
 
 
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
@@ -27,7 +26,7 @@
 <jsp:include page="../common/menubar.jsp"/>
 <br><br><br><br>
  
- <form name="mainForm" method="post" action="./36369?IdPerf=36369" id="mainForm">
+
 
 <div class="renew-wrap">
 	<div class="renew-content">
@@ -56,36 +55,85 @@
 				</div>
 
 				<div class="rn-product-social">
-
+				
+				<c:if test="${ empty loginUser }">
 					<a href="javascript:;" class="rn-product-good">
-                        <img src="http://tkfile.yes24.com/imgNew/sub/rn-product-good1.png" alt="" id="h1" /><!--좋아요 안누른 하트-->
-                        <img src="http://tkfile.yes24.com/imgNew/sub/rn-product-good2.png" alt="" id="h2"/><!--좋아요 누른 하트-->
-                        <span id="h11" class="rn-pdg-txt1">찜</span>
-                        <span id="h22" class="rn-pdg-txt2">찜</span>
+						<img src="${ contextPath }/resources/images/musical/빈하트.png" alt=""/><!--좋아요 안누른 하트-->
+						<span class="rn-pdg-txt1">로그인 하셔야 이용 가능합니다 .</span><!-- 안누른 찜 -->
 					</a>
-					<script>
-					var h1 = document.getElementById("h1");
-					var h11 = document.getElementById("h11");
-					var h2 = document.getElementById("h2");
-					var h22 = document.getElementById("h22");
-					$("#h22").hide();
-					
-					var aa = document.getElementsByClassName("rn-product-good");
+				</c:if>
+				<c:if test="${ !empty loginUser }">
+					<a  class="rn-product-good" id="jjim">
+                        <img src="${ contextPath }/resources/images/musical/빈하트.png" alt="" id="h1" /><!--좋아요 안누른 하트-->
+                        <img src="${ contextPath }/resources/images/musical/꽉찬하트.png" alt="" id="h2"/><!--좋아요 누른 하트-->
+                       		 <span id="h22" class="rn-pdg-txt2">Like : ${ like }</span>
+					</a>
+					<input type="hidden" id="flag" value="">					
+				</c:if>
 
-					$("#h1").click(function(){
-						$("#h1").hide();
-						$("#h11").hide();
-						$("#h2").fadeToggle(0);
-						$("#h22").fadeToggle(1);
-					});
-					$("#h2").click(function(){
-						$("#h2").hide();
-						$("#h22").hide();
-						$("#h1").fadeToggle(0);
-						$("#h11").fadeToggle(0);
-					});
-					</script>
+					<script>				
+						$(function(){
+							// 초기 페이지 로딩 시 댓글 불러오기
+							JjimSelect();						
+
+							 
+							// 댓글 등록 ajax
+							$("#jjim").on("click", function(){
+								var artNo = ${art.artNo};
+								var no = ${loginUser.no};
+								var flag = $("#flag").val();
+								
+								$.ajax({
+									url:"jjim.do",
+									data:{artNo:artNo , alarmNo:no , flag:flag},
+									type:"post",
+									success:function(data){
+										if(data =="InSuccess" ){
+											alert("찜 성공");
+											JjimSelect();
+										}
+										if(data =="DeSuccess"){
+											alert("찜 취소");
+											JjimSelect();
+										}
+										if(data == "Infail"){
+											alert("찜 실패");
+										}
+										if(data == "Defail"){
+											alert("찜 취소 실패");
+										}
+									}
+								});
+							});
+						});				
 						
+						// 찜 불러오는 ajax 함수
+						function JjimSelect(){
+							var artNo = ${art.artNo};
+							var no = ${loginUser.no};
+							
+							$.ajax({
+								url:"selectJjim.do",
+								data:{artNo:artNo , no:no},
+								dataType:"json",
+								success:function(data){
+									if(data==0){//찜 목록이 비어 있을때 
+										$("#h1").attr("src" , "${ contextPath }/resources/images/musical/빈하트.png");
+										$('#flag').val(0);									
+										/* $("#h1").toggle(0);	 */
+									}else{ // 찜 목록이 있을때
+										$("#h1").attr("src" , "${ contextPath }/resources/images/musical/꽉찬하트.png");
+										$('#flag').val(1);										
+										/* $("#h2").toggle(0);  */
+									}
+								},
+								error:function(e){
+									console.log(e);
+								}
+							});
+							
+						}
+					</script>					
 				</div>				
             </div><!--rn-03-left-->
          <%--    <c:if test="${art.rating eq 0 }">
@@ -172,7 +220,6 @@
 					<p class="rn08-tit">공연정보</p>
 					<div class="rn08-txt" id="divPerfContent">
                         <div><p><img class='lazyload' src="${ contextPath }/resources/images/art/${ img[1].changeName }"/><!-- 이미지 --></p></div>
-                        
 					</div>
 				</div><!--rn-0803-->
 				<div class="rn-0804"><!--캐스팅일정-->
@@ -191,7 +238,6 @@
 						</table>
 					</div>
                 </div><!--rn-0804-->
-
 				<div class="rn-0805"><!--상품정보제공 고시-->
 					<p class="rn08-tit">상품정보제공 고시</p>
 					<div class="rn08-txt">
@@ -286,7 +332,7 @@
     </div>	
 </div>
 </div>
-</form>
+
 <jsp:include page="../common/footer.jsp" />
 </body>
 </html>

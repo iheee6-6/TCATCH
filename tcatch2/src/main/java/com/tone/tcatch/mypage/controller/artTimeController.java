@@ -28,17 +28,7 @@ public class artTimeController {
 	@Autowired
 	private JavaMailSender mailSender;
 	
-	@PostConstruct
-	public void first() {
-		ArrayList<Art> artList = aService.selectList();
-		
-		for(Art a: artList) {
-			
-		}
-		
-		System.out.println("1적용함.");
-	}
-	
+
 	
 	// @Scheduled(cron = "0 0 * * * *") //매일 매시 정각마다(티켓팅은 정각에 이루어지기 때문)
 		public void test() {

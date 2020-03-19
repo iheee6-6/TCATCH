@@ -27,7 +27,7 @@ margin-bottom:3%;
 </head>
 
  	<body id="page-top">
- 	<jsp:include page="../common/menubar.jsp"/>
+ 	<jsp:include page="../common/menubar2.jsp"/>
 <br><br><br><br>
   <div id="inner">
 	<section class="bg-light page-section" id="portfolio">

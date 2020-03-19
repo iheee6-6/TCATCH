@@ -18,7 +18,10 @@
 <!-- 이미지 UI-->
 <link rel='stylesheet' type='text/css'
 	href="${ contextPath }/resources/css/product/productImg.css" />
-<!-- body-->
+<!-- body--> 
+
+
+
 
 <style>
 .rank-best{width:1200px; margin:0 auto; text-align:center;font-size:0;background:#f6f6f6;}
@@ -168,11 +171,12 @@ div {
 			</div>
 			<!-- 일반 상품 -->
 			
-			
+			  
 			
 			
 		</section>
 	</div>
+
 	<jsp:include page="../common/footer.jsp" />
 </body>
 </html>

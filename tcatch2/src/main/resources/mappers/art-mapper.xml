@@ -61,13 +61,20 @@
 		<result property="fileLevel" column="FILE_LEVEL"/>
 	</resultMap>
 	
-	
+	<resultMap id="alarmResultSet" type="Alarm">
+		<id property="alarmNo" column="per_no" />
+		<result property="artTitle" column="art_title" />
+		<result property="artNo" column="art_no" />
+		<result property="enrollDate" column="per_enrolldate" />
+		<result property="alarmDate" column="alarm_Date" />
+		<result property="ticketingDate" column="ticketing_Date"/>
+	</resultMap>
 	
 	<select id="selectList" resultMap="ArtResultSet">
 		SELECT *
 		FROM ART
 		JOIN IMG I USING(ART_NO)
-		WHERE STATUS='Y' AND I.FILE_LEVEL=0
+		WHERE STATUS='Y' AND I.FILE_LEVEL=0 AND ART_TYPE=#{type}
 		ORDER BY ART_NO DESC
 	</select>
 	
@@ -200,5 +207,35 @@
 		)
 	
 	</insert>
+	
+
+	<insert id="insertJjim">
+		INSERT INTO PERSONAL VALUES(
+			PER_SEQ.NEXTVAL,
+			#{alarmNo},
+			NULL,
+			1,
+			SYSDATE,
+			#{artNo}
+		)
+	</insert>
+	
+	<delete id="deleteJjim" parameterType="_int">
+		DELETE FROM PERSONAL
+		WHERE ART_NO = #{artNo} 
+		AND M_NO=#{alarmNo}
+	</delete>
+	
+	<select id="selectjjim" resultType="_int">
+		SELECT COUNT(*)
+		FROM PERSONAL
+		WHERE ART_NO =#{artNo} AND M_NO=#{alarmNo}
+	</select>
+	
+	<select id="selectCountJjim" resultType="_int">
+		SELECT COUNT(*)
+		FROM PERSONAL
+		WHERE ART_NO=#{artNo} AND PER_TYPE=1
+	</select>
 	
 </mapper>
