@@ -28,6 +28,12 @@ body {
 	background: #ffffff;
 }
 
+div.btnL {
+    position: absolute;
+    left: 570px;
+    top: 80px;
+}
+
 .imgbtn {
 	cursor: pointer;
 }
@@ -73,7 +79,7 @@ body {
 										<div class="date_list" style="border: 1px solid gray;">
 											<ul style="list-style: none">
 												<li><img
-													src="http://tkfile.yes24.com/img/mypage/th_02.gif"
+													src="resources/images/mypage/th_02.gif"
 													alt="기간별"> <input type="text" name="date1" id="date1"
 													size="11"/>
 													<input type="button" value="달력"
@@ -83,22 +89,22 @@ body {
 													onclick="$('#date2').datepicker('show');" />
 													
 												<li class="sec"><img
-													src="http://tkfile.yes24.com/img/mypage/th_03.gif"
+													src="resources/images/mypage/th_03.gif"
 													alt="장르별"> <select name="ptype" id="ptype">
 														<option value="-1">장르선택</option>
 														<option value="1">콘서트</option>
 														<option value="2">뮤지컬</option>
 														<option value="3">연극</option>
 														<option value="0">전시</option>
-												</select> <img src="http://tkfile.yes24.com/img/mypage/btn_srch.gif"
+												</select> <img src="resources/images/mypage/btn_srch.gif"
 													class="imgbtn" alt="조회" onclick="searchDate();"></li>
 												<li><img
-													src="http://tkfile.yes24.com/img/mypage/th_04.gif"
+													src="resources/images/mypage/th_04.gif"
 													alt="공연명"> <input id="pnameSearch"
 													name="txtViewPerformanceSearch" type="text"
 													style="width: 230px;" placeholder="공연명을 입력해주세요."
 													autocomplete="off"> <img class="imgbtn"
-													src="http://tkfile.yes24.com/img/mypage/btn_srch.gif"
+													src="resources/images/mypage/btn_srch.gif"
 													alt="조회" onclick="searchDate();">
 											</ul>
 										</div>
@@ -189,11 +195,11 @@ body {
 	</script>
 	<jsp:include page="../common/footer.jsp" />
 	
+
+</body>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="resources/js/jquery-ui-1.12.1/datepicker-ko.js"></script>
-
-</body>
 
 </html>

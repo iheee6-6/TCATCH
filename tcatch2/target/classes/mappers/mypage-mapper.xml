@@ -42,7 +42,6 @@
 		<result property="changeName" column="change_name" />
 	</resultMap>
 
-
 	<resultMap id="alarmResultSet" type="Alarm">
 		<id property="alarmNo" column="per_no" />
 		<result property="artTitle" column="art_title" />
@@ -51,7 +50,15 @@
 		<result property="alarmDate" column="alarm_Date" />
 		<result property="ticketingDate" column="ticketing_Date"/>
 	</resultMap>
+	
+	<resultMap id="memberResultSet" type="Member">
+		<id property="id" column="M_ID"/>
+		<result property="name" column="M_NAME"/>
+		<result property="email" column="EMAIL"/>
+		<result property="phone" column="PHONE"/>
 
+	</resultMap>
+	
 	<select id="selectRHistory" parameterType="Ticket"
 		resultMap="ticketResultSet">
 		SELECT p.purchase_no, buy_date, art_title, date_time, purchase_count,
@@ -72,10 +79,11 @@
 
 	<select id="selectRView" parameterType="Ticket"
 		resultMap="ticketResultSet">
-		SELECT * FROM (SELECT p.art_no,purchase_no,buy_date,art_title,date_time,purchase_count,wayBill_number FROM PURCHASE p
+		SELECT * FROM (SELECT p.art_no,purchase_no,art_title,R_NO FROM PURCHASE p
 				JOIN ART a on(p.ART_NO=a.ART_NO)
 				JOIN ART_TIME td on(td.ART_NO=P.art_no)
 				left JOIN IMG I ON(I.ART_NO=P.ART_NO)
+				left JOIN REPLY r ON(p.ART_NO=r.ART_NO)
 				JOIN MEMBER USING(M_NO)
 				WHERE M_ID=#{id} AND
 				TO_CHAR(DATE_TIME,'YYYYMMDDHH24MISS')<![CDATA[ <  ]]>
@@ -99,10 +107,7 @@
 
 	<select id="getTListCount" resultType="_int">
 		SELECT COUNT(*)
-		FROM PURCHASE p
-		JOIN ART a on(p.ART_NO=a.ART_NO)
-		JOIN ART_TIME td on(td.ART_NO=p.art_no)
-		JOIN REFUND r on(p.PURCHASE_NO=r.purchase_no)
+		FROM PURCHASE 
 		JOIN MEMBER USING(M_NO)
 		WHERE M_ID=#{id}
 	</select>
@@ -225,30 +230,6 @@
 		WHERE M_ID=#{id}
 	</select>
 	
-	<!-- <select id="searchView" resultMap="ticketResultSet">
-		SELECT purchase_no, art_title,date_time, purchase_count,p.art_no,address,seat_name,type,
-		change_name,art_type,(SELECT COMMENT_NO FROM REPLY C JOIN MEMBER M on(C.RWRITER=M.M_ID)
-									where M.M_ID= #{id} AND C.STATUS='Y') as COMMENT_NO , 
-							(SELECT content FROM REPLY C JOIN MEMBER M on(C.RWRITER=M.M_ID)
-									where M.M_ID= #{id} AND C.STATUS='Y') as rcontent
-		FROM PURCHASE p
-		JOIN ART a on(p.ART_NO=a.ART_NO)
-		JOIN ART_TIME at on(p.ART_NO=at.ART_NO)
-        JOIN IMG i on(p.ART_NO=i.ART_NO)
-        JOIN MEMBER USING(M_NO)
-		WHERE TO_CHAR(DATE_TIME,'YYYY-MM-DD') BETWEEN TO_CHAR(sysdate,'YYYY-MM-DD')
-		AND TO_CHAR(sysdate,'YYYY-MM-DD') AND M_ID=#{ID}
-
-		<if test="pName != null">
-			AND ART_TITLE LIKE '%' || #{pName} || '%'
-		</if>
-		<if test="artType!=null">
-			AND ART_TYPE = #{artType}
-		</if>
-
-		
-	</select> -->
-	
 	<select id="selectReviews">
 	SELECT COMMENT_NO, CONTENT,ART_NO,CNO, STAR
 		FROM REPLY C
@@ -257,12 +238,18 @@
 		where M.M_ID= #{id} AND C.STATUS='Y'
 	</select>
 	
+	<select id="selectAlarmUser" resultType="_int">
+		SELECT count(*) FROM PERSONAL JOIN MEMBER USING(M_NO) WHERE M_ID=#{id}
+			AND ART_NO=#{aNo}
+	</select>
+	
 	<insert id="insertAlarm">
 		INSERT INTO PERSONAL
-		VALUES(PER_SEQ.NEXTVAL,#{ID},
-		(SELECT TICKETING_DATE FROM TICKET_DATE WHERE ART_NO=#{pNO})-1/24,
-		2,SYSDATE,#{pNO} )
+		VALUES(PER_SEQ.NEXTVAL,(SELECT M_NO FROM MEMBER WHERE M_ID=#{id}),
+		(SELECT TICKETING_DATE FROM TICKET_DATE WHERE ART_NO=#{aNo})-1/24,
+		2,SYSDATE,#{aNo} )
 	</insert>
+	
 
 	<insert id="insertInterest">
 		INSERT INTO PERSONAL
@@ -289,7 +276,6 @@
 		SELECT * FROM ART A
 		JOIN ART_TIME AT ON(A.ART_NO=AT.ART_NO)
 		JOIN TICKET_DATE T ON(T.ART_NO=A.ART_NO)
-		Left JOIN IMG I ON(A.ART_NO=I.ART_NO)
 		WHERE A.ART_NO=#{artNo}
 	</select>
 
@@ -298,16 +284,57 @@
 		VALUES(REF_SEQ.NEXTVAL,#{tNo},sysdate,default)
 	</insert>
 	
-	<select id="selectNImgList" resultMap="ImgResultSet" parameterType="_int">
+	<select id="selectImgList" resultMap="ImgResultSet" parameterType="_int">
 		SELECT  art_no, file_path, change_name FROM IMG
 			<if test="list != null">
                 WHERE ART_NO IN 
                 <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
                     #{item}
                 </foreach> 
+                AND FILE_LEVEL =1
              </if>
 	</select>
 	
+	<update id="updateMember" parameterType="Member">
+		UPDATE MEMBER
+		SET M_PWD=#{pwd}, M_NAME=#{name}
+		<if test="gender!=null">
+		,GENDER=#{gender}
+		</if>
+		<if test="birth != ''">
+		,BIRTH=#{birth}
+		</if>
+		<if test="phone!=null">
+		,PHONE=#{phone}
+		</if>
+		<if test="address!=null">
+		,ADDRESS=#{address}
+		</if>
+		WHERE M_ID=#{id}
+	</update>
 	
+	<update id="deleteMember" parameterType="string">
+		UPDATE MEMBER
+		SET STATUS='N'
+		WHERE M_ID=#{id}
+	</update>
 	
+	<select id="selectImgOne" resultMap="ImgResultSet">
+		SELECT * FROM IMG 
+		WHERE ART_NO=#{artNo}
+	</select>
+	
+	<select id="selectTicketingArt" resultMap="alarmResultSet">
+		SELECT art_no, art_title
+		FROM PERSONAL
+		JOIN ART USING(ART_NO)
+		WHERE ALARM_DATE = #{d}
+		
+	</select>
+	<select id="selectAlarmMember" resultMap="memberResultSet">
+		SELECT M_ID, M_NAME, EMAIL, PHONE
+		FROM PERSONAL
+		JOIN MEMBER USING(M_NO)
+		WHERE ART_NO=#{art}
+	</select>
 </mapper>

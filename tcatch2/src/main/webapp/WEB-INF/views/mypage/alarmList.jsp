@@ -66,14 +66,14 @@
 																type="checkbox" value="${a.artNo }"></td>
 															<td>${a.artTitle }</td>
 													
-															<fmt:parseDate var="ticketString" value="${a.ticketingDate}" pattern="yyyy-MM-dd" />
-															<fmt:formatDate value="${ ticketString}" var="tdate" pattern="yyyy.MM.dd : aaa hh:mm"/>
-															<td>${tdate}</td>
+															<%-- <fmt:parseDate var="ticketString" value="${a.ticketingDate}" pattern="yyyy-MM-dd " />
+				--%>											<fmt:formatDate value="${ a.ticketingDate}" var="tdate" pattern="yyyy.MM.dd : aaa hh:mm"/>
+															 <td>${tdate}</td>
 															<!--  <td>2019.02.12 : 오후 9시</td>-->
-															<fmt:parseDate var="alarmString" value="${a.alarmDate}" pattern="yyyy-MM-dd" />
-															<fmt:formatDate value="${ alarmString}" var="adate" pattern="yyyy.MM.dd : aaa hh:mm"/>
-															
-															<td>${adate }</td>
+															<%-- <fmt:parseDate var="alarmString" value="${a.alarmDate}" pattern="yyyy-MM-dd" />
+														--%>	<fmt:formatDate value="${ a.alarmDate}" var="adate" pattern="yyyy.MM.dd : aaa hh:mm"/>
+															 
+															<td>${adate}</td>
 														</tr>
 													</c:forEach>
 												</c:otherwise>

@@ -28,37 +28,15 @@ body {
 </style>
 </head>
 <body>
-	<jsp:include page="../common/menubar.jsp" />
+	<jsp:include page="../common/menubar2.jsp" />
 	<br>
 	<br>
 	<!-- 콘텐츠 //-->
 	<div class="content-min-wrap">
 		<p class="big-title">이용안내</p>
 		<div class="brochure">
-			<div>
-				<p>
-					<span>고객센터</span>
-				</p>
-				<dl>
-					<dt>전화문의 :</dt>
-					<dd>1544-6399</dd>
-					<dt>이용시간 :</dt>
-					<dd>
-						평일 09:00~18:00 / 토요일 09:00~17:00<br />(점심시간: 12:00~13:00 / 일요일,
-						공휴일 휴무)
-					</dd>
-				</dl>
-			</div>
-			<div>
-				<p>
-					<span>1:1문의</span><a href="#"
-						target="_blank">문의하기</a>
-				</p>
-				<p>
-					평일 오후 5시 이후 문의는 당일 답변이 어려울 수 있습니다.<br /> 토,일요일/공휴일 문의는 운영 시간 내
-					순차적으로 답변 드리겠습니다.<br /> <span>잠깐!</span> 1:1 문의 전 FAQ 를 먼저 확인해보세요.
-				</p>
-			</div>
+			
+			
 		</div>
 		<div class="guide-division" style="text-align: center;">
 			<a href="cnotice.do" class="on">예매방법</a>

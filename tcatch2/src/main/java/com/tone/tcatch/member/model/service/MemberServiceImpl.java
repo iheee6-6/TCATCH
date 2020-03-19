@@ -1,5 +1,7 @@
 package com.tone.tcatch.member.model.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -55,6 +57,18 @@ public class MemberServiceImpl implements MemberService{
 	public int updateMember(Member m) {
 		
 		return mDao.updateMember(m);
+	}
+
+	@Override
+	public ArrayList<Member> memberList() {
+		
+		return mDao.selectList();
+	}
+
+	@Override
+	public int memberOut(Member m) {
+		
+		return mDao.memberOut(m);
 	}
 
 }

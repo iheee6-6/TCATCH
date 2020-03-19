@@ -27,6 +27,11 @@ public class Img {
 	
 	
 	
+	public Img(int artNo) {
+		super();
+		this.artNo = artNo;
+	}
+
 	public int getImgNo() {
 		return imgNo;
 	}

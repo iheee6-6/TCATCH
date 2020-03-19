@@ -56,8 +56,8 @@ td a {
 												<tr>
 												<fmt:formatDate var="tdateString" value="${b.tDate}" pattern="yyyy-MM-dd" />
 												<fmt:formatDate var="vdateString" value="${b.viewDate}" pattern="yyyy-MM-dd" />
-												 	
-													<td>${b.tDate}</td>
+												
+													<td>${tdateString}</td>
 
 													<td><c:url var="tDetail" value="tDetail.do">
 															<c:param name="tNo" value="${b.tNo}" />
@@ -73,7 +73,7 @@ td a {
 										
 										<!-- 페이징 -->
 										<tr align="center" height="20">
-											<td colspan="6">
+											<td colspan="20">
 												<c:if test="${pi.currentPage<=1 }">
 													[이전] &nbsp;
 												</c:if>
@@ -84,17 +84,17 @@ td a {
 													<a href="${before }">[이전]</a> &nbsp;
 												</c:if>
 												
-												<c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }">
-													<c:if test="${p eq pi.currentPage }">
-														<font color="red" size="4"><b>[${ p }]</b></font>
-													</c:if>
-													<c:if test="${p ne pi.currentPage }">
-														<c:url var="pagination" value="checknCancel.do">
-															<c:param name="page" value="${ p }"/>	
-														</c:url>
-														<a href="${pagination }">${ p }</a> &nbsp;
-													</c:if>
-												</c:forEach>
+												<c:forEach var="p" begin="${pi.startPage }" end="${pi.maxPage }">
+														<c:if test="${p eq pi.currentPage }">
+															<font color="red" size="4"><b>[${ p }]</b></font>
+														</c:if>
+														<c:if test="${p ne pi.currentPage }">
+															<c:url var="pagination" value="noticeView.do">
+																<c:param name="page" value="${ p }" />
+															</c:url>
+															<a href="${pagination }">${ p }</a> &nbsp;
+														</c:if>
+													</c:forEach>
 												
 												<c:if test="${pi.currentPage>=pi.maxPage }">
 													[다음]
