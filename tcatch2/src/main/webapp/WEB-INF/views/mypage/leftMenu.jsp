@@ -50,12 +50,13 @@ margin-bottom: 150px;
 	width:83%;
 	height:100%;
 }
+
 </style>
 </head>
 <body>
 	<div class="sidebar" data-color="black" data-active-color="danger">
 		<div class="logo"  style="margin-top:20px;">
-			<a href="enterMyPage.do" class="simple-text logo-normal" style="margin-left:30px;"> ${loginUser.name }님의 MYPAGE
+			<a href="enterMyPage.do" class="simple-text logo-normal" style="text-align:center"> ${loginUser.name }님의 MYPAGE
 			</a>
 		</div>
 		<div class="sidebar-wrapper">
