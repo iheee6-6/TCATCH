@@ -5,6 +5,7 @@
 <mapper namespace="memberMapper">
 	<resultMap id="memberResultSet" type="Member">
 		<id property="id" column="M_ID"/>
+		<result property="no" column="M_NO"/>
 		<result property="pwd" column="M_PWD"/>
 		<result property="name" column="M_NAME"/>
 		<result property="email" column="EMAIL"/>
@@ -12,7 +13,7 @@
 		<result property="birth" column="BIRTH"/>
 		<result property="phone" column="PHONE"/>
 		<result property="address" column="ADDRESS"/>
-		<result property="mStatus" column="M_STATUS"/>
+		<result property="mStatus" column="STATUS"/>
 		<result property="enrollDate" column="ENROLL_DATE"/>
 
 	</resultMap>
@@ -45,7 +46,7 @@
 	
 	<update id="deleteMember" parameterType="string">
 		UPDATE MEMBER
-		SET M_STATUS='N'
+		SET STATUS='N'
 		WHERE M_ID=#{id}
 	</update>
 	
@@ -54,6 +55,19 @@
 		FROM MEMBER
 		WHERE M_ID=#{id}
 	</select>
+	
+	<select id="selectList" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		WHERE STATUS='Y' OR STATUS='N'
+		ORDER BY M_NO DESC
+	</select>
+	
+	<update id="memberOut">
+		UPDATE MEMBER
+		SET STATUS=#{mStatus}
+		WHERE M_NO=#{no}
+	</update>
 	
 	
 	

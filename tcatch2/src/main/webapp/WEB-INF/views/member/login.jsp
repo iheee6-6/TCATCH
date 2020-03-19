@@ -48,7 +48,7 @@
 </head>
 
 <body>
-<jsp:include page="../common/menubar.jsp"/>
+<jsp:include page="../common/menubar2.jsp"/>
     <form class="form-signin" action="login.do" method="post">
   <div class="text-center mb-4">
     <!-- <img class="mb-4" src="로고.png" alt="" width="100" height="90"> -->

@@ -194,16 +194,17 @@
 	height: 40px;
 	border: none;
 }
-.user{
-width:33%;
-}
+
 .rcontent{
-width:33%;
 }
 .time{
-width:33%;
 float:right;
+margin-right:50px;
 }
+.replyArea{
+display:inline;
+}
+
 </style>
 <body>
 	<jsp:include page="../common/menubar2.jsp" />
@@ -271,6 +272,14 @@ float:right;
 					</div>
 
 					<input class="form-control" id="rContent" placeholder="Add a comment" type="text">
+					<select style="height:38px;">
+						<option selected>별점등록</option>
+						<option>★</option>
+						<option>★★</option>
+						<option>★★★</option>
+						<option>★★★★</option>
+						<option>★★★★★</option>
+					</select>
 					<span class="input-group-addon">
 						<button id="rSubmit"></button>
 					</span>
@@ -280,9 +289,13 @@ float:right;
 						<div class="comment-body" id="body">
 						
 							<div class="comment-heading" id="head">
-								<h4 class="user"><!-- 로그인유저 아이디 --></h4>
-								<h3 class="rcontent"><!-- 작성내용 --></h3>
+								<div class="replyArea">
+								<span class="user"><!-- 로그인유저 아이디 --></span>
+								<span class="star"></span>
 								<h5 class="time"><!-- 작성시간 --></h5>
+								</div>
+								<h5 class="rcontent"><!-- 작성내용 --></h5>
+								
 							</div>
 							
 						</div>
@@ -379,18 +392,23 @@ float:right;
 							var $li = $("<li class='comment'>");
 							var $body = $("<div class='comment-body'>");
 							var $heading = $("<div class='comment-heading'>");
-							var $user = $("<h4 class='user'>").text(data[i].rWriter);
+							var $reply = $("<div class='replyArea'>");
+							var $user = $("<span class='user'>").text(data[i].rWriter + " 님의 평점 : ");
 							var $p = $("<h5 class='rcontent'>").text(data[i].rContent);
 							var $time = $("<h5 class='time'>").text(
 									data[i].rCreateDate);
+							var $star = $("<span class='star'>").text(data[i].star);
 
 							
 							$tableBody.append($li);
 							$li.append($body);
 							$body.append($heading);
-							$heading.append($user);
-							$heading.append($time);
+							$reply.append($user);
+							$reply.append($star);
+							$reply.append($time);
+							$heading.append($reply);
 							$heading.append($p);
+							
 						}
 					} else {
 						// 댓글이 등록되지 않았을 때
