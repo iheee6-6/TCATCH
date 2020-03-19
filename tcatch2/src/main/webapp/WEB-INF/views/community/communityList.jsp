@@ -21,8 +21,7 @@
 #boardTable th, #boardTable td {
 	border: solid 1px white;
 	text-align: center;
-	font-family: 'Do Hyeon', sans-serif;
-	font-size:20px;
+	font-size: 17px;
 }
 
 #h1 {
@@ -42,16 +41,19 @@ table th {
 .btn {
 	float: right;
 }
-
 </style>
 
 </head>
 <body>
 	<jsp:include page="../common/menubar2.jsp" />
 
-	<br><br><br><br><br><br>
-	<h2 align="center" id="h1"
-			style="">Community</h2>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<h2 align="center" id="h1" style="">Community</h2>
 	<div class="wrap">
 		<h2 align="left" id="h2" style="font-family: 'Do Hyeon', sans-serif;">
 			총 게시글 개수 : ${ pi.listCount }
@@ -62,7 +64,7 @@ table th {
 					onclick="location.href='cinsertView.do'">글쓰기</button>
 			</c:if>
 		</h2>
-		
+
 		<table id="boardTable">
 			<tr>
 				<th>번호</th>
@@ -72,68 +74,71 @@ table th {
 				<th>조회수</th>
 			</tr>
 			<c:forEach var="b" items="${ list }">
-			<tr>
-				<td>${ b.cNo }</td>
-				<td>
-					<c:if test="${ !empty loginUser }">
-						<c:url var="cdetail" value="cdetail.do">
-							<c:param name="cNo" value="${ b.cNo }"/>
-							<c:param name="page" value="${ pi.currentPage }"/>
-						</c:url>
-						<a href="${ cdetail }">${ b.cTitle }</a>
-					</c:if>
-					<c:if test="${ empty loginUser }">
-					${ b.cTitle }
-					</c:if>
-				</td>
-				<td>${ b.cWriter }</td>
-				<td>${ b.writeDate }</td>
-				<td>${ b.count }</td>
-			</tr>
+				<c:if test="${ !empty loginUser }">
+					<c:url var="cdetail" value="cdetail.do">
+						<c:param name="cNo" value="${ b.cNo }" />
+						<c:param name="page" value="${ pi.currentPage }" />
+					</c:url>
+				</c:if>
+				<tr id="tr1" onclick="location.href='${ cdetail }'">
+					<td>${ b.cNo }</td>
+					<td>${ b.cTitle }</td>
+					<td>${ b.cWriter }</td>
+					<td>${ b.writeDate }</td>
+					<td>${ b.count }</td>
+				</tr>
 			</c:forEach>
-			
+
 			<!-- 페이징 처리 -->
 			<tr align="center" height="20">
 				<td colspan="6">
-					<!-- [이전] -->
-					<c:if test="${ pi.currentPage <= 1 }">
+					<!-- [이전] --> <c:if test="${ pi.currentPage <= 1 }">
 						[이전] &nbsp;
-					</c:if>
-					<c:if test="${ pi.currentPage > 1 }">
+					</c:if> <c:if test="${ pi.currentPage > 1 }">
 						<c:url var="before" value="clist.do">
-							<c:param name="page" value="${ pi.currentPage - 1 }"/>
+							<c:param name="page" value="${ pi.currentPage - 1 }" />
 						</c:url>
 						<a href="${ before }">[이전]</a> &nbsp;
-					</c:if>
-					
-					<!-- 페이지 -->
-					<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+					</c:if> <!-- 페이지 --> <c:forEach var="p" begin="${ pi.startPage }"
+						end="${ pi.endPage }">
 						<c:if test="${ p eq pi.currentPage }">
 							<font color="red" size="4"><b>[${ p }]</b></font>
 						</c:if>
-						
+
 						<c:if test="${ p ne pi.currentPage }">
 							<c:url var="pagination" value="clist.do">
-								<c:param name="page" value="${ p }"/>
+								<c:param name="page" value="${ p }" />
 							</c:url>
 							<a href="${ pagination }">${ p }</a> &nbsp;
 						</c:if>
-					</c:forEach>
-					
-					<!-- [다음] -->
-					<c:if test="${ pi.currentPage >= pi.maxPage }">
+					</c:forEach> <!-- [다음] --> <c:if test="${ pi.currentPage >= pi.maxPage }">
 						[다음]
-					</c:if>
-					<c:if test="${ pi.currentPage < pi.maxPage }">
+					</c:if> <c:if test="${ pi.currentPage < pi.maxPage }">
 						<c:url var="after" value="clist.do">
-							<c:param name="page" value="${ pi.currentPage + 1 }"/>
-						</c:url> 
+							<c:param name="page" value="${ pi.currentPage + 1 }" />
+						</c:url>
 						<a href="${ after }">[다음]</a>
 					</c:if>
 				</td>
 			</tr>
 		</table>
 	</div>
+	<script>
+		$(function(){
+			$("#boardTable #tr1").hover(function(){
+				$(this).css({"background":"#CBC4C4", "cursor":"pointer"});
+			}).mouseout(function(){
+				$(this).css({"background":"white"});
+			});
+			
+			<c:if test="${ empty loginUser}">
+			$("#boardTable #tr1").click(function(){
+				alert("로그인 후 상세보기가 가능합니다.");
+			});
+			</c:if>
+		});
+		
+	</script>
 
 	<jsp:include page="../common/footer.jsp" />
 	<link

@@ -1,5 +1,7 @@
 package com.tone.tcatch.member.model.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -34,6 +36,16 @@ public class MemberDao {
 	public int updateMember(Member m) {
 		
 		return sqlSession.update("memberMapper.updateMember",m);
+	}
+
+	public ArrayList<Member> selectList() {
+		
+		return (ArrayList)sqlSession.selectList("memberMapper.selectList");
+	}
+
+	public int memberOut(Member m) {
+		
+		return sqlSession.update("memberMapper.memberOut",m);
 	}
 
 }

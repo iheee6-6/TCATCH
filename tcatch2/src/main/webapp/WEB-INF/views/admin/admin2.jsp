@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,19 +28,19 @@
 }
 
 #id0 {
-	width: 5%;
+	width: 10%;
 }
 
 #id1 {
-	width: 10%;
+	width: 15%;
 }
 
 #id2 {
-	width: 10%;
+	width: 20%;
 }
 
 #id3 {
-	width: 8%;
+	width: 15%;
 	text-align: center;
 }
 
@@ -82,9 +82,8 @@
 
 			<!-- DataTales Example -->
 			<div class="card shadow mb-4">
-				<form
-					action="<%=request.getContextPath()%>/ProductAdminStatusServlet"
-					method="post">
+				<form action="memberOut.do" method="post">
+
 					<div class="card-header py-3">
 						<h6 class="m-0 font-weight-bold text-primary">판매 관리</h6>
 					</div>
@@ -95,42 +94,44 @@
 								<thead>
 									<tr>
 										<th></th>
-										<th>상품번호</th>
-										<th>카테고리</th>
-										<th>상품명</th>
-										<th>가격</th>
+										<th>회원번호</th>
+										<th>회원아이디</th>
+										<th>회원명</th>
+										<th>가입날짜</th>
 										<th style="width: 15%;">상태</th>
 									</tr>
 								</thead>
 								<tfoot>
 									<tr>
 										<th></th>
-										<th>상품번호</th>
-										<th>카테고리</th>
-										<th>상품명</th>
-										<th>가격</th>
+										<th>회원번호</th>
+										<th>회원아이디</th>
+										<th>회원명</th>
+										<th>가입날짜</th>
 										<th>상태</th>
 									</tr>
 								</tfoot>
 								<tbody>
+								<c:forEach var="m" items="${list }">
 									<!-- 상품 리스트 뽑아내기 -->
 									<tr>
 										<td id="id0"><input type="checkbox" name="product_No"
-											value=""></td>
-										<td id="id1"></td>
-										<td id="id2"></td>
-										<td></td>
-										<td id="id3">원</td>
-										<td>판매중 품절</td>
+											value="${ m.no }"></td>
+										<td id="id1">${ m.no }</td>
+										<td id="id2">${ m.id }</td>
+										<td>${m.name }</td>
+										<td id="id3">${m.enrollDate }</td>
+										<td>${m.mStatus }</td>
 									</tr>
+								</c:forEach>
 								</tbody>
 							</table>
 						</div>
 					</div>
-					<!-- 상품 상태 변경 : 판매중 / 품절 -->
+					<!-- 상품 상태 변경 : 가입 / 탈퇴 -->
 					<label>상태 변경 : </label> <select name="status">
-						<option value="Y">판매중</option>
-						<option value="N">품절</option>
+						<option value="Y">가입</option>
+						<option value="N">탈퇴</option>
 						<option selected>---</option>
 					</select> <input type="submit" value="변경">
 				</form>
@@ -138,7 +139,7 @@
 			</div>
 		</div>
 	</div>
-<jsp:include page="../common/footer.jsp"/>
+<%-- <jsp:include page="../common/footer.jsp"/> --%>
 
 	<script
 		src="${ contextPath }/resources/admin/vendor/jquery/jquery.min.js"></script>

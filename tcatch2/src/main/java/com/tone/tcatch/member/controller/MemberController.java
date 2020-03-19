@@ -1,5 +1,6 @@
 package com.tone.tcatch.member.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,6 +31,18 @@ public class MemberController {
 	private MemberService mService;
 	
 	private Logger logger = LoggerFactory.getLogger(MemberController.class);
+	
+	@RequestMapping("adminList.do")
+	public ModelAndView adminlist(ModelAndView mv) {
+		
+		ArrayList<Member> list = mService.memberList();
+		if(list != null) {
+			mv.addObject("list",list).setViewName("admin/admin2");
+		}else {
+			throw new MemberException("회원 리스트 조회 실패!");
+		}
+		return mv;
+	}
 	
 	@RequestMapping(value="login.do", method=RequestMethod.POST)
 	public String memberLogin(Member m, Model model) { 
@@ -161,7 +174,7 @@ public class MemberController {
 			
 			m.setAddress(post+","+addr1+","+addr2);
 			
-			int result = mService.updateMember(m); 
+			int result = mService.updateMember(m);
 			
 			if(result > 0) {
 				rd.addFlashAttribute("msg", "회원정보가 수정 되었습니다.");
@@ -172,6 +185,27 @@ public class MemberController {
 				return "common/errorPage";
 			}
 		}
+		@RequestMapping("memberOut.do")
+		public String memberOut(@RequestParam("product_No") String[] product_No, @RequestParam("status") String status) {
+			Member m = new Member();
+			int result = 0;
+			for(int i= 0; i<product_No.length; i++) {
+				m.setNo(Integer.parseInt(product_No[i]));
+				m.setmStatus(status);
+				result = mService.memberOut(m);
+			}
+			
+			
+			System.out.println("product" + product_No);
+			
+			if(result>0) {
+				return "redirect:adminList.do";
+			}else {
+				throw new MemberException("회원 탈퇴 실패!");
+			}
+
+		}
+		
 	
 
 }

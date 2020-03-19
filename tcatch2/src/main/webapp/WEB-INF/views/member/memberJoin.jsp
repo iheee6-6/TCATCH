@@ -93,8 +93,8 @@ span.error {
 </style>
 </head>
 <body>
-<jsp:include page="../common/menubar.jsp"/>
-<br><br><br><br>
+<jsp:include page="../common/menubar2.jsp"/>
+<br><br><br><br><br>
 
 	<form class="form-signin" action="minsert.do" method="post"
 		id="joinForm" onsubmit="return validate()">
