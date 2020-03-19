@@ -12,6 +12,7 @@ import com.tone.tcatch.art.model.vo.ArtTime;
 import com.tone.tcatch.art.model.vo.Img;
 import com.tone.tcatch.art.model.vo.Purchase;
 import com.tone.tcatch.art.model.vo.Seat;
+import com.tone.tcatch.mypage.model.vo.Alarm;
 
 @Service("aService")
 public class ArtServiceImpl implements ArtService{
@@ -21,89 +22,114 @@ public class ArtServiceImpl implements ArtService{
 	  
 	
 	@Override
-	public ArrayList<Art> selectList() { // ¸®½ºÆ® 
+	public ArrayList<Art> selectList(int type) { // ë¦¬ìŠ¤íŠ¸ ë¶ˆëŸ¬ì˜¤ê¸°
 		 
-		return aDao.selectList();
+		return aDao.selectList(type);
 	}
 
 
 	@Override
-	public ArtDetail selectArt(int artNo, boolean flag) { // µğÅ×ÀÏ
-		// 1. Á¶È¸¼ö Áõ°¡
-		if(!flag) { // ÇØ´ç ±ÛÀ» ÀĞÁö ¾Ê¾Ò´Ù¸é(flag°¡ false)
+	public ArtDetail selectArt(int artNo, boolean flag) { // ë””í…Œì¼ 
+		// 1. ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		if(!flag) { // ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾Ò´Ù¸ï¿½(flagï¿½ï¿½ false)
 			aDao.addReadCount(artNo);
 		}
-		// 2. °Ô½Ã±Û Á¶È¸
+		// 2. ï¿½Ô½Ã±ï¿½ ï¿½ï¿½È¸
 		return aDao.selectArt(artNo);
 	}
 
 
 	@Override
-	public ArrayList<Art> searchArt(String title) { // °Ë»ö
+	public ArrayList<Art> searchArt(String title) { // ï¿½Ë»ï¿½
 		return aDao.searchArt(title);
 	}
 
 
 	@Override
-	public int insertSeat(Seat s) { // ÁÂ¼® °Å¤Å¤©Á¦
+	public int insertSeat(Seat s) { // ï¿½Â¼ï¿½ ï¿½Å¤Å¤ï¿½ï¿½ï¿½
 		return aDao.insertSeat(s);
 	}
 
 
 	@Override
-	public ArrayList<ArtTime> selectATime(int artNo) { // È¸Â÷ °Ë»ö
+	public ArrayList<ArtTime> selectATime(int artNo) { // È¸ï¿½ï¿½ ï¿½Ë»ï¿½
 		return aDao.selectATime(artNo);
 	}
 
 
 	@Override
-	public int selectSeatAllCount(Seat s) { // ÃÑ ÁÂ¼® ¼ö
+	public int selectSeatAllCount(Seat s) { // ï¿½ï¿½ ï¿½Â¼ï¿½ ï¿½ï¿½
 		return aDao.selectSeatAllCount(s);
 	}
 
 
 	@Override
-	public int selectSeatYCount(Seat s) { //³²Àº  ÁÂ¼® ¼ö 
+	public int selectSeatYCount(Seat s) { //ï¿½ï¿½ï¿½ï¿½  ï¿½Â¼ï¿½ ï¿½ï¿½ 
 		return aDao.selectSeatYCount(s);
 	}
 
 
 	@Override
-	public ArrayList<Seat> selectSeatList(Seat s) { //ÁÂ¼® ºÒ·¯¿À±â
+	public ArrayList<Seat> selectSeatList(Seat s) { //ï¿½Â¼ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 		return aDao.selectSeatList(s);
 	}
 
 
 	@Override
-	public int insertArt(Art a) { // °ø¿¬ insert
+	public int insertArt(Art a) { // ï¿½ï¿½ï¿½ï¿½ insert
 		return aDao.insertArt(a);
 	}
 
 
 	@Override
-	public int insertPurchase(Purchase p) { // ¿¹¸Å insert
+	public int insertPurchase(Purchase p) { // ï¿½ï¿½ï¿½ï¿½ insert
 		return aDao.insertPurchase(p);
 	}
 
 
 	@Override
-	public int insertImg(Img img) { // »çÁø insert
+	public int insertImg(Img img) { // ï¿½ï¿½ï¿½ï¿½ insert
 		
 		return aDao.insertImg(img);
 	}
 
 
 	@Override
-	public ArrayList<Img> selectImg(int artNo) { //»çÁø detaile select
+	public ArrayList<Img> selectImg(int artNo) { //ï¿½ï¿½ï¿½ï¿½ detaile select
 		return aDao.selectImg(artNo);
 	}
 
 
 	@Override
-	public int inserArtTime(ArtTime aT) { //È¸Â÷ insert 
+	public int inserArtTime(ArtTime aT) { //È¸ï¿½ï¿½ insert 
 		return aDao.insertArtTime(aT);
 	}
-	
+
+
+	@Override
+	public int insertJjim(Alarm a) { //ì°œ 
+		return aDao.insertJjim(a);
+	}
+
+
+	@Override
+	public int deleteJjim(Alarm a) { //ì°œ ì·¨ì†Œ
+		return aDao.deleteJjim(a);
+	}
+
+
+	@Override
+	public int selectjjim(Alarm a) { //ì°œ ê²€ìƒ‰
+		return aDao.selectjjim(a);
+	}
+
+
+	@Override
+	public int selectCountJjim(int artNo) {// ì°œí•œ ì‚¬ëŒ ìˆ˜ 
+		return aDao.selectCountJjim(artNo);
+	}
+
+
 	
 	
 	

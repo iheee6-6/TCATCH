@@ -1,11 +1,9 @@
 package com.tone.tcatch.art.controller;
 
 import java.io.File;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -29,23 +27,65 @@ import com.tone.tcatch.art.model.vo.ArtTime;
 import com.tone.tcatch.art.model.vo.Img;
 import com.tone.tcatch.art.model.vo.Purchase;
 import com.tone.tcatch.art.model.vo.Seat;
+import com.tone.tcatch.mypage.model.vo.Alarm;
 
 @Controller
 public class ArtController {
 	@Autowired 
 	private ArtService aService;
-	
-	
-	@RequestMapping("/musical.do")
-	public ModelAndView ArtList(ModelAndView mv) {
 
-		ArrayList<Art> list = aService.selectList();
+	
+	
+	@RequestMapping("/concert.do")//ì½˜ì„œíŠ¸
+	public ModelAndView ConcertList(ModelAndView mv) {
+		
+		ArrayList<Art> list = aService.selectList(1);
+		
+		if(list != null) {
+			mv.addObject("list", list);
+			mv.setViewName("musical/musical");
+		}else {
+			throw new ArtException("ï¿½Ô½Ã±ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½È¸ ï¿½ï¿½ï¿½ï¿½!!");
+		}
+		return mv;
+	}
+	
+	@RequestMapping("/musical.do")//ë®¤ì§€ì»¬
+	public ModelAndView MusicalList(ModelAndView mv) {
+
+		ArrayList<Art> list = aService.selectList(2);
 		 
 		if(list != null) {
 			mv.addObject("list", list);
 			mv.setViewName("musical/musical");
 		}else {
-			throw new ArtException("°Ô½Ã±Û ÀüÃ¼ Á¶È¸ ½ÇÆĞ!!");
+			throw new ArtException("ï¿½Ô½Ã±ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½È¸ ï¿½ï¿½ï¿½ï¿½!!");
+		}
+		return mv;
+	}
+	@RequestMapping("/drama.do") //ì—°ê·¹
+	public ModelAndView DramaList(ModelAndView mv) {
+
+		ArrayList<Art> list = aService.selectList(3);
+		 
+		if(list != null) {
+			mv.addObject("list", list);
+			mv.setViewName("musical/musical");
+		}else {
+			throw new ArtException("ï¿½Ô½Ã±ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½È¸ ï¿½ï¿½ï¿½ï¿½!!");
+		}
+		return mv;
+	}
+	@RequestMapping("/exhibition.do") //ì „ì‹œíšŒ
+	public ModelAndView ExhibitionList(ModelAndView mv) {
+
+		ArrayList<Art> list = aService.selectList(0);
+		 
+		if(list != null) {
+			mv.addObject("list", list);
+			mv.setViewName("musical/musical");
+		}else {
+			throw new ArtException("ï¿½Ô½Ã±ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½È¸ ï¿½ï¿½ï¿½ï¿½!!");
 		}
 		return mv;
 	}
@@ -57,6 +97,7 @@ public class ArtController {
 		Seat s= null;
 		ArrayList<Img> img = null;
 		boolean flag = false;
+		int like=0;
 		
 		Cookie[] cookies = request.getCookies();
 		if(cookies != null) {
@@ -67,9 +108,8 @@ public class ArtController {
 			}
 			
 			if(!flag) {
-				// Ã³À½ ÀĞ´Â °Ô½Ã±ÛÀÏ¶§
 				Cookie c = new Cookie("artNo"+artNo, String.valueOf(artNo));
-				c.setMaxAge(1 * 24 * 60 * 60); // ÇÏ·çµ¿¾È ÄíÅ° ÀúÀå
+				c.setMaxAge(1 * 24 * 60 * 60); // í•˜ë£¨
 				response.addCookie(c);
 			}
 			
@@ -77,24 +117,30 @@ public class ArtController {
 			aT = aService.selectATime(artNo);
 			img=aService.selectImg(artNo);
 			s = new Seat(aT.get(0).getTimeNo() , artNo);
+			like = aService.selectCountJjim(artNo);
 		}
 		
 		if(art != null) {
+			mv.addObject("like", like);
 			mv.addObject("img", img);
 			mv.addObject("art", art);
 			mv.addObject("aT", aT);
 			mv.addObject("s" ,s);
 			mv.addObject("allS" , aService.selectSeatAllCount(s));
 			mv.addObject("yS", aService.selectSeatYCount(s));
-			mv.setViewName("musical/musicalDetail"); // ¸Ş¼Òµå Ã¼ÀÌ´× ¹æ½Ä
+			mv.setViewName("musical/musicalDetail"); // ï¿½Ş¼Òµï¿½ Ã¼ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½
 		}else {
-			throw new ArtException("°Ô½Ã±Û »ó¼¼Á¶È¸ ½ÇÆĞ!!"); 
+			throw new ArtException("ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½È¸ ï¿½ï¿½ï¿½ï¿½!!"); 
 		}
 		return mv;
 	}
+	//
 	
 	
-	@RequestMapping("/searchArt.do") // °Ë»ö
+	
+	
+	
+	@RequestMapping("/searchArt.do") // ï¿½Ë»ï¿½
 	public String searchArt(String title) {
 		ArrayList<Art> list = aService.searchArt(title);
 		return "musical/buy";
@@ -102,7 +148,7 @@ public class ArtController {
 	
 	
 
-	@RequestMapping("/buy.do") //ÁÂ¼® ¸®½ºÆ® ºÒ·¯¿À±â
+	@RequestMapping("/buy.do") //ï¿½Â¼ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 	public ModelAndView buy(ModelAndView mv , 
 			@RequestParam("artNo") Integer artNo , 
 			@RequestParam("timeNo") Integer timeNo) {
@@ -123,28 +169,15 @@ public class ArtController {
 			mv.addObject("aT", aT);
 			mv.setViewName("musical/buy");
 		}else {
-			throw new ArtException("ÁÂ¼® ºÒ·¯¿À±â ½ÇÆØ");
+			throw new ArtException("ï¿½Â¼ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		}
 		
 		return mv;
 	}
-		
-	//´ñ±Û
-	@RequestMapping(value="sList.do", produces="application/json; charset=utf-8")
-	@ResponseBody
-	public String getReplyList(int timeNo , int artNo) {
-		Seat s = new Seat(timeNo , artNo);
-		ArrayList<Seat> sList = aService.selectSeatList(s);
-		
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
-		// ½ÃºĞÃÊ ´Ù·ç°í ½Í´Ù¸é java.util.Date »ç¿ë
-		return gson.toJson(sList);
-	}
-
 	
-	@RequestMapping("/buyTwo.do") //ÁÂ¼® ¼±ÅÃ ÈÄ 
+	@RequestMapping("/buyTwo.do")
 	public ModelAndView buyTwo(int artNo , int timeNo, ModelAndView mv, @RequestParam(value="seatName[]") String seatName) {
-		//°áÁ¦ .
+		//ï¿½ï¿½ï¿½ï¿½ .
 		String[] seatList = seatName.split(" ");
 		int count = 0;
 		
@@ -162,23 +195,23 @@ public class ArtController {
 		return mv;
 	}
 	
-	@RequestMapping("/buyEnd") // ±¸¸Å ¿Ï·á 
+	@RequestMapping("/buyEnd") // êµ¬ë§¤í•˜ê¸°
 	public String buyEnd(Purchase p) {
 		System.out.println(p);
-		int result = aService.insertPurchase(p);
+		aService.insertPurchase(p);
 		return "redirect:musical.do";
 	}
 	
 	@RequestMapping("/insert.do")
-	public String artInsertFoem() { //insertForm À¸·Î ÀÌµ¿ 
+	public String artInsertFoem() { //insertForm ì´ë™
 		
 		return "musical/artInsertForm";
 	}
 	
 	
 	
-	@RequestMapping("/insertArt.do") // °ø¿¬Á¤º¸ isnert ÈÄ È¸Â÷ ³Ö±â 
-	public String insertArt(HttpServletRequest request, Art a,/* Date startDate , Date endDate , Date ticketingDate,*/
+	@RequestMapping("/insertArt.do") // ê³µì—° ì •ë³´ insert
+	public String insertArt(HttpServletRequest request, Art a,
 		@RequestParam(value="uploadFile", required=false) MultipartFile file,
 		@RequestParam(value="uploadFile2", required=false) MultipartFile file2) {
 		
@@ -226,16 +259,16 @@ public class ArtController {
 		
 			return "musical/timeInsertForm";
 		}else {
-			throw new ArtException("°Ô½Ã±Û µî·Ï ½ÇÆĞ!");
+			throw new ArtException("ì‹¤íŒ¨!");
 		}	
 
 	}
 
 	
-	public String saveFile(MultipartFile file, HttpServletRequest request) { //ÆÄÀÏ ÀúÀå
+	public String saveFile(MultipartFile file, HttpServletRequest request) { //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		String root = request.getSession().getServletContext().getRealPath("resources");
-		String savePath = root + "\\images\\art"; // ÆÄÀÏ °æ·Î ¼öÁ¤
+		String savePath = root + "\\images\\art"; // ì €ì¥ê³µê°„
 
 		File folder = new File(savePath);
 
@@ -243,7 +276,7 @@ public class ArtController {
 			folder.mkdirs();
 		}
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS"); //³â¿ùÀÏ½ÃºĞÃÊ.ÃÊ
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS"); //íŒŒì¼ ì´ë¦„ ë³€ê²½ 
 		String originFileName = file.getOriginalFilename();
 		String renameFileName = sdf.format(new Date()) 
 				+ originFileName.substring(originFileName.lastIndexOf("."));
@@ -251,10 +284,10 @@ public class ArtController {
 		String renamePath = folder + "\\" + renameFileName;
 
 		try {
-			file.transferTo(new File(renamePath)); // Àü´Ş¹ŞÀº fileÀÌ rename¸íÀ¸·Î ÀúÀå
+			file.transferTo(new File(renamePath)); // ì €ì¥
 
 		} catch (Exception e) {
-			System.out.println("ÆÄÀÏ Àü¼Û ¿¡·¯ : " + e.getMessage());
+			System.out.println("ì €ì¥ ì‹¤íŒ¨ : " + e.getMessage());
 		}
 		return renameFileName;
 	}
@@ -263,21 +296,63 @@ public class ArtController {
 	
 	@RequestMapping("/insertTime.do")
 	public String insertTime(ArtTime aT,
-			@RequestParam("Time")String[] time) { //È¸Â÷ »ğÀÔ
+			@RequestParam("Time")String time) { //íšŒì°¨ insert
 		
+			System.out.println(time);
 			
-			String[] timeGet = time[0].split("T");
-			String date = timeGet[0] + " " + timeGet[1];
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			String date3 = time.replaceAll("-", "");
+			String date2 = date3.replaceAll("T", "");
+			String date = date2.replaceAll(":", "");
+			
+			System.out.println(date);
 
 			aT.setDateTime(date);
+			System.out.println(date);
 			int result = aService.inserArtTime(aT);
+			
 			return "redirect:musical.do";
 	}
 
 	@RequestMapping("timeInsertForm.do")
 	public String a() {
 		return "musical/timeInsertForm";
+	}
+	
+	@RequestMapping("jjim.do")
+	@ResponseBody
+	public String jj(Alarm a , @RequestParam("flag")int flag)
+	{
+		int result=0 ;
+		String msg ="";
+		if(flag == 0) { //ì°œ í•˜ê¸°
+			 result = aService.insertJjim(a);
+			 if(result < 1) {
+				 msg="Infail";
+			 }else {
+				 msg="InSuccess";
+			 }
+		}else if(flag == 1) { //ì°œ ì·¨ì†Œ
+			 result = aService.deleteJjim(a);
+			 if(result < 1) {
+				 msg="Defail";
+			 }else {
+				 msg="DeSuccess";
+			 }
+		}
+		return msg;
+	}
+	
+	@RequestMapping(value="selectJjim.do", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public String getReplyList(int artNo , int no) {
+		Alarm a = new Alarm();
+		a.setArtNo(artNo);
+		a.setAlarmNo(no);
+		int result = aService.selectjjim(a);
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+		// ì‹œë¶„ì´ˆ ë‹¤ë£¨ê³  ì‹¶ë‹¤ë©´ java.util.Date ì‚¬ìš©
+		return gson.toJson(result);
 	}
 	
 	

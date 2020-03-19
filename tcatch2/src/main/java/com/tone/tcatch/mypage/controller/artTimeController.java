@@ -28,6 +28,7 @@ public class artTimeController {
 	@Autowired
 	private JavaMailSender mailSender;
 	
+
 	/*@PostConstruct
 	public void first() {
 		ArrayList<Art> artList = aService.selectList();
@@ -40,5 +41,6 @@ public class artTimeController {
 	}*/
 	
 	
+
 	
 }
