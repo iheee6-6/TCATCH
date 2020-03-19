@@ -33,11 +33,11 @@
 </style>
 </head>
 <body>
-	<jsp:include page="../common/menubar.jsp" />
+	<jsp:include page="../common/menubar2.jsp" />
 	<div class="wrapper">
 		<!-- 콘텐츠 //-->
 		<div class="content-min-wrap">
-			<p class="big-title">update!!</p>
+			<p class="big-title">Coming Soon</p>
 			<c:if test="${ !empty noticeList }">
 				<%--현재 날짜 --%>
 				<jsp:useBean id="today" class="java.util.Date" />

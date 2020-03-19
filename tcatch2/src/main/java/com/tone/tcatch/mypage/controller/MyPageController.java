@@ -219,11 +219,14 @@ public class MyPageController {
 	@RequestMapping("viewPerformance.do")
 	public ModelAndView viewPerformance(ModelAndView mv, HttpSession session) {
 		Member loginUser = (Member) session.getAttribute("loginUser");
-
-		String d= mpService.selectAView(loginUser.getId());
+		String id= loginUser.getId();
+		String d= mpService.selectAView(id);
+		int vCount= mpService.selectvCount(id);
 		
-		System.out.println("="+d);
+		System.out.println("="+d+" "+vCount);
 		mv.addObject("aDate", d);
+		mv.addObject("vCount", vCount);
+		
 		mv.setViewName("mypage/viewPerformance");
 		return mv;
 	}

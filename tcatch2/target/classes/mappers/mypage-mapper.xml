@@ -337,4 +337,14 @@
 		JOIN MEMBER USING(M_NO)
 		WHERE ART_NO=#{art}
 	</select>
+	<select id="selectvCount" resultType="_int">
+		select count(*)
+		FROM PURCHASE P
+		JOIN ART a on(p.ART_NO=a.ART_NO)
+		JOIN ART_TIME at on(p.ART_NO=at.ART_NO)
+        left JOIN IMG i on(p.ART_NO=i.ART_NO)
+        JOIN MEMBER m on(m.M_NO=p.M_NO)
+		WHERE TO_CHAR(DATE_TIME,'YYYYMMDDHH24MISS') <![CDATA[< ]]>TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
+		AND m.M_ID=#{id}
+	</select>
 </mapper>

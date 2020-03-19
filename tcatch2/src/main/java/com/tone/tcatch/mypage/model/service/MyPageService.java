@@ -60,5 +60,7 @@ public interface MyPageService {
 
 	int selectAlarmUser(String id, int aNo);
 
+	int selectvCount(String id);
+
 
 }
