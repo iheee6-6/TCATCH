@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.tone.tcatch.community.model.vo.Community;
-import com.tone.tcatch.community.model.vo.PageInfo;
+import com.tone.tcatch.common.model.vo.PageInfo;
 import com.tone.tcatch.community.model.vo.Reply;
 
 @Repository("cDao")

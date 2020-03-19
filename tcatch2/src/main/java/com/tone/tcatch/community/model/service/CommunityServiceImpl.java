@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.tone.tcatch.common.Pagination;
 import com.tone.tcatch.community.model.dao.CommunityDao;
 import com.tone.tcatch.community.model.vo.Community;
-import com.tone.tcatch.community.model.vo.PageInfo;
+import com.tone.tcatch.common.model.vo.PageInfo;
 import com.tone.tcatch.community.model.vo.Reply;
 
 @Service("cService")

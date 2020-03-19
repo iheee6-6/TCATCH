@@ -84,6 +84,9 @@ ul li {
 .fixed{
 	margin-bottom:5px;
 }
+.nav-link{
+	font-size:15px;
+}
 </style>
 <body style="height: 1500px">
 
@@ -95,19 +98,19 @@ ul li {
 			class="fixed" width="150px" height="100px" /></a>
 		<ul class="navbar-nav">
 			<li class="nav-item"><a class="nav-link" href="#"
-				style="color: black;">콘서트</a></li>
+				style="color: black; font-size:15px;">콘서트</a></li>
 			<li class="nav-item"><a class="nav-link" href="musical.do"
-				style="color: black;">뮤지컬</a></li>
+				style="color: black;  font-size:15px;">뮤지컬</a></li>
 			<li class="nav-item"><a class="nav-link" href="#"
-				style="color: black;">연극</a></li>
+				style="color: black;  font-size:15px;">연극</a></li>
 			<li class="nav-item"><a class="nav-link" href="#"
-				style="color: black;">전시</a></li>
+				style="color: black;  font-size:15px;">전시</a></li>
 			<li class="nav-item"><a class="nav-link" href="clist.do"
-				style="color: black;">커뮤니티</a></li>
+				style="color: black;  font-size:15px;">커뮤니티</a></li>
 			<li class="nav-item"><a class="nav-link" href="cnotice.do"
-				style="color: black;">안내</a></li>
+				style="color: black;  font-size:15px;">안내</a></li>
 			<li class="nav-item"><a class="nav-link" href="admin.do"
-				style="color: black;">관리자페이지</a></li>
+				style="color: black;  font-size:15px;">관리자페이지</a></li>
 		</ul>
 
 		<div class="pf-top-right">
