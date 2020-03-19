@@ -49,18 +49,9 @@ public class MyPageController {
 	
 	@RequestMapping("enterMyPage.do")
 	public ModelAndView enterMypage(ModelAndView mv, HttpSession session, Model model) {
-		Member loginUser = new Member();
-		loginUser.setId("test");
-		loginUser.setName("하하");
-		loginUser.setEmail("tcatch@kh.com");
-		loginUser.setAddress("1232,경기도 군포시 고산로 185번길,105동 12302호");
-		loginUser.setPhone("010-232-3222");
-		loginUser.setGender("M");
+	
+		Member loginUser = (Member)session.getAttribute("loginUser");
 		
-		// Member loginUser = (Member)session.getAttribute("loginUser");
-		session.setAttribute("loginUser", loginUser);
-		model.addAttribute("loginUser", loginUser);
-
 		ArrayList<Ticket> recentHistoryList = mpService.selectRecentHistoryList(loginUser.getId());
 		ArrayList<Ticket> recentViewList = mpService.selectRecentViewList(loginUser.getId());
 		ArrayList<ArtDetail> recentInterestList = mpService.selectRecentInterestList(loginUser.getId());

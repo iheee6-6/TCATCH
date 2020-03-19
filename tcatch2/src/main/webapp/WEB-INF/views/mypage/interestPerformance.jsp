@@ -69,7 +69,7 @@ p span {
 															<td><c:url var="pDetail" value="musicalDetail.do">
 																	<c:param name="artNo" value="${I.artNo }" />
 																</c:url>
-																<button class="btn" onclick="location.href='${pDetail}'">예매하기</button></td>
+																<button type="button" class="btn" onclick="location.href='${pDetail}'">예매하기</button></td>
 
 														</tr>
 													</c:forEach>
