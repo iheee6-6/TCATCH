@@ -73,5 +73,44 @@
 				
 				</div>
 			</c:forEach>
+			
+			<!-- 페이징 -->
+	<div align="center" height="20">
+		<c:if test="${pi.currentPage<=1 }">
+				[이전] &nbsp;
+			</c:if>
+			<c:if test="${pi.currentPage>1 }">
+				<c:url var="before" value="checknCancel.do">
+					<c:param name="page" value="${ pi.currentPage3 -1 }"/>
+				</c:url>
+				<a href="${before }">[이전]</a> &nbsp;
+			</c:if>
+			
+			<c:forEach var="p" begin="${pi.startPage }" end="${pi.maxPage }">
+					<c:if test="${p eq pi.currentPage }">
+						<font color="red" size="4"><b>[${ p }]</b></font>
+					</c:if>
+					<c:if test="${p ne pi.currentPage }">
+						<c:url var="pagination" value="noticeView.do">
+							<c:param name="page" value="${ p }" />
+						</c:url>
+						<a href="${pagination }">${ p }</a> &nbsp;
+					</c:if>
+				</c:forEach>
+			
+			<c:if test="${pi.currentPage>=pi.maxPage }">
+				[다음]
+			</c:if>
+			<c:if test="${pi.currentPage < pi.maxPage }">
+				<c:url var="after" value="checknCancel.do">
+					<c:param name="page" value="${pi.currentPage+1 }"/>
+				</c:url>
+				<a href="${ after }">[다음]</a>
+			</c:if>
+	</div>
 		</c:otherwise>
+		
+		
 	</c:choose>
+
+	

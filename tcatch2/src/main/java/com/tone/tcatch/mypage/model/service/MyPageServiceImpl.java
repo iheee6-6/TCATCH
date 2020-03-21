@@ -100,8 +100,12 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public ArrayList<Ticket> searchView(String id, String sdate, String edate, String artType, String pName) {
-		return mpDao.searchView(id,sdate,edate,artType,pName);
+	public ArrayList<Ticket> searchView(String id, String sdate, String edate, String artType, String pName,int currentPage) {
+		int listCount = mpDao.searchViewCount(id,sdate,edate,artType,pName);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		return mpDao.searchView(id,sdate,edate,artType,pName,pi);
 	}
 
 	

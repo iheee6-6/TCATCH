@@ -1,5 +1,6 @@
 package com.tone.tcatch.mypage.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -8,12 +9,15 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import javax.mail.Message;
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -24,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -56,21 +62,34 @@ public class MyPageController {
 		ArrayList<Ticket> recentViewList = mpService.selectRecentViewList(loginUser.getId());
 		ArrayList<ArtDetail> recentInterestList = mpService.selectRecentInterestList(loginUser.getId());
 		
-		if(recentViewList !=null ||recentInterestList !=null ) {
+		if(!recentViewList.isEmpty() ||!recentInterestList.isEmpty() ) {
 			ArrayList<Integer> imageList = new ArrayList<Integer>();
 			
-			for(int i=0;i<recentViewList.size();i++) {
-				imageList.add(recentViewList.get(i).getArtNo());
-			}
-			
-			for(int i=0;i<recentInterestList.size();i++) {
-				for(int j=0;j<imageList.size();j++) {
-					if(recentInterestList.get(i).getArtNo()==imageList.get(j)) {
-						break;
-					}
+			if(!recentViewList.isEmpty()&&!recentInterestList.isEmpty()) {
+		
+				for(int i=0;i<recentViewList.size();i++) {
+					imageList.add(recentViewList.get(i).getArtNo());
+				}
+				
+				for(int i=0;i<recentInterestList.size();i++) {
+					for(int j=0;j<imageList.size();j++) {
+						if(recentInterestList.get(i).getArtNo()==imageList.get(j)) {
+							break;
+						}
+						imageList.add(recentInterestList.get(i).getArtNo());
+					}	
+				}
+			}else if(!recentViewList.isEmpty()) {
+				for(int i=0;i<recentViewList.size();i++) {
+					imageList.add(recentViewList.get(i).getArtNo());
+				}
+			}else {
+				for(int i=0;i<recentInterestList.size();i++) {
 					imageList.add(recentInterestList.get(i).getArtNo());
-				}	
+				}
 			}
+		
+		
 			
 			ArrayList<Img> artImgList= mpService.selectImgList(imageList);
 			System.out.println("img"+artImgList);
@@ -128,8 +147,8 @@ public class MyPageController {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 
 		ArrayList<ArtDetail> interestList = mpService.selectInterestPerformanceList(loginUser.getId());
-		
-		if(interestList !=null) {
+		System.out.println(interestList);
+		if(!interestList.isEmpty()) {
 			ArrayList<Integer> imageList = new ArrayList<>();
 			for(ArtDetail a:interestList)
 				imageList.add(a.getArtNo());
@@ -226,20 +245,22 @@ public class MyPageController {
 	@RequestMapping(value="searchView.do",produces = "application/text; charset=utf8")
 	public String searchView(HttpServletResponse response, HttpSession session, 
 			 String sdate,String edate,String pType,
-			String pName,
-			Model model) throws IOException {
+			String pName,Model model,
+			@RequestParam(value="page",required=false)Integer page) throws IOException {
 		System.out.println(sdate+" ~ "+edate);
 		if(pName=="") {
 			pName="null";
 		}
 		System.out.println(pType+" , "+pName);
+		
+		int currentPage = page != null ? page : 1;
 		Member loginUser = (Member) session.getAttribute("loginUser");
 		
-		ArrayList<Ticket> tList = mpService.searchView(loginUser.getId(), sdate, edate, pType, pName);
+		ArrayList<Ticket> tList = mpService.searchView(loginUser.getId(), sdate, edate, pType, pName,currentPage);
 		
 		System.out.println("hihi "+tList);
 		model.addAttribute("viewPerformanceList", tList);
-		
+		model.addAttribute("pi", Pagination.getPageInfo());
 		return "mypage/viewPSearch";
 	}
 
@@ -346,19 +367,21 @@ public class MyPageController {
 	}
 	
 
-	@Scheduled(cron = "0 0 * * * *") //매일 매시 정각마다(티켓팅은 정각에 이루어지기 때문)
-	  //@Scheduled(cron = "* 26 12 * * *")
+	//@Scheduled(cron = "0 0 * * * *") //매일 매시 정각마다(티켓팅은 정각에 이루어지기 때문)
+	  @Scheduled(cron = "0 * 17 * * *")
 	  public void test() {
 		java.util.Date sysd = new java.util.Date();
 		Timestamp d = new Timestamp(sysd.getTime());
 		System.out.println(d);
 		ArrayList<Alarm> artList = mpService.confirmTicketingTime(d);
 
-		if (artList != null) {
+		if (!artList.isEmpty()) {
+			System.out.println("ddd");
 			for (Alarm art : artList) {
 				ArrayList<Member> mList = mpService.selectAlarmMember(art.getArtNo());
-				
-				if(mList !=null) {
+				System.out.println(art.getArtNo());
+				if(!mList.isEmpty()) {
+					
 					for (Member mem : mList) {
 						sendEmail(mem.getEmail(), art.getArtTitle());
 					}
@@ -375,17 +398,19 @@ public class MyPageController {
 		System.out.println("wow");
 		String setfrom = "tcatch@gmail.com";
 		String tomail = email; // 받는 사람 이메일
-		String title = artTitle + "티켓팅 알림입니다.!!!";
-		String content = artTitle + "티켓팅 한시간 전입니다! 잊지말고 준비하세요!!!! "; // 내용
-
+		String title = "★ "+artTitle + "  티켓팅 알림입니다.!!! ★";
+		String content = "<html><body><div style='text-align:center;width:350px;height:350px;margin:10px;padding:20px;border:2px solid black'><h1>"+artTitle+ " 티켓팅 한시간 전 입니다!</h1><p>잊지말고 티켓팅하세요~ 좋은 자리 잡으시길 바랍니다.</p>"
+				+"<img src=\'cid:logo.png\' width='300px'></div></body></html>"; // 내용
+		
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
-
 			messageHelper.setFrom(setfrom);
 			messageHelper.setTo(tomail);
 			messageHelper.setSubject(title);
-			messageHelper.setText(content);
+			messageHelper.setText(content,true);
+			FileSystemResource file = new FileSystemResource(new File("C:/Users/USER/git/TCATCH/tcatch2/src/main/webapp/resources/images/common/logo.png"));
+		    messageHelper.addInline("logo.png", file);
 
 			mailSender.send(message);
 			System.out.println("이메일 전송 완료");

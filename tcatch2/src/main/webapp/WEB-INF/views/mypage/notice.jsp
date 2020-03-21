@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-
+<link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
 <link href="resources/css/mypage/notice.css" rel="stylesheet" />
 <style>
 .wrapper {
@@ -30,6 +30,11 @@
 .noti-tbl td:nth-child(3){
     text-indent: 20px;
 }
+#title{
+font-family: 'Lobster', cursive;
+font-size:60px;
+padding-top:30px;
+}
 </style>
 </head>
 <body>
@@ -37,7 +42,7 @@
 	<div class="wrapper">
 		<!-- 콘텐츠 //-->
 		<div class="content-min-wrap">
-			<p class="big-title">Coming Soon</p>
+			<p class="big-title" id="title">Coming Soon</p>
 			<c:if test="${ !empty noticeList }">
 				<%--현재 날짜 --%>
 				<jsp:useBean id="today" class="java.util.Date" />
@@ -49,6 +54,9 @@
 						class="swiper-container ticketo swiper-container-initialized swiper-container-horizontal">
 						<div class="swiper-wrapper"
 							style="transform: translate3d(0px, 0px, 0px);">
+							<c:if test="${empty noticeList}">
+								<h2>현재 티켓팅예정인 공연이 없습니다.</h2>
+							</c:if>
 							<c:forEach var="notice" items="${ noticeList}" end='5'>
 								<div class="swiper-slide swiper-slide-active"
 									style="width: 222.2px; margin-right: 24px;">
