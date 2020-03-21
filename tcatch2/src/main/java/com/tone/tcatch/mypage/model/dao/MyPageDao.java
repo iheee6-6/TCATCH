@@ -131,14 +131,17 @@ public class MyPageDao {
 
 
 	//관람내역 조회 (검색 포함)
-	public ArrayList<Ticket> searchView(String id, String sdate, String edate, String artType, String pName) {
+	public ArrayList<Ticket> searchView(String id, String sdate, String edate, String artType, String pName,PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
 		Map<String, Object> map = new HashMap<>();
 		map.put("id", id);
 		map.put("sd", sdate);
 		map.put("ed", edate);
 		map.put("artType", artType);
 		map.put("pName", pName);
-		return (ArrayList)sqlSession.selectList("myPageMapper.searchView",map);
+		return (ArrayList)sqlSession.selectList("myPageMapper.searchView",map,rowBounds);
 	}
 	
 	//공지사항 수
@@ -198,6 +201,16 @@ public class MyPageDao {
 
 	public int selectvCount(String id) {
 		return sqlSession.selectOne("myPageMapper.selectvCount",id);
+	}
+
+	public int searchViewCount(String id, String sdate, String edate, String artType, String pName) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("sd", sdate);
+		map.put("ed", edate);
+		map.put("artType", artType);
+		map.put("pName", pName);
+		return sqlSession.selectOne("myPageMapper.searchViewCount",map);
 	}
 
 	

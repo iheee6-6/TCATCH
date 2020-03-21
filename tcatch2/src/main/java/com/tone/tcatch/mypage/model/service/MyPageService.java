@@ -40,7 +40,7 @@ public interface MyPageService {
 
 	int insertAlarm(String id, int aId);
 
-	ArrayList<Ticket> searchView(String id, String sdate, String edate, String artType, String pName);
+	ArrayList<Ticket> searchView(String id, String sdate, String edate, String artType, String pName, int currentPage);
 
 	ArrayList<ArtDetail> selectNoticeList(int currentPage);
 

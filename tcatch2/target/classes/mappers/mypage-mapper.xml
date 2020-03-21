@@ -186,7 +186,25 @@
 		AND 
 		ART_NO=#{artNo} AND PER_TYPE=2
 	</delete>
-	
+	<select id="searchViewCount" resultType="_int">
+	 	SELECT COUNT(*)
+		FROM PURCHASE P
+		JOIN ART a on(p.ART_NO=a.ART_NO)
+		JOIN ART_TIME at on(p.ART_NO=at.ART_NO)
+        JOIN MEMBER m on(m.M_NO=p.M_NO)
+		WHERE TO_CHAR(DATE_TIME,'YYYYMMDDHH24MISS') <![CDATA[< ]]>TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
+		AND m.M_ID=#{id}
+		<if test="pName != 'null'">
+			AND ART_TITLE LIKE '%' || #{pName} || '%'
+		</if>
+		<if test="artType != '-1'">
+			AND ART_TYPE = #{artType}
+		</if>
+		<if test="sd != null and ed != null">
+			and TO_CHAR(DATE_TIME,'YYYY-MM-DD') BETWEEN #{sd} and #{ed}
+		</if>
+		
+	</select>
 	<select id="searchView" resultMap="ticketResultSet">
 		SELECT p.purchase_no, a.art_title,at.date_time, p.purchase_count,p.art_no,a.address,p.seat_name,p.type,
 		i.change_name,a.art_type, p.seat_sal  ,(SELECT R_NO FROM REPLY C JOIN MEMBER M on(C.RWRITER=M.M_ID)
@@ -291,7 +309,7 @@
                 <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
                     #{item}
                 </foreach> 
-                AND FILE_LEVEL =1
+                AND FILE_LEVEL =0
              </if>
 	</select>
 	
@@ -321,14 +339,14 @@
 	
 	<select id="selectImgOne" resultMap="ImgResultSet">
 		SELECT * FROM IMG 
-		WHERE ART_NO=#{artNo}
+		WHERE ART_NO=#{artNo} AND FILE_LEVEL=0
 	</select>
 	
 	<select id="selectTicketingArt" resultMap="alarmResultSet">
 		SELECT art_no, art_title
 		FROM PERSONAL
 		JOIN ART USING(ART_NO)
-		WHERE ALARM_DATE = #{d}
+		WHERE ALARM_DATE = to_char(#{d},'YYYYMMDDHH24MI')
 		
 	</select>
 	<select id="selectAlarmMember" resultMap="memberResultSet">
