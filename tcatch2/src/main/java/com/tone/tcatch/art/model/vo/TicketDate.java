@@ -13,7 +13,7 @@ public class TicketDate {
 		this.artNo = artNo;
 		this.ticketingDate = ticketingDate;
 		this.startDate = startDate;
-		this.endDate = endDate;
+		this.endDate = endDate; 
 	}
 	
 	 
