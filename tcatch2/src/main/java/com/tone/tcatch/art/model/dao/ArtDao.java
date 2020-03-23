@@ -9,9 +9,11 @@ import org.springframework.stereotype.Repository;
 import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.art.model.vo.ArtTime;
+import com.tone.tcatch.art.model.vo.Company;
 import com.tone.tcatch.art.model.vo.Img;
 import com.tone.tcatch.art.model.vo.Purchase;
 import com.tone.tcatch.art.model.vo.Seat;
+import com.tone.tcatch.art.model.vo.TicketDate;
 import com.tone.tcatch.mypage.model.vo.Alarm;
 
 @Repository("aDao")
@@ -25,6 +27,7 @@ public class ArtDao {
 	}
   
 	public ArtDetail selectArt(int artNo) { // 디테일
+		System.out.println("aDao artNo : " + artNo);
 		return sqlSession.selectOne("artMapper.selectOne", artNo);
 	}
 
@@ -107,6 +110,18 @@ public class ArtDao {
 
 	public int selectCountJjim(int artNo) { // 찜 수 
 		return sqlSession.selectOne("artMapper.selectCountJjim" , artNo);
+	}
+
+	public int insertTicketDate(TicketDate td) {
+		return sqlSession.insert("artMapper.insertTicketDate" , td);
+	}
+
+	public int insertCompany(Company c) {
+		return sqlSession.insert("artMapper.insertCompany" , c);
+	}
+
+	public ArtTime selectATdateTime(ArtTime a) {
+		return sqlSession.selectOne("artMapper.selectATdateTime" , a);
 	}
 
 }

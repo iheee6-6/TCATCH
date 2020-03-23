@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.art.model.vo.ArtTime;
+import com.tone.tcatch.art.model.vo.Company;
 import com.tone.tcatch.art.model.vo.Img;
 import com.tone.tcatch.art.model.vo.Purchase;
 import com.tone.tcatch.art.model.vo.Seat;
+import com.tone.tcatch.art.model.vo.TicketDate;
 import com.tone.tcatch.mypage.model.vo.Alarm;
 
 public interface ArtService { 
@@ -62,6 +64,15 @@ public interface ArtService {
 	
 	//찜 수 
 	int selectCountJjim(int artNo);
+	
+	//티켓 오픈 , 시작 ,종료 날짜 
+	int insertTicketDate(TicketDate td);
+
+	//회사 insert
+	int insertCompany(Company c);
+	
+	//회차 번호를 통한 회차 정보 가져옴
+	ArtTime selectATdateTime(ArtTime a);
 
 	
 

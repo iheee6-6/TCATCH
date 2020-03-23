@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+	pageEncoding="UTF-8"%>
 	
 	<%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%>
 	
@@ -13,8 +13,9 @@
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <style>
-table {
+table{
 	margin: auto;
+	padding:auto;
 }
 
 thead {
@@ -44,6 +45,10 @@ td {
 	width: 15px;
 	height: 15px;
 }
+ #td{
+ 	width:400px;
+ 	height:100px;
+ }
 
 #whktjr {
 	border: 1px solid black;
@@ -67,31 +72,14 @@ td {
 </head>
 <body>
 	<section class="sec03">
-		<form action="buy.do" method="post" id="joinForm">
-		<input type="hidden" name="artNo" value="${ s.artNo }"> 
-		<input type="hidden" id="timeNo" name="timeNo" value=""> 
-				»∏¬˜º±≈√ &nbsp; : &nbsp;<select id="timeSelect" class="tt">
-                                    <option>----</option>
-                                    <c:forEach var="t" items="${ aT }">                                   
-                               		     <option value="${t.dateCount }">${t.dateCount }»∏¬˜ ${ t.dateTime }</option>
-                                    </c:forEach>
-                              </select>
-                    
-                              <script>
-                              		$("#timeSelect").change(selectC);
-                              		
-                              		function selectC(){
-                              			 var value = $("option:selected").val();
-                              			 console.log(value);
-                                         $("#timeNo").val(value);
-                              		}
-                              </script>
-                              <button type="submit">¡¬ºÆ ∫“∑Øø¿±‚</button>
-               </form>
+	<img src='${contextPath}/resources/images/musical/mLogo.png' />
+	<c:if test="${ art.artType != 0 }">
+
+		
 		<table>
 			<thead>
 					<tr>
-						<td colspan="31"><br>π´¥Î πÊ«‚ <br><hr>
+						<td colspan="31"><br>Î¨¥ÎåÄ Î∞©Ìñ• <br><hr>
 						</td>
 					</tr>
 				</thead>
@@ -128,20 +116,76 @@ td {
 				</c:if>
 				</c:forEach>
 			</tr>
+
 			</tbody>
+			</table>
+			<table>
+				<tr>
+					<td id="td">
+					<form action="buy.do" method="post" id="joinForm">
+
+					<input type="hidden" name="artNo" value="${ s.artNo }"> 
+					<input type="hidden" id="timeNo" name="timeNo" value="">  <!-- Ï¶â ÌöåÏ∞®Î≤àÌò∏Î•º Í∞ÄÏ†∏Í∞ÄÎäîÍ±∞ÏûÑ -->
+							ÌöåÏ∞®ÏÑ†ÌÉù &nbsp; : &nbsp;<select id="timeSelect" class="tt" >
+			                                    	 <option>-----------</option>                                   
+			                                    <c:forEach var="t" items="${ aT }">
+			                               		     <option value="${t.dateCount }">${t.dateCount }ÌöåÏ∞® ${ t.dateTime }</option>
+			                                    </c:forEach>
+			                              </select>
+			                    
+			                              <script>
+			                              		$("#timeSelect").change(selectC);
+			                              		
+			                              		function selectC(){
+			                              			 var value = $("option:selected").val();
+			                              			 console.log(value);
+			                                         $("#timeNo").val(value);
+			                              		}
+			                              </script>
+			                              <button type="submit">Ï¢åÏÑù Î∂àÎü¨Ïò§Í∏∞</button>
+              		</form>
+					</td>
+				</tr>
 			</table>
 	<form action="buyTwo.do" method="post" id="joinForm">
 		<input type="hidden" name="artNo" value="${ s.artNo }"> 
 		<input type="hidden" name="timeNo" value="${ s.timeNo }"> 
 			<div id="bor">
-				<p>º±≈√«— ¡¬ºÆ:</p>
+				<p>ÏÑ†ÌÉùÌïú Ï¢åÏÑù:</p>
 						<input type="text" name="seatName[]" id="whktjr">
-				<button type="submit" id="goBuy">±∏∏≈</button>
-				<button type="button" onclick="re();" id="ree">√Îº“</button>
+				<button type="submit" id="goBuy">Íµ¨Îß§</button>
+				<button type="button" onclick="re();" id="ree">Ï∑®ÏÜå</button>
 			</div>
-			<br>
+		<br>
 
 		</form>
+        </c:if>
+        
+        <!-- Ï†ÑÏãú  -->
+        <c:if test="${art.artType==0 }">
+        <form action="buyExhibition.do" method="post" id="joinForm">
+			<input type="hidden" name="artNo" value="${ s.artNo }"> 
+			<input type="hidden" name="timeNo" value="${ s.timeNo }"> 
+				<div id="bor">
+					<p>${ sList[0].seatName } : <select name="count" class="tt">
+												<option value="1">1Îß§</option>
+												<option value="2">2Îß§</option>
+												<option value="3">3Îß§</option>
+												<option value="4">4Îß§</option>
+												<option value="5">5Îß§</option>
+												<option value="6">6Îß§</option>
+												<option value="7">7Îß§</option>
+												<option value="8">8Îß§</option>
+												<option value="9">9Îß§</option>
+												<option value="10">10Îß§</option>
+										</select>
+						${ sList[0].price }Ïõê
+					</p> 
+					<button type="submit" id="goBuy">Íµ¨Îß§</button>
+				</div>
+			<br>
+		</form>
+        </c:if>
 	</section>
 	
 	<script>

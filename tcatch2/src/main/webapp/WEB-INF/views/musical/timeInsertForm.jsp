@@ -17,7 +17,7 @@ height:1000px;
 
 .tt {
    width: 100%;
-   border: 1px solid rgba(0, 128, 0, 0.507);
+   border: 1px solid #ced4da
 }
 #inner{
 width:100%;
@@ -49,7 +49,7 @@ margin-bottom:3%;
 									<tr>
 										<td><label>회차</label><input type="number" size="10" name="dateCount" min="0" class="tt"></td>
 										<td></td>
-										<td>날짜<br><input type="datetime-local"  id="tt">
+										<td>날짜<br><input type="datetime-local"  id="tt" clase="tt">
 										<input type="hidden" id="dateTime" name="Time" value=""></td>
 										
 										<script>
@@ -70,21 +70,20 @@ margin-bottom:3%;
 								<input type="button" id="add" value="회차 추가">
 								
 								<div align="center">
-									<button type="submit" value="등록하기"></button>
+									<button type="submit" value="등록하기">등록하기</button>
 								</div>
 								 <script>
 							        $(document).on('click', '#add', add);
-							        var i = 1;
+							        
 							        function add(e){
 							            $("#wrap").append("<tr>"+
 												'<td><label>회차</label><input type="number" size="10" name="dateCount" min="0" class="tt"></td>'+
 												'<td></td>'+
-												'<td>날짜<br><input type="datetime-local" name="Time ></td>'+
+												'<td>날짜<br><input type="datetime-local" name="Time" ></td>'+
 												'</tr><tr>'+
 												'<td colspan="3"><label>출연진</label><input type="text" size="58" name="actor" min="0" class="tt"></td></tr>'+
 												'</tr>'+
 												"<tr><td colspan='3'><hr></td></tr>");
-							            i++;
 							        }
 							    </script>
 								<br>
@@ -94,7 +93,7 @@ margin-bottom:3%;
 			</div>
 		</div>
 	</section></div>
-
+	<jsp:include page="../common/footer.jsp" />
 </body>
 
 </html>

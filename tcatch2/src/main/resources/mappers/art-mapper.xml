@@ -238,4 +238,21 @@
 		WHERE ART_NO=#{artNo} AND PER_TYPE=1
 	</select>
 	
+	<insert id="insertTicketDate">
+		INSERT INTO TICKET_DATE VALUES(
+			SEQ_ANO.CURRVAL , #{ticketingDate} ,#{startDate} , #{endDate}
+		)
+	</insert>
+	
+	<insert id="insertCompany">
+		INSERT INTO COMPANY VALUES(
+			SEQ_CP_NO.NEXTVAL , #{companyName},#{phone},#{companyInfo}
+		)
+	</insert>
+	
+	<select id="selectATdateTime" resultMap="ATResultSet">
+		SELECT * FROM ART_TIME
+		WHERE ART_NO = #{artNo} AND DATE_COUNT= #{dateCount}
+	</select>
+	
 </mapper>
