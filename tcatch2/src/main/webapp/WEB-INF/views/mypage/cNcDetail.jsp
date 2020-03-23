@@ -9,8 +9,13 @@
 
 <title>TCATCH</title>
 
+<style>
+ul{
+list-style: none;
+}
+</style>
 </head>
-<body class="">
+<body>
 <jsp:include page="../common/menubar2.jsp"/>
 
 	<div class="wrapper">

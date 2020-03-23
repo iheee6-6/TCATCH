@@ -35,8 +35,7 @@ display:block;
 width:1300px;
 height:900px;
 margin-top: 150px;  
-margin-left:200px; 
-margin-right:200px;
+margin-left:100px; 
 margin-bottom: 150px;
 }
 

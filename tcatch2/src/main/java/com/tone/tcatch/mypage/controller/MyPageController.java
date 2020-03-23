@@ -2,17 +2,10 @@ package com.tone.tcatch.mypage.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Date;
 import java.sql.Timestamp;
-/*import java.util.Date;*/
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import javax.mail.Message;
-import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -28,8 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -37,7 +28,6 @@ import com.tone.tcatch.member.model.vo.Member;
 import com.tone.tcatch.mypage.model.exception.MypageException;
 import com.tone.tcatch.mypage.model.service.MyPageService;
 import com.tone.tcatch.mypage.model.vo.Alarm;
-import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.art.model.vo.Img;
 import com.tone.tcatch.common.Pagination;
@@ -54,7 +44,7 @@ public class MyPageController {
 	private JavaMailSender mailSender;
 	
 	@RequestMapping("enterMyPage.do")
-	public ModelAndView enterMypage(ModelAndView mv, HttpSession session, Model model) {
+	public ModelAndView enterMypage(ModelAndView mv, HttpSession session) {
 	
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		

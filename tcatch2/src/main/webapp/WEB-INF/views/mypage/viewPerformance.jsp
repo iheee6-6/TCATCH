@@ -31,7 +31,7 @@ body {
 div.btnL {
     position: absolute;
     left: 570px;
-    top: 80px;
+    top: 130px;
 }
 
 .imgbtn {
@@ -150,7 +150,7 @@ div.btnL {
     </script>
  
 	<script type="text/javascript">
- 
+ 		var page;
 		$(document).ready(function(){
 		   $('#loading').hide(); //첫 시작시 로딩바를 숨겨준다.
 		   searchDate();
@@ -161,13 +161,17 @@ div.btnL {
 		.ajaxStop(function(){
 			$('#loading').hide(); //ajax종료시 로딩바를 숨겨준다.
 		});
-		 
+		function searchPage(page2){
+			 page=page2;
+			 searchDate();
+		}
 		function searchDate(){
 			console.log("hi");
 			var sdate = $("#date1").val();
 			var edate = $("#date2").val();
 			var pType = $("#ptype").val();
 			var pName= $("#pnameSearch").val();
+			
 			console.log(pType);
 			
 			var content = $('div.mypage_contain #divResult');
@@ -179,7 +183,8 @@ div.btnL {
 		        	sdate : sdate,
 		        	edate : edate,
 		        	pType : pType,
-		        	pName : pName
+		        	pName : pName,
+		        	page  : page
 				},
 				dataType: "html",
 				success : function(data){

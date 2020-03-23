@@ -159,7 +159,7 @@ li a {
 										</c:when>
 										<c:otherwise>
 											<c:forEach var="v" items="${recentViewList}">
-												<li>
+												<li class="rV">
 													<div>
 														<c:url var="vpDetail" value="musicalDetail.do">
 															<c:param name="artNo" value="${v.artNo }" />
@@ -175,14 +175,14 @@ li a {
 													<a href="${vpDetail }"><strong>${v.artTitle }</strong></a>
 													<span class="red"></span>
 													<span>예매번호: ${v.tNo }</span>
-													<span> <c:if test="${empty v.review_no }">
+													<span style="margin-top: 10px;"> <c:if test="${empty v.review_no }">
 															<a href="${vpDetail }"> <img class="firstBtn"
 																src="resources/images/mypage/btn_minfor.gif" alt="공연정보"></a>
 															<a href="${vpDetail }"> <img
 																src="resources/images/mypage/btn_after.gif" alt="관람후기 작성"></a>
 														</c:if> <c:if test="${!empty v.review_no }">
 															<a href="${vpDetail }"> <img
-																style="margin-top: 10px; margin-left: 100px"
+																style="margin-left: 100px"
 																class="firstBtn"
 																src="resources/images/mypage/btn_minfor.gif" alt="공연정보">
 															</a>
@@ -192,11 +192,9 @@ li a {
 							</c:forEach>
 
 
-							<c:if test="${fn:length(recentViewList) <3}  ">
-								<li>
-									<div class="end"></div>
-								</li>
-							</c:if>
+							<script>
+									$(".rV div").last().attr("class","end");
+								</script>
 							</c:otherwise>
 							</c:choose>
 
