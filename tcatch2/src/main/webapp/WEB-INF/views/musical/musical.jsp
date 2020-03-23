@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
@@ -9,13 +9,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<title>±è´ë¼º</title>
+<title>ê¹€ëŒ€ì„±</title>
 
 
-<!-- »óÇ° ¼³¸í UI -->
+<!-- ìƒí’ˆ ì„¤ëª… UI -->
 <link rel='stylesheet' type='text/css'
 	href="${ contextPath }/resources/css/product/product.css" />
-<!-- ÀÌ¹ÌÁö UI-->
+<!-- ì´ë¯¸ì§€ UI-->
 <link rel='stylesheet' type='text/css'
 	href="${ contextPath }/resources/css/product/productImg.css" />
 <!-- body--> 
@@ -44,9 +44,9 @@
 .rank-best > div a .rank-best-number span:nth-child(1):after{content:"";display:block;width:13px;height:1px;background:#fff;opacity:0.5;position:absolute;left:21px;bottom:7px;}
 .rank-best > div a .rank-best-number span:last-child{display:inline-block;font-size:12px;padding:0;}
 .rank-best > div a .rank-best-number span.rank-best-number-up{padding-left:10px;margin-left:-3px;}
-.rank-best > div a .rank-best-number span.rank-best-number-up:before{content:"¡è";display:block;position:absolute;top:-1px;left:0;font-size:10px;font-weight:400;font-family:'Noto Sans KR','NanumBarunGothic','¸¼Àº °íµñ','Malgun Gothic',sans-serif;}
+.rank-best > div a .rank-best-number span.rank-best-number-up:before{content:"â†‘";display:block;position:absolute;top:-1px;left:0;font-size:10px;font-weight:400;font-family:'Noto Sans KR','NanumBarunGothic','ë§‘ì€ ê³ ë”•','Malgun Gothic',sans-serif;}
 .rank-best > div a .rank-best-number span.rank-best-number-down{padding-left:10px;margin-left:-3px;}
-.rank-best > div a .rank-best-number span.rank-best-number-down:before{content:"¡é";display:block;position:absolute;top:-1px;left:0;font-size:10px;font-weight:400;font-family:'Noto Sans KR','NanumBarunGothic','¸¼Àº °íµñ','Malgun Gothic',sans-serif;}
+.rank-best > div a .rank-best-number span.rank-best-number-down:before{content:"â†“";display:block;position:absolute;top:-1px;left:0;font-size:10px;font-weight:400;font-family:'Noto Sans KR','NanumBarunGothic','ë§‘ì€ ê³ ë”•','Malgun Gothic',sans-serif;}
 .rank-best > div a .rank-best-tag{position:absolute;top:402px;left:75px;width:48px;height:27px;font-size:12px;color:#fff;padding-top:7px;background:url('http://tkfile.yes24.com/imgNew/common/ico-tag.png')no-repeat;}
 
 
@@ -54,10 +54,16 @@ div {
     display: block;
 }
 
+.lazyload{
+
+	height : 302.4px;
+
+}
+
 </style>
 </head> 
 <body>
-	<jsp:include page="../common/menubar.jsp" />
+	<jsp:include page="../common/menubar2.jsp" />
 	<br>
 	<br> 
 	<br> 
@@ -69,49 +75,51 @@ div {
 			</p>
 		<button onclick="location.href='insert.do'">ArtInsert</button>
 		<button onclick="location.href='timeInsertForm.do'">TimeInsert</button>
+		<button onclick="location.href='companyInsertForm.do'">CompanyInsert</button>
+				
 			<div class="rank-best">
 			<div>
-			<!-- 1À§ -->
+			<!-- 1ìœ„ -->
 				<a href="">
 					<span class="rank-best-img">
 						<img class='rank-best-img' src="${ contextPath }/resources/images/art/${ list[0].changeName }"/>
 					</span>
-						<p class="rlb-tit">¹ÂÁöÄÃ µå¶óÅ§¶ó £¨Dracula£ºThe Musical£©</p> <!-- Á¦¸ñ -->
-						<p class="rlb-sub-tit">2020-09-21 ~ 2020-09-21<br>¿ì¸®Áı¿¡¼­ ÇÔ</p> <!-- ³¯Â¥ ¹× ½Ã°£ -->
+						<p class="rlb-tit">${ list[0].artTitle }</p> <!-- ì œëª© -->
+						<p class="rlb-sub-tit">2020-09-21 ~ 2020-09-21<br>ìš°ë¦¬ì§‘ì—ì„œ í•¨</p> <!-- ë‚ ì§œ ë° ì‹œê°„ -->
 						<p class="rank-best-point">
 							<span class="star-point">
-								¡Ú¡Ú¡Ú¡Ú¡Ú
+								â™¥Like : 10
 							</span>
 						</p>
 				</a>
 			</div>
 			<div>
-				<!-- 2À§ -->
+				<!-- 2ìœ„ -->
 				<a href="">
 					<span class="rank-best-img">
-						<img class='rank-best-img' src="${ contextPath }/resources/images/art/${ list[0].changeName }"/>
+						<img class='rank-best-img' src="${ contextPath }/resources/images/art/${ list[1].changeName }"/>
 					</span>
-						<p class="rlb-tit">¹ÂÁöÄÃ µå¶óÅ§¶ó £¨Dracula£ºThe Musical£©</p> <!-- Á¦¸ñ -->
-						<p class="rlb-sub-tit">2020-09-21 ~ 2020-09-21<br>¿ì¸®Áı¿¡¼­ ÇÔ</p> <!-- ³¯Â¥ ¹× ½Ã°£ -->
+						<p class="rlb-tit">${ list[1].artTitle }</p> <!-- ì œëª© -->
+						<p class="rlb-sub-tit">2020-09-21 ~ 2020-09-21<br>ìš°ë¦¬ì§‘ì—ì„œ í•¨</p> <!-- ë‚ ì§œ ë° ì‹œê°„ -->
 						<p class="rank-best-point">
 							<span class="star-point">
-								¡Ú¡Ú¡Ú¡Ú
+								â™¥Like : 10
 							</span>
 						</p>
 				</a>
 			</div>
 			
 			<div>				
-				<!-- 3À§ -->
+				<!-- 3ìœ„ -->
 				<a href="">
 					<span class="rank-best-img">
-						<img class='rank-best-img' src="${ contextPath }/resources/images/art/${ list[0].changeName }"/>
+						<img class='rank-best-img' src="${ contextPath }/resources/images/art/${ list[2].changeName }"/>
 					</span>
-						<p class="rlb-tit">¹ÂÁöÄÃ µå¶óÅ§¶ó £¨Dracula£ºThe Musical£©</p> <!-- Á¦¸ñ -->
-						<p class="rlb-sub-tit">2020-09-21 ~ 2020-09-21<br>¿ì¸®Áı¿¡¼­ ÇÔ</p> <!-- ³¯Â¥ ¹× ½Ã°£ -->
+						<p class="rlb-tit">${ list[2].artTitle }</p> <!-- ì œëª© -->
+						<p class="rlb-sub-tit">2020-09-21 ~ 2020-09-21<br>ìš°ë¦¬ì§‘ì—ì„œ í•¨</p> <!-- ë‚ ì§œ ë° ì‹œê°„ -->
 						<p class="rank-best-point">
 							<span class="star-point">
-								¡Ú¡Ú¡Ú
+								â™¥Like : 10
 							</span>
 						</p>
 
@@ -130,24 +138,26 @@ div {
 						<c:url var="adetail" value="musicalDetail.do">
 							<c:param name="artNo" value="${ a.artNo }"/>
 						</c:url>
-					<!-- ¸ñ·Ï 1 -->
-					<a href='${adetail}' target='_self' title='¹ÂÁöÄÃ (Àº¹ĞÇÏ°Ô À§´ëÇÏ°Ô - THE LAST)'>
-						<div class='list-bigger-wrap'>
-							<img class='lazyload' src="${ contextPath }/resources/images/art/${ a.changeName }"/>
-							
-							<div class='list-bigger-txt'>
-								<p class='list-b-tit1'>${a.artTitle}</p>
-								<p class='list-b-tit2'>Á¶È¸¼ö ${a.count }</p>
-								<p class='list-b-circle'>${ a.sale }%</p>
+					<!-- ëª©ë¡ 1 -->
+					<c:if test="${ a.sale != 0 }">
+						<a href='${adetail}' >
+							<div class='list-bigger-wrap'>
+								<img class='lazyload' src="${ contextPath }/resources/images/art/${ a.changeName }"/>
+								
+								<div class='list-bigger-txt'>
+									<p class='list-b-tit1'>${a.artTitle}</p>
+									<p class='list-b-tit2'>ì¡°íšŒìˆ˜ ${a.count }</p>
+									<p class='list-b-circle'>${ a.sale }%</p>
+								</div>
 							</div>
-						</div>
-					</a>
+						</a>
+					</c:if>
 				</c:forEach>
-				<!-- ¸ñ·Ï -->
+				<!-- ëª©ë¡ -->
 			</div>
 		</section>
-		<!-- m2-sec02 ÇÒÀÎ »óÇ° -->
-		<!-- ÀÏ¹İ »óÇ° -->
+		<!-- m2-sec02 í• ì¸ ìƒí’ˆ -->
+		<!-- ì¼ë°˜ ìƒí’ˆ -->
 		
 		<section class='m2-sec06'>
 			<p class='m2-tit'>
@@ -155,21 +165,28 @@ div {
 			</p>
 			
 			
-			<!-- ÀÏ¹İ »óÇ° 1  -->
+			<!-- ì¼ë°˜ ìƒí’ˆ 1  -->
 			<div class='ms-list-imgs2'>
-				<a href='#'
-					target='_self' title='¹ÂÁöÄÃ <»ç¶ûÀº ºñ¸¦ Å¸°í>'><span>
-					<img class='lazyload' src="http://tkfile.yes24.com/upload2/PerfBlog/202001/20200122/20200122-36049_1.jpg" alt='' /></span>
-					<div class='list-2-txt'>
-						<p class='list-2-tit1'>
-							¹ÂÁöÄÃ
-							&lt;»ç¶ûÀº ºñ¸¦ Å¸°í&gt;
-						</p>
-						<p class='list-2-tit2'>Á¶È¸¼ö : </p>
-					</div>
-				</a>
+				<c:forEach var="a" items="${ list }">
+						<c:url var="adetail2" value="musicalDetail.do">
+							<c:param name="artNo" value="${ a.artNo }"/>
+						</c:url> 
+					<c:if test="${ a.sale == 0 }">
+						<a href='${adetail2}' >
+						<span>
+							<img class='lazyload' src="${ contextPath }/resources/images/art/${ a.changeName }"/>
+						</span>
+							<div class='list-2-txt'>
+								<p class='list-2-tit1'>
+									${a.artTitle}
+								</p>
+								<p class='list-2-tit2'>ì¡°íšŒìˆ˜ ${a.count }</p>
+							</div>
+						</a>
+					</c:if>
+				</c:forEach>
 			</div>
-			<!-- ÀÏ¹İ »óÇ° -->
+			<!-- ì¼ë°˜ ìƒí’ˆ -->
 			
 			  
 			

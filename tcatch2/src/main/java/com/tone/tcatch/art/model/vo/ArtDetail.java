@@ -3,20 +3,20 @@ package com.tone.tcatch.art.model.vo;
 import java.sql.Date;
 
 public class ArtDetail {
-	private int artNo;	//°ø¿¬¹øÈ£
-	private int artType;//°ø¿¬Å¸ÀÔ
-	private String artTitle;//°ø¿¬¸í
-	private String artExplain;//°ø¿¬¼³¸í
-	private String address;//°ø¿¬Àå¼Ò
-	private int companyNo;//È¸»ç¹øÈ£
-	private int age; //°ü¶÷ µî±Ş
-	private int durationTime;//¼Ò¿ä½Ã°£(ºĞ) 
-	private String companyName; //È¸»ç ÀÌ¸§
-	private String companyPhone;// È¸»ç ¹øÈ£ 
-	private String companyInfo; // È¸»ç Á¤º¸
-	private Date ticketingDate; //Æ¼ÄÏÆÃ ½ÃÀÛ ³¯Â¥
-	private Date startDate; //°ø¿¬ ½ÃÀÛ ³¯Â¥ 
-	private Date endDate; // °ø¿¬ Á¾·á ³¯Â¥
+	private int artNo;	// ê³µì—° ë²ˆí˜¸
+	private int artType;// ê³µì—° íƒ€ì… 
+	private String artTitle;// ì œëª© 
+	private String artExplain;//  ì„¤ëª… NULL
+	private String address;// ì£¼ì†Œ
+ 	private int companyNo;// íšŒì‚¬ ë²ˆí˜¸
+	private int age; // ì—°ë ¹
+	private int durationTime;//  ì†Œìš” ì‹œê°„
+	private String companyName; // íšŒì‚¬ ì´ë¦„
+	private String companyPhone;// íšŒì‚¬ ë²ˆí˜¸ 
+	private String companyInfo; // íšŒì‚¬ ì„¤ëª…
+	private Date ticketingDate; // í‹°ì¼“íŒ… ì‹œì‘ ë‚ ì§œ
+	private Date startDate; // í‹°ì¼“ ì˜¤í”ˆ ë‚ ì§œ 
+	private Date endDate; // í‹°ì¼“ ì¢…ë£Œ ë‚ ì§œ
 
 	
 	public ArtDetail() {}

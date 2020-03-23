@@ -9,9 +9,11 @@ import com.tone.tcatch.art.model.dao.ArtDao;
 import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.art.model.vo.ArtTime;
+import com.tone.tcatch.art.model.vo.Company;
 import com.tone.tcatch.art.model.vo.Img;
 import com.tone.tcatch.art.model.vo.Purchase;
 import com.tone.tcatch.art.model.vo.Seat;
+import com.tone.tcatch.art.model.vo.TicketDate;
 import com.tone.tcatch.mypage.model.vo.Alarm;
 
 @Service("aService")
@@ -30,11 +32,11 @@ public class ArtServiceImpl implements ArtService{
 
 	@Override
 	public ArtDetail selectArt(int artNo, boolean flag) { // 디테일 
-		// 1. ��ȸ�� ����
-		if(!flag) { // �ش� ���� ���� �ʾҴٸ�(flag�� false)
+
+		if(!flag) { 
 			aDao.addReadCount(artNo);
 		}
-		// 2. �Խñ� ��ȸ
+		
 		return aDao.selectArt(artNo);
 	}
 
@@ -127,6 +129,24 @@ public class ArtServiceImpl implements ArtService{
 	@Override
 	public int selectCountJjim(int artNo) {// 찜한 사람 수 
 		return aDao.selectCountJjim(artNo);
+	}
+
+
+	@Override
+	public int insertTicketDate(TicketDate td) { //insert 티켓날짜
+		return aDao.insertTicketDate(td);
+	}
+
+
+	@Override
+	public int insertCompany(Company c) { //insert 회사
+		return aDao.insertCompany(c);
+	}
+
+
+	@Override
+	public ArtTime selectATdateTime(ArtTime a) { //회차 정보 가져오기
+		return aDao.selectATdateTime(a);
 	}
 
 

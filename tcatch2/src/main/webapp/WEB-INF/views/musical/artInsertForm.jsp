@@ -10,7 +10,7 @@
 <style>
 .outer {
 width:500px;
-height:1000px;
+height:1500px;
    margin: auto;
    margin-top: 50px;
 }
@@ -31,7 +31,7 @@ margin-bottom:3%;
  	<jsp:include page="../common/menubar2.jsp"/>
 <br><br><br><br>
   <div id="inner">
-	<section class="bg-light page-section" id="portfolio">
+	<section  id="portfolio">
 		<div class="container">
 			<div class="row">
 				<div class="outer">
@@ -105,14 +105,34 @@ margin-bottom:3%;
 						           
 						           <tr>
 						           <td>티켓팅</td>
-						           <td><input type="date" name="ticketingDate"></td>
+						           <td>날짜<br><input type="datetime-local"  id="tt">
+										<input type="hidden" id="ticketingDate" name="ticketingDate" value=""></td>
 						           </tr>
+						           
 						           <tr>
 						           <td>시작날짜</td>
-						           <td><input type="date" name="startDate"></td>
+						           <td><input type="date" id="ttt">
+						           <input type="hidden" id="startDate" name="startDate" value=""></td>
 						           <td>종료날짜</td>
-						           <td><input type="date" name="endDate"></td>
+						           <td><input type="date" id="tttt">
+						           <input type="hidden" id="endDate" name="endDate" value=""></td>
 						            
+						           <script>
+											$("#tt").change(function(){
+												var dd = $("#tt").val();console.log(dd);
+												$("#ticketingDate").val(dd);
+											});
+											
+											$("#ttt").change(function(){
+												var dd = $("#ttt").val();console.log(dd);
+												$("#startDate").val(dd);
+											});
+											
+											$("#tttt").change(function(){
+												var dd = $("#tttt").val();console.log(dd);
+												$("#endDate").val(dd);
+											});
+								</script>
 						             
 						           </tr>
 						           
@@ -188,7 +208,7 @@ margin-bottom:3%;
 			</div>
 		</div>
 	</section></div>
-
+	<jsp:include page="../common/footer.jsp" />
 </body>
 
 </html>
