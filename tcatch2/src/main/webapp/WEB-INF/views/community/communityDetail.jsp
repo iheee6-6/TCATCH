@@ -11,6 +11,8 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript" src="${contextPath }/resources/js/community/jquery.raty.js"></script>
 <style>
 .wrap {
 	width: 50%;
@@ -29,7 +31,8 @@
 	font-size: 20px;
 	font-weight: 500;
 }
-#replyTable td{
+
+#replyTable td {
 	text-align: center;
 }
 
@@ -42,7 +45,7 @@
 
 .content {
 	width: 100%;
-	height: 600px;
+	height: 300px;
 	border-bottom: 1px solid black;
 	border-left: 1px solid black;
 	border-right: 1px solid black;
@@ -51,7 +54,7 @@
 }
 
 .btnwrap {
-	text-align: center;
+	text-align: right;
 }
 
 .btn {
@@ -86,7 +89,7 @@
 .post .post-heading .avatar {
 	width: 60px;
 	height: 60px;
-	display:inline-block;
+	display: inline-block;
 	margin-right: 15px;
 }
 
@@ -195,16 +198,61 @@
 	border: none;
 }
 
-.rcontent{
-}
-.time{
-float:right;
-margin-right:50px;
-}
-.replyArea{
-display:inline;
+.rcontent {
+	
 }
 
+.time {
+	margin-left:350px;
+}
+
+.replyArea {
+	display: inline;
+}
+
+
+
+.rId {
+	width: 10%;
+	height: 10%;
+	border: 0;
+	outline: 0;
+	background: white;
+	color: red;
+}
+.starR{
+  background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+  background-size: auto 100%;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  text-indent: -9999px;
+  cursor: pointer;
+  margin-top:5px;
+}
+.starRev{
+	margin-left:20px;
+	width:200px;
+	float:left;
+}
+.starArea{
+	width:100%;
+}
+.form-control{
+float:left;
+}
+
+#ss a{
+ text-decoration: none; 
+ color: gray; 
+
+ } 
+ #ss a.on{ 
+ color: red; 
+ }
+
+
+.starR.on{background-position:0 0;}
 </style>
 <body>
 	<jsp:include page="../common/menubar2.jsp" />
@@ -216,13 +264,16 @@ display:inline;
 	<br>
 	<br>
 	<div class="title2">
-		<h1 style="font-family: 'Do Hyeon', sans-serif;">${ commu.cTitle }
-			상세보기</h1>
+		<h1 style="">[제목] ${ commu.cTitle }</h1>
 	</div>
 	<br>
 	<br>
 	<br>
+	<input type="hidden" id="id" value="${loginUser.id }">
 	<div class="wrap">
+	<button class="btn btn-outline-secondary"
+					style="font-size: 12px; width:80px; height:40px; float:right;"
+					onclick="location.href='${clist}'">신고하기</button>
 		<table id="boardTable">
 			<tr>
 				<th>No. ${ commu.cNo }</th>
@@ -248,38 +299,47 @@ display:inline;
 			<c:param name="page" value="${ currentPage }" />
 		</c:url>
 		<c:url var="cupdateView" value="cupdateView.do">
-			<c:param name="cNo" value="${ commu.cNo }"/>
+			<c:param name="cNo" value="${ commu.cNo }" />
 			<c:param name="page" value="${ currentPage }" />
 		</c:url>
-		
-		
+
+
 
 		<div class="panel panel-white post panel-shadow">
-		<table id="replyTable">
-			<thead>
-				<tr>
-					<td colspan="4"><b id="rCount"></b></td>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
+			<table id="replyTable">
+				<thead>
+					<tr>
+						<td colspan="4"><b id="rCount"></b></td>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
 			<div class="post-footer">
+					<div class="starArea">
+						<input class="form-control" type="text" value="별점등록"
+							readonly style="width: 90px; text-align: center;">
+							
+						<p id="ss"> <!-- 부모 --> 
+						<a href="#" value="1">★</a> <!-- 자식들--> 
+						<a href="#" value="2">★</a> 
+						<a href="#" value="3">★</a>
+						<a href="#" value="4">★</a> 
+						<a href="#" value="5">★</a> 
+						<p>
+					</div>
+				
 				<div class="input-group">
+				
 					<div>
 						<input class="form-control" type="text" value="${loginUser.name }"
 							readonly style="width: 90px; text-align: center;">
 					</div>
 
-					<input class="form-control" id="rContent" placeholder="Add a comment" type="text">
-					<select style="height:38px;">
-						<option selected>별점등록</option>
-						<option>★</option>
-						<option>★★</option>
-						<option>★★★</option>
-						<option>★★★★</option>
-						<option>★★★★★</option>
-					</select>
+					<input class="form-control" id="rContent"
+						placeholder="Add a comment" type="text"> 
+						
+					
 					<span class="input-group-addon">
 						<button id="rSubmit"></button>
 					</span>
@@ -287,20 +347,27 @@ display:inline;
 				<ul class="comments-list">
 					<li class="comment">
 						<div class="comment-body" id="body">
-						
+
 							<div class="comment-heading" id="head">
 								<div class="replyArea">
-								<span class="user"><!-- 로그인유저 아이디 --></span>
-								<span class="star"></span>
-								<h5 class="time"><!-- 작성시간 --></h5>
+									<span class="user"></span> 
+										<span class="star"></span>
+										<h5 class="time"></h5><!-- 작성시간 -->
+										<button type="button" class="rId" id="tt"  name="rId"></button>
 								</div>
-								<h5 class="rcontent"><!-- 작성내용 --></h5>
-								
+				
+								<div class="replyArea2">
+									<h6 class="rcontent">
+										<!-- 작성내용 -->
+									</h6>
+
+								</div>
 							</div>
-							
+
 						</div>
 					</li>
 				</ul>
+
 			</div>
 		</div>
 
@@ -308,11 +375,12 @@ display:inline;
 
 		<c:if test="${loginUser.name ne commu.cWriter }">
 			<div class="btnwrap">
-				<button class="btn btn-primary"
-					style="font-family: 'Do Hyeon', sans-serif; font-size: 23px;"
+				<button class="btn btn-outline-secondary"
+					style=" font-size: 12px; width:80px; height:40px;"
 					onclick="location.href='${clist}'">목록으로</button>
 			</div>
 		</c:if>
+						
 
 
 
@@ -322,111 +390,187 @@ display:inline;
 
 		<c:if test="${loginUser.name eq commu.cWriter }">
 			<div class="btnwrap">
-				<button class="btn btn-primary"
-					style="font-family: 'Do Hyeon', sans-serif; font-size: 23px;"
+				<button class="btn btn-outline-secondary"
+					style="font-size: 12px; width:80px; height:40px;"
 					onclick="location.href='${clist}'">목록으로</button>
-				<button type="button" class="btn btn-danger"
-					style="font-family: 'Do Hyeon', sans-serif; font-size: 23px;"
-					onclick="location.href='${cdelete}'">삭제하기</button>
-				<button class="btn btn-primary"
-					style="font-family: 'Do Hyeon', sans-serif; font-size: 23px;"
+				
+				<button class="btn btn-outline-secondary"
+					style="font-size: 12px; width:80px; height:40px;"
 					onclick="location.href='${cupdateView}'">수정하기</button>
+				<button type="button" class="btn btn-outline-danger" id="dBtn"
+					style="font-size: 15px; width:50px; display:none;"
+					onclick="location.href='${cdelete}'">X</button>
+				<button type="button" class="btn btn-outline-danger"
+					style="font-size: 12px; width:40px; height:40px;"
+					onclick="real();">X</button>
+					
+					<script>
+						function real(){
+							if(confirm("정말 글을 삭제하시겠습니까?")){
+								$("#dBtn").click();
+							}
+						}
+					
+					</script>
 			</div>
 		</c:if>
+		
 
 
 	</div>
 
 	<script>
-		$(function() {
-			// 초기 페이지 로딩 시 댓글 불러오기
+		var id = $("#id").val();
+		console.log("id" + id);
+
+		// 초기 페이지 로딩 시 댓글 불러오기
+		getReplyList();
+
+		// 타 회원이 작성한 댓글도 지속적으로 불러오고 싶다면
+		/* setInterval(function() {
 			getReplyList();
+		}, 5000); */
+		
+		$('#ss a').click(function(){ 
+			$(this).parent().children("a").removeClass("on"); 
+			$(this).addClass("on").prevAll("a").addClass("on"); 
+			console.log($(this).attr("value"));
+			return false;
+			
+			});
+		
+		// 댓글 등록 ajax
+		$("#rSubmit").on("click", function() {
+			
+			// 필요한 값을 가지고 db에 insert한 뒤
+			// 등록 성공 시 댓글리스트 다시 불러오기
+			// 요청 url : addReply.do
+			var rContent = $("#rContent").val();
+			var star = document.getElementsByClassName("on").length;
+			var refCno = ${commu.cNo};
+			console.log("star : " + star);
 
-			// 타 회원이 작성한 댓글도 지속적으로 불러오고 싶다면
-			setInterval(function() {
-				getReplyList();
-			}, 50000);
-
-			// 댓글 등록 ajax
-			$("#rSubmit").on("click", function() {
-				// 필요한 값을 가지고 db에 insert한 뒤
-				// 등록 성공 시 댓글리스트 다시 불러오기
-				// 요청 url : addReply.do
-				var rContent = $("#rContent").val();
-				var refCno = ${commu.cNo};
-
-				$.ajax({
-					url : "addReply.do",
-					data : {
-						rContent : rContent,
-						refCno : refCno
-					},
-					type : "post",
-					success : function(data) {
-						if (data == "success") {
-							getReplyList(); // 등록 성공시 다시 댓글리스트 불러오기
-							$("#rContent").val("");
-						}
+			$.ajax({
+				url : "addReply.do",
+				data : {
+					star : star,
+					rContent : rContent,
+					refCno : refCno
+				},
+				type : "post",
+				success : function(data) {
+					if (data == "success") {
+						getReplyList(); // 등록 성공시 다시 댓글리스트 불러오기
+						$("#rContent").val("");
 					}
-				});
+				}
 			});
 		});
 
 		function getReplyList() {
 			var cNo = ${commu.cNo};
 			console.log(cNo);
-			$.ajax({
-				url : "rList.do",
-				data : {cNo : cNo},
-				dataType : "json",
-				success : function(data) {
-					console.log(data);
+			
+					$.ajax({
+						url : "rList.do",
+						data : {cNo : cNo},
+						dataType : "json",
+						success : function(data) {
+							console.log(data);
 
-					$tableBody = $(".comments-list");
-					$tableBody.html("");
+							$tableBody = $(".comments-list");
+							$tableBody.html("");
 
-					$("#rCount").text("댓글(" + data.length + ")");
+							$("#rCount").text("댓글(" + data.length + ")");
 
-					if (data.length > 0) {
-						for ( var i in data) {
-							var $li = $("<li class='comment'>");
-							var $body = $("<div class='comment-body'>");
-							var $heading = $("<div class='comment-heading'>");
-							var $reply = $("<div class='replyArea'>");
-							var $user = $("<span class='user'>").text(data[i].rWriter + " 님의 평점 : ");
-							var $p = $("<h5 class='rcontent'>").text(data[i].rContent);
-							var $time = $("<h5 class='time'>").text(
-									data[i].rCreateDate);
-							var $star = $("<span class='star'>").text(data[i].star);
+							if (data.length > 0) {
+								for ( var i in data) {
+									var rId = data[i].rId;
+									switch(data[i].star){
+									case 1: data[i].star="★☆☆☆☆"
+									break;
+									case 2: data[i].star="★★☆☆☆"
+										break;
+									case 3: data[i].star="★★★☆☆"
+										break;
+									case 4: data[i].star="★★★★☆"
+										break;
+									case 5: data[i].star="★★★★★"
+										break;
+									}
+									var $li = $("<li class='comment'>");
+									var $body = $("<div class='comment-body'>");
+									var $heading = $("<div class='comment-heading'>");
+									var $reply = $("<div class='replyArea'>");
+									var $reply2 = $("<div class='replyArea2'>");
+									var $user = $("<span class='user'>").text(
+											data[i].rWriter);
+									var $p = $("<h6 class='rcontent'>").text(" ⇒ " + 
+											data[i].rContent);
+									var $time = $("<h5 class='time'>").text(
+											data[i].rCreateDate);
+									var $star = $("<span class='star'>").text(
+											data[i].star).css({"color":"red"});
+									var $del = $(
+											"<button class='rId' id='tt' value=" + data[i].rId + ">")
+											.text("x");
 
-							
-							$tableBody.append($li);
-							$li.append($body);
-							$body.append($heading);
-							$reply.append($user);
-							$reply.append($star);
-							$reply.append($time);
-							$heading.append($reply);
-							$heading.append($p);
-							
+									$tableBody.append($li);
+									$li.append($body);
+									$body.append($heading);
+									$reply.append($user);
+									$reply.append($star);
+									$reply.append($time);
+									if (data[i].rWriter == id) {
+										$reply.append($del);
+									}
+
+									$reply2.append($p);
+									$heading.append($reply);
+									$heading.append($reply2);
+
+								}
+							} else {
+								// 댓글이 등록되지 않았을 때
+								var $tr = $("<tr>");
+								var $rContent = $("<td colspan='2'>").text(
+										"등록 된 댓글이 없습니다.");
+								$tr.append($rContent);
+								$tableBody.append($tr);
+							}
+
+						},
+						error : function(e) {
+							console.log(e);
 						}
-					} else {
-						// 댓글이 등록되지 않았을 때
-						var $tr = $("<tr>");
-						var $rContent = $("<td colspan='2'>").text(
-								"등록 된 댓글이 없습니다.");
-						$tr.append($rContent);
-						$tableBody.append($tr);
-					}
-
-				},
-				error : function(e) {
-					console.log(e);
-				}
-			});
+					});
 
 		}
 	</script>
+	<script>
+		$(document).on("click","#tt",function(){
+			console.log("gd");
+			var rId = this.value;
+			
+			if(confirm("정말 삭제하시겠습니까?")){
+			$.ajax({
+				url : "rdelete.do",
+				data : {rId : rId},
+				success : function(data) {
+					console.log(data);
+					getReplyList();
+				}
+				
+			});
+			}else{
+				return false;
+			}
+		});
+		
+		
+
+	</script>
+
 
 	<jsp:include page="../common/footer.jsp" />
 

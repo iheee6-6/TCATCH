@@ -37,7 +37,7 @@
 
 .form-signin {
 	margin: auto;
-	width: 700px;
+	width: 1000px;
 }
 
 .btn-lg {
@@ -45,7 +45,7 @@
 }
 
 .mb-4 {
-	margin-top: 50px;
+	margin-top: 60px;
 }
 
 body {
@@ -53,24 +53,30 @@ body {
 }
 
 h1, label, button, p, table {
-	font-family: 'Do Hyeon', sans-serif;
+
 }
 
 .joinbtn {
 	text-align: center;
 }
 
-.btn-danger {
+.btn{
 	width: 250px;
 	height: 50px;
 	font-size: 20px;
 }
 
 th {
-	font-size: 20px;
-	font-weight: 100;
+	width:150px;
+	font-size: 17px;
+	font-weight: 900;
 }
-
+tr>td{
+	width:100px;
+}
+td{
+	width:600px;
+}
 #phone1 {
 	width: 80px;
 	height: 32px;
@@ -103,23 +109,27 @@ span.error {
 			<h1 class="mb-4" style="font-family: 'Do Hyeon', sans-serif; font-size:40px;">Ticket Catch</h1>
 			<h1 class="h3 mb-3 font-weight-normal" style="font-family: 'Do Hyeon', sans-serif;">회원가입</h1>
 		</div>
-		<table align="center" width="600" height="600">
+		<table align="center" width="1000" height="600">
 			<tr>
+				<td></td>
 				<th>이름 *</th>
 				<td><input type="text" name="name" size="30"></td>
 			</tr>
 
 			<tr>
+			<td></td>
 				<th>생년월일</th>
 				<td><input type="text" name="birth"></td>
 			</tr>
 			<tr>
+			<td></td>
 				<th>성별 *</th>
 				<td><input type="radio" name="gender" value="M">남&emsp;
 					<input type="radio" name="gender" value="F">여</td>
 			</tr>
 
 			<tr>
+			<td></td>
 				<th>아이디 *</th>
 				<td><input type="text" name="id" id="userId" size="30">
 					<span class="guide ok">이 아이디는 사용 가능합니다.</span> 
@@ -127,31 +137,38 @@ span.error {
 					<input type="hidden" name="idDuplicateCheck" id="idDuplicateCheck" value="0"></td>
 			</tr>
 			<tr>
+			<td></td>
 				<th>비밀번호 *</th>
 				<td><input type="password" name="pwd" size="30"></td>
 			</tr>
 			<tr>
+			<td></td>
 				<th>비밀번호 확인 *</th>
-				<td><input type="password" name="pwd2" size="30"></td>
+				<td><input type="password" name="pwd2" size="30">
+				<span id="pwdResult"></span></td>
 			</tr>
 
 			<tr>
-				<td>우편번호</td>
+			<td></td>
+				<th>우편번호</th>
 				<td><input type="text" name="post" class="postcodify_postcode5"
 					size="10" />
 					<button type="button" id="postcodify_search_button">검색</button></td>
 			</tr>
 			<tr>
-				<td>도로명 주소</td>
+			<td></td>
+				<th>도로명 주소</th>
 				<td><input type="text" name="address1"
 					class="postcodify_address" size="30" value="" /></td>
 			</tr>
 			<tr>
-				<td>상세 주소</td>
+			<td></td>
+				<th>상세 주소</th>
 				<td><input type="text" name="address2"
 					class="postcodify_extra_info" size="30" value="" /></td>
 			</tr>
 			<tr>
+			<td></td>
 				<th scope="row">휴대전화</th>
 				<td><select id="phone1" name="phone1" required>
 						<option value="010">010</option>
@@ -164,19 +181,23 @@ span.error {
 					id="phone3" name="phone3" maxlength="4" type="text" required /></td>
 			</tr>
 			<tr>
+			<td></td>
 				<th scope="row">* 이메일 (인증 필수)</th>
 				<td>
 					<div id="email">
-						<input name="email" class="emailcheck0" id="text">
+						<input name="email" class="emailcheck0" id="mEmail">
 						<button class="btn" type="button" onclick="emailCheck();"
-							id="emailcheck1" name="emailcheck">인증하기</button>
+							id="emailcheck1" name="emailcheck">인증하기</button><br>
+							 <input name="email" class="emailcheck5" id="text">
+                                                        <button class="btn" type="button" onclick="emailCheck1();"
+                                                        id="emailcheck2" name="emailcheck1">인증번호 확인</button><br>
 					</div>
 				</td>
 			</tr>
 
 		</table>
 		<div class="joinbtn">
-			<button class="btn btn-lg btn-primary btn-block2" style="font-family: 'Do Hyeon', sans-serif;">회원가입</button>
+			<button class="btn btn-lg btn-primary btn-block2" style="font-family: 'Do Hyeon', sans-serif; font-size:20px;">회원가입</button>
 			&emsp;
 			<button type="button" class="btn btn-danger" style="font-family: 'Do Hyeon', sans-serif;"
 				onclick="location.href='home.do'">메인으로</button>
@@ -184,11 +205,12 @@ span.error {
 	</form>
 	
 	<script>
+	var okEmail = false;
 		$(function() {
 			$("#userId").on("keyup", function() {
 				var userId = $(this).val();
-
-				if (userId.length < 4) {
+				
+				if (userId.length <4) {
 					$(".guide").hide(); // 보여졌던 글 사라지게
 					$("#idDuplicateCheck").val(0); // 가입 가능 여부를 불가로 지정
 					return; // 4글자 이하는 아래 ajax를 시행하지 않고 리턴
@@ -210,7 +232,7 @@ span.error {
 						} else {
 							$(".guide.error").show();
 							$(".guide.ok").hide();
-							$("#idDuplicateCheck").val(0); // 회원 가입 가능 값
+							$("#idDuplicateCheck").val(0); // 회원 가입 불가능 값
 						}
 					},
 					error : function(e) {
@@ -220,6 +242,47 @@ span.error {
 
 			});
 		});
+		
+		function emailCheck(){
+        	alert("이메일이 전송되었습니다");
+				var email = $("#mEmail").val();
+				
+				$.ajax({
+					// url : 데이터를 전송할 url(필수!!!)
+					url : "email.do",
+					
+					// data : 요청 시 전달할 파라미터 설정
+					data:{email:email},
+					// key:value
+					
+					// type : 전송 방식(GET / POST)
+					type : "get",
+					
+					// success : Ajax 통신 성공 시 처리할 함수를 지정하는 속성
+					success : function(data){
+						// result 매개변수 : 서버에서 응답이 왔을 때 그 값이 저장 되는 변수
+						// 매개변수명 임의 지정 가능
+						key = data;
+					},
+					
+					// error : Ajax 통신 실패 시 처리할 함수를 지정하는 속성
+					error : function(){
+						console.log('Ajax 통신 실패...');
+						checkEmail = false;
+					}					
+				});
+				
+        }
+        
+       function emailCheck1() {
+    	   var code = $(".emailcheck5").val();
+			if(key == code) {
+				alert("인증되었습니다.")
+				okEmail = true;
+			}else {
+				alert("인증번호가 일치하지 않습니다.")
+			}
+       }
 
 		function validate() {
 			// 아이디 중복 체크 후 가입 가능 여부
@@ -228,10 +291,39 @@ span.error {
 				$("#userId").focus();
 				return false;
 			}
-			alert("회원가입 성공!");
-			return true;
-			
+			if(!(/^[a-z][a-z\d]{3,11}$/.test($("#joinForm input[name=userId]").val()))){
+                alert('아이디는 영소문자 + 숫자 4~12자 입력');
+                $("#joinForm input[name=userId]").select();
+                return false;
+            }
+            
+            if($("#joinForm input[name=pwd]").val() != $("#joinForm input[name=pwd2]").val()){
+                $("#pwdResult").text("비밀번호 불일치").css("color","red");
+                return false;
+            }
+            
+            if(!(/^[가-힣]{2,}$/.test($("#joinForm input[name=name]").val()))){
+                alert('이름은 한글로 2글자 이상 입력');
+                $("#joinForm input[name=name]").select();
+                return false;
+            }	
+            
+            if(!(/^[a-zA-Z\d]{8,15}$/.test($("#joinForm input[name=pwd]").val()))){
+                alert('비밀번호는 8자 이상 15자 미만으로 영문 + 숫자 , 숫자 + 영문 으로 설정해주세요');
+                $("#joinForm input[name=pwd]").select();
+                return false;
+            }
+            
+            if(okEmail == false) {
+            	alert("이메일 인증을 해주세요.")
+            	return false;
+            }
+            
+            alert("회원가입 성공!");
+            return true;
 		}
+		
+		
 	</script>
 	
 	<link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">

@@ -63,5 +63,10 @@ public class CommunityDao {
 		
 		return sqlSession.update("communityMapper.updateCommunity",c);
 	}
+
+	public int deleteReply(int rId) {
+		
+		return sqlSession.update("communityMapper.updateReply",rId);
+	}
 	
 }

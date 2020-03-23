@@ -15,16 +15,34 @@ public class Reply {
 	
 	public Reply() {}
 
-	public Reply(int rId, String rContent, int refCno, String rWriter, Date rCreateDate, Date rModifyDate,
+	public Reply(int rId, String rContent, int refCno, int refAno , String rWriter, Date rCreateDate, Date rModifyDate,
 			String rStatus) {
 		super();
 		this.rId = rId;
 		this.rContent = rContent;
 		this.refCno = refCno;
+		this.refAno = refAno;
 		this.rWriter = rWriter;
 		this.rCreateDate = rCreateDate;
 		this.rModifyDate = rModifyDate;
 		this.rStatus = rStatus;
+	}
+
+	
+	public int getRefAno() {
+		return refAno;
+	}
+
+	public void setRefAno(int refAno) {
+		this.refAno = refAno;
+	}
+
+	public int getStar() {
+		return star;
+	}
+
+	public void setStar(int star) {
+		this.star = star;
 	}
 
 	public int getrId() {

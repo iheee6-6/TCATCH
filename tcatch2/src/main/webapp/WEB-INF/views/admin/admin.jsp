@@ -83,46 +83,61 @@
 			<!-- DataTales Example -->
 			<div class="card shadow mb-4">
 				<form
-					action="<%=request.getContextPath()%>/ProductAdminStatusServlet"
+					action="adminMusical.do"
 					method="post">
 					<div class="card-header py-3">
 						<h6 class="m-0 font-weight-bold text-primary">판매 관리</h6>
 					</div>
 					<div class="card-body">
+					
 						<div class="table-responsive">
+						<select>
+						<option>---</option>
+						<option value="0">전시</option>
+						<option value="1">콘서트</option>
+						<option value="2">뮤지컬</option>
+						<option value="3">연극</option>
+						</select>
 							<table class="table table-bordered" id="dataTable" width="100%"
 								cellspacing="0">
 								<thead>
 									<tr>
 										<th></th>
-										<th>상품번호</th>
+										<th>번호</th>
 										<th>카테고리</th>
-										<th>상품명</th>
-										<th>가격</th>
+										<th>이름</th>
+										<th>종료일</th>
 										<th style="width: 15%;">상태</th>
 									</tr>
 								</thead>
 								<tfoot>
 									<tr>
 										<th></th>
-										<th>상품번호</th>
+										<th>번호</th>
 										<th>카테고리</th>
-										<th>상품명</th>
-										<th>가격</th>
+										<th>이름</th>
+										<th>종료일</th>
 										<th>상태</th>
 									</tr>
 								</tfoot>
 								<tbody>
+								<c:forEach var="m" items="${ list }">
 									<!-- 상품 리스트 뽑아내기 -->
 									<tr>
 										<td id="id0"><input type="checkbox" name="product_No"
-											value=""></td>
-										<td id="id1"></td>
-										<td id="id2"></td>
-										<td></td>
-										<td id="id3">원</td>
+											value="${m.artNo }"></td>
+										<td id="id1">${m.artNo }</td>
+										<td id="id2"><c:if test=" ${m.artType eq 0 } ">전시</c:if>
+										<c:if test=" ${m.artType eq 1 } ">콘서트</c:if>
+										<c:if test=" ${m.artType eq 2 } ">뮤지컬</c:if>
+										<c:if test=" ${m.artType eq 3 } ">연극</c:if></td>
+										<td>${m.artTitle }</td>
+										<td id="id3"></td>
 										<td>판매중 품절</td>
 									</tr>
+								
+								</c:forEach>
+									
 								</tbody>
 							</table>
 						</div>

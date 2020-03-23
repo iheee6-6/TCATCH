@@ -10,7 +10,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"
 	scope="application" />
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	href="${contextPath }/resources/css/menu/main3.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
@@ -40,9 +40,8 @@ ul li {
 }
 
 .pf-top-right {
-	margin-left:200px;
+	margin-left: 200px;
 }
-
 
 .my {
 	background: url(${contextPath}/resources/images/common/user.png)
@@ -50,45 +49,49 @@ ul li {
 	border: none;
 	width: 50px;
 	height: 25px;
-	margin-top:10px;
-
-	pading:0;
+	margin-top: 10px;
+	pading: 0;
 }
 
 .logout {
 	background: url(${contextPath}/resources/images/common/logout.png)
 		no-repeat;
 	border: none;
-	width:50px;
+	width: 50px;
 	height: 25px;
-	margin:auto;
+	margin: auto;
 	padding: 0;
 }
 
 #span1 {
-	float:left;
-	
-	margin-left:-10px;
+	float: left;
+	margin-left: -10px;
 	font-size: 10px;
 	visibility: hidden;
-
 }
 
 #span2 {
-	float:left;
-	margin-left:-10px;
+	float: left;
+	margin-left: -10px;
 	font-size: 10px;
 	visibility: hidden;
+}
 
+.fixed {
+	margin-bottom: 5px;
 }
-.fixed{
-	margin-bottom:5px;
-}
-.nav-link{
-	font-size:15px;
+
+.nav-link {
+	font-size: 15px;
 }
 </style>
 <body style="height: 1500px">
+<c:if test="${ !empty msg }">
+      <script>
+         alert('${msg}');
+      </script>
+      <c:remove var="msg"/>
+</c:if>
 
 	<nav class="navbar navbar-expand-sm bg-white navbar-dark fixed-top">
 		<a href="home.do" class="pf-logo"><img
@@ -97,20 +100,20 @@ ul li {
 			src="${ contextPath }/resources/images/common/logo.png" alt=""
 			class="fixed" width="150px" height="100px" /></a>
 		<ul class="navbar-nav">
-			<li class="nav-item"><a class="nav-link" href="#"
-				style="color: black; font-size:15px;">콘서트</a></li>
+			<li class="nav-item"><a class="nav-link" href="concert.do"
+				style="color: black; font-size: 15px;">콘서트</a></li>
 			<li class="nav-item"><a class="nav-link" href="musical.do"
-				style="color: black;  font-size:15px;">뮤지컬</a></li>
-			<li class="nav-item"><a class="nav-link" href="#"
-				style="color: black;  font-size:15px;">연극</a></li>
-			<li class="nav-item"><a class="nav-link" href="#"
-				style="color: black;  font-size:15px;">전시</a></li>
+				style="color: black; font-size: 15px;">뮤지컬</a></li>
+			<li class="nav-item"><a class="nav-link" href="drama.do"
+				style="color: black; font-size: 15px;">연극</a></li>
+			<li class="nav-item"><a class="nav-link" href="exhibition.do"
+				style="color: black; font-size: 15px;">전시</a></li>
 			<li class="nav-item"><a class="nav-link" href="clist.do"
-				style="color: black;  font-size:15px;">커뮤니티</a></li>
+				style="color: black; font-size: 15px;">커뮤니티</a></li>
 			<li class="nav-item"><a class="nav-link" href="cnotice.do"
-				style="color: black;  font-size:15px;">안내</a></li>
+				style="color: black; font-size: 15px;">안내</a></li>
 			<li class="nav-item"><a class="nav-link" href="admin.do"
-				style="color: black;  font-size:15px;">관리자페이지</a></li>
+				style="color: black; font-size: 15px;">관리자페이지</a></li>
 		</ul>
 
 		<div class="pf-top-right">
@@ -118,13 +121,22 @@ ul li {
 				src="http://tkfile.yes24.com/imgNew/common/pf-srch-w.png" alt=""
 				class="fixed" /></a> &emsp;&emsp;&emsp;
 			<c:if test="${ empty sessionScope.loginUser }">
-					<button class="my" onclick="location.href='loginPage.do'"><br><span id="span1">로그인</span></button>
+				<button class="my" onclick="location.href='loginPage.do'">
+					<br>
+					<span id="span1">로그인</span>
+				</button>
 
 			</c:if>
 			<c:if test="${ !empty sessionScope.loginUser }">
-				<button class="my" onclick="location.href='enterMyPage.do'"><br><span id="span1">${loginUser.name }님</span></button>
+				<button class="my" onclick="location.href='enterMyPage.do'">
+					<br>
+					<span id="span1">${loginUser.name }님</span>
+				</button>
 				&emsp;
-				<button class="logout" onclick="location.href='logout.do'"><br><span id="span2">로그아웃</span></button>
+				<button class="logout" onclick="location.href='logout.do'">
+					<br>
+					<span id="span2">로그아웃</span>
+				</button>
 
 			</c:if>
 		</div>
@@ -145,6 +157,20 @@ ul li {
 			});
 		});
 	</script>
+	<!--Start of Tawk.to Script-->
+	<script type="text/javascript">
+		var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+		(function() {
+			var s1 = document.createElement("script"), s0 = document
+					.getElementsByTagName("script")[0];
+			s1.async = true;
+			s1.src = 'https://embed.tawk.to/5e736212eec7650c33211c25/default';
+			s1.charset = 'UTF-8';
+			s1.setAttribute('crossorigin', '*');
+			s0.parentNode.insertBefore(s1, s0);
+		})();
+	</script>
+	<!--End of Tawk.to Script-->
 
 	<link
 		href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap"

@@ -56,11 +56,12 @@ table, td {
 				<input type="text" name="cWriter" value="${loginUser.name}" hidden>
 		</div>
 		<div id="summernote"></div>
+		<br>
 		<div class="btnDiv">
-			<button class="btn btn-lg btn-primary btn-block1"
-			style="font-family: 'Do Hyeon', sans-serif;" type="button" onclick="location.href='clist.do'">목록으로</button>
-			<button class="btn btn-lg btn-primary btn-block1"
-			style="font-family: 'Do Hyeon', sans-serif;" type="submit">작성완료</button>
+			<button class="btn btn-outline-secondary"
+			style="font-size: 12px; width:80px; height:40px;" type="button" onclick="location.href='clist.do'">목록으로</button>
+			<button class="btn btn-outline-secondary"
+			style="font-size: 12px; width:80px; height:40px;" type="submit">작성완료</button>
 		
 		</div>
 		

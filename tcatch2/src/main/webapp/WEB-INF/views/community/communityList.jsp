@@ -9,18 +9,20 @@
 
 <style>
 .wrap {
-	width: 50%;
+	width: 100%;
 	margin: auto;
 }
 
 #boardTable {
-	width: 100%;
+	width: 80%;
+	margin-left:auto;
+	margin-right:auto;
 	border: solid 1px white;
+	text-align:center;
 }
 
-#boardTable th, #boardTable td {
+#boardTable th td{
 	border: solid 1px white;
-	text-align: center;
 	font-size: 17px;
 }
 
@@ -41,6 +43,16 @@ table th {
 .btn {
 	float: right;
 }
+#t1{
+width:50px;}
+#t2{
+width:320px;
+}
+#t3{width:120px;}
+#t4{
+width:130px;
+}
+#t5{width:80px;}
 </style>
 
 </head>
@@ -56,23 +68,20 @@ table th {
 	<h2 align="center" id="h1" style="">Community</h2>
 	<div class="wrap">
 		<h2 align="left" id="h2" style="font-family: 'Do Hyeon', sans-serif;">
-			총 게시글 개수 : ${ pi.listCount }
-			<c:if test="${ !empty loginUser }">
-		&nbsp;&nbsp;&nbsp;
-		<button class="btn btn-lg btn-primary btn-block1"
-					style="font-family: 'Do Hyeon', sans-serif;"
-					onclick="location.href='cinsertView.do'">글쓰기</button>
-			</c:if>
+			
 		</h2>
-
-		<table id="boardTable">
+		
+		<table id="boardTable" class="table">
+			<thead>
 			<tr>
-				<th>번호</th>
-				<th width="300">제목</th>
-				<th>작성자</th>
-				<th>작성일</th>
-				<th>조회수</th>
+				<th id="t1">번호</th>
+				<th id="t2" width="300">제목</th>
+				<th id="t3">작성자</th>
+				<th id="t4">작성일</th>
+				<th id="t5">조회수</th>
 			</tr>
+			</thead>
+			<tbody>
 			<c:forEach var="b" items="${ list }">
 				<c:if test="${ !empty loginUser }">
 					<c:url var="cdetail" value="cdetail.do">
@@ -87,9 +96,19 @@ table th {
 					<td>${ b.writeDate }</td>
 					<td>${ b.count }</td>
 				</tr>
+			
 			</c:forEach>
-
+			<tr>
+				<td colspan="4"></td>
+				<td><button class="btn btn-outline-secondary"
+					style="font-size: 12px; height:40px;"
+					onclick="location.href='cinsertView.do'">글쓰기</button></td>
+			</tr>
+			</tbody>
 			<!-- 페이징 처리 -->
+			
+			
+			<tfoot>
 			<tr align="center" height="20">
 				<td colspan="6">
 					<!-- [이전] --> <c:if test="${ pi.currentPage <= 1 }">
@@ -121,15 +140,16 @@ table th {
 					</c:if>
 				</td>
 			</tr>
+			</tfoot>
 		</table>
 	</div>
 	<script>
 		$(function(){
-			$("#boardTable #tr1").hover(function(){
+			 $("#boardTable #tr1").hover(function(){
 				$(this).css({"background":"#CBC4C4", "cursor":"pointer"});
 			}).mouseout(function(){
 				$(this).css({"background":"white"});
-			});
+			}); 
 			
 			<c:if test="${ empty loginUser}">
 			$("#boardTable #tr1").click(function(){
