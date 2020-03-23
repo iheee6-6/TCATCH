@@ -208,9 +208,9 @@
 	<select id="searchView" resultMap="ticketResultSet">
 		SELECT p.purchase_no, a.art_title,at.date_time, p.purchase_count,p.art_no,a.address,p.seat_name,p.type,
 		i.change_name,a.art_type, p.seat_sal  ,(SELECT R_NO FROM REPLY C JOIN MEMBER M on(C.RWRITER=M.M_ID)
-									where m.M_ID= #{id} AND C.STATUS='Y') as R_NO, 
+									where m.M_ID= #{id} AND C.STATUS='Y' AND C.art_no=P.art_no) as R_NO, 
 							(SELECT rcontent FROM REPLY C JOIN MEMBER M on(C.RWRITER=M.M_ID)
-									where m.M_ID= #{id} AND C.STATUS='Y') as rcontent
+									where m.M_ID= #{id} AND C.STATUS='Y' AND C.art_no=P.art_no) as rcontent
 		FROM PURCHASE P
 		JOIN ART a on(p.ART_NO=a.ART_NO)
 		JOIN ART_TIME at on(p.ART_NO=at.ART_NO)

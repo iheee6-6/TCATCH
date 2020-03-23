@@ -103,7 +103,7 @@ public class MyPageServiceImpl implements MyPageService{
 	public ArrayList<Ticket> searchView(String id, String sdate, String edate, String artType, String pName,int currentPage) {
 		int listCount = mpDao.searchViewCount(id,sdate,edate,artType,pName);
 		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		PageInfo pi = Pagination.getVPageInfo(currentPage, listCount);
 		
 		return mpDao.searchView(id,sdate,edate,artType,pName,pi);
 	}
