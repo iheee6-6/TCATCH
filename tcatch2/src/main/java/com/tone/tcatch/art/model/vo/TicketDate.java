@@ -16,7 +16,7 @@ public class TicketDate {
 		this.endDate = endDate;
 	}
 	
-	
+	 
 	
 	
 	
