@@ -106,7 +106,7 @@ li a {
 										</c:when>
 										<c:otherwise>
 											<c:forEach var="I" items="${recentInterestList}">
-												<li>
+												<li class="rI">
 													<div>
 														<c:url var="pDetail" value="musicalDetail.do">
 															<c:param name="artNo" value="${I.artNo }" />
@@ -129,11 +129,7 @@ li a {
 													</div>
 												</li>
 											</c:forEach>
-											<c:if test="${fn:length(recentInterestList) <3} ">
-												<li>
-													<div class="end"></div>
-												</li>
-											</c:if>
+											
 										</c:otherwise>
 									</c:choose>
 								</ul>
@@ -193,8 +189,9 @@ li a {
 
 
 							<script>
-									$(".rV div").last().attr("class","end");
-								</script>
+								$(".rV div").last().attr("class","end").css("width","255px");
+								$(".rI div").last().attr("class","end").css("width","255px");
+					        </script>
 							</c:otherwise>
 							</c:choose>
 

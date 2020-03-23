@@ -126,12 +126,6 @@ public class MyPageController {
 		return mv;
 	}
 
-	/*
-	 * public void setDateFormat(Ticket t) { SimpleDateFormat format = new
-	 * SimpleDateFormat("yyyy.MM.dd : aaa hh:mm");
-	 * t.settDate(format.format(t.gettDate())); }
-	 */
-
 	@RequestMapping("interestPerformance.do")
 	public ModelAndView interestPerformance(ModelAndView mv, HttpSession session) {
 		Member loginUser = (Member) session.getAttribute("loginUser");
@@ -343,16 +337,20 @@ public class MyPageController {
 	}
 
 	
-	  @RequestMapping("memdelete.do") public String memberDelete(String id, Model
-	  model, SessionStatus status, RedirectAttributes rd) {
-	 
-		 int result = mpService.deleteMember(id);
+	  @RequestMapping("memDelete.do") 
+	  public String memberDelete( Model model, SessionStatus status,HttpSession session, RedirectAttributes rd) {
+		 Member loginUser = (Member)session.getAttribute("loginUser");
+		  
+		 int result = mpService.deleteMember(loginUser.getId());
 		 
+		 System.out.println("탈퇴");
 		  if(result>0) { 
 			  rd.addFlashAttribute("msg", "회원 탈퇴가 완료 되었습니다.");
-			  status.setComplete(); return "redirect:home.do";
+			  status.setComplete(); 
+			  return "redirect:home.do";
 		 }else {
-			 model.addAttribute("msg", "회원 탈퇴 실패"); return "common/errorPage"; 
+			 model.addAttribute("msg", "회원 탈퇴 실패"); 
+			 return "common/errorPage"; 
 		 } 
 	}
 	

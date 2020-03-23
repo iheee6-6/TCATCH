@@ -61,19 +61,10 @@
 	
 	<select id="selectRHistory" parameterType="Ticket"
 		resultMap="ticketResultSet">
-		SELECT p.purchase_no, buy_date, art_title, date_time, purchase_count,
-		p.art_no, CASE WHEN r.STATUS='Y' THEN '환불대기중'
-		WHEN r.STATUS='N' THEN
-		'환불 완료' ELSE '예매완료'
-		END AS REFUNDS, wayBill_number FROM PURCHASE p
-		JOIN
-		ART a on(p.ART_NO=a.ART_NO)
-		JOIN ART_TIME td on(td.ART_NO=a.art_no)
-		JOIN MEMBER USING(M_NO)
-		left JOIN REFUND r on(p.PURCHASE_NO=r.purchase_no)
+		SELECT purchase_no, buy_date, art_title, date_time, purchase_count,
+		art_no, REFUNDS, wayBill_number FROM TICKET_VIEW
 		WHERE M_ID=#{id} AND
-		BUY_DATE<![CDATA[  >=  ]]>
-		add_months(sysdate,-3)
+		BUY_DATE<![CDATA[  >=  ]]> add_months(sysdate,-3)
 		ORDER BY DATE_TIME DESC
 	</select>
 
@@ -93,16 +84,9 @@
 	</select>
 
 	<select id="selectRInterest" resultMap="PerformanceResultSet">
-	SELECT *  FROM(SELECT A.ART_NO,A.ART_TYPE,A.ART_TITLE,A.ADDRESS,ticketing_Date,start_date,end_date
-     				FROM PERSONAL PER
-					JOIN ART A ON(PER.ART_NO=A.ART_NO)
-					JOIN TICKET_DATE T ON(per.art_no=T.art_no )
-					JOIN MEMBER USING(M_NO)
-					WHERE PER_TYPE=1 AND M_ID=#{ID}
-					ORDER BY per_enrolldate DESC )
-        WHERE ROWNUM <![CDATA[<=]]>3
-         
-       
+	SELECT *  FROM INTEREST_VIEW
+	WHERE M_ID=#{ID}
+    AND ROWNUM <![CDATA[<=]]>3
 	</select>
 
 	<select id="getTListCount" resultType="_int">
@@ -113,19 +97,9 @@
 	</select>
 	
 	<select id="selectTicketList" resultMap="ticketResultSet">
-		SELECT p.purchase_no, buy_date, art_title, date_time,
-		purchase_count, p.art_no,
-		CASE WHEN r.STATUS='Y' THEN '환불대기중'
-		WHEN r.STATUS='N' THEN '환불 완료'
-		ELSE '예매완료'
-		END AS REFUNDS,
-		wayBill_number,origin_name,change_name FROM PURCHASE p
-		JOIN ART a
-		on(p.ART_NO=a.ART_NO)
-		JOIN ART_TIME td on(td.ART_NO=a.art_no)
-		left JOIN IMG i on(p.art_no=i.art_no)
-		JOIN MEMBER USING(M_NO)
-		left JOIN REFUND r on(p.PURCHASE_NO=r.purchase_no)
+		SELECT purchase_no, buy_date, art_title, date_time,
+		purchase_count, art_no,REFUNDS,
+		wayBill_number,change_name FROM TICKET_VIEW
 		WHERE M_ID=#{id}
 		ORDER BY
 		DATE_TIME DESC
@@ -134,18 +108,7 @@
 	<!-- parameterClass="java.util.Map" -->
 	<select id="selectTicketDetail" 
 		resultMap="ticketResultSet">
-		SELECT p.purchase_no, buy_date, art_title, date_time,
-		purchase_count, p.art_no, wayBill_number, p.seat_name, type,
-		td.time_no, art_type, change_name, seat_sal, m_name,
-		CASE WHEN r.STATUS='Y' THEN '환불대기중'
-		WHEN r.STATUS='N' THEN '환불 완료' ELSE '예매완료'
-		END AS REFUNDS 
-		FROM PURCHASE p
-		JOIN ART a on(p.ART_NO=a.ART_NO)
-		JOIN ART_TIME td on(td.ART_NO=a.art_no)
-		left JOIN IMG i on(p.art_no=i.art_no)
-		JOIN MEMBER USING(M_NO)
-		left JOIN REFUND r on(p.PURCHASE_NO=r.purchase_no)
+		SELECT * FROM TICKET_VIEW
 		WHERE M_ID=#{id} AND p.purchase_no=#{tNo}
 		
 	</select>
@@ -153,13 +116,9 @@
 
 	<select id="selectInterest" 
 		resultMap="PerformanceResultSet">
-		SELECT A.ART_NO,A.ART_TYPE,A.ART_TITLE,A.ADDRESS,ticketing_Date,start_date,end_date
-     				FROM PERSONAL PER
-					JOIN ART A ON(PER.ART_NO=A.ART_NO)
-					JOIN TICKET_DATE T ON(per.art_no=T.art_no )
-					JOIN MEMBER USING(M_NO)
-					WHERE PER_TYPE=1 AND M_ID=#{ID}
-					ORDER BY per_enrolldate DESC
+		SELECT * FROM INTEREST_VIEW
+		WHERE M_ID=#{ID}
+		
 	</select>
 	
 	
