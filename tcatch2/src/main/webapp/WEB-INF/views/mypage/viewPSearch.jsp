@@ -5,12 +5,23 @@
 
 <meta charset="UTF-8">
 <style>
-	.goPage{
-		cursor: pointer;
-	}
-	.memo.end{
-		margin-bottom:5px;
-	}
+.goPage {
+	cursor: pointer;
+}
+
+.memo.end {
+	margin-bottom: 5px;
+}
+
+.reviewMemo {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	border: 1px dotted black;
+	width: 350px;
+	height: 55px;
+	margin-left: 210px;
+}
 </style>
 	<c:choose>
 		<c:when test="${empty viewPerformanceList }">
@@ -78,7 +89,7 @@
 						<c:if test="${ !empty v.review_content}">
 						<br>
 							<em>< 후기 > </em> 
-							<div style=" border: 1px dotted black;width: 350px; margin-left: 210px;">
+							<div class="reviewMemo">
 							<span>${v.review_content }</span>
 							</div>
 						</c:if>

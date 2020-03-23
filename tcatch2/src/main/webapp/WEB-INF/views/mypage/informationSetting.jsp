@@ -28,10 +28,7 @@
 								</div>
 								<hr>
 								<div style="margin:40px; padding:20px;">
-									<c:url var="mdelete" value="memdelete.do">
-										<c:param name="id" value="${ loginUser.id }"/>
-									</c:url>
-									<button class="btn" onclick="location.href='${mdelete}'">탈퇴하기</button>
+									<button class="btn" onclick="memberDelete();">탈퇴하기</button>
 								</div>
 							</div>
 						</div>
@@ -43,13 +40,10 @@
 		<script>
 			function memberDelete(){
 				if(confirm("정말 탈퇴하시겠습니까?")){
-					
+					console.log("탈퇴");
+					location.href="memDelete.do";
 				}
 			}
-			
-			$(function(){
-				
-			});
 		</script>
 </body>
 </html>

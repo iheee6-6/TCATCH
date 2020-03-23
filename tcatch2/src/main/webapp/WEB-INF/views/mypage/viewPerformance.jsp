@@ -30,7 +30,7 @@ body {
 
 div.btnL {
     position: absolute;
-    left: 570px;
+    left: 600px;
     top: 130px;
 }
 
