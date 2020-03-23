@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.tone.tcatch.art.model.service.ArtService;
+import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.common.Pagination;
 import com.tone.tcatch.community.model.CommunityException;
 import com.tone.tcatch.community.model.service.CommunityService;
@@ -28,6 +30,9 @@ public class CommunityController {
 	
 	@Autowired
 	private CommunityService cService;
+	
+	@Autowired 
+	private ArtService aService;
 
 	@RequestMapping("clist.do")
 	public ModelAndView communityList(ModelAndView mv,
@@ -165,12 +170,13 @@ public class CommunityController {
 	
 	@RequestMapping("addReply.do")
 	@ResponseBody
-	public String addReply(Reply r , HttpSession session) {
-		
+	public String addReply(Reply r , HttpSession session , @RequestParam("star") int star) {
+		System.out.println("star : " + star);
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		String rWriter = loginUser.getId();
 		
 		r.setrWriter(rWriter);
+		r.setStar(star);
 		
 		int result = cService.insertReply(r);
 		
@@ -181,6 +187,21 @@ public class CommunityController {
 		}
 		
 	}
+	
+	@RequestMapping("rdelete.do")
+	@ResponseBody
+	public String deleteReply(int rId) {
+		
+		int result = cService.deleteReply(rId);
+		
+		if(result>0) {
+			return "success";
+		}else {
+			throw new CommunityException("댓글 삭제 실패!");
+		}
+	}
+	
+	
 	
 	@RequestMapping("/cnotice.do")
 	public String communityNotice() {

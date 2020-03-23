@@ -21,4 +21,6 @@ public interface CommunityService {
 
 	ArrayList<Reply> selectReplyList(int cNo);
 
+	int deleteReply(int rId);
+
 }

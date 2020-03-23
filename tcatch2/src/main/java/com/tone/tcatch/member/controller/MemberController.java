@@ -3,24 +3,33 @@ package com.tone.tcatch.member.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
+
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.tone.tcatch.member.model.vo.Member;
 import com.tone.tcatch.member.model.exception.MemberException;
-import com.tone.tcatch.member.controller.MemberController;
 import com.tone.tcatch.member.model.service.MemberService;
+import com.tone.tcatch.member.model.vo.Member;
 
 
 @SessionAttributes({"loginUser","msg"})
@@ -29,6 +38,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService mService;
+	
+	@Autowired
+	private JavaMailSender mailSender;
 	
 	private Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
@@ -45,7 +57,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="login.do", method=RequestMethod.POST)
-	public String memberLogin(Member m, Model model) { 
+	public String memberLogin(Member m, Model model,RedirectAttributes rd,HttpSession session) { 
 		// HttpSession 커맨드 객체 생략
 		Member loginUser = mService.loginMember(m);
 		if(loginUser != null) {
@@ -62,7 +74,9 @@ public class MemberController {
 			return "common/main";
 		} else {
 			// Exception을 이용하여 errorPage 연결
-			throw new MemberException("로그인 실패!!");
+			/*session.setAttribute("msg", "로그인 실패! 아이디,비밀번호를 확인해주세요.");*/
+			rd.addFlashAttribute("msg", "로그인 실패! 아이디,비밀번호를 확인해주세요.");
+			return "redirect:loginPage.do";
 			// RuntimeException으로 상속 받았을 때의 차이점
 			// -> throws를 넘길 필요 없으며 try-catch로 잡을 필요도 없음
 			
@@ -102,7 +116,7 @@ public class MemberController {
 			// web.xml로 이동 !! 
 			
 			// 주소값은 , 구분자를 두고 저장
-			m.setAddress(post + "," + address1 + "," + address2);
+			m.setAddress(post + " " + address1 + " " + address2);
 			m.setPhone(phone1 + "-" + phone2 + "-" +phone3);
 			
 			int result = mService.insertMember(m);
@@ -206,6 +220,49 @@ public class MemberController {
 
 		}
 		
+		@RequestMapping(value = "email.do")
+		@ResponseBody
+		public String mailSending(HttpServletRequest request, String email) {
+			String setfrom = "tcatch";
+			String tomail = email; // 받는 사람 이메일
+			String title = "회원가입 이메일 인증 서비스(TCATCH)"; // 제목
+
+			StringBuffer temp = new StringBuffer();
+			Random rnd = new Random();
+			for (int i = 0; i < 10; i++) {
+				int rIndex = rnd.nextInt(3);
+				switch (rIndex) {
+				case 0:
+					// a-z
+					temp.append((char) ((int) (rnd.nextInt(26)) + 97));
+					break;
+				case 1:
+					// A-Z
+					temp.append((char) ((int) (rnd.nextInt(26)) + 65));
+					break;
+				case 2:
+					// 0-9
+					temp.append((rnd.nextInt(10)));
+					break;
+				}
+			}
+
+			String content =temp.toString(); // 내용
+			try {
+				MimeMessage message = mailSender.createMimeMessage();
+				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+
+				messageHelper.setFrom(new InternetAddress(setfrom, "tcatch")); // 보내는사람 생략하거나 하면 정상작동을 안함
+				messageHelper.setTo(tomail); // 받는사람 이메일
+				messageHelper.setSubject(title); // 메일제목은 생략이 가능하다
+				messageHelper.setText(content); // 메일 내용
+				mailSender.send(message);
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+
+			return content;
+		}
 	
 
 }

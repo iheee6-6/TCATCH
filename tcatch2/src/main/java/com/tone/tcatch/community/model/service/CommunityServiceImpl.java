@@ -67,4 +67,10 @@ public class CommunityServiceImpl implements CommunityService{
 		
 		return cDao.updateCommunity(c);
 	}
+
+	@Override
+	public int deleteReply(int rId) {
+		
+		return cDao.deleteReply(rId);
+	}
 }
