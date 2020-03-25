@@ -13,6 +13,9 @@
 	href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript" src="${contextPath }/resources/js/community/jquery.raty.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="${contextPath }/resources/css/modal/modal.css"></script>
+<link rel="stylesheet" href="$" />
 <style>
 .wrap {
 	width: 50%;
@@ -250,12 +253,55 @@ float:left;
  #ss a.on{ 
  color: red; 
  }
-
-
 .starR.on{background-position:0 0;}
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */ /* Stay in place */
+            z-index: 1; /* Sit on top */
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+			background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+    
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888; /* Could be more or less, depending on screen size */  
+            text-align:center;   
+        }
+
+
 </style>
 <body>
+<div id="myModal" class="modal">
+ 
+      <!-- Modal content -->
+      <div class="modal-content" style="width:50%;">
+      			<h2>신고하기</h2>
+      			<select style="width:50%;">
+      				<option selected>----</option>
+      				<option>부적절한 제목/내용</option>
+      				<option>음란물 유포</option>
+      				<option>욕설</option>
+      			</select>
+                <textarea type="text" rows="5" placeholder="신고내용"></textarea>
+                <div style="cursor:pointer; width:50%;background-color:#DDDDDD;text-align: center; padding-bottom: 10px;padding-top: 10px;" onClick="">
+                <span class="pop_bt" style="font-size: 13pt;" >신고</span>
+            </div>
+            <div style="cursor:pointer; width:50%; background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_pop();">
+                <span class="pop_bt" style="font-size: 13pt;" >닫기</span>
+            </div>
+      </div>
+ 
+    </div>
 	<jsp:include page="../common/menubar2.jsp" />
+	
+
 	<br>
 	<br>
 	<br>
@@ -271,9 +317,19 @@ float:left;
 	<br>
 	<input type="hidden" id="id" value="${loginUser.id }">
 	<div class="wrap">
-	<button class="btn btn-outline-secondary"
-					style="font-size: 12px; width:80px; height:40px; float:right;"
-					onclick="location.href='${clist}'">신고하기</button>
+	
+	
+	<button class="btn btn-outline-secondary" type="button"
+					style="font-size: 12px; width:80px; height:40px; float:right;" id="mm">신고하기</button>
+		<script type="text/javascript">
+	        $("#mm").on("click",function(){
+	                $('#myModal').show();
+	        });
+	        //팝업 Close 기능
+	        function close_pop(flag) {
+	             $('#myModal').hide();
+	        };
+      </script>
 		<table id="boardTable">
 			<tr>
 				<th>No. ${ commu.cNo }</th>
@@ -570,6 +626,8 @@ float:left;
 		
 
 	</script>
+	
+
 
 
 	<jsp:include page="../common/footer.jsp" />
