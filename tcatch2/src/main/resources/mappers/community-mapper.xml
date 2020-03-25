@@ -23,6 +23,17 @@
 		<result property="rStatus" column="STATUS"/>
 	</resultMap>
 	
+	<resultMap type="Report" id="reportResultSet">
+		<id property="dNo" column="REPORT_NO"/>
+		<result property="reCNo" column="CNO"/>
+		<result property="dType" column="REPORT_TYPE"/>
+		<result property="dContent" column="REPORT_WHY"/>
+		<result property="dWriter" column="DWRITER"/>
+		<result property="count" column="COUNT"/>
+		<result property="status" column="STATUS"/>
+		
+	</resultMap>
+	
 	<insert id="insertCommunity" parameterType="Community">
 		INSERT INTO COMMUNITY VALUES(
 			SEQ_C_NO.NEXTVAL, #{cTitle} , #{cContent}, #{cWriter}, SYSDATE, DEFAULT , 'Y' ,DEFAULT
@@ -88,5 +99,11 @@
 		SET STATUS='N'
 		WHERE R_NO = #{rId}
 	</update>
+	
+	<insert id="insertReport" parameterType="Report">
+		INSERT INTO REPORT
+		VALUES(SEQ_D_NO.NEXTVAL,#{reCno},#{dContent},#{dWriter},DEFAULT,#{dType},DEFAULT)
+	
+	</insert>
 	
 </mapper>

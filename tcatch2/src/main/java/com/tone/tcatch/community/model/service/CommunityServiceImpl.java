@@ -10,6 +10,7 @@ import com.tone.tcatch.community.model.dao.CommunityDao;
 import com.tone.tcatch.community.model.vo.Community;
 import com.tone.tcatch.common.model.vo.PageInfo;
 import com.tone.tcatch.community.model.vo.Reply;
+import com.tone.tcatch.community.model.vo.Report;
 
 @Service("cService")
 public class CommunityServiceImpl implements CommunityService{
@@ -72,5 +73,11 @@ public class CommunityServiceImpl implements CommunityService{
 	public int deleteReply(int rId) {
 		
 		return cDao.deleteReply(rId);
+	}
+
+	@Override
+	public int insertReport(Report r) {
+		
+		return cDao.insertReport(r);
 	}
 }

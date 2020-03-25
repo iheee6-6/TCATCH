@@ -85,7 +85,7 @@ ul li {
 	font-size: 15px;
 }
 </style>
-<body style="height: 1500px">
+<body>
 <c:if test="${ !empty msg }">
       <script>
          alert('${msg}');

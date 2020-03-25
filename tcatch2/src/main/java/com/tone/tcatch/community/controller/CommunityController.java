@@ -23,6 +23,7 @@ import com.tone.tcatch.community.model.CommunityException;
 import com.tone.tcatch.community.model.service.CommunityService;
 import com.tone.tcatch.community.model.vo.Community;
 import com.tone.tcatch.community.model.vo.Reply;
+import com.tone.tcatch.community.model.vo.Report;
 import com.tone.tcatch.member.model.vo.Member;
 
 @Controller
@@ -200,6 +201,23 @@ public class CommunityController {
 			throw new CommunityException("댓글 삭제 실패!");
 		}
 	}
+	
+	@RequestMapping("dinsert.do")
+	public String reportInsert(HttpServletRequest request , Report r,@RequestParam("page") Integer page) {
+		System.out.println(r.getReCno());
+		System.out.println("report : " + r);
+		
+		int result = cService.insertReport(r);
+		if(result >0 ) {
+			return "redirect:cdetail.do?cNo="+r.getReCno()+"&page=" + page;
+		}else {
+			throw new CommunityException("신고하기 실패");
+		}
+		
+	}
+	
+	
+	
 	
 	
 	

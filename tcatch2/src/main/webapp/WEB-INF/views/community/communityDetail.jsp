@@ -278,27 +278,48 @@ float:left;
 
 </style>
 <body>
+
+<form action="dinsert.do" method="post" onsubmit="return check();">
 <div id="myModal" class="modal">
- 
+		<input type="hidden" name="dWriter" value="${loginUser.id }">
+		<input type="hidden" name="reCno" value="${ commu.cNo }">
+ 		<input type="hidden" name="page" value="${ currentPage }">
       <!-- Modal content -->
+      
       <div class="modal-content" style="width:50%;">
       			<h2>신고하기</h2>
-      			<select style="width:50%;">
-      				<option selected>----</option>
-      				<option>부적절한 제목/내용</option>
-      				<option>음란물 유포</option>
-      				<option>욕설</option>
+      			<select id="dselect" name="dType" style="width:50%;">
+      				<option value="0" selected>----</option>
+      				<option value="부적절한제목/내용">부적절한 제목/내용</option>
+      				<option value="음란물 유포">음란물 유포</option>
+      				<option value="욕설">욕설</option>
       			</select>
-                <textarea type="text" rows="5" placeholder="신고내용"></textarea>
-                <div style="cursor:pointer; width:50%;background-color:#DDDDDD;text-align: center; padding-bottom: 10px;padding-top: 10px;" onClick="">
-                <span class="pop_bt" style="font-size: 13pt;" >신고</span>
-            </div>
-            <div style="cursor:pointer; width:50%; background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_pop();">
-                <span class="pop_bt" style="font-size: 13pt;" >닫기</span>
-            </div>
+                <textarea id="dcontent" name="dContent" rows="5" placeholder="신고내용"></textarea>
+                <br>
+               
+                <div style="display:inline-block;">
+                <button class="btn btn-outline-secondary"
+					style="font-size: 12px; width:50%; height:40px; float:left;" type="submit">신고</button>
+            	<button class="btn btn-outline-secondary"
+					style="font-size: 12px; width:50%; height:40px; float:left;" type="button" onClick="close_pop();">닫기</button>
+            	</div>
       </div>
  
     </div>
+    <script>
+    	function check(){
+    		if($("#dselect").val() == 0){
+    			alert("신고타입을 선택해주세요.");
+    			return false;
+    		}
+    		return true;
+    	}
+    
+    </script>
+    </form>
+    
+    
+    
 	<jsp:include page="../common/menubar2.jsp" />
 	
 

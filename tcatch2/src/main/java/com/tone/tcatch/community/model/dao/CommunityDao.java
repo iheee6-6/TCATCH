@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.tone.tcatch.community.model.vo.Community;
 import com.tone.tcatch.common.model.vo.PageInfo;
 import com.tone.tcatch.community.model.vo.Reply;
+import com.tone.tcatch.community.model.vo.Report;
 
 @Repository("cDao")
 public class CommunityDao {
@@ -67,6 +68,11 @@ public class CommunityDao {
 	public int deleteReply(int rId) {
 		
 		return sqlSession.update("communityMapper.updateReply",rId);
+	}
+
+	public int insertReport(Report r) {
+		System.out.println("dao"+r);
+		return sqlSession.insert("communityMapper.insertReport",r);
 	}
 	
 }

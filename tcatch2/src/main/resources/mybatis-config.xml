@@ -9,6 +9,7 @@
 	</settings>
 
 	<typeAliases>
+		<typeAlias type="com.tone.tcatch.community.model.vo.Report" alias="Report"/>
 		<typeAlias type="com.tone.tcatch.community.model.vo.Reply" alias="Reply"/>
 		<typeAlias type="com.tone.tcatch.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.tone.tcatch.community.model.vo.Community" alias="Community"/>
