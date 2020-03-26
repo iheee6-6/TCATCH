@@ -22,9 +22,9 @@ public interface MyPageService {
 
 	ArrayList<Ticket> selectRecentViewList(String id);
 
-	ArrayList<ArtDetail> selectRecentInterestList(String id);
+	ArrayList<Alarm> selectRecentInterestList(String id);
 
-	ArrayList<ArtDetail> selectInterestPerformanceList(String id);
+	ArrayList<Alarm> selectInterestPerformanceList(String id);
 
 	ArrayList<Alarm> selectAlarmList(String id);
 

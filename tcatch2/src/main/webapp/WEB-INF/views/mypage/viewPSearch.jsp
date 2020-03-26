@@ -68,12 +68,15 @@
 
 						<li><em>관람일시</em><span>${vDate }</span></li>
 						<li><em>공연장</em><span>${v.address }</span></li>
-						
+						<c:if test="${ v.artType!=0}">
 						<li><em>좌석</em>(<span class="red" style="width:auto">
-						<c:forTokens var="seat" items="${v.seat}" delims=" ">
-							${seat} ,
+						<c:forTokens var="seat" items="${v.seat}" delims=" " varStatus="status">
+							${seat} 
+							<c:if test="${not status.last}">
+								,
+							</c:if>
 						</c:forTokens></span>)</li>
-						
+						</c:if>
 					</ul>
 					
 					<div class="btnL">

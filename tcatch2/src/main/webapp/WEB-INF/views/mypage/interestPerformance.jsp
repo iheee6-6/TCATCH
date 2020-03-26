@@ -15,6 +15,14 @@
 p span {
 	margin-left: 10px;
 }
+
+.sidebar{
+	height:100% !important;
+}
+
+.main-panel{
+display:inline-table
+}
 </style>
 </head>
 <body class="">
@@ -51,7 +59,7 @@ p span {
 													<c:forEach var="I" items="${ interestList}">
 														<tr>
 															<td><input class="interestP" name="interestP"
-																type="checkbox" value="${I.artNo }"> &nbsp; 2019.02.12</td>
+																type="checkbox" value="${I.artNo }"> &nbsp; ${I.enrollDate }</td>
 															<td>
 																<p class="list">
 																<p class="pImage">
@@ -127,6 +135,7 @@ p span {
 		});
 	</script>
 	<jsp:include page="../common/footer.jsp" />
+	
 </body>
 
 </html>

@@ -50,7 +50,7 @@ public class MyPageController {
 		
 		ArrayList<Ticket> recentHistoryList = mpService.selectRecentHistoryList(loginUser.getId());
 		ArrayList<Ticket> recentViewList = mpService.selectRecentViewList(loginUser.getId());
-		ArrayList<ArtDetail> recentInterestList = mpService.selectRecentInterestList(loginUser.getId());
+		ArrayList<Alarm> recentInterestList = mpService.selectRecentInterestList(loginUser.getId());
 		
 		if(!recentViewList.isEmpty() ||!recentInterestList.isEmpty() ) {
 			ArrayList<Integer> imageList = new ArrayList<Integer>();
@@ -130,11 +130,11 @@ public class MyPageController {
 	public ModelAndView interestPerformance(ModelAndView mv, HttpSession session) {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 
-		ArrayList<ArtDetail> interestList = mpService.selectInterestPerformanceList(loginUser.getId());
+		ArrayList<Alarm> interestList = mpService.selectInterestPerformanceList(loginUser.getId());
 		System.out.println(interestList);
 		if(!interestList.isEmpty()) {
 			ArrayList<Integer> imageList = new ArrayList<>();
-			for(ArtDetail a:interestList)
+			for(Alarm a:interestList)
 				imageList.add(a.getArtNo());
 			ArrayList<Img> artImgList= mpService.selectImgList(imageList);
 			System.out.println("img"+artImgList);

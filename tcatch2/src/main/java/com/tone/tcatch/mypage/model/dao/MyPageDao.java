@@ -50,7 +50,7 @@ public class MyPageDao {
 	}
 
 	// 최근 관심 내역
-	public ArrayList<ArtDetail> selectRecentInterestList(String id) {
+	public ArrayList<Alarm> selectRecentInterestList(String id) {
 		return (ArrayList) sqlSession.selectList("myPageMapper.selectRInterest", id);
 
 	}
@@ -79,7 +79,7 @@ public class MyPageDao {
 	}
 
 	// 관심 목록
-	public ArrayList<ArtDetail> selectInterestPerformanceList(String id) {
+	public ArrayList<Alarm> selectInterestPerformanceList(String id) {
 		return (ArrayList) sqlSession.selectList("myPageMapper.selectInterest", id);
 
 	}

@@ -37,7 +37,7 @@ li a {
 									onclick="location.href='checknCancel.do'">더보기</button>
 								&nbsp;
 								<p class="card-category" style="margin-left: 190px;">최근
-									3개월간의 예매 내역입니다.</p>
+									3개의 예매 내역입니다.</p>
 							</div>
 							<div class="card-body">
 								<table class="table">

@@ -106,247 +106,11 @@ padding-top:30px;
 					</div>
 				</div>
 			</c:if>
-			<%-- <div id="NoticeMainDisplay" style="display: block;">
-				<!-- 공지사항 상단 배너 -->
-				<div class="notice-slide">
-					<div
-						class="swiper-container ticketo swiper-container-initialized swiper-container-horizontal">
-						<div class="swiper-wrapper"
-							style="transform: translate3d(0px, 0px, 0px);">
-							<div class="swiper-slide swiper-slide-active"
-								style="width: 222.2px; margin-right: 24px;">
-								<a
-									href="/New/Notice/NoticeMain.aspx?#id=10141&amp;Gcode=009_208_001"><img
-									src="http://tkfile.yes24.com/upload2/BoardNotice/202001/20200131/20200131-4561.jpg/dims/quality/70/"
-									alt="" class="lazyload">
-									<div class="donut-area">
-										<iframe class="chartjs-hidden-iframe" tabindex="-1"
-											style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;"></iframe>
-										<canvas id="chart-area10141" class="donut"
-											style="display: block; width: 220px; height: 220px;"
-											width="220" height="220"></canvas>
-									</div>
-									<div class="donut-dday">D-1</div>
-									<div class="ticket-txt">
-										<p class="ticket-date">2020.02.04(화) 18:00</p>
-										<p class="ticket-tit">줄리안 라지 트리오(Julian Lage Trio) 내한공연</p>
-									</div>
-									<p class="ticket-tail">
-										<span class="re">단독</span>
-									</p></a>
-							</div>
-							<div class="swiper-slide swiper-slide-next"
-								style="width: 222.2px; margin-right: 24px;">
-								<a
-									href="/New/Notice/NoticeMain.aspx?#id=10140&amp;Gcode=009_208_001"><img
-									src="http://tkfile.yes24.com/upload2/BoardNotice/202001/20200131/20200131-20200131-o.jpg/dims/quality/70/"
-									alt="" class="lazyload">
-									<div class="donut-area">
-										<iframe class="chartjs-hidden-iframe" tabindex="-1"
-											style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;"></iframe>
-										<canvas id="chart-area10140" class="donut" width="220"
-											height="220"
-											style="display: block; width: 220px; height: 220px;"></canvas>
-									</div>
-									<div class="donut-dday">D-3</div>
-									<div class="ticket-txt">
-										<p class="ticket-date">2020.02.06(목) 14:00</p>
-										<p class="ticket-tit">롯데콘서트홀 블로썸 유어 데이 2020</p>
-									</div></a>
-							</div>
-							<div class="swiper-slide"
-								style="width: 222.2px; margin-right: 24px;">
-								<a
-									href="/New/Notice/NoticeMain.aspx?#id=10136&amp;Gcode=009_208_001"><img
-									src="http://tkfile.yes24.com/upload2/PerfBlog/202001/20200122/20200122-36049_1.jpg/dims/quality/70/"
-									alt="" class="lazyload">
-									<div class="donut-area">
-										<iframe class="chartjs-hidden-iframe" tabindex="-1"
-											style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;"></iframe>
-										<canvas id="chart-area10136" class="donut" width="220"
-											height="220"
-											style="display: block; width: 220px; height: 220px;"></canvas>
-									</div>
-									<div class="donut-dday">D-2</div>
-									<div class="ticket-txt">
-										<p class="ticket-date">2020.02.05(수) 14:00</p>
-										<p class="ticket-tit">뮤지컬 [은밀하게 위대하게 -THE LAST] 2차</p>
-									</div></a>
-							</div>
-							<div class="swiper-slide"
-								style="width: 222.2px; margin-right: 24px;">
-								<a
-									href="/New/Notice/NoticeMain.aspx?#id=10132&amp;Gcode=009_208_001"><img
-									src="http://tkfile.yes24.com/upload2/PerfBlog/202002/20200203/20200203-36299_1.jpg/dims/quality/70/"
-									alt="" class="lazyload">
-									<div class="donut-area">
-										<iframe class="chartjs-hidden-iframe" tabindex="-1"
-											style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;"></iframe>
-										<canvas id="chart-area10132" class="donut" width="220"
-											height="220"
-											style="display: block; width: 220px; height: 220px;"></canvas>
-									</div>
-									<div class="donut-dday">D-1</div>
-									<div class="ticket-txt">
-										<p class="ticket-date">2020.02.04(화) 10:00</p>
-										<p class="ticket-tit">토리 켈리 첫 내한공연（Tori Kelly 1st Live in
-											Seoul）티켓 오픈 안내</p>
-									</div>
-									<p class="ticket-tail">
-										<span class="re">단독</span><span class="or">선예매</span>
-									</p></a>
-							</div>
-							<div class="swiper-slide"
-								style="width: 222.2px; margin-right: 24px;">
-								<a
-									href="/New/Notice/NoticeMain.aspx?#id=10130&amp;Gcode=009_208_001"><img
-									src="http://tkfile.yes24.com/upload2/PerfBlog/202002/20200203/20200203-36335_01.jpg/dims/quality/70/"
-									alt="" class="lazyload">
-									<div class="donut-area">
-										<iframe class="chartjs-hidden-iframe" tabindex="-1"
-											style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;"></iframe>
-										<canvas id="chart-area10130" class="donut" width="220"
-											height="220"
-											style="display: block; width: 220px; height: 220px;"></canvas>
-									</div>
-									<div class="donut-dday">D-2</div>
-									<div class="ticket-txt">
-										<p class="ticket-date">2020.02.05(수) 14:00</p>
-										<p class="ticket-tit">연극 [헤라,아프로디테, 아르테미스]</p>
-									</div>
-									<p class="ticket-tail">
-										<span class="re">단독</span>
-									</p></a>
-							</div>
-							<div class="swiper-slide"
-								style="width: 222.2px; margin-right: 24px;">
-								<a
-									href="/New/Notice/NoticeMain.aspx?#id=10123&amp;Gcode=009_208_001"><img
-									src="http://tkfile.yes24.com/upload2/PerfBlog/202001/20200123/20200123-36251_1.jpg/dims/quality/70/"
-									alt="" class="lazyload">
-									<div class="donut-area">
-										<iframe class="chartjs-hidden-iframe" tabindex="-1"
-											style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;"></iframe>
-										<canvas id="chart-area10123" class="donut" width="220"
-											height="220"
-											style="display: block; width: 220px; height: 220px;"></canvas>
-									</div>
-									<div class="donut-dday">D-4</div>
-									<div class="ticket-txt">
-										<p class="ticket-date">2020.02.07(금) 10:00</p>
-										<p class="ticket-tit">〈신과 함께_저승편〉</p>
-									</div></a>
-							</div>
-							<script>
-								function displayDonut() {
-									config.data.datasets[0].data = [
-											12.5 * (8 - 1), 12.5 * 1 ];
-									new Chart(
-											document.getElementById(
-													'chart-area10141')
-													.getContext('2d'), config);
-									config.data.datasets[0].data = [
-											12.5 * (8 - 3), 12.5 * 3 ];
-									new Chart(
-											document.getElementById(
-													'chart-area10140')
-													.getContext('2d'), config);
-									config.data.datasets[0].data = [
-											12.5 * (8 - 2), 12.5 * 2 ];
-									new Chart(
-											document.getElementById(
-													'chart-area10136')
-													.getContext('2d'), config);
-									config.data.datasets[0].data = [
-											12.5 * (8 - 1), 12.5 * 1 ];
-									new Chart(
-											document.getElementById(
-													'chart-area10132')
-													.getContext('2d'), config);
-									config.data.datasets[0].data = [
-											12.5 * (8 - 2), 12.5 * 2 ];
-									new Chart(
-											document.getElementById(
-													'chart-area10130')
-													.getContext('2d'), config);
-									config.data.datasets[0].data = [
-											12.5 * (8 - 4), 12.5 * 4 ];
-									new Chart(
-											document.getElementById(
-													'chart-area10123')
-													.getContext('2d'), config);
-								}
-							</script>
-						</div>
-						<span class="swiper-notification" aria-live="assertive"
-							aria-atomic="true"></span>
-					</div>
-					<!-- Add Arrows -->
-					<div class="swiper-button-next" tabindex="0" role="button"
-						aria-label="Next slide" aria-disabled="false"></div>
-					<div class="swiper-button-prev swiper-button-disabled" tabindex="0"
-						role="button" aria-label="Previous slide" aria-disabled="true"></div>
-				</div>
-
-
-
-
-				<script type="text/javascript">
-					var config = {
-						type : 'doughnut',
-						data : {
-							datasets : [ {
-								data : [ 50, 50 ], //주황색,흰색
-								backgroundColor : [ '#ed8844', '#ebebeb' ],
-								borderWidth : [ 0, 0 ]
-							} ]
-						},
-						options : {
-							animation : {
-								animateRotate : true,
-								duration : 2000
-							},
-							cutoutPercentage : [ 90 ],
-							tooltips : {
-								enabled : false
-							}
-						}
-					};
-
-					//    var num = 0;
-					//    $(window).on('scroll', function () {
-					//        var stop = $(this).scrollTop();
-					//        if (stop > 0) {
-					//            if (num == 0) {
-					//                num = 1;
-
-					//            }
-					//        } else {
-					//            num = 0;
-					//        }
-					//    });
-				</script>
-				<!-- 공지사항 상단 배너 --> --%>
-
-
-
-				<!-- 공지사항 필터,검색 -->
-				<!-- <div class="category" id="SelectOrder">
-					<a href="javascript:;" categoryid="1" class="on">등록순</a> <a
-						href="javascript:;" categoryid="2">오픈일순</a> <a href="javascript:;"
-						categoryid="3">조회순</a>
-					<div class="notice-srch">
-						<input type="text" id="SearchTextbox"
-							placeholder="궁금하신 내용을 입력해주세요" autocomplete="off"><a
-							onclick="jsf_notice_Search();" style="cursor: pointer"></a>
-					</div>
-				</div> -->
-
 
 				<!-- 공지사항 리스트 -->
 				<div id="BoardList">
 					<div class="noti-tbl">
-						<table>
+						<table style="text-align:center;">
 							<colgroup>
 								<col width="13%">
 								<col width="57%">
@@ -358,7 +122,6 @@ padding-top:30px;
 									<th scope="col">구분</th>
 									<th scope="col">제목</th>
 									<th scope="col">티켓오픈 일시  </th>
-									<th scope="col">조회수</th>
 								</tr>
 
 								<c:choose>
@@ -376,13 +139,12 @@ padding-top:30px;
 													<c:param name="artNo" value="${ n.artNo }" />
 													<%-- <c:param name="page" value="${ pi.currentPage }" /> --%>
 												</c:url>
-												<td><a href="${ ndetail}"><em>${n.artTitle}</em></a></td>
+												<td><a href="${ ndetail}">${n.artTitle}</a></td>
 												<td><fmt:parseDate var="dateString"
 														value="${n.ticketingDate }" pattern="yyyy-MM-dd" /> <fmt:formatDate
 														var="tdate" value="${dateString }"
 														pattern="yyyy.MM.dd(E) : aaa hh:mm" /> ${tdate }</td>
 												
-												<td>조회수</td>
 											</tr>
 
 										</c:forEach>
@@ -397,11 +159,7 @@ padding-top:30px;
 					</div>
 				</div>
 
-				<!-- 검색 후 back버튼 -->
-				<!-- <div class="noti-back" id="divListbtn" style="display: none;">
-					<a style="cursor: pointer" onclick="jsf_notice_home();"
-						class="btn-msback"><span>돌아가기</span></a>
-				</div> -->
+				
 				<!-- paging -->
 				<div class="paging" style="display: block;">
 					<div class="list-pagenation">
