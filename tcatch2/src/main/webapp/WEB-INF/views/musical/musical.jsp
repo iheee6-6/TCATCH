@@ -9,18 +9,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<title>김대성</title>
+<title>TACTCH</title>
 
 
 <!-- 상품 설명 UI -->
-<link rel='stylesheet' type='text/css'
-	href="${ contextPath }/resources/css/product/product.css" />
+<link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/product.css" />
 <!-- 이미지 UI-->
-<link rel='stylesheet' type='text/css'
-	href="${ contextPath }/resources/css/product/productImg.css" />
-<!-- body--> 
-
-
+<link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/productImg.css" />
 
 
 <style>
@@ -63,12 +58,14 @@ div {
 </style>
 </head> 
 <body>
-	<jsp:include page="../common/menubar2.jsp" />
+	<jsp:include page="../common/menubar.jsp" />
 	<br>
 	<br> 
 	<br> 
 	<br>
+
 	<div class="cp-top-wrap">
+			
 		<section class='m2-sec02'>
 			<p class='m2-tit'>
 				<img src='${contextPath}/resources/images/musical/mLogo.png' />
@@ -80,7 +77,10 @@ div {
 			<div class="rank-best">
 			<div>
 			<!-- 1위 -->
-				<a href="">
+				<c:url var="adetail" value="musicalDetail.do">
+							<c:param name="artNo" value="${ list[0].artNo }"/>
+				</c:url>
+				<a href="${adetail}">
 					<span class="rank-best-img">
 						<img class='rank-best-img' src="${ contextPath }/resources/images/art/${ list[0].changeName }"/>
 					</span>
@@ -88,14 +88,17 @@ div {
 						<p class="rlb-sub-tit">2020-09-21 ~ 2020-09-21<br>우리집에서 함</p> <!-- 날짜 및 시간 -->
 						<p class="rank-best-point">
 							<span class="star-point">
-								♥Like : 10
+								♥Like : ${ list[0].jjimCount }
 							</span>
 						</p>
 				</a>
 			</div>
 			<div>
 				<!-- 2위 -->
-				<a href="">
+				<c:url var="adetail" value="musicalDetail.do">
+							<c:param name="artNo" value="${ list[1].artNo }"/>
+				</c:url>
+				<a href="${adetail}">
 					<span class="rank-best-img">
 						<img class='rank-best-img' src="${ contextPath }/resources/images/art/${ list[1].changeName }"/>
 					</span>
@@ -103,7 +106,7 @@ div {
 						<p class="rlb-sub-tit">2020-09-21 ~ 2020-09-21<br>우리집에서 함</p> <!-- 날짜 및 시간 -->
 						<p class="rank-best-point">
 							<span class="star-point">
-								♥Like : 10
+								♥Like : ${ list[1].jjimCount }
 							</span>
 						</p>
 				</a>
@@ -111,7 +114,10 @@ div {
 			
 			<div>				
 				<!-- 3위 -->
-				<a href="">
+				<c:url var="adetail" value="musicalDetail.do">
+							<c:param name="artNo" value="${ list[2].artNo }"/>
+				</c:url>
+				<a href="${adetail}">
 					<span class="rank-best-img">
 						<img class='rank-best-img' src="${ contextPath }/resources/images/art/${ list[2].changeName }"/>
 					</span>
@@ -119,7 +125,7 @@ div {
 						<p class="rlb-sub-tit">2020-09-21 ~ 2020-09-21<br>우리집에서 함</p> <!-- 날짜 및 시간 -->
 						<p class="rank-best-point">
 							<span class="star-point">
-								♥Like : 10
+								♥Like : ${ list[2].jjimCount }
 							</span>
 						</p>
 
@@ -146,7 +152,7 @@ div {
 								
 								<div class='list-bigger-txt'>
 									<p class='list-b-tit1'>${a.artTitle}</p>
-									<p class='list-b-tit2'>조회수 ${a.count }</p>
+									<p class='list-b-tit2'>조회수 ${a.count } , 댓글 (${ a.replyCount })</p>		
 									<p class='list-b-circle'>${ a.sale }%</p>
 								</div>
 							</div>
@@ -180,7 +186,7 @@ div {
 								<p class='list-2-tit1'>
 									${a.artTitle}
 								</p>
-								<p class='list-2-tit2'>조회수 ${a.count }</p>
+								<p class='list-2-tit2'>댓글 (${ a.replyCount })</p>
 							</div>
 						</a>
 					</c:if>

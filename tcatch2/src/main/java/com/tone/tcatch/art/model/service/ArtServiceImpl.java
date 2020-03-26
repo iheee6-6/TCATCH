@@ -48,12 +48,6 @@ public class ArtServiceImpl implements ArtService{
 
 
 	@Override
-	public int insertSeat(Seat s) { // �¼� �ŤŤ���
-		return aDao.insertSeat(s);
-	}
-
-
-	@Override
 	public ArrayList<ArtTime> selectATime(int artNo) { // ȸ�� �˻�
 		return aDao.selectATime(artNo);
 	}
@@ -147,6 +141,36 @@ public class ArtServiceImpl implements ArtService{
 	@Override
 	public ArtTime selectATdateTime(ArtTime a) { //회차 정보 가져오기
 		return aDao.selectATdateTime(a);
+	}
+
+
+	@Override
+	public int selectCountReply(int artNo) { //댓글 수 
+		return aDao.selectCountReply(artNo);
+	}
+
+
+	@Override
+	public int insertSeat(Seat s) {
+		return aDao.insertSeat(s);
+	}
+
+
+	@Override
+	public int selectArtNo() {
+		return aDao.selectArtNo();
+	}
+
+
+	@Override
+	public int insertExhibitionSeat() {
+		return aDao.insertExhibitionSeat();
+	}
+
+
+	@Override
+	public int insertExArtTime() {
+		return aDao.insertExArtTime();
 	}
 
 

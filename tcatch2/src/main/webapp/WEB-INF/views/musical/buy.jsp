@@ -1,15 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="UTF-8"%>
-	
+		
 	<%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%>
-	
+	<%
+		int count = 65;
+	%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BUY</title>
+<title>TACTCH</title>
 
+	<link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/detail.css" />
+	<!-- sub.css -->
+	<link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/detail2.css" />
+	
+	
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <style>
@@ -61,6 +68,8 @@ td {
 	width: 300px;
 	height: 100px;
 	margin: auto;
+	margin-top: 50px;
+	text-align:center;
 }
 
 #goBuy, #ree {
@@ -68,11 +77,25 @@ td {
 	float:left;
 	disply: inline-block;
 }
+
+
+#right{
+    float: right;
+    height: 100%;
+    border : 1px black solid;
+    height : 300px;
+}
+
+#imgg{
+	width:100%;
+	}
 </style>
 </head>
 <body>
-	<section class="sec03">
+<div class="ms-list-view" style="height:650px">		
+	<div class="rn-03">
 	<img src='${contextPath}/resources/images/musical/mLogo.png' />
+	<br><br><br><br> 
 	<c:if test="${ art.artType != 0 }">
 
 		
@@ -99,19 +122,11 @@ td {
 					<label class="l" for='${s.seatName }' style="background: red"></label>
 				</c:if>
 				</td>
-				<c:if test="${ s.seatName  eq 'A-15'}">
-				<td  id='a1'>A</td>
+				<c:if test='${ s.seatName.contains("15") }'>
+					<td  id='a1'><%= (char)count++ %></td>
 				</c:if>
 				
-				<c:if test="${ s.seatName eq 'A-30' }">
-					<tr><td></td></tr>
-				</c:if>
-				
-				<c:if test="${ s.seatName  eq 'B-15'}">
-				<td  id='a1'>B</td>
-				</c:if>
-				
-				<c:if test="${ s.seatName eq 'B-30' }">
+				<c:if test='${ s.seatName.contains("30") }'>
 					<tr></tr>
 				</c:if>
 				</c:forEach>
@@ -123,7 +138,6 @@ td {
 				<tr>
 					<td id="td">
 					<form action="buy.do" method="post" id="joinForm">
-
 					<input type="hidden" name="artNo" value="${ s.artNo }"> 
 					<input type="hidden" id="timeNo" name="timeNo" value="">  <!-- 즉 회차번호를 가져가는거임 -->
 							회차선택 &nbsp; : &nbsp;<select id="timeSelect" class="tt" >
@@ -163,10 +177,27 @@ td {
         
         <!-- 전시  -->
         <c:if test="${art.artType==0 }">
+        <div id="right">
+			<p>선택한 공연 : ${art.artTitle }<br><br>
+				공연타입 : 
+				<c:if test="${art.artType == 0 }">
+					전시
+				</c:if>
+				<c:if test="${art.artType == 1 }">
+					콘서트
+				</c:if>
+				<c:if test="${art.artType == 2 }">
+					뮤지컬
+				</c:if>
+				<c:if test="${art.artType == 3 }">
+					연극
+				</c:if>
+			</p>
+		</div>
         <form action="buyExhibition.do" method="post" id="joinForm">
 			<input type="hidden" name="artNo" value="${ s.artNo }"> 
 			<input type="hidden" name="timeNo" value="${ s.timeNo }"> 
-				<div id="bor">
+				<div id="bor" >
 					<p>${ sList[0].seatName } : <select name="count" class="tt">
 												<option value="1">1매</option>
 												<option value="2">2매</option>
@@ -180,16 +211,32 @@ td {
 												<option value="10">10매</option>
 										</select>
 						${ sList[0].price }원
+					<div class="rn-05">
+						<!--예매버튼-->
+						<a href="#" onclick="go();" class="rn-bb03">예매 하기</a>
+					</div>
 					</p> 
-					<button type="submit" id="goBuy">구매</button>
+					
+
+					<button type="submit" style="display:none;" id="goBuy">구매</button>
+					
+					<script>
+						function go(){
+							$("#goBuy").click();
+						}
+					</script>
 				</div>
 			<br>
 		</form>
         </c:if>
-	</section>
+</div>
+<div id="imgWrap">
+   <img src='${contextPath}/resources/images/musical/구매 유의사항.PNG' id="imgg" />
+</div>
+</div>
 	
 	<script>
-
+	
         $(document).ready(function () {
             $("input[type=checkbox]").change(checkedChange);
         });
@@ -203,7 +250,7 @@ td {
             }
             $("#whktjr").val(tt);
         }
-        
+
         function re(){
         	tt="";
         	$("#whktjr").html(tt);
@@ -211,8 +258,8 @@ td {
         	$("input[type=checkbox]").prop("checked", false);
         	$("label").css({ "background": "white" });
         }
+        
       </script>
-        
-        
+
 </body>
 </html>

@@ -29,7 +29,7 @@ public interface ArtService {
 	//좌석 불러오기
 	ArrayList<Seat> selectSeatList(Seat s);
 	
-	// ??
+	// 좌석 insert
 	int insertSeat(Seat s);
 
 	// 모든 좌석 수 
@@ -73,8 +73,20 @@ public interface ArtService {
 	
 	//회차 번호를 통한 회차 정보 가져옴
 	ArtTime selectATdateTime(ArtTime a);
-
 	
+	//댓글 수 
+	int selectCountReply(int artNo);
+
+	//CURRVAL ARTNO
+	int selectArtNo();
+	
+	//insert 입장권
+	int insertExhibitionSeat();
+	
+	//insert Ex회차
+	int insertExArtTime();
+	
+
 
 }
   

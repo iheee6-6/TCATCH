@@ -204,8 +204,16 @@
 			#{dateCount},
 			#{actor},
 			#{dateTime}
-		)
-	
+		)	
+	</insert>
+	<insert id="insertExArtTime">
+		INSERT INTO ART_TIME VALUES(
+			SEQ_TNO.NEXTVAL,
+			SEQ_ANO.CURRVAL, 
+			1,
+			'전시상품은 배우가 없습니다.',
+			SYSDATE
+		)	
 	</insert>
 	
 
@@ -237,6 +245,11 @@
 		FROM PERSONAL
 		WHERE ART_NO=#{artNo} AND PER_TYPE=1
 	</select>
+	<select id="selectCountReply" resultType="_int">
+		SELECT COUNT(*)
+		FROM REPLY
+		WHERE ART_NO=#{artNo} AND STATUS ='Y'
+	</select>
 	
 	<insert id="insertTicketDate">
 		INSERT INTO TICKET_DATE VALUES(
@@ -255,4 +268,19 @@
 		WHERE ART_NO = #{artNo} AND DATE_COUNT= #{dateCount}
 	</select>
 	
+	
+	<insert id="insertSeat">
+		INSERT INTO SEAT (SEAT_NAME , ART_NO , TIME_NO , STATUS , PRICE)
+		SELECT SEAT_NAME , ART_NO,TIME_NO , STATUS , PRICE FROM SEAT_FORM WHERE ART_NO = #{artNo} AND TIME_NO = #{timeNo}
+	</insert>
+	
+	<select id="selectArtNo" resultType="_int">
+		SELECT SEQ_ANO.CURRVAL FROM DUAL
+	</select>
+	
+	<insert id="insertExhibitionSeat">
+		INSERT INTO SEAT VALUES(
+			'입장권' , SEQ_ANO.CURRVAL , 1 , 'Y' , '35000'
+		)
+	</insert>
 </mapper>

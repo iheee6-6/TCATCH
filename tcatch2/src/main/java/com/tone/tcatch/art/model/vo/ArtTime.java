@@ -20,13 +20,18 @@ public class ArtTime {
 		this.dateCount = dateCount;
 		this.artNo = artNo;
 	}
-	
-	
 
 	public ArtTime(String actor, String dateTime, int dateCount) {
 		super();
 		this.actor = actor;
 		this.dateTime = dateTime;
+		this.dateCount = dateCount;
+	}
+	
+
+	public ArtTime(String actor, int dateCount) {
+		super();
+		this.actor = actor;
 		this.dateCount = dateCount;
 	}
 

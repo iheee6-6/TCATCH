@@ -1,25 +1,25 @@
 package com.tone.tcatch.art.model.vo;
 
 public class Art {
-	private int artNo;	//°ø¿¬¹øÈ£
-	private int artType;//°ø¿¬Å¸ÀÔ
-	private String artTitle;//°ø¿¬¸í
-	private String artExplain;//°ø¿¬¼³¸í
-	private int count;//Á¶È¸¼ö
-	private String address;//°ø¿¬Àå¼Ò
-	private int companyNo;//È¸»ç¹øÈ£
-	private int rating;//°ü¶÷¹øÈ£
-	private String status;//»óÅÂ(»èÁ¦)
-	private int durationTime;//¼Ò¿ä½Ã°£(ºĞ) 
-	private int sale; //¼¼ÀÏ°¡
-	private String changeName; //¹Ù²ï ÆÄÀÏ¸í
+	private int artNo;	//ê³µì—°ë²ˆí˜¸
+	private int artType;//ê³µì—°íƒ€ì… : 0ì „ì‹œ , 1ì½˜ì„œíŠ¸ , 2 ë®¤ì§€ì»¬ , 3ì—°ê·¹
+	private String artTitle;//ì œëª©
+	private String artExplain;//ë‚´ìš© 
+	private int count;//ì¡°íšŒìˆ˜
+	private String address;//ì£¼ì†Œ
+	private int companyNo;//íšŒì‚¬ë²ˆí˜¸
+	private int rating;// ê´€ëŒë“±ê¸‰
+	private String status;//ìƒíƒœ 
+	private int durationTime;//ì†Œìš”ì‹œê°„ 
+	private int sale; //í• ì¸ë¥ 
+	private String changeName; //ì‚¬ì§„ì´ë¦„
+	private int replyCount; //ëŒ“ê¸€ ìˆ˜ 
+	private int jjimCount; //ì°œìˆ˜ 
 	 
 	public Art() {}
 
-	
-
 	public Art(int artNo, int artType, String artTitle, String artExplain, int count, String address, int companyNo,
-			int rating, String status, int durationTime, int sale, String changeName) {
+			int rating, String status, int durationTime, int sale, String changeName, int replyCount , int jjimCount) {
 		super();
 		this.artNo = artNo;
 		this.artType = artType;
@@ -33,21 +33,9 @@ public class Art {
 		this.durationTime = durationTime;
 		this.sale = sale;
 		this.changeName = changeName;
+		this.replyCount = replyCount;
+		this.jjimCount = jjimCount;
 	}
-
-	
-
-	public String getChangeName() {
-		return changeName;
-	}
-
-
-
-	public void setChangeName(String changeName) {
-		this.changeName = changeName;
-	}
-
-
 
 	public int getArtNo() {
 		return artNo;
@@ -137,12 +125,39 @@ public class Art {
 		this.sale = sale;
 	}
 
+	public String getChangeName() {
+		return changeName;
+	}
+
+	public void setChangeName(String changeName) {
+		this.changeName = changeName;
+	}
+
+	public int getReplyCount() {
+		return replyCount;
+	}
+
+	public void setReplyCount(int replyCount) {
+		this.replyCount = replyCount;
+	}
+
+	public int getJjimCount() {
+		return jjimCount;
+	}
+
+	public void setJjimCount(int jjimCount) {
+		this.jjimCount = jjimCount;
+	}
+
 	@Override
 	public String toString() {
 		return "Art [artNo=" + artNo + ", artType=" + artType + ", artTitle=" + artTitle + ", artExplain=" + artExplain
 				+ ", count=" + count + ", address=" + address + ", companyNo=" + companyNo + ", rating=" + rating
-				+ ", status=" + status + ", durationTime=" + durationTime + ", sale=" + sale + "]";
+				+ ", status=" + status + ", durationTime=" + durationTime + ", sale=" + sale + ", changeName="
+				+ changeName + ", replyCount=" + replyCount + ", jjimCount=" + jjimCount + "]";
 	}
 	
+	
+
 	
 }

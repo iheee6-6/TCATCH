@@ -7,26 +7,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>김대성/디테일</title>
+<title>TACTCH</title>
 
-<link rel='stylesheet' type='text/css'
-	href='http://tkfile.yes24.com/New/Css/reset.css' />
-<link rel='stylesheet' type='text/css'
-	href='http://tkfile.yes24.com/New/Css/sub.css' />
+	<link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/detail.css" />
+	<link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/detail2.css" />
 
 <!--          -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
 	
-	<link
-	href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap"
-	rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
 	
 	
-<script type='text/javascript'
-	src='http://tkfile.yes24.com/New/Js/jquery-3.4.1_min.js'></script>
+<script type='text/javascript'src='http://tkfile.yes24.com/New/Js/jquery-3.4.1_min.js'></script>
 
 <!-- 결제 -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -142,7 +136,7 @@ body {
 			<!--자동주문방지적용-->
 		<form action="buyEnd.do" method="post">
 			<input type="hidden" name="mNo" value="${ loginUser.no }">
-			<input type="hidden" name="seatName" value="${sList[0].seatName}">
+			<input type="hidden" name="seatName" value="${seatName}">
 			<input type="hidden" name="seatSal" value="${count * 40000}">
 				<c:if test="${artType != 0 }">
 					<input type="hidden" name="type" id="type" value="">			
@@ -155,9 +149,10 @@ body {
 			<input type="hidden" name="artNo" value="${artNo }">
 			
 			<button type="submit" style="display:none" id="gogo"></button>
+			
 			<div class="rn-05">
 				<!--예매버튼-->
-				<a href="#" onclick="gogo();" class="rn-bb03">예매 하기</a>
+				<a href="#" onclick="go();" class="rn-bb03">예매 하기</a>
 				<!--취소버튼-->
 				<a href="#"  onclick="cancel();"class='rn-bb03'>취소하기</a>
 			</div>
@@ -171,7 +166,7 @@ body {
 			
 <script>
    <%-- 결제 서비스 --%> 
-   function gogo(){
+   function go(){
    var IMP = window.IMP; // 생략가능
    IMP.init('imp20522573'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
    IMP.request_pay({ 
@@ -193,12 +188,13 @@ body {
          msg += '상점 거래ID : ' + rsp.merchant_uid;
          msg += '결제 금액 : ' + rsp.paid_amount;
          msg += '카드 승인번호 : ' + rsp.apply_num;
+         
          $("#gogo").click();
-         alert("결제 완료되었습니다 . <br> 마이페이지에서 확인해주세요");
+         
+         alert("결제 완료되었습니다 . 마이페이지에서 확인해주세요");
       } else {
          var msg = '결제에 실패하였습니다.';
          msg += '에러내용 : ' + rsp.error_msg; // 사용자가 결제를 취소 하였습니다 . 등등 나오게 하는 메세지 
-      //   location.href="#"; // 전송 위치
       		alert(msg);
       }
 

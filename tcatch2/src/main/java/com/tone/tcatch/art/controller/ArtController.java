@@ -44,11 +44,21 @@ public class ArtController {
 		
 		ArrayList<Art> list = aService.selectList(1);
 		
+	
+		
 		if(list != null) {
+			for(int i = 0 ; i < list.size(); i++) {
+				int artNo = list.get(i).getArtNo();
+				int count = aService.selectCountReply(artNo);
+				list.get(i).setReplyCount(count);
+				int jjimCount = aService.selectCountJjim(artNo);
+				list.get(i).setJjimCount(jjimCount);
+			}
+			
 			mv.addObject("list", list);
 			mv.setViewName("musical/musical");
 		}else {
-			throw new ArtException("�Խñ� ��ü ��ȸ ����!!");
+			throw new ArtException("콘서트 불러오기 오류 !!");
 		}
 		return mv;
 	}
@@ -57,8 +67,19 @@ public class ArtController {
 	public ModelAndView MusicalList(ModelAndView mv) {
 
 		ArrayList<Art> list = aService.selectList(2);
+		
 		 
 		if(list != null) {
+			
+			for(int i = 0 ; i < list.size(); i++) {
+				int artNo = list.get(i).getArtNo();
+				int count = aService.selectCountReply(artNo);
+				list.get(i).setReplyCount(count);
+				int jjimCount = aService.selectCountJjim(artNo);
+				list.get(i).setJjimCount(jjimCount);
+			}
+			
+			
 			mv.addObject("list", list);
 			mv.setViewName("musical/musical");
 		}else {
@@ -72,6 +93,14 @@ public class ArtController {
 		ArrayList<Art> list = aService.selectList(3);
 		 
 		if(list != null) {
+			for(int i = 0 ; i < list.size(); i++) {
+				int artNo = list.get(i).getArtNo();
+				int count = aService.selectCountReply(artNo);
+				list.get(i).setReplyCount(count);
+				int jjimCount = aService.selectCountJjim(artNo);
+				list.get(i).setJjimCount(jjimCount);
+			}
+			
 			mv.addObject("list", list);
 			mv.setViewName("musical/musical");
 		}else {
@@ -85,6 +114,14 @@ public class ArtController {
 		ArrayList<Art> list = aService.selectList(0);
 		 
 		if(list != null) {
+			for(int i = 0 ; i < list.size(); i++) {
+				int artNo = list.get(i).getArtNo();
+				int count = aService.selectCountReply(artNo);
+				list.get(i).setReplyCount(count);
+				int jjimCount = aService.selectCountJjim(artNo);
+				list.get(i).setJjimCount(jjimCount);
+			}
+			
 			mv.addObject("list", list);
 			mv.setViewName("musical/musical");
 		}else {
@@ -127,7 +164,7 @@ public class ArtController {
 		aT = aService.selectATime(artNo);
 		s = new Seat(aT.get(0).getDateCount() , artNo);
 		like = aService.selectCountJjim(artNo);
-		
+		ArrayList<Seat> sList = aService.selectSeatList(s);
 		
 		System.out.println("detail : " + art);
 		
@@ -138,6 +175,7 @@ public class ArtController {
 			mv.addObject("art", art);
 			mv.addObject("aT", aT);
 			mv.addObject("s" ,s);
+			mv.addObject("sList", sList);
 			mv.addObject("allS" , aService.selectSeatAllCount(s));
 			mv.addObject("yS", aService.selectSeatYCount(s));
 			mv.setViewName("musical/musicalDetail"); 
@@ -343,11 +381,18 @@ public class ArtController {
 			@RequestParam("actor")String[] actor ,
 			@RequestParam("dateCount")int[] dateCount ) { //회차 insert
 		
-		
+		Seat s = new Seat();
 		ArtTime aT = new ArtTime();
 		
+		int artNo = aService.selectArtNo();//현재 ART_NO 가져오기
+		System.out.println("현재 artNo : " + artNo);
+		s.setArtNo(artNo);
 		for(int i = 0 ; i< dateTime.length; i++) {
 			aT= new ArtTime( actor[i], dateTime[i].replaceAll("T", "") , dateCount[i]);
+			
+			s.setTimeNo(dateCount[i]);
+			aService.insertSeat(s);
+			
 			aService.inserArtTime(aT);
 		}
 		
@@ -447,5 +492,15 @@ public class ArtController {
 		return mv;
 
 	}
+	@RequestMapping("exhibitionSeat.do")
+	public String exhibitionSeat(){	
+
+		
+		aService.insertExArtTime();
+		aService.insertExhibitionSeat();
+		
+		return "redirect:musical.do";
+	}
+
 	
 }
