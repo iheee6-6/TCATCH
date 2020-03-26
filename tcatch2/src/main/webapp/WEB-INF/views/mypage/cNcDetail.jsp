@@ -11,7 +11,10 @@
 
 <style>
 ul{
-list-style: none;
+	list-style: none;
+}
+.dcursor{
+	cursor:pointer;
 }
 </style>
 </head>

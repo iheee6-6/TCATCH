@@ -16,6 +16,10 @@
 .wrapper {
 	margin-top: 120px;
 }
+
+dd ul{
+	list-style:none;
+}
 </style>
 </head>
 <body>
@@ -32,7 +36,7 @@
 			<input type="hidden" id="hdNotiTitle"
 				value="${notice.artTitle }">
 			<div class="noti-view-date">
-				<span>조회수 :${count }</span>
+				<span>조회수 :${count}</span>
 			</div>
 
 			<div class="noti-view-ticket">
@@ -143,63 +147,20 @@
 						</dl>
 					</div>
 				</div>
-				<div class="noti-view-coment">
-					<p class="noti-view-comen-tit">공연 소개</p>
-					<div class="noti-view-comen-txt">
-										
-						<p>본격적인 봄을 알리는 4월,</p>
-						<p>꽃이 드리워진 석촌호수의 아름다운 전경을 한 눈에 내려다볼 수 있는 바로 이 곳, 롯데콘서트홀에서</p>
-						<p>감미롭고 유쾌한 음악들로 가장 먼저 봄의 시작을 알립니다.</p>
-						<p>
-							<br>
-						</p>
-						<p>복잡한 도심의 일상에서 잠시 빠져나와</p>
-						<p>힐링과 여유 가득한 봄의 바이브를 만끽하고 싶다면,</p>
-						<p>3일 간 펼쳐지는 페스티벌을 통해 Blossom Your Day!</p>
-						<p>
-							<br>
-						</p>
-						<p>* &lt;시네콘서트 Ⅰ. 히사이시 조&gt;공연은 티켓오픈 된 공연으로 바로 예매가 가능하며, 할인
-							내용이 일부 상이합니다.</p>
-						<p>
-							<br>
-						</p>
-						<p>［결제제어안내］</p>
-						<p>본 공연은 2.4(화) ~ 2.11(화) 까지 '카드결제'만 가능하며, 무통장 입금은 2.12(수) 오전
-							10시부터 가능합니다.</p>
-						<p>
-							<br>
-						</p>
-						<p>［공식예매처］</p>
-						<p>본 공연은 롯데콘서트홀, 인터파크, 예스24, 하나티켓, 티켓링크, 옥션티켓, 11번가에서 예매가
-							가능합니다.</p>
-						<p>공식 예매처 이외의 경로로 구매하여 피해가 생긴 경우, 그에 대한 책임은 전적으로 구매 당사자에게 있으며,</p>
-						<p>이와 관련하여 주최사 및 예매처는 어떠한 책임도 없음을 알려드리오니 예매 시 참고를 부탁드립니다.</p>
-					</div>
-				</div>
-				<div class="noti-view-coment">
-					<p class="noti-view-comen-tit">할인 정보</p>
-					<div class="noti-view-comen-txt">
-						얼리버드 10% 할인 (1인 2매 / 일반오픈 시 ~ 2.7(금)까지 예매 시) <br> <br>국가유공자
-						및 유족 50% 할인 (본인 / 티켓수령 시 유공자증 혹은 유족증 확인) <br>장애인 1~3급 50% 할인
-						(동반 1인 / 티켓수령 시 복지카드 확인) <br>장애인 4~6급 50% 할인 (본인 / 티켓수령 시
-						복지카드 확인) <br> <br>* 할인에 해당하는 증빙자료(유공자증, 복지카드 등) 미 지참시에는
-						현장에서 차액을 지불한 후 관람이 가능합니다. <br>* 시야방해석은 모든 할인에서 제외됩니다.
-					</div>
-				</div>
+				
 				<div class="noti-view-coment">
 					<p class="noti-view-comen-tit">기획사 정보</p>
 					<div class="noti-view-comen-txt">
-						주최/주관 : 롯데문화재단 <br>문의 : 1544-7744
+						주최/주관 : ${notice.companyName } <br>문의 : 1544-7744
 					</div>
 				</div>
 			</div>
 			<p class="noti-vt-info">
-				<span>티켓오픈 일정은 예스24 또는 기획사의 사정에 의해 사전예고 없이 변경 또는 취소 될 수 있습니다.</span>
+				<span>티켓오픈 일정은 TCATCH 또는 기획사의 사정에 의해 사전예고 없이 변경 또는 취소 될 수 있습니다.</span>
 			</p>
 
-			<div class="noti-view-control">
-				<a style="cursor: pointer" onclick="jsf_notice_NoticeList();"
+			<div class="noti-view-control" style="margin-bottom:20px;">
+				<a style="cursor: pointer" onclick="history.back();"
 					class="noti-list">목록보기</a>
 			</div>
 			
@@ -245,13 +206,11 @@
 		<div class="bnr-bottom">
 			<div class="bnr-bottom-01">
 				<p>예매/취소 FAQ</p>
-				<span>궁금한 사항은 FAQ 를 이용해주세요. <a
-					href="http://ticket.yes24.com/UserGuide/FAQ" target="_blank">바로가기&gt;</a></span>
+				<span>궁금한 사항은 FAQ 를 이용해주세요.</span>
 			</div>
 			<div class="bnr-bottom-02">
 				<p>고객센터 이용 안내</p>
-				<span>전화(1544-6399) 또는 <a
-					href="http://www.yes24.com/Mall/Help/CS/Apply" target="_blank">일대일문의</a>를
+				<span>전화(1544-6399) 또는 일대일문의를
 					이용해주세요.
 				</span>
 			</div>

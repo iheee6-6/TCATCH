@@ -27,13 +27,21 @@
 	</resultMap>
 
 	<resultMap id="PerformanceResultSet" type="ArtDetail">
-		<id property="artNo" column="ART_NO" />
-		<result property="artType" column="ART_TYPE" />
-		<result property="artTitle" column="ART_TITLE" />
-		<result property="address" column="ADDRESS" />
-		<result property="ticketingDate" column="ticketing_Date"/>
-		<result property="startDate" column="start_date" />
-		<result property="endDate" column="end_date" />
+		<id property="artNo" column="ART_NO"/>
+		<result property="artType" column="ART_TYPE"/>
+		<result property="artTitle" column="ART_TITLE"/>
+		<result property="artExplain" column="ART_EXPLAIN"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="companyNo" column="COMPANY_NO"/>
+		<result property="age" column="AGE"/>
+		<result property="durationTime" column="DURATION_TIME"/>
+		<result property="companyName" column="COMPANY_NAME"/>
+		<result property="companyPhone" column="PHONE"/>
+		<result property="companyInfo" column="COMPANY_INFO"/>
+		<result property="startDate" column="START_DATE"/>
+		<result property="endDate" column="END_DATE"/>
+		<result property="ticketingDate" column="TICKETING_DATE"/>
+		<result property="count" column="COUNT"/>
 	</resultMap>
 	
 	<resultMap id="ImgResultSet" type="Img">
@@ -46,9 +54,13 @@
 		<id property="alarmNo" column="per_no" />
 		<result property="artTitle" column="art_title" />
 		<result property="artNo" column="art_no" />
+		<result property="artType" column="ART_TYPE" />
+		<result property="address" column="ADDRESS" />
 		<result property="enrollDate" column="per_enrolldate" />
 		<result property="alarmDate" column="alarm_Date" />
 		<result property="ticketingDate" column="ticketing_Date"/>
+		<result property="startDate" column="start_date" />
+		<result property="endDate" column="end_date" />
 	</resultMap>
 	
 	<resultMap id="memberResultSet" type="Member">
@@ -63,10 +75,9 @@
 		resultMap="ticketResultSet">
 		SELECT purchase_no, buy_date, art_title, date_time, purchase_count,
 		art_no, REFUNDS, wayBill_number FROM TICKET_VIEW
-		WHERE M_ID=#{id} AND
-		BUY_DATE<![CDATA[  >=  ]]> add_months(sysdate,-3)
-		ORDER BY DATE_TIME DESC
+		WHERE M_ID=#{id} AND ROWNUM <![CDATA[ <=]]> 3
 	</select>
+<!-- BUY_DATE<![CDATA[  >=  ]]> add_months(sysdate,-3)  -->
 
 	<select id="selectRView" parameterType="Ticket"
 		resultMap="ticketResultSet">
@@ -83,10 +94,10 @@
 		WHERE ROWNUM <![CDATA[ <=]]> 3
 	</select>
 
-	<select id="selectRInterest" resultMap="PerformanceResultSet">
-	SELECT *  FROM INTEREST_VIEW
-	WHERE M_ID=#{ID}
-    AND ROWNUM <![CDATA[<=]]>3
+	<select id="selectRInterest" resultMap="alarmResultSet">
+		SELECT *  FROM INTEREST_VIEW
+		WHERE M_ID=#{id} 
+	    AND ROWNUM <![CDATA[<=]]>3
 	</select>
 
 	<select id="getTListCount" resultType="_int">
@@ -101,24 +112,20 @@
 		purchase_count, art_no,REFUNDS,
 		wayBill_number,change_name FROM TICKET_VIEW
 		WHERE M_ID=#{id}
-		ORDER BY
-		DATE_TIME DESC
 	</select>
 
-	<!-- parameterClass="java.util.Map" -->
 	<select id="selectTicketDetail" 
 		resultMap="ticketResultSet">
 		SELECT * FROM TICKET_VIEW
-		WHERE M_ID=#{id} AND p.purchase_no=#{tNo}
+		WHERE M_ID=#{id} AND purchase_no=#{tNo}
 		
 	</select>
 
 
 	<select id="selectInterest" 
-		resultMap="PerformanceResultSet">
+		resultMap="alarmResultSet">
 		SELECT * FROM INTEREST_VIEW
-		WHERE M_ID=#{ID}
-		
+		WHERE M_ID=#{id}
 	</select>
 	
 	
@@ -145,6 +152,7 @@
 		AND 
 		ART_NO=#{artNo} AND PER_TYPE=2
 	</delete>
+	
 	<select id="searchViewCount" resultType="_int">
 	 	SELECT COUNT(*)
 		FROM PURCHASE P
@@ -164,6 +172,7 @@
 		</if>
 		
 	</select>
+	
 	<select id="searchView" resultMap="ticketResultSet">
 		SELECT p.purchase_no, a.art_title,at.date_time, p.purchase_count,p.art_no,a.address,p.seat_name,p.type,
 		i.change_name,a.art_type, p.seat_sal  ,(SELECT R_NO FROM REPLY C JOIN MEMBER M on(C.RWRITER=M.M_ID)
@@ -253,6 +262,7 @@
 		SELECT * FROM ART A
 		JOIN ART_TIME AT ON(A.ART_NO=AT.ART_NO)
 		JOIN TICKET_DATE T ON(T.ART_NO=A.ART_NO)
+        JOIN COMPANY C ON(C.COMPANY_NO=A.COMPANY_NO)
 		WHERE A.ART_NO=#{artNo}
 	</select>
 
@@ -305,15 +315,16 @@
 		SELECT art_no, art_title
 		FROM PERSONAL
 		JOIN ART USING(ART_NO)
-		WHERE ALARM_DATE = to_char(#{d},'YYYYMMDDHH24MI')
-		
+		WHERE ALARM_DATE = to_char(#{d},'YYYYMMDDHH24MI')	
 	</select>
+	
 	<select id="selectAlarmMember" resultMap="memberResultSet">
 		SELECT M_ID, M_NAME, EMAIL, PHONE
 		FROM PERSONAL
 		JOIN MEMBER USING(M_NO)
-		WHERE ART_NO=#{art}
+		WHERE ART_NO=#{art} AND PER_TYPE=2
 	</select>
+	
 	<select id="selectvCount" resultType="_int">
 		select count(*)
 		FROM PURCHASE P

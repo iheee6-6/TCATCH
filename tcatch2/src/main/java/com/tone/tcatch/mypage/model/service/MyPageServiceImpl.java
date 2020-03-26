@@ -56,12 +56,12 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public ArrayList<ArtDetail> selectRecentInterestList(String id) {
+	public ArrayList<Alarm> selectRecentInterestList(String id) {
 		return mpDao.selectRecentInterestList(id);
 	}
 
 	@Override
-	public ArrayList<ArtDetail> selectInterestPerformanceList(String id) {
+	public ArrayList<Alarm> selectInterestPerformanceList(String id) {
 		return mpDao.selectInterestPerformanceList(id);
 	}
 

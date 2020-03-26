@@ -4529,11 +4529,14 @@ License - nucleoapp.com/license/
 .sidebar .sidebar-wrapper,
 .off-canvas-sidebar .sidebar-wrapper {
   position: relative;
-  height: calc(100vh - 75px);
+  /* height: calc(100vh - 58px); */
   /* overflow: auto; */
   /* width: 260px; */
   z-index: 4;
-  padding-bottom: 100px;
+  padding-bottom: 40px;
+  
+  /* padding-bottom: 100px;
+   */
 }
 
 .sidebar .sidebar-wrapper .dropdown .dropdown-backdrop,
