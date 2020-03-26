@@ -80,4 +80,9 @@ public class CommunityServiceImpl implements CommunityService{
 		
 		return cDao.insertReport(r);
 	}
+	
+	@Override
+	   public ArrayList<Reply> getReplyArtList(int artNo) {
+	      return cDao.getReplyArtList(artNo);
+	   }
 }

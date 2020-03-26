@@ -25,5 +25,7 @@ public interface CommunityService {
 	int deleteReply(int rId);
 
 	int insertReport(Report r);
+	
+	ArrayList<Reply> getReplyArtList(int artNo); // Art 댓글
 
 }

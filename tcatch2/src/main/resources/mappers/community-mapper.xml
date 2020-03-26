@@ -106,4 +106,13 @@
 	
 	</insert>
 	
+	<select id="selectArtReply" resultMap="replyResultSet">
+      SELECT *
+      FROM REPLY R
+      JOIN ART A ON(A.ART_NO=R.ART_NO)
+      WHERE R.ART_NO = #{artNo}
+      AND R.STATUS = 'Y'
+      ORDER BY R_NO DESC
+   </select>
+	
 </mapper>

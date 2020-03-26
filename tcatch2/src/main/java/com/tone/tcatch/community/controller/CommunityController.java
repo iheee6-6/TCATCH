@@ -216,6 +216,16 @@ public class CommunityController {
 		
 	}
 	
+	@RequestMapping(value="rArtList.do", produces="application/json; charset=utf-8")
+	   @ResponseBody
+	   public String getReplyArtList(int artNo) {
+	      ArrayList<Reply> rList = cService.getReplyArtList(artNo);
+	      System.out.println(rList);
+	      Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+	      // 시분초 다루고 싶다면 java.util.Date 사용
+	      return gson.toJson(rList);
+	   }
+	
 	
 	
 	
