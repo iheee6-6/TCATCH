@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자견단</title>
+<title>TACTCH</title>
 <!-- Bootstrap core CSS -->
 
 <style>
@@ -71,7 +71,9 @@ margin-bottom:3%;
 								
 								<div align="center">
 									<button type="submit" value="등록하기">등록하기</button>
+									<button type="button" onclick="location.href='exhibitionSeat.do'">전시 등록</button>
 								</div>
+								
 								 <script>
 							        $(document).on('click', '#add', add);
 							        

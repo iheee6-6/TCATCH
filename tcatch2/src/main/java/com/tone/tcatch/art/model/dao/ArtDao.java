@@ -27,7 +27,6 @@ public class ArtDao {
 	}
   
 	public ArtDetail selectArt(int artNo) { // 디테일
-		System.out.println("aDao artNo : " + artNo);
 		return sqlSession.selectOne("artMapper.selectOne", artNo);
 	}
 
@@ -40,8 +39,8 @@ public class ArtDao {
 		return (ArrayList)sqlSession.selectList("artMapper.searchArt" , title);
 	}
 
-	public int insertSeat(Seat s )  { //좌석 넣기
-		return sqlSession.insert("artMapper.updateCount", s);
+	public int insertSeat(Seat s)  { //좌석 넣기
+		return sqlSession.insert("artMapper.insertSeat", s);
 	}
 
 	public ArrayList<ArtTime> selectATime(int artNo) { //회차 정보 불러오기
@@ -67,10 +66,6 @@ public class ArtDao {
 
 	public int insertPurchase(Purchase p) { //예매 하기 
 		String[] seatList = p.getSeatName().split(" ");
-		
-		for(int i = 0 ; i < seatList.length; i++) {
-			System.out.println("seatList ^^lqkf" + seatList[i]);
-		}	
 		
 		Seat s = null;
 		
@@ -122,6 +117,22 @@ public class ArtDao {
 
 	public ArtTime selectATdateTime(ArtTime a) {
 		return sqlSession.selectOne("artMapper.selectATdateTime" , a);
+	}
+
+	public int selectCountReply(int artNo) {
+		return sqlSession.selectOne("artMapper.selectCountReply" , artNo);
+	}
+
+	public int selectArtNo() {
+		return sqlSession.selectOne("artMapper.selectArtNo");
+	}
+
+	public int insertExhibitionSeat() {
+		return sqlSession.insert("artMapper.insertExhibitionSeat");
+	}
+
+	public int insertExArtTime() {
+		return sqlSession.insert("artMapper.insertExArtTime");
 	}
 
 }
