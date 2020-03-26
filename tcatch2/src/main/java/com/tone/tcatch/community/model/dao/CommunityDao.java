@@ -75,4 +75,8 @@ public class CommunityDao {
 		return sqlSession.insert("communityMapper.insertReport",r);
 	}
 	
+	public ArrayList<Reply> getReplyArtList(int artNo) {
+	      return (ArrayList)sqlSession.selectList("communityMapper.selectArtReply",artNo);
+	   }
+	
 }
