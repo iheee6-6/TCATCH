@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>TACTCH</title>
+<link rel="shortcut icon" type="image/x-icon" href='${contextPath}/resources/images/common/logo.png'>
 <!-- Bootstrap core CSS -->
 
 <style>
@@ -71,7 +72,7 @@ margin-bottom:3%;
 										<td colspan="3"><hr></td>
 									</tr>
 								</table>
-								<input type="button" id="add" value="회차 추가">
+
 								
 								<div align="center">
 									<button type="submit" value="등록하기">등록하기</button>

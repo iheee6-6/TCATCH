@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>TCATCH</title>
+<link rel="shortcut icon" type="image/x-icon" href='${contextPath}/resources/images/common/logo.png'>
     <style type="text/css">
         body{font-family: 'NanumBarunGothic', '맑은 고딕', 'Malgun Gothic', sans-serif;}
     </style>
@@ -70,6 +70,7 @@
                 <div class="srch-list">
 				
                 <c:forEach var="a" items="${ list }"> 
+
 						<c:url var="adetail" value="musicalDetail.do">
 							<c:param name="artNo" value="${ a.artNo }"/>
 						</c:url>
@@ -82,20 +83,19 @@
                         <div>
                             <p class="item-state">
                                 <span class="item-state02">
-                                <c:if test="${ a.artType ==0 }">
-                                	전시
-                                </c:if>
-                                <c:if test="${ a.artType ==1 }">
-                                	콘서트
-                                </c:if>
-                                <c:if test="${ a.artType ==2 }">
-                                	뮤지컬
-                                </c:if>
-                                <c:if test="${ a.artType ==3 }">
-                                	공연
-                                </c:if>
-                                
-                                	</span>
+	                                <c:if test="${ a.artType ==0 }">
+	                                	전시
+	                                </c:if>
+	                                <c:if test="${ a.artType ==1 }">
+	                                	콘서트
+	                                </c:if>
+	                                <c:if test="${ a.artType ==2 }">
+	                                	뮤지컬
+	                                </c:if>
+	                                <c:if test="${ a.artType ==3 }">
+	                                	공연
+	                                </c:if>
+                                </span>
                             </p>
                             <p class="item-tit">
                                <a href="#">${a.artTitle}</a>

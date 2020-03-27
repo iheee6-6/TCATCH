@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>TACTCH</title>
+<link rel="shortcut icon" type="image/x-icon" href='${contextPath}/resources/images/common/logo.png'>
 <!-- Bootstrap core CSS -->
 
 <style>

@@ -10,6 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>TACTCH</title>
+<link rel="shortcut icon" type="image/x-icon" href='${contextPath}/resources/images/common/logo.png'>
 <!-- Bootstrap core CSS -->
 <style>
 .outer {
@@ -23,10 +24,7 @@ height:1500px;
    width: 100%;
    border: 1px solid rgba(0, 128, 0, 0.507);
 }
-#inner{
-width:100%;
-margin-bottom:3%;
-}
+
 </style>
 </head>
 
