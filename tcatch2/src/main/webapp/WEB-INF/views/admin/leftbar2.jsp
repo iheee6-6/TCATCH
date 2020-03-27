@@ -64,7 +64,7 @@ margin-bottom: 150px;
 			
 				<li id="interest"><a href="admin.do"> <i
 						class="fa fa-* fa-heart"></i>
-						<p>티켓 관리</p>
+						<p>예매 관리</p>
 				</a></li>
 				<li id="userU"><a href="adminList.do"> <i class="fa fa-* fa-user"></i>
 						<p>회원 탈퇴</p>
@@ -72,6 +72,9 @@ margin-bottom: 150px;
 				<li id="cnc"><a href="admin3.do"><i
 						class="fa fa-* fa-check"></i>
 						<p>신고목록</p></a></li>
+				<li id="viewPer"><a href="admin4.do"> <i
+						class="fa  fa-* fa-eye"></i>
+						<p>공연 입력</p></a></li>
 
 			</ul>
 		</div>

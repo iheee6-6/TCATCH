@@ -16,6 +16,21 @@ public class AdminController {
 		return "admin/admin";
 	}
 	
+	@RequestMapping("/admin4.do")
+	public String admin4() {
+		return "admin/admin4";
+	}
+	
+	@RequestMapping("/admin5.do")
+	public String admin5() {
+		return "admin/adminCompany";
+	}
+	
+	@RequestMapping("/admin6.do")
+	public String admin6() {
+		return "admin/adminInsert";
+	}
+	
 	
 	
 }
