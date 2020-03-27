@@ -1,5 +1,7 @@
 package com.tone.tcatch.art.model.vo;
 
+import java.sql.Date;
+
 public class Art {
 	private int artNo;	//공연번호
 	private int artType;//공연타입 : 0전시 , 1콘서트 , 2 뮤지컬 , 3연극
@@ -15,11 +17,14 @@ public class Art {
 	private String changeName; //사진이름
 	private int replyCount; //댓글 수 
 	private int jjimCount; //찜수 
+	private Date startDate; // 티켓 오픈 날짜 
+	private Date endDate; // 티켓 종료 날짜
 	 
 	public Art() {}
 
 	public Art(int artNo, int artType, String artTitle, String artExplain, int count, String address, int companyNo,
-			int rating, String status, int durationTime, int sale, String changeName, int replyCount , int jjimCount) {
+			int rating, String status, int durationTime, int sale, String changeName, int replyCount, int jjimCount,
+			Date startDate, Date endDate) {
 		super();
 		this.artNo = artNo;
 		this.artType = artType;
@@ -35,6 +40,8 @@ public class Art {
 		this.changeName = changeName;
 		this.replyCount = replyCount;
 		this.jjimCount = jjimCount;
+		this.startDate = startDate;
+		this.endDate = endDate;
 	}
 
 	public int getArtNo() {
@@ -149,12 +156,29 @@ public class Art {
 		this.jjimCount = jjimCount;
 	}
 
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Art [artNo=" + artNo + ", artType=" + artType + ", artTitle=" + artTitle + ", artExplain=" + artExplain
 				+ ", count=" + count + ", address=" + address + ", companyNo=" + companyNo + ", rating=" + rating
 				+ ", status=" + status + ", durationTime=" + durationTime + ", sale=" + sale + ", changeName="
-				+ changeName + ", replyCount=" + replyCount + ", jjimCount=" + jjimCount + "]";
+				+ changeName + ", replyCount=" + replyCount + ", jjimCount=" + jjimCount + ", startDate=" + startDate
+				+ ", endDate=" + endDate + "]";
 	}
 	
 	

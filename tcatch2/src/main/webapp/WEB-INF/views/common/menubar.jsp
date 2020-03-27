@@ -6,12 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>TCATCH</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<meta charset="UTF-8">
-
-<title>Ticket Catch</title>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"
 	scope="application" />
 	<link rel='stylesheet' type='text/css'
@@ -60,18 +57,18 @@ a{
 		</div>
 		<div class="pf-center">
 			<h2>
-				<a href="#">콘서트<span></span></a>
+				<a href="concert.do">콘서트<span></span></a>
 			</h2>
 			<h2>
 				<a href="musical.do">뮤지컬<span></span></a>
 
 			</h2>
 			<h2>
-				<a href="#">연극<span></span></a>
+				<a href="drama.do">연극<span></span></a>
 
 			</h2>
 			<h2>
-				<a href="#">전시<span></span></a>
+				<a href="exhibition.do">전시<span></span></a>
 
 			</h2>
 
@@ -85,21 +82,13 @@ a{
 
 		</div>
 		<div class="pf-right">
-			<div class="pf-top-srch" autocomplete="off">
-				<input type="text" id="searchWord" /> <input type="hidden" name=""
-					id="searchType" value="" /> <a href="#" onclick="jsf_mm_Search();"><img
-					src="http://tkfile.yes24.com/imgNew/common/pf-srch.png" alt=""
-					class="trans" /><img
-					src="http://tkfile.yes24.com/imgNew/common/pf-srch-w.png" alt=""
-					class="fixed" /></a>
-			</div>
+
 			<div class="pf-top-right">
 			<c:if test="${ empty sessionScope.loginUser }">
 			<a href="loginPage.do" class="my-ticket"><span>로그인</span></a>
 			</c:if>
 			<c:if test="${ !empty sessionScope.loginUser }">
 			<a href="enterMyPage.do" class="my-ticket"><span>${ loginUser.name } MY</span></a>
-			<a href="logout.do" class="global"><span>로그아웃</span></a>
 			</c:if>
 			</div>
 		</div>

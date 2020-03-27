@@ -174,6 +174,12 @@ public class ArtServiceImpl implements ArtService{
 	}
 
 
+	@Override
+	public ArrayList<Company> selectCompany() {
+		return aDao.selectCompany();
+	}
+
+
 	
 	
 	
