@@ -203,6 +203,7 @@ public class MemberController {
 		public String memberOut(@RequestParam("product_No") String[] product_No, @RequestParam("status") String status) {
 			Member m = new Member();
 			int result = 0;
+			
 			for(int i= 0; i<product_No.length; i++) {
 				m.setNo(Integer.parseInt(product_No[i]));
 				m.setmStatus(status);

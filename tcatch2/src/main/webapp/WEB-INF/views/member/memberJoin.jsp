@@ -188,7 +188,7 @@ span.error {
 						<input name="email" class="emailcheck0" id="mEmail">
 						<button class="btn" type="button" onclick="emailCheck();"
 							id="emailcheck1" name="emailcheck">인증하기</button><br>
-							 <input name="email" class="emailcheck5" id="text">
+							 <input class="emailcheck5" id="text">
                                                         <button class="btn" type="button" onclick="emailCheck1();"
                                                         id="emailcheck2" name="emailcheck1">인증번호 확인</button><br>
 					</div>

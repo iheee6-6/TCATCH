@@ -24,6 +24,7 @@ import com.tone.tcatch.community.model.service.CommunityService;
 import com.tone.tcatch.community.model.vo.Community;
 import com.tone.tcatch.community.model.vo.Reply;
 import com.tone.tcatch.community.model.vo.Report;
+import com.tone.tcatch.member.model.exception.MemberException;
 import com.tone.tcatch.member.model.vo.Member;
 
 @Controller
@@ -225,6 +226,41 @@ public class CommunityController {
 	      // 시분초 다루고 싶다면 java.util.Date 사용
 	      return gson.toJson(rList);
 	   }
+	
+	@RequestMapping(value="report.do")
+	public String report(@RequestParam("product_No") String[] product_No,@RequestParam("dNo") int[] dNo) {
+		Community c = new Community();
+		int result = 0;
+		Report d = new Report();
+		
+		for(int i =0; i<product_No.length; i++) {
+			c.setcNo(Integer.parseInt(product_No[i]));
+			result = cService.delReport(c);
+			cService.deleteR(dNo[i]);
+		}
+		
+		
+		
+		if(result>0) {
+			return "redirect:admin3.do";
+		}else {
+			throw new MemberException("신고 게시글 삭제 실패!");
+		}
+		
+		
+	}
+	
+	@RequestMapping("/admin3.do")
+	public ModelAndView admin3(ModelAndView mv) {
+		
+		ArrayList<Report> list = cService.selectReport();
+		if(list != null) {
+			mv.addObject("list",list).setViewName("admin/admin3");
+		}else {
+			throw new CommunityException("신고목록 출력실패");
+		}
+		return mv;
+	}
 	
 	
 	
