@@ -21,7 +21,8 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<link href="resources/css/mypage/mypage3.css" rel="stylesheet" />
+<link href="resources/css/mypage/mypage.css" rel="stylesheet" />
+<link href="resources/css/mypage/mypage2.css" rel="stylesheet" />
 <style>
 
 section,div {
@@ -60,6 +61,7 @@ margin-bottom: 150px;
 		</div>
 		<div class="sidebar-wrapper">
 			<ul class="nav">
+			
 				<li id="interest"><a href="admin.do"> <i
 						class="fa fa-* fa-heart"></i>
 						<p>티켓 관리</p>
@@ -67,6 +69,9 @@ margin-bottom: 150px;
 				<li id="userU"><a href="adminList.do"> <i class="fa fa-* fa-user"></i>
 						<p>회원 탈퇴</p>
 				</a></li>
+				<li id="cnc"><a href="admin3.do"><i
+						class="fa fa-* fa-check"></i>
+						<p>신고목록</p></a></li>
 
 			</ul>
 		</div>

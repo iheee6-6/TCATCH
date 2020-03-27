@@ -28,4 +28,10 @@ public interface CommunityService {
 	
 	ArrayList<Reply> getReplyArtList(int artNo); // Art 댓글
 
+	ArrayList<Report> selectReport();
+
+	int delReport(Community c);
+
+	int deleteR(int dNo);
+
 }

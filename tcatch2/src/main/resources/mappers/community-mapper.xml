@@ -25,7 +25,7 @@
 	
 	<resultMap type="Report" id="reportResultSet">
 		<id property="dNo" column="REPORT_NO"/>
-		<result property="reCNo" column="CNO"/>
+		<result property="reCno" column="CNO"/>
 		<result property="dType" column="REPORT_TYPE"/>
 		<result property="dContent" column="REPORT_WHY"/>
 		<result property="dWriter" column="DWRITER"/>
@@ -102,7 +102,7 @@
 	
 	<insert id="insertReport" parameterType="Report">
 		INSERT INTO REPORT
-		VALUES(SEQ_D_NO.NEXTVAL,#{reCno},#{dContent},#{dWriter},DEFAULT,#{dType},DEFAULT)
+		VALUES(SEQ_D_NO.NEXTVAL,#{reCno},#{dContent},#{dWriter},DEFAULT,DEFAULT,#{dType})
 	
 	</insert>
 	
@@ -114,5 +114,22 @@
       AND R.STATUS = 'Y'
       ORDER BY R_NO DESC
    </select>
+   
+   <select id="selectReport" resultMap="reportResultSet">
+   	SELECT *
+   	FROM REPORT
+   	WHERE STATUS = 'Y' OR STATUS = 'N'
+   	ORDER BY REPORT_NO DESC
+   </select>
+   
+   <delete id="delReport">
+   	DELETE FROM COMMUNITY
+   	WHERE CNO = #{cNo}
+   </delete>
+   
+   <delete id="deleteR">
+   	DELETE FROM REPORT
+   	WHERE REPORT_NO = #{dNo}
+   </delete>
 	
 </mapper>

@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-
 <link
 	href="${ contextPath }/resources/admin/vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
@@ -29,29 +27,34 @@
 }
 
 #id0 {
-	width: 10%;
+	width: 7%;
 }
 
 #id1 {
-	width: 15%;
+	width: 10%;
 }
 
 #id2 {
-	width: 20%;
+	width: 10%;
 }
 
 #id3 {
 	width: 15%;
-	text-align: center;
 }
+#id4{
+	width:43%;
+}
+#id5{
+	width:15%;
+}
+
 
 .card-body {
 	width: 100%;
 }
 </style>
-</head>
 <body>
-	<jsp:include page="../common/menubar2.jsp" />
+<jsp:include page="../common/menubar2.jsp" />
 	<br>
 	<br>
 	<br>
@@ -83,10 +86,10 @@
 
 			<!-- DataTales Example -->
 			<div class="card shadow mb-4">
-				<form action="memberOut.do" method="post">
+				<form action="report.do" method="post">
 
 					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">회원 관리</h6>
+						<h6 class="m-0 font-weight-bold text-primary">신고 내역 관리</h6>
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
@@ -95,34 +98,34 @@
 								<thead>
 									<tr>
 										<th></th>
-										<th>회원번호</th>
-										<th>회원아이디</th>
-										<th>회원명</th>
-										<th>가입날짜</th>
-										<th style="width: 15%;">상태</th>
+										<th>신고번호</th>
+										<th>글 번호</th>
+										<th>신고타입</th>
+										<th>신고내용</th>
+										<th style="width: 15%;">신고자</th>
 									</tr>
 								</thead>
 								<tfoot>
 									<tr>
 										<th></th>
-										<th>회원번호</th>
-										<th>회원아이디</th>
-										<th>회원명</th>
-										<th>가입날짜</th>
-										<th>상태</th>
+										<th>신고번호</th>
+										<th>글 번호</th>
+										<th>신고타입</th>
+										<th>신고내용</th>
+										<th>신고자</th>
 									</tr>
 								</tfoot>
 								<tbody>
-								<c:forEach var="m" items="${list }">
+								<c:forEach var="d" items="${list }">
 									<!-- 상품 리스트 뽑아내기 -->
 									<tr>
 										<td id="id0"><input type="checkbox" name="product_No"
-											value="${ m.no }"></td>
-										<td id="id1">${ m.no }</td>
-										<td id="id2">${ m.id }</td>
-										<td>${m.name }</td>
-										<td id="id3">${m.enrollDate }</td>
-										<td>${m.mStatus }</td>
+											value="${ d.reCno }"></td>
+										<td id="id1">${ d.dNo }<input type="hidden" name="dNo" value="${d.dNo }"></td>
+										<td id="id2">${ d.reCno }</td>
+										<td id="id3">${d.dType }</td>
+										<td id="id4">${d.dContent }</td>
+										<td id="id5">${d.dWriter }</td>
 									</tr>
 								</c:forEach>
 								</tbody>
@@ -130,12 +133,8 @@
 						</div>
 					</div>
 					<!-- 상품 상태 변경 : 가입 / 탈퇴 -->
-					<label>상태 변경 : </label> <select name="status">
-						<option value="Y">가입</option>
-						<option value="N">탈퇴</option>
-						<option selected>---</option>
-					</select> <input class="btn btn-outline-secondary"
-					style="font-size: 12px; height:40px;" type="submit" value="변경">
+					 <input type="submit" class="btn btn-outline-secondary"
+					style="font-size: 12px; height:40px;" value="신고 글 삭제">
 				</form>
 
 			</div>
@@ -156,6 +155,6 @@
 		src="${ contextPath }/resources/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 	<script
 		src="${ contextPath }/resources/admin/js/demo/datatables-demo.js"></script>
-	
+
 </body>
 </html>

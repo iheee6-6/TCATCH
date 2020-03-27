@@ -78,5 +78,20 @@ public class CommunityDao {
 	public ArrayList<Reply> getReplyArtList(int artNo) {
 	      return (ArrayList)sqlSession.selectList("communityMapper.selectArtReply",artNo);
 	   }
+
+	public ArrayList<Report> selectReport() {
+		
+		return (ArrayList)sqlSession.selectList("communityMapper.selectReport");
+	}
+
+	public int delReport(Community c) {
+		
+		return sqlSession.delete("communityMapper.delReport",c);
+	}
+
+	public int deleteR(int dNo) {
+		
+		return sqlSession.delete("communityMapper.deleteR",dNo);
+	}
 	
 }

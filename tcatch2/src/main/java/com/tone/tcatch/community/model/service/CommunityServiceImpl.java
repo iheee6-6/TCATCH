@@ -85,4 +85,22 @@ public class CommunityServiceImpl implements CommunityService{
 	   public ArrayList<Reply> getReplyArtList(int artNo) {
 	      return cDao.getReplyArtList(artNo);
 	   }
+
+	@Override
+	public ArrayList<Report> selectReport() {
+		
+		return cDao.selectReport();
+	}
+
+	@Override
+	public int delReport(Community c) {
+		
+		return cDao.delReport(c);
+	}
+
+	@Override
+	public int deleteR(int dNo) {
+		
+		return cDao.deleteR(dNo);
+	}
 }
