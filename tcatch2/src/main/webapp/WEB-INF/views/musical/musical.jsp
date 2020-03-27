@@ -10,6 +10,7 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 <title>TACTCH</title>
+<link rel="shortcut icon" type="image/x-icon" href='${contextPath}/resources/images/common/logo.png'>
 
 
 <!-- 상품 설명 UI -->
@@ -65,7 +66,7 @@ div {
 	<br>
 
 	<div class="cp-top-wrap">
-			
+			   
 		<section class='m2-sec02'>
 			<p class='m2-tit'>
 				<img src='${contextPath}/resources/images/musical/mLogo.png' />
@@ -73,6 +74,7 @@ div {
 		<button onclick="location.href='insert.do'">ArtInsert</button>
 		<button onclick="location.href='timeInsertForm.do'">TimeInsert</button>
 		<button onclick="location.href='companyInsertForm.do'">CompanyInsert</button>
+		<button onclick="location.href='searchArtForm.do'">search</button>
 				
 			<div class="rank-best">
 			<div>
@@ -85,7 +87,7 @@ div {
 						<img class='rank-best-img' src="${ contextPath }/resources/images/art/${ list[0].changeName }"/>
 					</span>
 						<p class="rlb-tit">${ list[0].artTitle }</p> <!-- 제목 -->
-						<p class="rlb-sub-tit">2020-09-21 ~ 2020-09-21<br>우리집에서 함</p> <!-- 날짜 및 시간 -->
+						<p class="rlb-sub-tit">${ list[0].startDate } ~ ${list[0].endDate}<br>${ list[0].address }</p> <!-- 날짜 및 시간 -->
 						<p class="rank-best-point">
 							<span class="star-point">
 								♥Like : ${ list[0].jjimCount }
@@ -103,7 +105,7 @@ div {
 						<img class='rank-best-img' src="${ contextPath }/resources/images/art/${ list[1].changeName }"/>
 					</span>
 						<p class="rlb-tit">${ list[1].artTitle }</p> <!-- 제목 -->
-						<p class="rlb-sub-tit">2020-09-21 ~ 2020-09-21<br>우리집에서 함</p> <!-- 날짜 및 시간 -->
+						<p class="rlb-sub-tit">${ list[1].startDate } ~ ${list[1].endDate}<br>${list[1].address}</p> <!-- 날짜 및 시간 -->
 						<p class="rank-best-point">
 							<span class="star-point">
 								♥Like : ${ list[1].jjimCount }
@@ -122,7 +124,7 @@ div {
 						<img class='rank-best-img' src="${ contextPath }/resources/images/art/${ list[2].changeName }"/>
 					</span>
 						<p class="rlb-tit">${ list[2].artTitle }</p> <!-- 제목 -->
-						<p class="rlb-sub-tit">2020-09-21 ~ 2020-09-21<br>우리집에서 함</p> <!-- 날짜 및 시간 -->
+						<p class="rlb-sub-tit">${ list[2].startDate } ~ ${list[2].endDate}<br>${list[2].address }</p> <!-- 날짜 및 시간 -->
 						<p class="rank-best-point">
 							<span class="star-point">
 								♥Like : ${ list[2].jjimCount }

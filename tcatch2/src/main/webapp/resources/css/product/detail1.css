@@ -80,10 +80,7 @@ q:before, q:after {
 	content: '';
 	content: none;
 }
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-a{text-decoration:none;outline:none;color:inherit;}
+
+a{font-size:0;text-decoration:none;outline:none;color:inherit;}
 input, select, textarea, div, p, span{outline:none;}
 input[type=text]::-ms-clear{width:0; height:0;overflow:hidden;visibility:hidden;} 

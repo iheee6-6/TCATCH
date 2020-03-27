@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TACTCH</title>
 
-	<link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/detail.css" />
+	<link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/detail3.css" />
 	<link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/detail2.css" />
 
 <!--          -->

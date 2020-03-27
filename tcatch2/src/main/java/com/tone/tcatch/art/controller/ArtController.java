@@ -68,6 +68,7 @@ public class ArtController {
 
 		ArrayList<Art> list = aService.selectList(2);
 		
+		System.out.println(list);
 		 
 		if(list != null) {
 			
@@ -188,12 +189,20 @@ public class ArtController {
 	
 	
 	
-	
+	@RequestMapping("/searchArtForm.do") 
+	public String searchArtForm() {
+		return "musical/artSearch";
+	}
 	
 	@RequestMapping("/searchArt.do") 
-	public String searchArt(String title) {
+	public ModelAndView searchArt(ModelAndView mv , String title) {
 		ArrayList<Art> list = aService.searchArt(title);
-		return "musical/buy";
+		System.out.println("search : " + list);
+		
+		mv.addObject("list", list);
+		mv.setViewName("musical/artSearch");
+		
+		return mv;
 	}
 	//검색
 	
@@ -276,9 +285,12 @@ public class ArtController {
 	
 	
 	@RequestMapping("/insert.do")
-	public String artInsertFoem() { //insertForm 이동
-		
-		return "musical/artInsertForm";
+	public ModelAndView artInsertFoem(ModelAndView mv) { //insertForm 이동
+		ArrayList<Company> cList =  aService.selectCompany();
+		System.out.println(cList);
+		mv.addObject("list",cList);
+		mv.setViewName("musical/artInsertForm");
+		return mv;
 	}
 	
 	
@@ -390,10 +402,12 @@ public class ArtController {
 		for(int i = 0 ; i< dateTime.length; i++) {
 			aT= new ArtTime( actor[i], dateTime[i].replaceAll("T", "") , dateCount[i]);
 			
+			aService.inserArtTime(aT);
+			
 			s.setTimeNo(dateCount[i]);
 			aService.insertSeat(s);
 			
-			aService.inserArtTime(aT);
+			
 		}
 		
 		return "redirect:musical.do";

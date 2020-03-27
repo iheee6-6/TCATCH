@@ -135,4 +135,8 @@ public class ArtDao {
 		return sqlSession.insert("artMapper.insertExArtTime");
 	}
 
+	public ArrayList<Company> selectCompany() {
+		return (ArrayList)sqlSession.selectList("artMapper.selectCompany");
+	}
+
 }

@@ -12,12 +12,12 @@
 
 	<!-- Detail Css -->
 	<!-- reset.css -->
-<link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/detail.css" />
+	<link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/detail1.css" />
 	<!-- sub.css -->
-<link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/detail2.css" />
+	<link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/detail2.css" />
 
   
-  <script type='text/javascript' src='http://tkfile.yes24.com/New/Js/jquery-3.4.1_min.js'></script>
+  
 
 	<!-- 지도 API -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -25,8 +25,8 @@
    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7ca88425a9b2838d03cea5da7be46498"></script>
 
 
-  <style type="text/css">
-  	body{font-family: 'NanumBarunGothic', '맑은 고딕', 'Malgun Gothic', sans-serif;}
+  <style>
+
   	
 a{
 	cursor:pointer;

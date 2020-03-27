@@ -86,6 +86,9 @@ public interface ArtService {
 	//insert Ex회차
 	int insertExArtTime();
 	
+	//회사 select
+	ArrayList<Company> selectCompany();
+	
 
 
 }

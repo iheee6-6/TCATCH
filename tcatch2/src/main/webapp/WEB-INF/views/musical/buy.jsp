@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TACTCH</title>
 
-	<link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/detail.css" />
+	<link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/detail1.css" />
 	<!-- sub.css -->
 	<link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/detail2.css" />
 	
@@ -54,7 +54,6 @@ td {
 }
  #td{
  	width:400px;
- 	height:100px;
  }
 
 #whktjr {
@@ -89,13 +88,16 @@ td {
 #imgg{
 	width:100%;
 	}
+.rn-03{
+	padding-bottom:0px;
+}
 </style>
 </head>
 <body>
 <div class="ms-list-view" style="height:650px">		
 	<div class="rn-03">
 	<img src='${contextPath}/resources/images/musical/mLogo.png' />
-	<br><br><br><br> 
+ 
 	<c:if test="${ art.artType != 0 }">
 
 		
@@ -141,7 +143,7 @@ td {
 					<input type="hidden" name="artNo" value="${ s.artNo }"> 
 					<input type="hidden" id="timeNo" name="timeNo" value="">  <!-- 즉 회차번호를 가져가는거임 -->
 							회차선택 &nbsp; : &nbsp;<select id="timeSelect" class="tt" >
-			                                    	 <option>-----------</option>                                   
+			                                    	 <option>---------------------------------</option>                                   
 			                                    <c:forEach var="t" items="${ aT }">
 			                               		     <option value="${t.dateCount }">${t.dateCount }회차 ${ t.dateTime }</option>
 			                                    </c:forEach>

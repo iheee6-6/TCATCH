@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+	<%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%>
+	<%
+		int count = 1;
+	%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>TACTCH</title>
 <!-- Bootstrap core CSS -->
-
 <style>
 .outer {
 width:500px;
@@ -73,10 +77,9 @@ margin-bottom:3%;
 										<td>회사</td>
 										<td><select name="companyNo" class="tt">
 												<option>----</option>
-												<option value="1">(주)회사 1</option>
-												<option value="2">(주)회사 2</option>
-												<option value="3">(주)회사 3</option>
-												<option value="4">(주)회사 4</option>
+												<c:forEach var="c" items="${ list }" >
+														<option value="<%= count++ %>">${ c.companyName }</option>
+												</c:forEach>
 										</select></td>
 										
 										<td>관람등급</td>
