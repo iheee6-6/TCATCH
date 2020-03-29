@@ -30,6 +30,7 @@ import com.tone.tcatch.mypage.model.service.MyPageService;
 import com.tone.tcatch.mypage.model.vo.Alarm;
 import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.art.model.vo.Img;
+import com.tone.tcatch.art.model.vo.Seat;
 import com.tone.tcatch.common.Pagination;
 import com.tone.tcatch.ticket.model.vo.Ticket;
 
@@ -248,6 +249,31 @@ public class MyPageController {
 		return "mypage/viewPSearch";
 	}
 
+	@RequestMapping("seatCheck.do")
+	public ModelAndView seatCheck(ModelAndView mv, 
+			@RequestParam(value="seat", required=true)String seat,
+			@RequestParam("artNo") String artNo , 
+			@RequestParam("timeNo") String timeNo) {
+		ArrayList<Seat> sList=new ArrayList<>();
+		try {
+			sList= mpService.selectSeatList(Integer.parseInt(artNo),Integer.parseInt(timeNo));
+		}catch(NumberFormatException e){
+			
+		}
+		mv.addObject("sList",sList);
+		mv.addObject("seat",seat);	
+		mv.setViewName("mypage/seatCheck");
+		return mv;
+	}
+	@RequestMapping("viewTheaterMap.do")
+	public ModelAndView viewTheaterMap(ModelAndView mv, 
+			@RequestParam("address") String address) {
+		
+		mv.addObject("address",address);
+		mv.setViewName("mypage/theaterMap");
+		return mv;
+	}
+	
 	@RequestMapping("refund.do")
 	public ModelAndView refund(ModelAndView mv, HttpSession session, 
 			@RequestParam(value="tNo", required=false)int tNo) throws MypageException {

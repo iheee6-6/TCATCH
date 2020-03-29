@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.art.model.vo.Img;
+import com.tone.tcatch.art.model.vo.Seat;
 import com.tone.tcatch.common.model.vo.PageInfo;
 import com.tone.tcatch.member.model.vo.Member;
 import com.tone.tcatch.mypage.model.vo.Alarm;
@@ -189,6 +190,7 @@ public class MyPageDao {
 	public String selectAView(String id) {
 		String aDate = sqlSession.selectOne("myPageMapper.selectAView",id);
 		if(aDate== null) { //예매내역이 없을 시 회원가입 날짜로 한다.
+			System.out.println("회원가입 날짜 시작");
 			aDate = sqlSession.selectOne("myPageMapper.selectEnrollDate",id);
 		}
 		return aDate;
@@ -211,6 +213,13 @@ public class MyPageDao {
 		map.put("artType", artType);
 		map.put("pName", pName);
 		return sqlSession.selectOne("myPageMapper.searchViewCount",map);
+	}
+
+	public ArrayList<Seat> selectSeatList(Integer artNo, Integer timeNo) {
+		Map<Object,Object> map = new HashMap<>();
+		map.put("artNo",artNo);
+		map.put("timeNo", timeNo);
+		return (ArrayList)sqlSession.selectList("myPageMapper.selectSeatList",map);
 	}
 
 	

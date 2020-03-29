@@ -17,6 +17,7 @@
 		<result property="seat" column="seat_name" />
 		<result property="receiveMethod" column="type" />
 		<result property="review_no" column="R_NO"/>
+		<result property="timeNo" column="TIME_NO"/>
 		
 		<result property="review_content" column="rcontent"/>
 		
@@ -68,7 +69,12 @@
 		<result property="name" column="M_NAME"/>
 		<result property="email" column="EMAIL"/>
 		<result property="phone" column="PHONE"/>
-
+	</resultMap>
+	
+	<resultMap id="SeatResultSet" type="Seat">
+		<id property="seatName" column="SEAT_NAME"/>
+		<result property="timeNo" column="TIME_NO"/>
+		<result property="artNo" column="ART_NO"/>	
 	</resultMap>
 	
 	<select id="selectRHistory" parameterType="Ticket"
@@ -83,7 +89,7 @@
 		resultMap="ticketResultSet">
 		SELECT * FROM (SELECT p.art_no,purchase_no,art_title,R_NO FROM PURCHASE p
 				JOIN ART a on(p.ART_NO=a.ART_NO)
-				JOIN ART_TIME td on(td.ART_NO=P.art_no)
+				JOIN ART_TIME td on(td.TIME_NO=P.TIME_no)
 				left JOIN IMG I ON(I.ART_NO=P.ART_NO)
 				left JOIN REPLY r ON(p.ART_NO=r.ART_NO)
 				JOIN MEMBER USING(M_NO)
@@ -157,7 +163,7 @@
 	 	SELECT COUNT(*)
 		FROM PURCHASE P
 		JOIN ART a on(p.ART_NO=a.ART_NO)
-		JOIN ART_TIME at on(p.ART_NO=at.ART_NO)
+		JOIN ART_TIME at on(p.TIME_NO=at.TIME_NO)
         JOIN MEMBER m on(m.M_NO=p.M_NO)
 		WHERE TO_CHAR(DATE_TIME,'YYYYMMDDHH24MISS') <![CDATA[< ]]>TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
 		AND m.M_ID=#{id}
@@ -174,14 +180,14 @@
 	</select>
 	
 	<select id="searchView" resultMap="ticketResultSet">
-		SELECT p.purchase_no, a.art_title,at.date_time, p.purchase_count,p.art_no,a.address,p.seat_name,p.type,
+		SELECT DISTINCT p.purchase_no, a.art_title,at.date_time, p.purchase_count,p.art_no,a.address,p.seat_name,p.type,
 		i.change_name,a.art_type, p.seat_sal  ,(SELECT R_NO FROM REPLY C JOIN MEMBER M on(C.RWRITER=M.M_ID)
 									where m.M_ID= #{id} AND C.STATUS='Y' AND C.art_no=P.art_no) as R_NO, 
 							(SELECT rcontent FROM REPLY C JOIN MEMBER M on(C.RWRITER=M.M_ID)
 									where m.M_ID= #{id} AND C.STATUS='Y' AND C.art_no=P.art_no) as rcontent
 		FROM PURCHASE P
 		JOIN ART a on(p.ART_NO=a.ART_NO)
-		JOIN ART_TIME at on(p.ART_NO=at.ART_NO)
+		JOIN ART_TIME at on(p.TIME_NO=at.TIME_NO)
         left JOIN IMG i on(p.ART_NO=i.ART_NO)
         JOIN MEMBER m on(m.M_NO=p.M_NO)
 		WHERE TO_CHAR(DATE_TIME,'YYYYMMDDHH24MISS') <![CDATA[< ]]>TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
@@ -204,8 +210,10 @@
 		FROM (select DATE_TIME 
 					FROM PURCHASE
 					JOIN MEMBER USING(M_NO)
-					JOIN ART_TIME USING(ART_NO)
-					WHERE M_ID=#{id} order by 1 ASC)
+					JOIN ART_TIME USING(TIME_NO)
+					WHERE M_ID=#{id}
+					AND TO_CHAR(DATE_TIME,'YYYYMMDDHH24MISS') <![CDATA[<]]> TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
+		             order by 1 ASC)
 		
 		WHERE ROWNUM <![CDATA[<= ]]>1
 	</select>
@@ -226,7 +234,7 @@
 	
 	<select id="selectAlarmUser" resultType="_int">
 		SELECT count(*) FROM PERSONAL JOIN MEMBER USING(M_NO) WHERE M_ID=#{id}
-			AND ART_NO=#{aNo}
+			AND ART_NO=#{aNo} AND PER_TYPE=2
 	</select>
 	
 	<insert id="insertAlarm">
@@ -260,12 +268,19 @@
 	
 	<select id="selectNoticeDetail" resultMap="PerformanceResultSet">
 		SELECT * FROM ART A
-		JOIN ART_TIME AT ON(A.ART_NO=AT.ART_NO)
 		JOIN TICKET_DATE T ON(T.ART_NO=A.ART_NO)
         JOIN COMPANY C ON(C.COMPANY_NO=A.COMPANY_NO)
 		WHERE A.ART_NO=#{artNo}
 	</select>
 
+	<select id="selectSeatList" resultMap="SeatResultSet">
+		SELECT *
+		FROM SEAT
+		WHERE TIME_NO =#{timeNo}
+		AND ART_NO=#{artNo}
+		ORDER BY 1
+	</select>
+	
 	<insert id="insertRefund" >
 		INSERT INTO REFUND
 		VALUES(REF_SEQ.NEXTVAL,#{tNo},sysdate,default)
@@ -329,7 +344,7 @@
 		select count(*)
 		FROM PURCHASE P
 		JOIN ART a on(p.ART_NO=a.ART_NO)
-		JOIN ART_TIME at on(p.ART_NO=at.ART_NO)
+		JOIN ART_TIME at on(p.TIME_NO=at.TIME_NO)
         left JOIN IMG i on(p.ART_NO=i.ART_NO)
         JOIN MEMBER m on(m.M_NO=p.M_NO)
 		WHERE TO_CHAR(DATE_TIME,'YYYYMMDDHH24MISS') <![CDATA[< ]]>TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')

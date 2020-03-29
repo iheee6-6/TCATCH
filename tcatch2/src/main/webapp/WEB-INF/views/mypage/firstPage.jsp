@@ -36,8 +36,8 @@ li a {
 								<button class="btn btn-sm" style="float: right;"
 									onclick="location.href='checknCancel.do'">더보기</button>
 								&nbsp;
-								<p class="card-category" style="margin-left: 190px;">최근
-									3개의 예매 내역입니다.</p>
+								<p class="card-category" style="margin-left: 190px;">최근 3개의
+									예매 내역입니다.</p>
 							</div>
 							<div class="card-body">
 								<table class="table">
@@ -90,10 +90,7 @@ li a {
 								</h4>
 								<button class="btn btn-sm" style="float: right;"
 									onclick="location.href='interestPerformance.do'">더보기</button>
-								<%-- &nbsp;
-								<p class="card-category" style="margin-left: 200px;">
-									'나의 관심공연'이 <em>${fn:length(recentInterestList)}</em>개 있습니다.
-								</p> --%>
+
 							</div>
 							<div class="card-body">
 								<ul id="ulInteresetPerfList" class="my_list01"
@@ -107,29 +104,27 @@ li a {
 										<c:otherwise>
 											<c:forEach var="I" items="${recentInterestList}">
 												<li class="rI">
-													<div>
+													<div style="width:300px;">
 														<c:url var="pDetail" value="musicalDetail.do">
 															<c:param name="artNo" value="${I.artNo }" />
 														</c:url>
 														<c:forEach var="img" items="${imgList}">
-																<c:if test="${img.artNo eq I.artNo }">
-																	<a href="${pDetail}">
-																	<img src="resources/images/art/${img.changeName }"
-																		class="poster_line" width="53" height="65"></a>
-																	</a>
-																</c:if>
+															<c:if test="${img.artNo eq I.artNo }">
+																<a href="${pDetail}"> <img
+																	src="resources/images/art/${img.changeName }"
+																	class="poster_line" width="53" height="65"></a>
+																</a>
+															</c:if>
 														</c:forEach>
-														
+
 														<a href="${pDetail }"><strong>${I.artTitle }</strong></a>
-														<%-- <fmt:parseDate var="sdateString" value="${I.startDate}" pattern="yyyy.MM.dd" />
-													<fmt:parseDate var="edateString" value="${I.endDate}" pattern="yyyy.MM.dd" />
-													 --%>
+
 														<span>${I.startDate}~${I.endDate}</span> <span>${I.address }</span>
 														<!-- 2020.03.04 -->
 													</div>
 												</li>
 											</c:forEach>
-											
+
 										</c:otherwise>
 									</c:choose>
 								</ul>
@@ -162,48 +157,51 @@ li a {
 														</c:url>
 
 														<c:forEach var="img" items="${imgList}">
-																<c:if test="${img.artNo eq v.artNo }">
-																<a href="${vpDetail }">
-																<img src="resources/images/art/${img.changeName }"
-																		class="poster_line" width="53" height="65"></a>
-																</c:if>
+															<c:if test="${img.artNo eq v.artNo }">
+																<a href="${vpDetail }"> <img
+																	src="resources/images/art/${img.changeName }"
+																	class="poster_line" width="53" height="65"></a>
+															</c:if>
 														</c:forEach>
-													<a href="${vpDetail }"><strong>${v.artTitle }</strong></a>
-													<span class="red"></span>
-													<span>예매번호: ${v.tNo }</span>
-													<span style="margin-top: 10px;"> <c:if test="${empty v.review_no }">
-															<a href="${vpDetail }"> <img class="firstBtn"
-																src="resources/images/mypage/btn_minfor.gif" alt="공연정보"></a>
-															<a href="${vpDetail }"> <img
-																src="resources/images/mypage/btn_after.gif" alt="관람후기 작성"></a>
-														</c:if> <c:if test="${!empty v.review_no }">
-															<a href="${vpDetail }"> <img
-																style="margin-left: 100px"
-																class="firstBtn"
-																src="resources/images/mypage/btn_minfor.gif" alt="공연정보">
-															</a>
-														</c:if></span>
-									</div>
-								</li>
-							</c:forEach>
+														<a href="${vpDetail }"><strong>${v.artTitle }</strong></a>
+														<span class="red"></span> <span>예매번호: ${v.tNo }</span> <span
+															style="margin-top: 10px;"> <c:if
+																test="${empty v.review_no }">
+																<a href="${vpDetail }"> <img class="firstBtn"
+																	src="resources/images/mypage/btn_minfor.gif" alt="공연정보"></a>
+																<a href="${vpDetail }"> <img
+																	src="resources/images/mypage/btn_after.gif"
+																	alt="관람후기 작성"></a>
+															</c:if> <c:if test="${!empty v.review_no }">
+																<a href="${vpDetail }"> <img
+																	style="margin-left: 100px" class="firstBtn"
+																	src="resources/images/mypage/btn_minfor.gif" alt="공연정보">
+																</a>
+															</c:if></span>
+													</div>
+												</li>
+											</c:forEach>
 
 
-							<script>
-								$(".rV div").last().attr("class","end").css("width","255px");
-								$(".rI div").last().attr("class","end").css("width","255px");
-					        </script>
-							</c:otherwise>
-							</c:choose>
+											
+										</c:otherwise>
+									</c:choose>
 
-							</ul>
+								</ul>
+							</div>
 						</div>
-					</div>
 
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	</div>
+	<script>
+		$(function() {
+			$(".rV div").last().attr("class", "end").css("width", "300px");
+			$(".rI div").last().attr("class", "end").css("width", "300px");
+		});
+	</script>
 	<jsp:include page="../common/footer.jsp" />
 </body>
 

@@ -23,6 +23,7 @@
 	margin-left: 210px;
 }
 </style>
+	<%	int index = 1;%>
 	<c:choose>
 		<c:when test="${empty viewPerformanceList }">
 			<div
@@ -30,7 +31,7 @@
 				관람내역이 없습니다.</div>
 		</c:when>
 		<c:otherwise>
-			<%	int index = 1;%>
+			
 			<c:forEach var="v" items="${viewPerformanceList }">
 
 				<div class="memo end">
@@ -45,11 +46,6 @@
 						style="margin-right: 50px; margin-left: 30px; padding: 0px;">
 						<img src="resources/images/art/${v.renameFile }" width="141" height="174">
 					</p>
-					<%-- <c:if test="${!empty v.renameFile }">
-						 <script>
-							$(".poster img").attr("src","resources/images/art/${v.renameFile }");
-						 </script>
-					</c:if> --%>
 					
 					<ul>
 						<li><em>예매번호</em><span class="bold">${v.tNo }</span></li>
@@ -60,10 +56,8 @@
 							<c:when test="${v.artType ==3 }"><span>연극</span></c:when>
 							<c:otherwise><span>전시</span></c:otherwise>
 						</c:choose></li>
-						<!-- 2014.08.16 06:00 -->
-						<fmt:parseDate var="dateString" value="${v.viewDate }"
-							pattern="yyyy-MM-dd" />
-						<fmt:formatDate var="vDate" value="${dateString }"
+						
+						<fmt:formatDate var="vDate" value="${v.viewDate }"
 							pattern="yyyy.MM.dd : aaa hh:mm" />
 
 						<li><em>관람일시</em><span>${vDate }</span></li>

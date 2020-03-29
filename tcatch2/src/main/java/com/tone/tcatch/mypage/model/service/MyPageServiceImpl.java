@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.art.model.vo.Img;
+import com.tone.tcatch.art.model.vo.Seat;
 import com.tone.tcatch.common.Pagination;
 import com.tone.tcatch.common.model.vo.PageInfo;
 import com.tone.tcatch.member.model.vo.Member;
@@ -161,6 +162,11 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public int selectvCount(String id) {
 		return mpDao.selectvCount(id);
+	}
+
+	@Override
+	public ArrayList<Seat> selectSeatList(Integer artNo, Integer timeNo) {
+		return mpDao.selectSeatList(artNo,timeNo);
 	}
 
 	

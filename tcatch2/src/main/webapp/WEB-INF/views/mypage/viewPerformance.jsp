@@ -39,19 +39,13 @@ div.btnL {
 }
 .ui-datepicker { width: 17em; padding: .2em .2em 0; display: none; font-size: 20px;}
 
-
-
-/* .ui-state-default,
-.ui-state-default ui-state-active{
-    height: 20px !important;
-} */
 </style>
 <!-- datepicker -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 
 </head>
-<body class="">
+<body>
 
 <jsp:include page="../common/menubar2.jsp" />
 
@@ -73,7 +67,7 @@ div.btnL {
 									입니다.
 								</p>
 							</div>
-							<div class="card-body">
+							<div class="card-body" style="margin:auto">
 								<div class="mypage_contain" style="margin: 4px;">
 									<form action="selectViewP.do" method="post">
 										<div class="date_list" style="border: 1px solid gray;">
