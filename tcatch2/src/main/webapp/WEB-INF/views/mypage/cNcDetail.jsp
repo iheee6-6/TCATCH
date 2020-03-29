@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -33,7 +33,7 @@ ul{
 									<i class="fa fa-* fa-bookmark"></i> &nbsp;</i>예매내역
 								</h4>
 							</div>
-							<div class="card-body">
+							<div class="card-body" style="margin:auto">
 								<div id="mypage_contain" class="mypage_contain">
 
 									<div class="mycont">
@@ -55,27 +55,27 @@ ul{
 												</tr>
 												<tr id="trPerfDateTime">
 													<th class="le">관람일</th>
-													
-													<fmt:parseDate value="${ticket.viewDate }" var="viewDate" pattern="yyyy-MM-dd"/>
-													<fmt:formatDate var="viewDatef" value="${viewDate}" pattern="yyyy.MM.dd : aaa hh:mm"/>
+													<fmt:formatDate var="viewDatef" value="${ticket.viewDate }" pattern="yyyy.MM.dd : aaa hh:mm"/>
 													<td colspan="3" class="ri"><strong>${viewDatef}</strong></td>
 													<!-- 2020.02.09 15:00 -->
 												</tr>
 												<tr id="trTheater">
 													<th class="le">공연장</th>
 													<td colspan="3" class="ri">${ticket.address } <a
-														class='dcursor' onclick='jsf_otv_ViewTheaterMap(3422);'><img
+														class='dcursor' onclick='ViewTheaterMap();'><img
 															src='resources/images/mypage/btn_map.gif'
 															alt='약도' /></a></td>
 												</tr>
+												<c:if test="${ticket.artType ne 0 }">
 												<tr id="trSeat">
 													<th class="le">좌석
 														<p>
-															<a href='javascript:;MySeatPopup();'><img
+															<a href='javascript:MySeatPopup();'><img
 																src='resources/images/mypage/btn_chkseat.gif'
 																alt='좌석위치보기' style='margin-left: -7px' /></a>
 														</p>
 													</th>
+													
 													<td colspan="3" class="ri">
 														<div class="scroll">
 														<c:forTokens items="${ticket.seat}" var="s" delims=" ">
@@ -85,6 +85,7 @@ ul{
 														</div>
 													</td>
 												</tr>
+												</c:if>
 												<tr>
 													<th class="le">티켓수령방법
 														<p></p>
@@ -100,7 +101,10 @@ ul{
 														<c:otherwise>
 															<span class="blu">택배</span> 
 															<c:if test="${ ticket.wayBill ne 0}">
-																<span>${ticket.wayBill}</span> 
+																<span>운송장 번호 : ${ticket.wayBill}</span> 
+															</c:if>
+															<c:if test="${ticket.wayBill eq 0 }">
+																<span>배송준비중</span>
 															</c:if>
 														</c:otherwise>
 														</c:choose>
@@ -132,8 +136,7 @@ ul{
 												</colgroup>
 												<tr>
 													<th class="le">예매일시</th>
-													<fmt:parseDate value="${ticket.tDate }" var="tDate" pattern="yyyy-MM-dd"/>
-													<fmt:formatDate value="${tDate}" var="tDatef" pattern="yyyy.MM.dd : aaa hh:mm"/>
+													<fmt:formatDate value="${ticket.tDate}" var="tDatef" pattern="yyyy.MM.dd : aaa hh:mm"/>
 													
 													<td class="ri">${tDatef }</td>
 													<th>예매상태</th>
@@ -141,36 +144,12 @@ ul{
 												</tr>
 												<tr>
 													<th class="le">총결제금액</th>
-													<td class="ri"><span class='red tit'><strong>${ticket.price }</strong>원</span><br />
-													<span class='sm'>(티켓금액 <strong>${ticket.price}</strong>원 +
-															예매수수료 <strong>1,000</strong>원 + 배송비 <strong>0</strong>원)
-													</span></td>
-													<!--  <th>현금영수증<a class="dcursor"
-														onclick="jsf_otv_CashReceiptGuide();"><img
-															src="http://tkfile.yes24.com/img/mypage/btn_ques.gif"
-															alt="현금영수증 안내" /></a></th>
-													<td class="ri">미신청<br />
-													<a class='dcursor'
-														onclick='jsf_otv_CashReceiptIssue(1530778690,1);'><img
-															src='http://tkfile.yes24.com/img/mypage/btn_prop.gif'
-															alt='현금영수증 신청' /></a>&nbsp;
-													</td>-->
-												</tr>
-												<tr>
-													<th class="le">결제수단</th>
-													<td colspan="3" class="ri">
-														<div>
-															<em>무통장입금</em>
-															<div class='sub_list'>
-																<span>- 입금계좌: 기업은행 07501540897803 / 예금주: 예스이십사㈜</span><span>-
-																	입금마감시간: <strong>2020.01.31 (금) 23:29:59까지 총
-																		결제금액 41,000</strong>원이 입금되지 않으면 자동 취소됩니다.
-																</span><span>* 은행에 따라 밤 11시 30분 이후로는 온라인 입금이 제한될 수 있습니다.</span>
-															</div>
-
-														</div>
+													<td class="ri" colspan="3">
+														<span class='red tit'><strong>${ticket.price }</strong>원</span><br />
+													
 													</td>
 												</tr>
+												
 
 											</table>
 
@@ -185,57 +164,23 @@ ul{
 											</h2>
 											<div class="gray_box02 " style="padding: 10px;">
 												<h4 style="margin-top: 10px;">
-												<%-- <fmt:parseDate value="${ticket.viewDate}" var="viewDate" pattern="yyyy-MM-dd"/>
-													<fmt:formatDate var="vDatef" value="${viewDate}" pattern="yyyy.MM.dd(E) : aaa hh:mm"/>
-													 --%>
-													※ 취소 마감시간 :<span class='text-danger'> ${viewDatef}</span> 까지
+												<fmt:formatDate value="${ticket.viewDate}" pattern="yyyy-MM-dd HH:mm" var="end"/>
+													
+													※ 취소 마감시간 :<span class='text-danger' id="endT">${endT}</span> 까지
 												</h4>
-												<div id="tblCancelinfo2">
-													<h3>취소 수수료 안내></h3>
-													<ul>
-														<li>- 취소 일자에 따라서 취소수수료가 달라집니다 <span>* 단, 예매 당일
-																밤 12시 이전 취소시에는 취소수수료 없음(취소기한내에한함)</span></li>
-														<li>- 취소 시 예매수수료는 예매 당일 밤 12시 이전까지 환불되며, 그 이후 기간에는
-															환불되지 않습니다.</li>
-														<li class="f_n">- 취소수수료 관련 기타 자세한 내용은 예매 <a
-															href="http://ticket.yes24.com/Pages/UserGuide/Cancel.aspx"><em>이용안내
-																	>수수료</em></a> 안내를 확인해주세요.
-														</li>
-													</ul>
-													<table class="table_sm">
-														<colgroup>
-															<col width="30%" />
-															<col width="30%" />
-															<col width="*" />
-														</colgroup>
-														<tr>
-															<th>내용</th>
-															<th>취소일</th>
-															<th>취소수수료</th>
-														</tr>
-														<tr>
-															<td>미부과 기간</td>
-															<td>2020.01.30 ~ 2020.01.30</td>
-															<td>없음</td>
-														</tr>
-														<tr>
-															<td>관람일 9일전 ~관람일 7일전까지</td>
-															<td>2020.01.31 ~ 2020.02.02</td>
-															<td>티켓금액의 10%</td>
-														</tr>
-														<tr>
-															<td>관람일 6일전 ~관람일 3일전까지</td>
-															<td>2020.02.03 ~ 2020.02.06</td>
-															<td>티켓금액의 20%</td>
-														</tr>
-														<tr>
-															<td>관람일 2일전 ~관람일 1일전까지</td>
-															<td>2020.02.07 ~ 2020.02.08</td>
-															<td>티켓금액의 30%</td>
-														</tr>
-													</table>
-
-												</div>
+												
+												
+												<script>
+												$(function(){
+												
+												var date = new Date('${end}');
+													console.log(date.getTime()-60*60*1000);
+													date.setTime(date.getTime()-60*60*1000);
+													
+													$("#endT").text(moment(date).format('LLL'));
+													
+												})
+												</script> 
 											</div>
 											<c:if test="${ticket.status eq '예매완료'}">		
 											<ul class="gbox_notice" style="text-align: right;">
@@ -265,14 +210,10 @@ ul{
 										</h2>
 										<div class="gray_box03">
 											<ul>
-												<li class="red">- 취소 시 예매수수료는 예매 당일 밤 12시 이전까지 환불되며, 그
-													이후 기간에는 환불되지 않습니다.</li>
 												<li>- 티켓 수령 방법 변경(현장수령 -> 배송)은 예매 완료된 건에 한하며, 배송비 결제는
 													신용카드만 결제 가능합니다.(단 공연일 기준 12일 전까지 / 일부 공연 불가)</li>
 												<li>- 다음과 같은 경우 PC/모바일에서는 취소 또는 부분취소가 불가하오니 고객센터로
-													문의해주시기 바랍니다.<br /> &nbsp;&nbsp; 1) YES머니, YES상품권, 쿠폰 등 예스24
-													결제수단을 사용하여 예매한 경우<br /> &nbsp;&nbsp; 2) 무통장입금 예매 후 신용카드로
-													배송비를 추가 결제한 경우<br /> &nbsp;&nbsp; 3) 티켓 배송이 완료되었거나 시작된 경우<br />
+													문의해주시기 바랍니다.<br /> &nbsp;&nbsp; 1) 티켓 배송이 완료되었거나 시작된 경우<br />
 													&nbsp;&nbsp;&nbsp;&nbsp;(취소마감시간 이전에 고객센터로 반송되어야 취소 가능, 취소
 													수수료는 티켓 도착일 기준으로 부과되며 배송비는 환불 불가)
 												</li>
@@ -286,10 +227,7 @@ ul{
 												</li>
 												<li>- 신용카드 예매 취소 시에는 발생되는 수수료(부분취소 시에는 취소수수료+잔여티켓금액 등)에
 													대한 금액을 재 결제 후 기존 결제내역은 전체 취소됩니다.</li>
-												<li>- 복합결제로 예매한 경우 전체 취소 시 각 결제 수단(YES머니, YES상품권 등)으로
-													자동환급됩니다. 단 YES상품권, 예매권 등 사용기한이 <br />
-													&nbsp;&nbsp;&nbsp;만료된 경우 재사용하실 수 없습니다.
-												</li>
+												
 												<li>- 예매 취소 시점과 해당 카드사의 환불 처리 기준에 따라 환급방법과 환급일은 다소 차이가
 													있을 수 있습니다.</li>
 												<li>- 기타 문의사항은 [이용안내]를 참고하시거나, 고객센터(1544-6399) 또는
@@ -317,11 +255,33 @@ ul{
 		
 		$("#imgCancelPayNone").click(function(){
 			if(confirm("정말 예매취소하시겠습니까?")){
-			location.href='${ tdelete }';
+				var date = new Date();
+				
+				var endT = $("#endT").text();
+				console.log(date);
+				console.log(endT);
+				
+				console.log(moment(date).format("LLL") - endT);
+				if(moment(date).format("LLL") < endT){
+					location.href='${ tdelete }';
+				}else{
+					alert("취소가능일 지났습니다.");
+				}
 			}
 		});
+		
+		
 	});
+	function MySeatPopup(){
+			 window.open("seatCheck.do?seat='${ticket.seat}&artNo='${ticket.artNo}'&timeNo='${ticket.timeNo}'", "내 자리 확인", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
+	}  
+	function ViewTheaterMap(){
+		window.open("viewTheaterMap.do?address='${ticket.address }'", "극장 위치 확인", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
+	}
 	</script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/ko.js"></script>
+	
 	<jsp:include page="../common/footer.jsp"/>
 </body>
 

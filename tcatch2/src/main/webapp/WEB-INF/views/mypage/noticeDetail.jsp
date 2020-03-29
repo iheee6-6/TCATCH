@@ -14,7 +14,7 @@
 <link href="resources/css/mypage/notice.css" rel="stylesheet" />
 <style>
 .wrapper {
-	margin-top: 120px;
+	margin-top: 170px;
 }
 
 dd ul{
@@ -26,8 +26,8 @@ dd ul{
 	<jsp:include page="../common/menubar2.jsp" />
 	<div class="wrapper">
 	
-		<div id="NoticeRead" style="display: block;">
-			<div class="noti-view-tit">
+		<div id="NoticeRead" style="display: block; ">
+			<div class="noti-view-tit" style="margin-top:10px;">
 				<span class="noti-tit-tag01">티켓오픈</span>
 				<p>${notice.artTitle }</p>
 
@@ -36,7 +36,7 @@ dd ul{
 			<input type="hidden" id="hdNotiTitle"
 				value="${notice.artTitle }">
 			<div class="noti-view-date">
-				<span>조회수 :${count}</span>
+				
 			</div>
 
 			<div class="noti-view-ticket">
@@ -95,6 +95,7 @@ dd ul{
 				
 				
 				$("#insertAlarm").click(function(){
+					$("#AlarmModal").modal("hide");
 					var aNo=${notice.artNo};
 					 $.ajax({
 					        type : "POST", 
@@ -133,6 +134,7 @@ dd ul{
 						<dt>관람시간</dt>
 						<dd>&nbsp;총 ${notice.durationTime }분(인터미션 없음)</dd>
 						
+						<c:if test="${notice.artType ne 0}">
 						<dt>좌석</dt>
 						<dd><ul style="padding:0px">
 						  <li>R석 <span class='rn-red'>80,000</span>원</li>
@@ -145,6 +147,7 @@ dd ul{
                                 <span class='rn-red'>88,000</span>원
                              </p></dd>
 						</dl>
+						</c:if>
 					</div>
 				</div>
 				

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.art.model.vo.Img;
+import com.tone.tcatch.art.model.vo.Seat;
 import com.tone.tcatch.member.model.vo.Member;
 import com.tone.tcatch.mypage.model.vo.Alarm;
 import com.tone.tcatch.ticket.model.vo.Ticket;
@@ -61,6 +62,8 @@ public interface MyPageService {
 	int selectAlarmUser(String id, int aNo);
 
 	int selectvCount(String id);
+
+	ArrayList<Seat> selectSeatList(Integer artNo, Integer timeNo);
 
 
 }
