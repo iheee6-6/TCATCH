@@ -180,6 +180,12 @@ public class ArtServiceImpl implements ArtService{
 	}
 
 
+	@Override
+	public ArrayList<Art> selectRank(int i) {
+		return aDao.selectRank(i);
+	}
+
+
 	
 	
 	

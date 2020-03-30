@@ -88,6 +88,9 @@ public interface ArtService {
 	
 	//회사 select
 	ArrayList<Company> selectCompany();
+
+	//메인 topList
+	ArrayList<Art> selectRank(int i);
 	
 
 

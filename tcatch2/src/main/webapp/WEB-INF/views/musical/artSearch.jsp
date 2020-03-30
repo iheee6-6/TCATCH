@@ -13,6 +13,7 @@
     </style>
     <link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/detail1.css" />
     <link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/search.css" />
+
 </head>
   <body>
 

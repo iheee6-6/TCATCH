@@ -58,7 +58,7 @@
          <div class='m2-kv'>
             <div class='swiper-container m2-kvs'>
                <div class='swiper-wrapper'>
-                  <c:forEach var="a" items="${list }">
+                  <c:forEach var="a" items="${list2 }">
                           <c:url var="adetail" value="musicalDetail.do">
                              <c:param name="artNo" value="${ a.artNo }"/>
                         </c:url>
@@ -87,16 +87,11 @@
    
    <!-- top list -->
    <br>
-   <h1 align="center">Top List</h1>
-   
+  <h1 align="center">	<img src='${contextPath}/resources/images/musical/exhibition.png' /></h1>
    <div class="album py-5">
-
     <div class="container" >
-
-      <div class="row">
-      
-      <c:forEach var="a" items="${list }">
-
+      <div class="row">   
+      <c:forEach var="a" items="${list0 }">
         <c:url var="adetail" value="musicalDetail.do">
            <c:param name="artNo" value="${ a.artNo }"/>
       </c:url>
@@ -116,13 +111,102 @@
               </div>
             </div>
           </div>
-        </div>
         </a>
-        </c:forEach>
+        </div>
+     </c:forEach>     
+      </div>
+    </div>
+  </div>
+  
+  <h1 align="center">	<img src='${contextPath}/resources/images/musical/concert.png' /></h1>
+   <div class="album py-5">
+    <div class="container" >
+      <div class="row">   
+      <c:forEach var="a" items="${list1 }">
+        <c:url var="adetail" value="musicalDetail.do">
+           <c:param name="artNo" value="${ a.artNo }"/>
+      </c:url>
+        <div class="col-md-4">
+        <a href="${adetail}">
+          <div class="card mb-4 shadow-sm">
+         <img id="imgg" class='lazyload' src="${ contextPath }/resources/images/art/${ a.changeName }"/>
 
-        
-        
-        
+            <text x="50%" y="50%" fill="#eceeef" dy=".3em">${ a.artTitle }</text></svg>
+            <div class="card-body">
+              <p class="card-text"></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                      ${a.startDate } ~ ${ a.endDate }
+                </div>
+                <small class="text-muted">조회수 ${a.count }</small>
+              </div>
+            </div>
+          </div>
+        </a>
+        </div>
+     </c:forEach>     
+      </div>
+    </div>
+  </div>
+  
+  <h1 align="center">	<img src='${contextPath}/resources/images/musical/mLogo.png' /></h1>
+   <div class="album py-5">
+    <div class="container" >
+      <div class="row">   
+      <c:forEach var="a" items="${list2 }">
+        <c:url var="adetail" value="musicalDetail.do">
+           <c:param name="artNo" value="${ a.artNo }"/>
+      </c:url>
+        <div class="col-md-4">
+        <a href="${adetail}">
+          <div class="card mb-4 shadow-sm">
+         <img id="imgg" class='lazyload' src="${ contextPath }/resources/images/art/${ a.changeName }"/>
+
+            <text x="50%" y="50%" fill="#eceeef" dy=".3em">${ a.artTitle }</text></svg>
+            <div class="card-body">
+              <p class="card-text"></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                      ${a.startDate } ~ ${ a.endDate }
+                </div>
+                <small class="text-muted">조회수 ${a.count }</small>
+              </div>
+            </div>
+          </div>
+        </a>
+        </div>
+     </c:forEach>     
+      </div>
+    </div>
+  </div>
+  
+  <h1 align="center">	<img src='${contextPath}/resources/images/musical/drama.png' /></h1>
+   <div class="album py-5">
+    <div class="container" >
+      <div class="row">   
+      <c:forEach var="a" items="${list3 }">
+        <c:url var="adetail" value="musicalDetail.do">
+           <c:param name="artNo" value="${ a.artNo }"/>
+      </c:url>
+        <div class="col-md-4">
+        <a href="${adetail}">
+          <div class="card mb-4 shadow-sm">
+         <img id="imgg" class='lazyload' src="${ contextPath }/resources/images/art/${ a.changeName }"/>
+
+            <text x="50%" y="50%" fill="#eceeef" dy=".3em">${ a.artTitle }</text></svg>
+            <div class="card-body">
+              <p class="card-text"></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                      ${a.startDate } ~ ${ a.endDate }
+                </div>
+                <small class="text-muted">조회수 ${a.count }</small>
+              </div>
+            </div>
+          </div>
+        </a>
+        </div>
+     </c:forEach>     
       </div>
     </div>
   </div>
