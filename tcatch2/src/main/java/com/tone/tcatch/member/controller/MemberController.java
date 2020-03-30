@@ -116,7 +116,7 @@ public class MemberController {
 			// web.xml로 이동 !! 
 			
 			// 주소값은 , 구분자를 두고 저장
-			m.setAddress(post + " " + address1 + " " + address2);
+			m.setAddress(post + "," + address1 + "," + address2);
 			m.setPhone(phone1 + "-" + phone2 + "-" +phone3);
 			
 			int result = mService.insertMember(m);
