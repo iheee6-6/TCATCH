@@ -350,4 +350,10 @@
 		WHERE TO_CHAR(DATE_TIME,'YYYYMMDDHH24MISS') <![CDATA[< ]]>TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
 		AND m.M_ID=#{id}
 	</select>
+	
+	<select id="selectAdminTicket" resultMap="ticketResultSet">
+		SELECT *
+		FROM TICKET_VIEW
+		ORDER BY purchase_no DESC
+	</select>
 </mapper>

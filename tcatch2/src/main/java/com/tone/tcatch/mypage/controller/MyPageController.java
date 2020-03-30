@@ -432,5 +432,15 @@ public class MyPageController {
 			System.out.println(e);
 		}
 	}
+	
+	@RequestMapping("adminChecknCancel.do")
+	public ModelAndView adminchecknCancel(ModelAndView mv, HttpSession session) {
+
+		ArrayList<Ticket> ticketList = mpService.selectAdminTicketList();
+		System.out.println("T : " +ticketList);
+		mv.addObject("ticketList", ticketList);
+		mv.setViewName("admin/admin");
+		return mv;
+	}
 
 }

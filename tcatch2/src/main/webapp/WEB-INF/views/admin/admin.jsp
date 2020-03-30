@@ -36,11 +36,19 @@
 }
 
 #id2 {
-	width: 10%;
+	width:20%;
 }
 
 #id3 {
-	width: 8%;
+	width: 20%;
+	text-align: center;
+}
+#id4 {
+	width: 10%;
+	text-align: center;
+}
+#id5 {
+	width: 10%;
 	text-align: center;
 }
 
@@ -102,38 +110,39 @@
 								cellspacing="0">
 								<thead>
 									<tr>
-										<th></th>
 										<th>번호</th>
 										<th>카테고리</th>
-										<th>이름</th>
-										<th>종료일</th>
-										<th style="width: 15%;">상태</th>
+										<th>공연명</th>
+										<th>주소</th>
+										<th>구매자</th>
+										<th style="width: 15%;">수령방법</th>
 									</tr>
 								</thead>
 								<tfoot>
 									<tr>
-										<th></th>
 										<th>번호</th>
 										<th>카테고리</th>
-										<th>이름</th>
-										<th>종료일</th>
-										<th>상태</th>
+										<th>공연명</th>
+										<th>주소</th>
+										<th>구매자</th>
+										<th>수령방법</th>
 									</tr>
 								</tfoot>
 								<tbody>
-								<c:forEach var="m" items="${ list }">
+								<c:forEach var="t" items="${ ticketList }">
 									<!-- 상품 리스트 뽑아내기 -->
 									<tr>
 										<td id="id0"><input type="checkbox" name="product_No"
-											value="${m.artNo }"></td>
-										<td id="id1">${m.artNo }</td>
-										<td id="id2"><c:if test=" ${m.artType eq 0 } ">전시</c:if>
-										<c:if test=" ${m.artType eq 1 } ">콘서트</c:if>
-										<c:if test=" ${m.artType eq 2 } ">뮤지컬</c:if>
-										<c:if test=" ${m.artType eq 3 } ">연극</c:if></td>
-										<td>${m.artTitle }</td>
-										<td id="id3"></td>
-										<td>판매중 품절</td>
+											value="${t.tNo }"></td>
+										<td id="id1"><c:if test="${t.artType == 0 }">전시</c:if>
+										<c:if test="${t.artType == 1 }">콘서트</c:if>
+										<c:if test="${t.artType == 2 }">뮤지컬</c:if>
+										<c:if test="${t.artType == 3 }">연극</c:if></td>
+										<td id="id2">${t.artTitle }</td>
+										<td id="id3">${t.tDate }</td>
+										<td id="id4">${t.userName }</td>
+										<td id="id5"><c:if test="${t.receiveMethod == 0 }">택배배송</c:if>
+										<c:if test="${t.receiveMethod == 1 }">현장발매</c:if></td>
 									</tr>
 								
 								</c:forEach>

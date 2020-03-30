@@ -98,12 +98,14 @@ width:130px;
 				</tr>
 			
 			</c:forEach>
+			<c:if test="${!empty loginUser }">
 			<tr>
 				<td colspan="4"></td>
 				<td><button class="btn btn-outline-secondary"
 					style="font-size: 12px; height:40px;"
 					onclick="location.href='cinsertView.do'">글쓰기</button></td>
 			</tr>
+			</c:if>
 			</tbody>
 			<!-- 페이징 처리 -->
 			

@@ -62,7 +62,7 @@ margin-bottom: 150px;
 		<div class="sidebar-wrapper">
 			<ul class="nav">
 			
-				<li id="interest"><a href="admin.do"> <i
+				<li id="interest"><a href="adminChecknCancel.do"> <i
 						class="fa fa-* fa-heart"></i>
 						<p>예매 관리</p>
 				</a></li>
