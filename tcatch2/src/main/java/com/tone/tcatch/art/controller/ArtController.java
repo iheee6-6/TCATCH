@@ -287,7 +287,7 @@ public class ArtController {
 	@RequestMapping("/insert.do")
 	public ModelAndView artInsertFoem(ModelAndView mv) { //insertForm 이동
 		ArrayList<Company> cList =  aService.selectCompany();
-		System.out.println(cList);
+		System.out.println("cList + "+cList);
 		mv.addObject("list",cList);
 		mv.setViewName("musical/artInsertForm");
 		return mv;

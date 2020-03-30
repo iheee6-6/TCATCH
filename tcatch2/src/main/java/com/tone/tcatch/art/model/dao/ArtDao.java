@@ -139,4 +139,8 @@ public class ArtDao {
 		return (ArrayList)sqlSession.selectList("artMapper.selectCompany");
 	}
 
+	public ArrayList<Art> selectRank(int i) {
+		return (ArrayList)sqlSession.selectList("artMapper.selectRank",i);
+	}
+
 }

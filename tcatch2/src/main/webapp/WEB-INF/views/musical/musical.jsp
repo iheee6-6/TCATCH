@@ -69,7 +69,7 @@ div {
 			   
 		<section class='m2-sec02'>
 			<p class='m2-tit'>
-				<img src='${contextPath}/resources/images/musical/mLogo.png' />
+				<img src='${contextPath}/resources/images/musical/TCATCH.png' />
 			</p>
 		<button onclick="location.href='insert.do'">ArtInsert</button>
 		<button onclick="location.href='timeInsertForm.do'">TimeInsert</button>
@@ -137,7 +137,7 @@ div {
 			
 			
 			<p class='m2-tit'>
-				<img src='${contextPath}/resources/images/musical/mLogo.png' />
+				<img src='${contextPath}/resources/images/musical/할인.png' />
 			</p>
 			<br><br><br>
 			
@@ -169,7 +169,7 @@ div {
 		
 		<section class='m2-sec06'>
 			<p class='m2-tit'>
-				<img src='http://tkfile.yes24.com/imgNew/genre/m2-tit03.png' alt='' />
+				<img src='${contextPath}/resources/images/musical/mLogo.png' />
 			</p>
 			
 			
