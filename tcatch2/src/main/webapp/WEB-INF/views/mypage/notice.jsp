@@ -74,12 +74,11 @@ padding-top:30px;
 											<canvas id="chart-area10141" class="donut"
 												style="display: block; width: 220px; height: 220px;"
 												width="220" height="220"></canvas>
-										</div> <fmt:parseDate var="dateString" value="${notice.ticketingDate }" pattern="yyyy-MM-dd" /> 
-											<fmt:formatDate var="tdate1" value="${dateString }" pattern="yyyy-MM-dd HH:mm:ss" />
-											<fmt:parseNumber value="${dateString.time / (1000*60*60*24)}"
+										</div> <fmt:formatDate var="tdate1" value="${notice.ticketingDate }" pattern="yyyy-MM-dd HH:mm:ss" />
+											<fmt:parseNumber value="${notice.ticketingDate.time / (1000*60*60*24)}"
 												integerOnly="true" var="tdate12" />
 											
-											<fmt:formatDate var="tdate2" value="${dateString }"
+											<fmt:formatDate var="tdate2" value="${notice.ticketingDate }"
 											pattern="yyyy.MM.dd(E) : aaa hh:mm" />
 										<div class="donut-dday">
 											<c:choose>
@@ -140,9 +139,8 @@ padding-top:30px;
 													<%-- <c:param name="page" value="${ pi.currentPage }" /> --%>
 												</c:url>
 												<td><a href="${ ndetail}">${n.artTitle}</a></td>
-												<td><fmt:parseDate var="dateString"
-														value="${n.ticketingDate }" pattern="yyyy-MM-dd" /> <fmt:formatDate
-														var="tdate" value="${dateString }"
+												<td><fmt:formatDate
+														var="tdate" value="${n.ticketingDate }"
 														pattern="yyyy.MM.dd(E) : aaa hh:mm" /> ${tdate }</td>
 												
 											</tr>

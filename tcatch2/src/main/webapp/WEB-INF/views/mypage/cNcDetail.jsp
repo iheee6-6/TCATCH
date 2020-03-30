@@ -42,7 +42,7 @@ ul{
 											<p class="tit">${ticket.artTitle} 
 														<span style="color: red;">:: ${ticket.status}</span></p>
 											<p class="poster">
-												<img
+												<img style="width:92%"
 													src='resources/images/art/${ticket.renameFile }'
 													 alt='' />
 											</p>
@@ -78,8 +78,11 @@ ul{
 													
 													<td colspan="3" class="ri">
 														<div class="scroll">
-														<c:forTokens items="${ticket.seat}" var="s" delims=" ">
+														<c:forTokens items="${ticket.seat}" var="s" delims=" " varStatus="status">
 															${s}
+															<c:if test="${not status.last}">
+																,
+															</c:if>
 														</c:forTokens>
 														<br/><!-- S석 1층 L열 014번 -->
 														</div>
@@ -93,7 +96,7 @@ ul{
 													<td colspan="3" class="ri">
 														<div id="divDeliveryNone">
 														<c:choose>
-														<c:when test="${ticket.receiveMethod eq 2}">
+														<c:when test="${ticket.receiveMethod eq 1}">
 															<span class="blu">현장수령</span> <span>- 공연 당일
 																티켓교부처에서 티켓을 받으시면 됩니다.</span> <span>- 예매내역서(프린트)와 신분증을
 																지참해주세요.</span>

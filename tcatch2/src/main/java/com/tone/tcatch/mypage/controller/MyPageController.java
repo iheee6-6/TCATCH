@@ -24,6 +24,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.tone.tcatch.member.model.service.MemberService;
 import com.tone.tcatch.member.model.vo.Member;
 import com.tone.tcatch.mypage.model.exception.MypageException;
 import com.tone.tcatch.mypage.model.service.MyPageService;
@@ -269,6 +270,7 @@ public class MyPageController {
 	public ModelAndView viewTheaterMap(ModelAndView mv, 
 			@RequestParam("address") String address) {
 		
+		System.out.println(address);
 		mv.addObject("address",address);
 		mv.setViewName("mypage/theaterMap");
 		return mv;
@@ -336,7 +338,6 @@ public class MyPageController {
 
 	@RequestMapping("memberUpdateView.do")
 	public String memberUpdateView() {
-
 		return "mypage/memberUpdateForm";
 	}
 
@@ -354,6 +355,7 @@ public class MyPageController {
 
 		if (result > 0) {
 			rd.addFlashAttribute("msg", "회원정보 수정이 정상적으로 이루어졌습니다. ");
+			model.addAttribute("loginUser", m);
 			return "redirect:mInformationSetting.do";
 		} else {
 			model.addAttribute("msg", "회원정보 수정 실패!!");

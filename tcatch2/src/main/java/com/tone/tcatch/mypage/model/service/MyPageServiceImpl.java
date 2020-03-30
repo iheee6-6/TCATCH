@@ -169,6 +169,7 @@ public class MyPageServiceImpl implements MyPageService{
 		return mpDao.selectSeatList(artNo,timeNo);
 	}
 
+
 	
 
 

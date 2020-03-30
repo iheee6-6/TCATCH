@@ -222,6 +222,7 @@ public class MyPageDao {
 		return (ArrayList)sqlSession.selectList("myPageMapper.selectSeatList",map);
 	}
 
+
 	
 
 	

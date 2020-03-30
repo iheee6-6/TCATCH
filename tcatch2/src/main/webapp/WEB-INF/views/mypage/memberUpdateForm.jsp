@@ -88,6 +88,7 @@ span.ok {
 span.error {
 	color: red;
 }
+
 </style>
 </head>
 <body>
@@ -100,23 +101,31 @@ span.error {
 			<div class="content" style="margin-top: 20px;">
 
 				<form class="form-signin" action="memupdate.do" method="post"
-					id="updateForm">
+					id="updateForm" onsubmit="return validate()">
 					<h4 class="card-title text-danger"
 						style="float: left; margin-bottom: 30px">
 						<i class="fa fa-* fa-bookmark"></i> &nbsp;회원 정보 수정
 					</h4>
 
 					<table align="center" width="600" height="600">
+					<tr>
+							<th>* 아이디</th>
+							<td><input type="text" name="id" id="userId" size="30"
+								value="${loginUser.id }" readonly></td>
+						</tr>
+						
 						<tr>
 							<th>* 이름</th>
-							<td><input type="text" name="name" size="30"
-								value="${loginUser.name }" required></td>
+							<td><input type="text" id="name" name="name" size="30"
+								value="${loginUser.name }" required>
+								<span class="guide error"> 한글로 2글자 이상 입력</span>
+								</td>
 						</tr>
 
 						<tr>
 							<th>생년월일</th>
 							<td><input type="text" name="birth" id="userBirth"
-								value="${loginUser.birth}"></td>
+								value="${loginUser.birth}" readonly></td>
 						</tr>
 						<tr>
 							<th> 성별</th>
@@ -134,22 +143,20 @@ span.error {
 							</c:if>
 						</tr>
 
-						<tr>
-							<th>* 아이디</th>
-							<td><input type="text" name="id" id="userId" size="30"
-								value="${loginUser.id }" readonly></td>
-						</tr>
+						
 						<tr>
 							<th>* 비밀번호</th>
 							<td><input type="password" id="pwd1" name="pwd1" size="30"
-								required></td>
+								required>
+								<span class="guide error">8자 이상 15자 미만으로 영문 또는 숫자 
+								</span></td>
 						</tr>
 						<tr>
 							<th>* 비밀번호 확인</th>
 							<td><input type="password" id="pwd2" name="pwd" size="30"
 								required> <span class="guide ok">비밀번호가 일치합니다.</span> <span
-								class="guide error">비밀번호가 일치하지 않습니다.</span> <input type="hidden"
-								name="pwdEqCh" id="pwdEqCh" value="0"></td>
+								class="guide error">비밀번호가 일치하지 않습니다.</span> 
+								</td>
 						</tr>
 						<c:forTokens var="addr" items="${ loginUser.address }" delims=","
 							varStatus="status">
@@ -228,29 +235,68 @@ span.error {
 	<script>
 	$(function() {
 		$("#userU").addClass("active");
-		$("#submit").attr("disabled","disabled");
 		
+		$("#name").on("keyup",function(){
+			console.log("name");
+			if(!(/^[가-힣]{2,}$/.test($(this).val()))){
+				console.log("name안");
+           		$(this).siblings('.guide.error').show();
+			}else{
+				$(this).siblings('.guide.error').hide();
+			}
+		});
+		
+		$("#pwd1").on("keyup", function() {
+			$(".guide.ok").hide();
+		 	if(!(/^[a-zA-Z\d]{8,15}$/.test($(this).val()))){
+		 		$(this).siblings('.guide.error').show();
+		 	}else{
+		 		$(this).siblings('.guide.error').hide();
+		 	}
+		 });
+		 
 		$("#pwd2").on("keyup", function() {
 			var pwd2 = $(this).val();
 			var pwd1 = $("#pwd1").val();
 			if(pwd1!=""||pwd2!=""){
-				if(pwd1!=pwd2){
-					console.log("안");
-					$(".guide.error").show();
-					$(".guide.ok").hide();
-				}else{
-					console.log("맞");
-					$(".guide.error").hide();
-					$(".guide.ok").show();
-					$("#submit").removeAttr("disabled");
+				if((/^[a-zA-Z\d]{8,15}$/.test($("#pwd1").val()))){
+					console.log(pwd1.value);
+					if(pwd1!=pwd2){
+						console.log("안");
+						$(this).siblings('.guide.error').show();
+						$(".guide.ok").hide();
+					}else{
+						console.log("맞");
+						$(this).siblings('.guide.error').hide();
+						$(".guide.ok").show();
+						//$("#submit").removeAttr("disabled");
+						
+					}
 				}
 			}
 			
 		});
 		
-		$("")
+		
 	});
-
+	function validate(){
+		if(!(/^[가-힣]{2,}$/.test($("#name").val()))){
+			alert('이름은 한글로 2글자 이상 입력');
+			$("#name").select();
+			return false;
+		}
+		if(!(/^[a-zA-Z\d]{8,15}$/.test($("#pwd1").val()))){
+			alert('비밀번호는 8자 이상 15자 미만으로 영문 또는 숫자로 설정해주세요');
+			$("#pwd1").select();
+			return false;
+		}
+		if($("#pwd1").val() != $("#pwd2").val()){
+			alert("비밀번호가 일치하지 않습니다.");
+			$("#pwd2").select();
+			return false;
+        }
+		return true;
+	}
 	</script>
 	
 	
