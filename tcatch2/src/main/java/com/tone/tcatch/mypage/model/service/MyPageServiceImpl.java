@@ -169,6 +169,12 @@ public class MyPageServiceImpl implements MyPageService{
 		return mpDao.selectSeatList(artNo,timeNo);
 	}
 
+	@Override
+	public ArrayList<Ticket> selectAdminTicketList() {
+		
+		return mpDao.selectAdminTicketList();
+	}
+
 
 	
 

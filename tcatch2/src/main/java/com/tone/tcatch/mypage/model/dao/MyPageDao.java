@@ -222,6 +222,10 @@ public class MyPageDao {
 		return (ArrayList)sqlSession.selectList("myPageMapper.selectSeatList",map);
 	}
 
+	public ArrayList<Ticket> selectAdminTicketList() {
+		
+		return (ArrayList)sqlSession.selectList("myPageMapper.selectAdminTicket");
+	}
 
 	
 

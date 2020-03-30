@@ -12,7 +12,7 @@
 <link rel="shortcut icon" type="image/x-icon" href='${contextPath}/resources/images/common/logo.png'>
 	<!-- Detail Css -->
 	<!-- reset.css -->
-	<link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/detail1.css" />
+	<link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/detail.css" />
 	<!-- sub.css -->
 	<link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/detail2.css" />
 
@@ -313,12 +313,12 @@ text-decoration: none;
 									type:"post",
 									success:function(data){
 										if(data =="InSuccess" ){
-											alert("찜 성공");
 											JjimSelect();
+											alert("찜 성공");
 										}
 										if(data =="DeSuccess"){
-											alert("찜 취소");
 											JjimSelect();
+											alert("찜 취소");
 										}
 										if(data == "Infail"){
 											alert("찜 실패");
@@ -596,7 +596,7 @@ text-decoration: none;
 								     if (status === kakao.maps.services.Status.OK) {
 								
 								        var coords = new kakao.maps.LatLng(result[0].y, result[0].x),
-								           content = '<div style="padding:5px;">${art.artTitle}<br><a href="https://map.kakao.com/link/search/${art.address}" style="color:blue" text-decoration="none" target="_blank">검색하기</a></div>';
+								           content = '<div style="padding:5px; width:400px;"><a href="https://map.kakao.com/link/search/${art.address}" style="color:blue" text-decoration="none" target="_blank">${art.artTitle}</a></div>';
 								
 								        // 결과값으로 받은 위치를 마커로 표시합니다
 								        var marker = new kakao.maps.Marker({

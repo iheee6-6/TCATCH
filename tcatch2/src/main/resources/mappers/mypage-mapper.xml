@@ -353,4 +353,10 @@
 		AND m.M_ID=#{id} and p.ART_NO=at.ART_NO
 	</select>
 	
+	<select id="selectAdminTicket" resultMap="ticketResultSet">
+		SELECT *
+		FROM TICKET_VIEW
+		ORDER BY purchase_no DESC
+	</select>
+
 </mapper>

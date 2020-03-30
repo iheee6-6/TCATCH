@@ -71,7 +71,7 @@ public class MemberController {
 			model.addAttribute("loginUser", loginUser);
 			// -> 이렇게만 작성하면 requestScope에만 담김
 			// 가장 위로 올라가서 @SessionAttributes라는 어노테이션을 추가한다.
-			return "common/main";
+			return "redirect:home.do";
 		} else {
 			// Exception을 이용하여 errorPage 연결
 			/*session.setAttribute("msg", "로그인 실패! 아이디,비밀번호를 확인해주세요.");*/

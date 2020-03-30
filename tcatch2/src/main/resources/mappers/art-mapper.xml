@@ -297,4 +297,14 @@
 	<select id="selectCompany" resultMap="DetailResultSet">
 		SELECT * FROM COMPANY
 	</select>
+	
+	<select id="selectRank" resultMap="ArtResultSet">
+		SELECT * 
+		FROM ART
+		JOIN IMG USING(ART_NO)
+		WHERE ART_TYPE=#{i}
+		AND ROWNUM <![CDATA[<=]]> 3
+		ORDER BY COUNT DESC
+	</select>
+	
 </mapper>

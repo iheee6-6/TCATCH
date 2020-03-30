@@ -112,7 +112,7 @@ ul li {
 				style="color: black; font-size: 15px;">커뮤니티</a></li>
 			<li class="nav-item"><a class="nav-link" href="cnotice.do"
 				style="color: black; font-size: 15px;">안내</a></li>
-			<li class="nav-item"><a class="nav-link" href="admin.do"
+			<li class="nav-item"><a class="nav-link" href="adminChecknCancel.do"
 				style="color: black; font-size: 15px;">관리자페이지</a></li>
 		</ul>
 
