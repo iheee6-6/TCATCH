@@ -65,5 +65,7 @@ public interface MyPageService {
 
 	ArrayList<Seat> selectSeatList(Integer artNo, Integer timeNo);
 
+	ArrayList<Ticket> selectAdminTicketList();
+
 
 }
