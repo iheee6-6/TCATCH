@@ -5,9 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>TACTCH</title>
+
 <link
 	href="${ contextPath }/resources/admin/vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
+
+<link rel="shortcut icon" type="image/x-icon" href='${contextPath}/resources/images/common/logo.png'>
+
 <!-- Bootstrap core CSS -->
 
 <style>

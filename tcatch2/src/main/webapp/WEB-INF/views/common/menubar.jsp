@@ -82,7 +82,9 @@ a{
 
 		</div>
 		<div class="pf-right">
-
+		<div class="pf-top-srch">
+			<a href="searchArtForm.do"> <img src="http://tkfile.yes24.com/imgNew/common/pf-srch-w.png" alt="" class="fixed" /></a>
+		</div>
 			<div class="pf-top-right">
 			<c:if test="${ empty sessionScope.loginUser }">
 			<a href="loginPage.do" class="my-ticket"><span>로그인</span></a>

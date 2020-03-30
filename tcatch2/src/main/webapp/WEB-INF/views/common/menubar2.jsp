@@ -117,9 +117,7 @@ ul li {
 		</ul>
 
 		<div class="pf-top-right">
-			<a href="#" onclick=""> <img
-				src="http://tkfile.yes24.com/imgNew/common/pf-srch-w.png" alt=""
-				class="fixed" /></a> &emsp;&emsp;&emsp;
+			<a href="searchArtForm.do"> <img src="http://tkfile.yes24.com/imgNew/common/pf-srch-w.png" alt="" class="fixed" /></a> &emsp;&emsp;&emsp;
 			<c:if test="${ empty sessionScope.loginUser }">
 				<button class="my" onclick="location.href='loginPage.do'">
 					<br>

@@ -111,27 +111,27 @@ display:inline-table
 	<script>
 		$(function() {
 			$("#interest").addClass("active");
-		});
+		
 
-		$("#allCheck").click(function() {
-			if ($(this).text() == "전체 선택") {
-				$('.interestP').prop('checked', true);
-				$(this).text("전체 해제");
-			} else {
-				$('.interestP').prop('checked', false);
-				$(this).text("전체 선택");
-			}
-
-		});
-
-		$("#deleteP").click(function() {
-			if($(".interestP:checked").val()){
-				if (confirm("정말 삭제하시겠습니까?")) {
-					$("#checkForm").submit();
+			$("#allCheck").click(function() {
+				if ($(this).text() == "전체 선택") {
+					$('.interestP').prop('checked', true);
+					$(this).text("전체 해제");
+				} else {
+					$('.interestP').prop('checked', false);
+					$(this).text("전체 선택");
 				}
-			
-			}
-
+	
+			});
+	
+			$("#deleteP").click(function() {
+				if($(".interestP:checked").val()){
+					if (confirm("정말 삭제하시겠습니까?")) {
+						$("#checkForm").submit();
+					}
+				}
+	
+			});
 		});
 	</script>
 	<jsp:include page="../common/footer.jsp" />

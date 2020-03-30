@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
    <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,6 +29,7 @@
         }
       }
       #imgg{
+
          width : 300px;
          height : 400px;
       }
@@ -45,6 +47,7 @@
    
 </head>
 <body>
+
    <jsp:include page="menubar2.jsp"/>
    <br>
    <br>
@@ -87,11 +90,13 @@
    <h1 align="center">Top List</h1>
    
    <div class="album py-5">
+
     <div class="container" >
 
       <div class="row">
       
       <c:forEach var="a" items="${list }">
+
         <c:url var="adetail" value="musicalDetail.do">
            <c:param name="artNo" value="${ a.artNo }"/>
       </c:url>
@@ -99,6 +104,7 @@
         <a href="${adetail}">
           <div class="card mb-4 shadow-sm">
          <img id="imgg" class='lazyload' src="${ contextPath }/resources/images/art/${ a.changeName }"/>
+
             <text x="50%" y="50%" fill="#eceeef" dy=".3em">${ a.artTitle }</text></svg>
             <div class="card-body">
               <p class="card-text"></p>
@@ -120,8 +126,10 @@
       </div>
     </div>
   </div>
+
    <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <link rel='stylesheet' type='text/css' href='${ contextPath }/resources/css/main/swiper.css' />
 <script type='text/javascript' src='${ contextPath }/resources/js/main/main1.js'></script>
 <script type='text/javascript' src='${ contextPath }/resources/js/main/main2.js'></script>

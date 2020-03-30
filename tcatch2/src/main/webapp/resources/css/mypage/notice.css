@@ -33,7 +33,7 @@ canvas{-moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;
 .noti-tbl td{font-size:14px;color:#333;border-top:1px solid #ddd;min-height:22px;padding:19px 0 17px 0;vertical-align:middle;}
 .noti-tbl th:nth-child(3){text-align:left;text-indent:73px;}
 .noti-tbl td:nth-child(1){text-align:center;}
-.noti-tbl td:nth-child(2) a{display:table;font-size:14px;color:#333;line-height:22px;padding-right:10px;}
+.noti-tbl td:nth-child(2) a{font-size:14px;color:#333;line-height:22px;padding-right:10px;}
 .noti-tbl td:nth-child(2) a em{display:table-cell;min-width:71px;vertical-align:middle;}
 .noti-tbl td:nth-child(3){text-indent:45px;}
 .noti-tbl td:nth-child(3) a{display:inline-block;margin-left:5px;vertical-align:middle;text-indent:0;}
