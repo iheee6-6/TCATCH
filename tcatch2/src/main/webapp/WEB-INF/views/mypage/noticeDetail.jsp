@@ -51,9 +51,7 @@ dd ul{
 							<div>
 								<p class="noti" id="noti1"></p>
 								<div class="noti-vt-open">
-								<fmt:parseDate var="tdateString" value="${notice.ticketingDate}"
-										pattern="yyyy-MM-dd" />
-								<fmt:formatDate var="tdate" value="${ tdateString}"
+								<fmt:formatDate var="tdate" value="${notice.ticketingDate}"
 										pattern="yyyy.MM.dd(E) aaa hh:mm" />
 									<span><em>티켓오픈</em></span> <span id="title1">${tdate }</span>
 									
@@ -186,7 +184,7 @@ dd ul{
 						<span style="color: red;">오픈 시간 1시간 전</span>에 회원님께 이메일을 보내드립니다.</p>
 						<div class="modal-email" style="border:1px solid orange; padding:30px;margin:30px; font-size: 20px;
    								 font-weight:bold;text-align: center;background: rgb(254,216,177);"> ${loginUser.email}</div>
-						<p style="margin:30px;"> * 알림 받을 이메일 주소 변경을 원하시면, 마이페이지>회원정보관리 에서 변경하신 후 신청하시면 됩니다.</p>
+						<p style="margin:30px;"> * 알림 받을 이메일 주소 변경을 원하시면, <br>마이페이지>회원정보관리 에서 변경하신 후 신청하시면 됩니다.</p>
 						</div>
 						</div>
 						<div class="modal-footer">

@@ -17,7 +17,8 @@
 		<result property="seat" column="seat_name" />
 		<result property="receiveMethod" column="type" />
 		<result property="review_no" column="R_NO"/>
-		<result property="timeNo" column="TIME_NO"/>
+		<result property="timeNo" column="DATE_COUNT"/>
+		<result property="userAddress" column="userAddress"/>
 		
 		<result property="review_content" column="rcontent"/>
 		
@@ -73,7 +74,7 @@
 	
 	<resultMap id="SeatResultSet" type="Seat">
 		<id property="seatName" column="SEAT_NAME"/>
-		<result property="timeNo" column="TIME_NO"/>
+		<result property="timeNo" column="DATE_COUNT"/>
 		<result property="artNo" column="ART_NO"/>	
 	</resultMap>
 	
@@ -89,15 +90,15 @@
 		resultMap="ticketResultSet">
 		SELECT * FROM (SELECT p.art_no,purchase_no,art_title,R_NO FROM PURCHASE p
 				JOIN ART a on(p.ART_NO=a.ART_NO)
-				JOIN ART_TIME td on(td.TIME_NO=P.TIME_no)
-				left JOIN IMG I ON(I.ART_NO=P.ART_NO)
+				JOIN ART_TIME td on(td.DATE_COUNT=P.TIME_no)
 				left JOIN REPLY r ON(p.ART_NO=r.ART_NO)
 				JOIN MEMBER USING(M_NO)
 				WHERE M_ID=#{id} AND
 				TO_CHAR(DATE_TIME,'YYYYMMDDHH24MISS')<![CDATA[ <  ]]>
 				TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')  AND NOT EXISTS (SELECT PURCHASE_NO FROM REFUND WHERE STATUS = 'N')
+				and p.ART_NO=td.ART_NO 
 				ORDER BY DATE_TIME DESC) 
-		WHERE ROWNUM <![CDATA[ <=]]> 3
+		WHERE ROWNUM <![CDATA[ <=]]> 3 
 	</select>
 
 	<select id="selectRInterest" resultMap="alarmResultSet">
@@ -163,10 +164,10 @@
 	 	SELECT COUNT(*)
 		FROM PURCHASE P
 		JOIN ART a on(p.ART_NO=a.ART_NO)
-		JOIN ART_TIME at on(p.TIME_NO=at.TIME_NO)
+		JOIN ART_TIME at on(p.TIME_NO=at.DATE_COUNT)
         JOIN MEMBER m on(m.M_NO=p.M_NO)
 		WHERE TO_CHAR(DATE_TIME,'YYYYMMDDHH24MISS') <![CDATA[< ]]>TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
-		AND m.M_ID=#{id}
+		AND m.M_ID=#{id} and p.ART_NO=at.ART_NO
 		<if test="pName != 'null'">
 			AND ART_TITLE LIKE '%' || #{pName} || '%'
 		</if>
@@ -187,11 +188,11 @@
 									where m.M_ID= #{id} AND C.STATUS='Y' AND C.art_no=P.art_no) as rcontent
 		FROM PURCHASE P
 		JOIN ART a on(p.ART_NO=a.ART_NO)
-		JOIN ART_TIME at on(p.TIME_NO=at.TIME_NO)
+		JOIN ART_TIME at on(p.TIME_NO=at.DATE_COUNT)
         left JOIN IMG i on(p.ART_NO=i.ART_NO)
         JOIN MEMBER m on(m.M_NO=p.M_NO)
 		WHERE TO_CHAR(DATE_TIME,'YYYYMMDDHH24MISS') <![CDATA[< ]]>TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
-		AND m.M_ID=#{id}
+		AND m.M_ID=#{id} AND FILE_LEVEL = 0 and p.ART_NO=at.ART_NO
 		<if test="pName != 'null'">
 			AND ART_TITLE LIKE '%' || #{pName} || '%'
 		</if>
@@ -208,12 +209,13 @@
 	<select id="selectAView" resultType="string">
 		SELECT TO_CHAR(DATE_TIME,'YYYY-MM-DD') 
 		FROM (select DATE_TIME 
-					FROM PURCHASE
+					FROM PURCHASE P
 					JOIN MEMBER USING(M_NO)
-					JOIN ART_TIME USING(TIME_NO)
+					JOIN ART_TIME at ON(p.TIME_NO =at.date_count)
 					WHERE M_ID=#{id}
 					AND TO_CHAR(DATE_TIME,'YYYYMMDDHH24MISS') <![CDATA[<]]> TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
-		             order by 1 ASC)
+					and p.ART_NO=at.ART_NO
+		             order by 1 ASC) 
 		
 		WHERE ROWNUM <![CDATA[<= ]]>1
 	</select>
@@ -276,7 +278,7 @@
 	<select id="selectSeatList" resultMap="SeatResultSet">
 		SELECT *
 		FROM SEAT
-		WHERE TIME_NO =#{timeNo}
+		WHERE DATE_COUNT =#{timeNo}
 		AND ART_NO=#{artNo}
 		ORDER BY 1
 	</select>
@@ -344,11 +346,11 @@
 		select count(*)
 		FROM PURCHASE P
 		JOIN ART a on(p.ART_NO=a.ART_NO)
-		JOIN ART_TIME at on(p.TIME_NO=at.TIME_NO)
+		JOIN ART_TIME at on(p.TIME_NO=at.DATE_COUNT)
         left JOIN IMG i on(p.ART_NO=i.ART_NO)
         JOIN MEMBER m on(m.M_NO=p.M_NO)
 		WHERE TO_CHAR(DATE_TIME,'YYYYMMDDHH24MISS') <![CDATA[< ]]>TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
-		AND m.M_ID=#{id}
+		AND m.M_ID=#{id} and p.ART_NO=at.ART_NO
 	</select>
 	
 	<select id="selectAdminTicket" resultMap="ticketResultSet">
@@ -356,4 +358,5 @@
 		FROM TICKET_VIEW
 		ORDER BY purchase_no DESC
 	</select>
+
 </mapper>
