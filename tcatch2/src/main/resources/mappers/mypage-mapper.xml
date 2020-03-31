@@ -17,7 +17,7 @@
 		<result property="seat" column="seat_name" />
 		<result property="receiveMethod" column="type" />
 		<result property="review_no" column="R_NO"/>
-		<result property="timeNo" column="DATE_COUNT"/>
+		<result property="timeNo" column="time_no"/>
 		<result property="userAddress" column="userAddress"/>
 		
 		<result property="review_content" column="rcontent"/>
@@ -151,6 +151,7 @@
 		JOIN MEMBER USING(M_NO)
 		WHERE PER_TYPE=2
 		AND M_ID= #{ID} AND TO_CHAR(TICKETING_DATE,'YYYYMMDDHH24MISS') <![CDATA[> ]]>TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
+		ORDER BY alarm_date
 	</select>
 	
 	<delete id="deleteAlarm">
@@ -202,7 +203,7 @@
 		<if test="sd != null and ed != null">
 			and TO_CHAR(DATE_TIME,'YYYY-MM-DD') BETWEEN #{sd} and #{ed}
 		</if>
-		
+		ORDER BY at.date_time ASC
 	</select>
 	
 	
@@ -278,7 +279,7 @@
 	<select id="selectSeatList" resultMap="SeatResultSet">
 		SELECT *
 		FROM SEAT
-		WHERE DATE_COUNT =#{timeNo}
+		WHERE TIME_NO =#{timeNo}
 		AND ART_NO=#{artNo}
 		ORDER BY 1
 	</select>
@@ -350,7 +351,7 @@
         left JOIN IMG i on(p.ART_NO=i.ART_NO)
         JOIN MEMBER m on(m.M_NO=p.M_NO)
 		WHERE TO_CHAR(DATE_TIME,'YYYYMMDDHH24MISS') <![CDATA[< ]]>TO_CHAR(SYSDATE,'YYYYMMDDHH24MISS')
-		AND m.M_ID=#{id} and p.ART_NO=at.ART_NO
+		AND m.M_ID=#{id} and p.ART_NO=at.ART_NO and file_level=0
 	</select>
 	
 	<select id="selectAdminTicket" resultMap="ticketResultSet">
