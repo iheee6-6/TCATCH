@@ -160,9 +160,9 @@ a.ms3-player-close img{width:26px; height:26px;}
 .ms-list-imgs2 a:first-child{margin-left:0;}
 .ms-list-imgs2 a span {display:block; width:214px;height:301px;background:#000;overflow:hidden;}
 .ms-list-imgs2 a span img{display:block; width:100%;height:100%;transition:all ease-out 0.3s;}
-.ms-list-imgs2 a .list-2-txt{width:100%;height:108px;background:#fff; text-align:center;border-top:1px solid #ddd;}
+.ms-list-imgs2 a .list-2-txt{width:100%;height:107px;background:#fff; text-align:center;border-top:1px solid #ddd;}
 .ms-list-imgs2 a .list-2-txt p{width:calc(100% - 40px);margin-left:20px;}
-.ms-list-imgs2 a .list-2-txt .list-2-tit1{font-size:16px; color:#333;line-height:22px;margin:18px 20px 12px 20px;}
+.ms-list-imgs2 a .list-2-txt .list-2-tit1{font-size:13px; color:#333;line-height:22px;margin:18px 20px 12px 20px;}
 .ms-list-imgs2 a .list-2-txt .list-2-tit2{font-size:16px; color:#ec7d2c;}
 .ms-list-imgs2 a .list-2-txt .list-2-tit3{width:160px;margin:0 auto;text-align:center;font-size:16px; color:#999;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 .ms-list-imgs2 a:hover{border:1px solid #ec7d2c;}
