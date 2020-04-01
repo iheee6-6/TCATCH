@@ -66,6 +66,9 @@ margin-bottom: 150px;
 						class="fa fa-* fa-heart"></i>
 						<p>예매 관리</p>
 				</a></li>
+				<li id="cnc"><a href="adminRefundList.do"><i
+						class="fa fa-* fa-check"></i>
+						<p>환불 관리</p></a></li>
 				<li id="userU"><a href="adminList.do"> <i class="fa fa-* fa-user"></i>
 						<p>회원 탈퇴</p>
 				</a></li>

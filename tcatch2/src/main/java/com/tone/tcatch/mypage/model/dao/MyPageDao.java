@@ -19,6 +19,7 @@ import com.tone.tcatch.art.model.vo.Seat;
 import com.tone.tcatch.common.model.vo.PageInfo;
 import com.tone.tcatch.member.model.vo.Member;
 import com.tone.tcatch.mypage.model.vo.Alarm;
+import com.tone.tcatch.mypage.model.vo.Refund;
 import com.tone.tcatch.ticket.model.vo.Ticket;
 
 @Repository("mpDao")
@@ -225,6 +226,16 @@ public class MyPageDao {
 	public ArrayList<Ticket> selectAdminTicketList() {
 		
 		return (ArrayList)sqlSession.selectList("myPageMapper.selectAdminTicket");
+	}
+
+	public ArrayList<Ticket> selectRefund() {
+		
+		return (ArrayList)sqlSession.selectList("myPageMapper.selectRefund");
+	}
+
+	public int updateRefund(Refund re) {
+		
+		return sqlSession.update("myPageMapper.updateRefund",re);
 	}
 
 	

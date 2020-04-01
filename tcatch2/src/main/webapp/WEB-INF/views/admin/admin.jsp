@@ -55,9 +55,60 @@
 .card-body {
 	width: 100%;
 }
+
+/* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */ /* Stay in place */
+            z-index: 1; /* Sit on top */
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+			background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+    
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888; /* Could be more or less, depending on screen size */  
+            text-align:center;
+        }
 </style>
 </head>
 <body>
+
+<form action="billInsert.do" method="post" onsubmit="return check();">
+<div id="myModal" class="modal">
+      <!-- Modal content -->
+      
+      <div class="modal-content" style="width:30%;">
+      			<h2>운송장번호 입력하기</h2>
+
+                <input type="text" id="dcontent" name="dContent" placeholder="운송장번호">
+                <br>
+               
+                <div style="display:inline-block; float:center;">
+                <button class="btn btn-outline-secondary"
+					style="font-size: 12px; width:49%; height:40px; float:left;" type="submit">입력</button>
+            	<button class="btn btn-outline-secondary"
+					style="font-size: 12px; width:49%; height:40px; float:left;" type="button" onClick="close_pop();">닫기</button>
+            	</div>
+      </div>
+ 
+    </div>
+    <script>
+    	function check(){
+    		if($("#dcontent").val() == 0){
+    			alert("운송장번호를 입력해주세요");
+    			return false;
+    		}
+    		return true;
+    	}
+    
+    </script>
+    </form>
 	<jsp:include page="../common/menubar2.jsp" />
 	<br>
 	<br>
@@ -90,9 +141,6 @@
 
 			<!-- DataTales Example -->
 			<div class="card shadow mb-4">
-				<form
-					action="adminMusical.do"
-					method="post">
 					<div class="card-header py-3">
 						<h6 class="m-0 font-weight-bold text-primary">판매 관리</h6>
 					</div>
@@ -132,6 +180,7 @@
 								<c:forEach var="t" items="${ ticketList }">
 									<!-- 상품 리스트 뽑아내기 -->
 									<tr>
+										<%-- <input type="hidden" id="tv" value="${t.tNo }"> --%>
 										<td id="id0"><input type="checkbox" name="product_No"
 											value="${t.tNo }"></td>
 										<td id="id1"><c:if test="${t.artType == 0 }">전시</c:if>
@@ -139,25 +188,30 @@
 										<c:if test="${t.artType == 2 }">뮤지컬</c:if>
 										<c:if test="${t.artType == 3 }">연극</c:if></td>
 										<td id="id2">${t.artTitle }</td>
-										<td id="id3">${t.tDate }</td>
+										<td id="id3">${t.userAddress }</td>
 										<td id="id4">${t.userName }</td>
-										<td id="id5"><c:if test="${t.receiveMethod == 0 }">택배배송</c:if>
+										<td id="id5"><c:if test="${t.receiveMethod == 0 }"><button class="btn btn-outline-secondary" type="button"
+					style="font-size: 12px; width:80px; height:50px; float:center;" id="mm">운송장입력</button></c:if>
 										<c:if test="${t.receiveMethod == 1 }">현장발매</c:if></td>
 									</tr>
 								
 								</c:forEach>
+								<script type="text/javascript">
+	        						$("#mm").on("click",function(){
+	                				$('#myModal').show();
+	                				var tNo = $("#tv").val();
+	                				console.log(tNo);
+	        					});
+	        					//팝업 Close 기능
+	        					function close_pop(flag) {
+	           						$('#myModal').hide();
+	        					};
+      							</script>
 									
 								</tbody>
 							</table>
 						</div>
 					</div>
-					<!-- 상품 상태 변경 : 판매중 / 품절 -->
-					<label>상태 변경 : </label> <select name="status">
-						<option value="Y">판매중</option>
-						<option value="N">품절</option>
-						<option selected>---</option>
-					</select> <input type="submit" value="변경">
-				</form>
 
 			</div>
 		</div>
