@@ -179,7 +179,7 @@ td {
         
         <!-- 전시  -->
         <c:if test="${art.artType==0 }">
-        <div id="right">
+        <%-- <div id="right">
 			<p>선택한 공연 : ${art.artTitle }<br><br>
 				공연타입 : 
 				<c:if test="${art.artType == 0 }">
@@ -195,7 +195,7 @@ td {
 					연극
 				</c:if>
 			</p>
-		</div>
+		</div> --%>
         <form action="buyExhibition.do" method="post" id="joinForm">
 			<input type="hidden" name="artNo" value="${ s.artNo }"> 
 			<input type="hidden" name="timeNo" value="${ s.timeNo }"> 
@@ -218,7 +218,6 @@ td {
 						<a href="#" onclick="go();" class="rn-bb03">예매 하기</a>
 					</div>
 					</p> 
-					
 
 					<button type="submit" style="display:none;" id="goBuy">구매</button>
 					
@@ -232,6 +231,7 @@ td {
 		</form>
         </c:if>
 </div>
+<br><br><br>
 <div id="imgWrap">
    <img src='${contextPath}/resources/images/musical/구매 유의사항.PNG' id="imgg" />
 </div>

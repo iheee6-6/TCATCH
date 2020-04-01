@@ -83,7 +83,6 @@ public class ArtDao {
 	}
 
 	public ArrayList<Img> selectImg(int artNo) { // 이미지 불러오기
-		// TODO Auto-generated method stub
 		return (ArrayList)sqlSession.selectList("artMapper.selectImg",artNo);
 	}
 
@@ -143,9 +142,22 @@ public class ArtDao {
 		return (ArrayList)sqlSession.selectList("artMapper.selectRank",i);
 	}
 
+
 	public int deleteArt(Art a) {
 		
 		return sqlSession.update("artMapper.deleteArt",a);
+
+	public int updateArt(Art a) {
+		return sqlSession.update("artMapper.updateArt", a);
+	}
+
+	public int updateImg(Img img) {
+		return sqlSession.update("artMapper.updateImg",img);
+	}
+
+	public int updateTicketDate(TicketDate td) {
+		return sqlSession.update("artMapper.updateTicketDate",td);
+
 	}
 
 }

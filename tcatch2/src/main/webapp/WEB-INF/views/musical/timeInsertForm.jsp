@@ -23,7 +23,6 @@
 
 .table-reponsive {
 	width: 500px;
-	height: 300px;
 	margin: auto;
 }
 
@@ -70,7 +69,7 @@
 					<div class="card-body">
 						<div class="table-reponsive">
 							<div class="tableArea">
-								<table>
+								<table id="wrap">
 									<tr>
 										<td colspan="3"><h5>
 												<strong>시간표</strong>
@@ -103,7 +102,8 @@
 										<td colspan="3"><hr></td>
 									</tr>
 								</table>
-
+								<button type="button" id="add">회차 추가</button>
+								
 								<div align="center">
 									<button type="submit" value="등록하기">등록하기</button>
 									<button type="button"

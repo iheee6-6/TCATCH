@@ -264,11 +264,11 @@ public class ArtController {
 		mv.addObject("strToday",strToday);
 		mv.addObject("artNo",artNo);
 		mv.addObject("timeNo",timeNo);
-		mv.setViewName("musical/buy_two");
 		mv.addObject("count", count);
 		mv.addObject("art", art);
 		mv.addObject("seatName", seatName);
 		mv.addObject("atDateTime", atDateTime);
+		mv.setViewName("musical/buy_two");
 		
 		return mv;
 	}
@@ -287,7 +287,6 @@ public class ArtController {
 	@RequestMapping("/insert.do")
 	public ModelAndView artInsertFoem(ModelAndView mv) { //insertForm 이동
 		ArrayList<Company> cList =  aService.selectCompany();
-		System.out.println("cList + "+cList);
 		mv.addObject("list",cList);
 		mv.setViewName("musical/artInsertForm");
 		return mv;
@@ -493,6 +492,7 @@ public class ArtController {
 		ArrayList<Seat> sList = aService.selectSeatList(s);
 		
 		
+		
 		mv.addObject("artNo",artNo);
 		mv.addObject("art", art);
 		mv.addObject("timeNo",timeNo);
@@ -515,6 +515,7 @@ public class ArtController {
 		
 		return "redirect:musical.do";
 	}
+
 	
 	@RequestMapping("/adminArt.do") 
 	public ModelAndView adminArt(ModelAndView mv) {
@@ -545,4 +546,89 @@ public class ArtController {
 	}
 
 	
+	@RequestMapping("artUpdateForm.do")
+	public ModelAndView artUpdateForm(ModelAndView mv , int artNo) {
+		
+		ArtDetail art = aService.selectArt(artNo, true);
+		ArrayList<Company> cList =  aService.selectCompany();
+		
+		ArrayList<Img> img = aService.selectImg(artNo);
+		
+		mv.addObject("list",cList);
+		mv.addObject("art", art);
+		mv.addObject("img", img);
+		mv.setViewName("musical/artUpdateForm");
+		
+		return mv;
+		
+	}
+		
+	@RequestMapping("updateArt.do")
+	public String artUpdate(HttpServletRequest request, Art a,
+			@RequestParam(value="uploadFile", required=false) MultipartFile file,
+			@RequestParam(value="uploadFile2", required=false) MultipartFile file2,
+			@RequestParam("ticketingDate")String ticketing,
+			@RequestParam("startDate")String startDate,
+			@RequestParam("endDate")String endDate) {
+			String ticketingDate = ticketing.replaceAll("T", "");
+			
+					
+					Img img = new Img();
+					img.setArtNo(a.getArtNo());
+					int result = aService.updateArt(a); 
+			
+					TicketDate td = null;
+					td = new TicketDate(a.getArtNo() , ticketingDate , startDate,  endDate);
+					aService.updateTicketDate(td);
+			
+					
+					if(result > 0) {
+						if(!file.getOriginalFilename().equals("")) {
+							String renameFileName = saveFile(file, request);
+				
+							
+							if(renameFileName != null) {
+								String originName = file.getOriginalFilename();
+								img.setOriginName(originName);
+								img.setChangeName(renameFileName);
+								img.setFileLevel(0);
+								String root = request.getSession().getServletContext().getRealPath("resources");
+								String savePath = root + "\\images\\art\\";
+								img.setFilePath(savePath+renameFileName);
+							}
+						}
+						System.out.println("img 1 : " + img);
+						aService.updateImg(img);
+						
+						Img img2 = new Img();
+						img2.setArtNo(a.getArtNo());
+						
+						if(!file2.getOriginalFilename().equals("")) {
+							String renameFileName = saveFile(file2, request);
+				
+							
+							if(renameFileName != null) {
+								String originName = file2.getOriginalFilename();
+								img2.setOriginName(originName);
+								img2.setChangeName(renameFileName);
+								img2.setFileLevel(1);
+								String root = request.getSession().getServletContext().getRealPath("resources");
+								String savePath = root + "\\images\\art\\";
+								img2.setFilePath(savePath+renameFileName);
+							}
+						}
+
+						System.out.println("img 2 : " + img2);
+						aService.updateImg(img2);
+					
+					
+					
+						return "redirect:home.do";
+					}else {
+						throw new ArtException("실패!");
+					}	
+				}
+					
+					
+		
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
    <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%>
-
+						<% int count=1; %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +13,12 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
+        
+        
+        <!-- 상품 설명 UI -->
+<link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/product.css" />
+<!-- 이미지 UI-->
+<link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/productImg.css" />
 <style>
 .bd-placeholder-img {
         font-size: 1.125rem;
@@ -42,6 +48,17 @@
          font-size : 15px;
          color:white;
       }
+      
+      #sexy{
+      	padding:0;
+      	margin:auto;
+      	border:1px solid #ddd;
+      }
+      
+      
+      a{
+     	text-decoration:none;
+      }
 </style>
 
    
@@ -58,7 +75,7 @@
          <div class='m2-kv'>
             <div class='swiper-container m2-kvs'>
                <div class='swiper-wrapper'>
-                  <c:forEach var="a" items="${list2 }">
+                  <c:forEach var="a" items="${list }">
                           <c:url var="adetail" value="musicalDetail.do">
                              <c:param name="artNo" value="${ a.artNo }"/>
                         </c:url>
@@ -85,131 +102,123 @@
       <div class='swiper-button-prev m2-kvs'></div>
    </div>
    
-   <!-- top list -->
+   <!-- 전시 top list -->
    <br>
+
   <h1 align="center">	<img src='${contextPath}/resources/images/musical/exhibition.png' /></h1>
-   <div class="album py-5">
-    <div class="container" >
-      <div class="row">   
-      <c:forEach var="a" items="${list0 }">
-        <c:url var="adetail" value="musicalDetail.do">
-           <c:param name="artNo" value="${ a.artNo }"/>
-      </c:url>
-        <div class="col-md-4">
-        <a href="${adetail}">
-          <div class="card mb-4 shadow-sm">
-         <img id="imgg" class='lazyload' src="${ contextPath }/resources/images/art/${ a.changeName }"/>
+  <div class='ms-list-imgs2'>
+  	<% count=1; %>
+				<c:forEach var="a" items="${ list0 }">
+						<c:url var="adetail2" value="musicalDetail.do">
+							<c:param name="artNo" value="${ a.artNo }"/>
+						</c:url> 
+						
+						<a href='${adetail2}' >
+						<span>
+							<img class='lazyload' src="${ contextPath }/resources/images/art/${ a.changeName }"/>
+						</span>
+							<div class='list-2-txt'>
+								<p class='list-2-tit1'>
+									${a.artTitle}
+								</p>
+								<p class='list-2-tit2'>조회수 (${ a.count })</p>
+								<div id="sexy">
+									<p class="list-2-tit3">
+										<%= count++ %>위
+									 </p>
+								</div>
+							</div>
+						</a>
 
-            <text x="50%" y="50%" fill="#eceeef" dy=".3em">${ a.artTitle }</text></svg>
-            <div class="card-body">
-              <p class="card-text"></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                      ${a.startDate } ~ ${ a.endDate }
-                </div>
-                <small class="text-muted">조회수 ${a.count }</small>
-              </div>
-            </div>
-          </div>
-        </a>
-        </div>
-     </c:forEach>     
-      </div>
-    </div>
-  </div>
+				</c:forEach>
+			</div>
   
+     <!-- 콘서트 top list -->
   <h1 align="center">	<img src='${contextPath}/resources/images/musical/concert.png' /></h1>
-   <div class="album py-5">
-    <div class="container" >
-      <div class="row">   
-      <c:forEach var="a" items="${list1 }">
-        <c:url var="adetail" value="musicalDetail.do">
-           <c:param name="artNo" value="${ a.artNo }"/>
-      </c:url>
-        <div class="col-md-4">
-        <a href="${adetail}">
-          <div class="card mb-4 shadow-sm">
-         <img id="imgg" class='lazyload' src="${ contextPath }/resources/images/art/${ a.changeName }"/>
+   		<div class='ms-list-imgs2'>
+   			<% count=1; %>
+				<c:forEach var="a" items="${ list1 }">
+						<c:url var="adetail2" value="musicalDetail.do">
+							<c:param name="artNo" value="${ a.artNo }"/>
+						</c:url> 
 
-            <text x="50%" y="50%" fill="#eceeef" dy=".3em">${ a.artTitle }</text></svg>
-            <div class="card-body">
-              <p class="card-text"></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                      ${a.startDate } ~ ${ a.endDate }
-                </div>
-                <small class="text-muted">조회수 ${a.count }</small>
-              </div>
-            </div>
-          </div>
-        </a>
-        </div>
-     </c:forEach>     
-      </div>
-    </div>
-  </div>
+						<a href='${adetail2}' style="text-decoration:none;" >
+						<span>
+							<img class='lazyload' src="${ contextPath }/resources/images/art/${ a.changeName }"/>
+						</span>
+							<div class='list-2-txt'>
+								<p class='list-2-tit1'>
+									${a.artTitle}
+								</p>
+								<p class='list-2-tit2'>조회수 (${ a.count })</p>
+								<div id="sexy">
+									<p class="list-2-tit3">
+										<%= count++ %>위
+									 </p>
+								</div>
+							</div>
+						</a>
+				</c:forEach>
+			</div>
   
+   <!-- 뮤지컬 top list -->
+   <section class='m2-sec06'>
   <h1 align="center">	<img src='${contextPath}/resources/images/musical/mLogo.png' /></h1>
-   <div class="album py-5">
-    <div class="container" >
-      <div class="row">   
-      <c:forEach var="a" items="${list2 }">
-        <c:url var="adetail" value="musicalDetail.do">
-           <c:param name="artNo" value="${ a.artNo }"/>
-      </c:url>
-        <div class="col-md-4">
-        <a href="${adetail}">
-          <div class="card mb-4 shadow-sm">
-         <img id="imgg" class='lazyload' src="${ contextPath }/resources/images/art/${ a.changeName }"/>
-
-            <text x="50%" y="50%" fill="#eceeef" dy=".3em">${ a.artTitle }</text></svg>
-            <div class="card-body">
-              <p class="card-text"></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                      ${a.startDate } ~ ${ a.endDate }
-                </div>
-                <small class="text-muted">조회수 ${a.count }</small>
-              </div>
-            </div>
-          </div>
-        </a>
-        </div>
-     </c:forEach>     
-      </div>
-    </div>
-  </div>
-  
+   <div class='ms-list-imgs2'>
+	<% count=1; %>
+				<c:forEach var="a" items="${ list2 }">
+						<c:url var="adetail2" value="musicalDetail.do">
+							<c:param name="artNo" value="${ a.artNo }"/>
+						</c:url> 
+						<a href='${adetail2}' style="text-decoration:none;" >
+						<span>
+							<img class='lazyload' src="${ contextPath }/resources/images/art/${ a.changeName }"/>
+						</span>
+							<div class='list-2-txt'>
+								<p class='list-2-tit1'>
+									${a.artTitle}
+								</p>
+								<p class='list-2-tit2'>조회수 (${ a.count })</p>
+								<div id="sexy">
+									<p class="list-2-tit3">
+										<%= count++ %>위
+									 </p>
+								</div>
+							</div>
+						</a>
+				</c:forEach>
+			</div>
+  </section>
+   <!-- 연극 top list -->
   <h1 align="center">	<img src='${contextPath}/resources/images/musical/drama.png' /></h1>
-   <div class="album py-5">
-    <div class="container" >
-      <div class="row">   
-      <c:forEach var="a" items="${list3 }">
-        <c:url var="adetail" value="musicalDetail.do">
-           <c:param name="artNo" value="${ a.artNo }"/>
-      </c:url>
-        <div class="col-md-4">
-        <a href="${adetail}">
-          <div class="card mb-4 shadow-sm">
-         <img id="imgg" class='lazyload' src="${ contextPath }/resources/images/art/${ a.changeName }"/>
+   <div class='ms-list-imgs2'>
+   	<% count=1; %>
+				<c:forEach var="a" items="${ list3 }">
 
-            <text x="50%" y="50%" fill="#eceeef" dy=".3em">${ a.artTitle }</text></svg>
-            <div class="card-body">
-              <p class="card-text"></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                      ${a.startDate } ~ ${ a.endDate }
-                </div>
-                <small class="text-muted">조회수 ${a.count }</small>
-              </div>
-            </div>
-          </div>
-        </a>
-        </div>
-     </c:forEach>     
-      </div>
-    </div>
-  </div>
+						<c:url var="adetail2" value="musicalDetail.do">
+							<c:param name="artNo" value="${ a.artNo }"/>
+						</c:url> 
+					<c:if test="${ a.sale == 0 }">
+							<a href='${adetail2}' style="text-decoration:none;" >
+						<span>
+							<img class='lazyload' src="${ contextPath }/resources/images/art/${ a.changeName }"/>
+						</span>
+							<div class='list-2-txt'>
+								<p class='list-2-tit1'>
+									${a.artTitle}
+								</p>
+								<p class='list-2-tit2'>조회수 (${ a.count })</p>
+								<div id="sexy">
+									<p class="list-2-tit3">
+										<%= count++ %>위
+									 </p>
+								</div>
+							</div>
+						</a>
+					</c:if>
+				</c:forEach>
+			</div>
+ 
 
    <script
    src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

@@ -41,7 +41,8 @@ height:1500px;
 					<h2 align="center">상품 입력</h2>
 					<hr>
 					<div class="tableArea">
-						<form action="insertArt.do" method="post" enctype="multipart/form-data">
+						<form action="updateArt.do" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="artNo" value="${art.artNo }">
 								<table>
 									<tr>
 										<td colspan="6"><h5><strong>대표 이미지</strong></h5></td>
@@ -49,7 +50,7 @@ height:1500px;
 									<tr>
 										<td colspan="6">
 											<div id="titleImgArea">
-												<img id="titleImg" width="350" height="200" class="tt">
+												<img id="titleImg" width="350" height="200" class="tt" src="${ contextPath }/resources/images/art/${ img[0].changeName }"/>
 											</div>
 										</td>
 									</tr>
@@ -69,7 +70,7 @@ height:1500px;
 										</select></td>
 										
 										<td>할인</td>
-										<td><input type="number" size="58" name="sale" min="0" class="tt"></td>
+										<td><input type="number" size="58" name="sale" min="0" class="tt" value="${ art.sale }"></td>
 									</tr>
 									<tr>
 										<td>회사</td>
@@ -97,7 +98,7 @@ height:1500px;
 						           </tr>
 						           
 						            <tr>
-						            <td colspan="6"><input type="number" size="45" name="durationTime" value="0"></td>
+						            <td colspan="6"><input type="number" size="45" name="durationTime" value="${ art.durationTime }"></td>
 					                </tr>
 					                
 					                <tr>
@@ -120,17 +121,17 @@ height:1500px;
 						            
 						           <script>
 											$("#tt").change(function(){
-												var dd = $("#tt").val();
+												var dd = $("#tt").val();console.log(dd);
 												$("#ticketingDate").val(dd);
 											});
 											
 											$("#ttt").change(function(){
-												var dd = $("#ttt").val();
+												var dd = $("#ttt").val();console.log(dd);
 												$("#startDate").val(dd);
 											});
 											
 											$("#tttt").change(function(){
-												var dd = $("#tttt").val();
+												var dd = $("#tttt").val();console.log(dd);
 												$("#endDate").val(dd);
 											});
 								</script>
@@ -143,14 +144,14 @@ height:1500px;
 									</tr>
 									<tr>
 										<td colspan="6"><input type="text" size="58" name="artTitle"
-											class="tt"></td>
+											class="tt" value="${art.artTitle }"></td>
 									</tr>
 									<tr>
 										<td colspan="6"><h5><strong>공연 장소 </strong></h5></td>
 									</tr>
 									<tr>
 										<td colspan="6"><input type="text" size="58" name="address"
-											class="tt"></td>
+											class="tt"value="${art.address }"></td>
 									</tr>
 									<tr>
 										<td colspan="6"><h5><strong>내용</strong></h5></td>
@@ -158,7 +159,7 @@ height:1500px;
 									<tr>
 										<td colspan="6">
 											<div id="titleImgArea2">
-												<img id="titleImg2" width="350" height="500" class="tt" src="">
+												<img id="titleImg2" width="350" height="500" class="tt" src="${ contextPath }/resources/images/art/${ img[1].changeName }"/>
 											</div>
 										</td>
 									</tr>
@@ -166,9 +167,9 @@ height:1500px;
 								</table>
 								<br>
 								<div align="center">
-									<button id="submit" type="submit" class="btn btn-outline-success">다음</button>
+									<button id="submit" type="submit" class="btn btn-outline-success">수정하기</button>
 									<div id="fileupload">
-										<input type="file" id="thumbnailImg1" name="uploadFile" onchange="loadImg(this,1)"> 
+										<input type="file" id="thumbnailImg1" name="uploadFile" onchange="loadImg(this,1)" > 
 										<input type="file" id="thumbnailImg2" name="uploadFile2" onchange="loadImg(this,2)">
 									</div>
 									<br>
@@ -186,7 +187,7 @@ height:1500px;
 													});
 										});
 					                       function loadImg(value, num){
-					                    	   
+					                    	   console.log(value);
 												var reader = new FileReader();
 												
 												if(num == 1)

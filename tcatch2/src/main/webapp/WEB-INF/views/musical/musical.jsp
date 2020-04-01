@@ -75,7 +75,11 @@ div {
 		<button onclick="location.href='timeInsertForm.do'">TimeInsert</button>
 		<button onclick="location.href='companyInsertForm.do'">CompanyInsert</button>
 		<button onclick="location.href='searchArtForm.do'">search</button>
-				
+		
+		<c:url var="update" value="artUpdateForm.do">
+							<c:param name="artNo" value="1"/>
+		</c:url>
+		<button onclick="location.href='${update}'">artUpdateForm</button>		
 			<div class="rank-best">
 			<div>
 			<!-- 1위 -->
@@ -169,7 +173,7 @@ div {
 		
 		<section class='m2-sec06'>
 			<p class='m2-tit'>
-				<img src='${contextPath}/resources/images/musical/mLogo.png' />
+				<img src='${contextPath}/resources/images/musical/Art.png' />
 			</p>
 			
 			
@@ -195,10 +199,6 @@ div {
 				</c:forEach>
 			</div>
 			<!-- 일반 상품 -->
-			
-			  
-			
-			
 		</section>
 	</div>
 

@@ -301,12 +301,13 @@
 	<select id="selectRank" resultMap="ArtResultSet">
 		SELECT * 
 		FROM ART
-		JOIN IMG USING(ART_NO)
-		WHERE ART_TYPE=#{i}
+		JOIN IMG I USING(ART_NO)
+		WHERE STATUS='Y' AND I.FILE_LEVEL=0 AND ART_TYPE=#{i}
 		AND ROWNUM <![CDATA[<=]]> 3
 		ORDER BY COUNT DESC
 	</select>
 	
+
 	<update id="deleteArt">
 		UPDATE ART
 		SET STATUS = 'N'
@@ -314,4 +315,33 @@
 	
 	</update>
 	
+
+	<update id="updateArt">
+		UPDATE ART SET ART_TYPE=#{artType}, 
+		ART_TITLE=#{artTitle}, 
+		ADDRESS=#{address}, 
+		COMPANY_NO=#{companyNo}, 
+		RATING= #{rating},
+		DURATION_TIME= #{durationTime},
+		SALE=#{sale}
+		WHERE ART_NO = #{artNo}
+	</update>
+	
+	<update id="updateImg">
+		UPDATE IMG SET ORIGIN_NAME=#{originName}, 
+		CHANGE_NAME=#{changeName},
+		FILE_PATH=#{filePath},
+		CHANGE_DATE=SYSDATE,
+		FILE_LEVEL=#{fileLevel}
+		WHERE ART_NO = #{artNo} AND FILE_LEVEL = #{fileLevel}
+	</update>
+	
+	<update id="updateTicketDate">
+		UPDATE TICKET_DATE SET TICKETING_DATE = #{ticketingDate} ,
+		START_DATE=#{startDate} ,
+		END_DATE=#{endDate}
+		WHERE ART_NO = #{artNo}
+	</update>
+
+
 </mapper>

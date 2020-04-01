@@ -39,15 +39,15 @@ public class HomeController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
 		String formattedDate = dateFormat.format(date);
-
 		
+		ArrayList<Art> list = aService.searchArt("");
 		
 		ArrayList<Art> list0 = aService.selectRank(0);
 		ArrayList<Art> list1 = aService.selectRank(1);
 		ArrayList<Art> list2 = aService.selectRank(2);
 		ArrayList<Art> list3 = aService.selectRank(3);
-		System.out.println("rank : " + list2);
-		
+
+		mv.addObject("list" , list);
 		mv.addObject("list0",list0);
 		mv.addObject("list1",list1);
 		mv.addObject("list2",list2);

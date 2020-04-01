@@ -111,7 +111,6 @@
 										<td colspan="3"><hr></td>
 									</tr>
 								</table>
-								<input type="button" id="add" value="회차 추가">
 								
 								<div align="center">
 									<button type="submit" value="등록하기">등록하기</button>
