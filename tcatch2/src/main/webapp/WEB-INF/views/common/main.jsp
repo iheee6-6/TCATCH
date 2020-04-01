@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+  <title>TCATCH</title>
+<link rel="shortcut icon" type="image/x-icon" href='${contextPath}/resources/images/common/logo.png'>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/album/">
 
@@ -53,6 +54,8 @@
       	padding:0;
       	margin:auto;
       	border:1px solid #ddd;
+      	width:100px;
+      	display:inline-block;
       }
       
       
@@ -118,19 +121,17 @@
 							<img class='lazyload' src="${ contextPath }/resources/images/art/${ a.changeName }"/>
 						</span>
 							<div class='list-2-txt'>
-								<p class='list-2-tit1'>
-									${a.artTitle}
-								</p>
-								<p class='list-2-tit2'>조회수 (${ a.count })</p>
-								<div id="sexy">
 									<p class="list-2-tit3">
 										<%= count++ %>위
 									 </p>
-								</div>
+								<p class='list-2-tit1'>
+									${a.artTitle}
+								</p>
+								<p class='list-2-tit2'>♥Like : ${ a.count }</p>
 							</div>
 						</a>
-
 				</c:forEach>
+
 			</div>
   
      <!-- 콘서트 top list -->
@@ -147,15 +148,14 @@
 							<img class='lazyload' src="${ contextPath }/resources/images/art/${ a.changeName }"/>
 						</span>
 							<div class='list-2-txt'>
-								<p class='list-2-tit1'>
-									${a.artTitle}
-								</p>
-								<p class='list-2-tit2'>조회수 (${ a.count })</p>
-								<div id="sexy">
 									<p class="list-2-tit3">
 										<%= count++ %>위
 									 </p>
-								</div>
+								<p class='list-2-tit1'>
+									${a.artTitle}
+								</p>
+								<p class='list-2-tit2'>♥Like : ${ a.count }</p>
+
 							</div>
 						</a>
 				</c:forEach>
@@ -175,15 +175,13 @@
 							<img class='lazyload' src="${ contextPath }/resources/images/art/${ a.changeName }"/>
 						</span>
 							<div class='list-2-txt'>
-								<p class='list-2-tit1'>
-									${a.artTitle}
-								</p>
-								<p class='list-2-tit2'>조회수 (${ a.count })</p>
-								<div id="sexy">
 									<p class="list-2-tit3">
 										<%= count++ %>위
 									 </p>
-								</div>
+								<p class='list-2-tit1'>
+									${a.artTitle}
+								</p>
+								<p class='list-2-tit2'>♥Like : ${ a.count }</p>
 							</div>
 						</a>
 				</c:forEach>
@@ -204,15 +202,13 @@
 							<img class='lazyload' src="${ contextPath }/resources/images/art/${ a.changeName }"/>
 						</span>
 							<div class='list-2-txt'>
-								<p class='list-2-tit1'>
-									${a.artTitle}
-								</p>
-								<p class='list-2-tit2'>조회수 (${ a.count })</p>
-								<div id="sexy">
 									<p class="list-2-tit3">
 										<%= count++ %>위
 									 </p>
-								</div>
+								<p class='list-2-tit1'>
+									${a.artTitle}
+								</p>
+								<p class='list-2-tit2'>♥Like :${ a.count }</p>
 							</div>
 						</a>
 					</c:if>

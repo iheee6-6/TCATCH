@@ -3,17 +3,18 @@ package com.tone.tcatch.art.model.vo;
 import java.sql.Date;
 
 public class Purchase {
-	private int purchaseNo; //���� ��ȣ
-	private int mNo; //ȸ����ȣ
-	private String seatName; //�¼� �̸�
-	private int seatSal; //����
-	private int type; //���� ���
-	private Date buyDate; //���� ��¥
-	private int purchaseCount; //�ż�
-	private String waybillNumber; //����� ��ȣ
-	private int timeNo; //ȸ����ȣ 
-	private int artNo; // ������ȣ
-	
+
+	private int purchaseNo; //예매번호
+	private int mNo; // 회원번호
+	private String seatName; //좌석 이름
+	private int seatSal; // 가격이름
+	private int type; // 배송 타입
+	private Date buyDate; // 구매 날짜
+	private int purchaseCount; // 구매 개수
+	private int waybillNumber; // 운송장 번호
+	private int timeNo; // 회차번호
+	private int artNo; // 공연번호
+
 	public Purchase() {}
 
 	public Purchase(int purchaseNo, int mNo, String seatName, int seatSal, int type, Date buyDate, int purchaseCount,

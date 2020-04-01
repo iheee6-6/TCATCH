@@ -21,8 +21,8 @@
 
 	<!-- 지도 API -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7ca88425a9b2838d03cea5da7be46498&libraries=services"></script>
-   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7ca88425a9b2838d03cea5da7be46498"></script>
+   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2afbe1f7936e7a946254f01d5b3a8e79&libraries=services"></script>
+   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2afbe1f7936e7a946254f01d5b3a8e79"></script>
 
 
   <style>
@@ -254,7 +254,7 @@ text-decoration: none;
 <div class="renew-wrap">
 	<div class="renew-content">
 		<div class="rn-02"><!--제목-->
-			<p class="rn-big-title">[제목] ${art.artTitle }</p>
+			<p class="rn-big-title">${art.artTitle }</p>
 			<div class="rn-product-short-data">
 				<p><span class="ps-date">${art.startDate } ~ ${art.endDate }</span><span class="ps-location"> ${art.address } </span></p>	
 			</div>			
@@ -301,7 +301,6 @@ text-decoration: none;
 							JjimSelect();	
 
 							
-							// 댓글 등록 ajax
 							$("#jjim").on("click", function(){
 								var artNo = ${art.artNo};
 								var no = ${loginUser.no};
@@ -315,10 +314,12 @@ text-decoration: none;
 										if(data =="InSuccess" ){
 											JjimSelect();
 											alert("찜 성공");
+											window.location.reload();
 										}
 										if(data =="DeSuccess"){
 											JjimSelect();
 											alert("찜 취소");
+											window.location.reload();
 										}
 										if(data == "Infail"){
 											alert("찜 실패");

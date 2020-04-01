@@ -20,16 +20,15 @@
 	<footer>
     <div class="cont">
 	    <div class="footer-menu">
-		    <a href="#" target="_blank">회사소개</a>
-		    <a href="#" target="_blank">이용약관</a>
-		    <a href="#">개인정보처리방침</a>
-		    <a href="#" target="_blank">청소년보호정책</a>
-		    <a href="#" target="_blank">이용안내</a>
-		    <a href="/UserGuide/inquiry" target="_blank">티켓판매안내</a>
+		    <a href="cnotice.do">회사소개</a>
+		    <a href="cnotice2.do">이용약관</a>
+		    <a href="cnotice3.do">청소년보호정책</a>
+		    <a href="cnotice4.do">예매방법</a>
+
 		    
 	    </div>
 	    <div class="footer-txt">
-		    <a href="/New/Main.aspx?Gcode=009_201" class="flogo"><img src="${contextPath }/resources/images/common/logo.png" alt="" width="200px" height="150px" style="margin-top:-40px;"/></a>
+		    <a href="home.do" class="flogo"><img src="${contextPath }/resources/images/common/logo.png" alt="" width="200px" height="150px" style="margin-top:-40px;"/></a>
 		    <div class="footxt">
 			    <p>TCATCH</p>
 			    <p class="gray">KH정보교육원 강남지원 2관 : 서울특별시 강남구 테헤란로10길 9 그랑프리 빌딩 4F, 5F, 7F<br />삼위일체조  신하은  |  고태훈  | 김대성<br />핸드폰번호  010-6539-0032

@@ -34,15 +34,12 @@ body {
 	<!-- 콘텐츠 //-->
 	<div class="content-min-wrap">
 		<p class="big-title">이용안내</p>
-		<div class="brochure">
-			
-			
-		</div>
+
 		<div class="guide-division" style="text-align: center;">
-			<a href="cnotice.do" class="on">예매방법</a>
-			<a href="cnotice2.do">수수료</a>
-			<a href="cnotice3.do">취소/환불</a> 
-			<a href="cnotice4.do">티켓판매/제휴문의</a>
+			<a href="cnotice4.do">회사소개</a>
+			<a href="cnotice2.do">이용약관</a>
+			<a href="cnotice3.do">청소년 보호 정책</a> 
+			<a href="cnotice.do"class="on">예매방법</a>
 		</div>
 
 		<div class="guidebox gb01" style="display: block;">
