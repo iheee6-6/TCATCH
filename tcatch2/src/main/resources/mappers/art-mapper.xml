@@ -10,7 +10,6 @@
 		<result property="artTitle" column="ART_TITLE"/>
 		<result property="artExplain" column="ART_EXPLAIN"/>
 		<result property="count" column="COUNT"/>
-		<result property="count" column="COUNT_2"/>
 		<result property="address" column="ADDRESS"/>
 		<result property="companyNo" column="COMPANY_NO"/>
 		<result property="rating" column="RATING"/>
@@ -300,19 +299,23 @@
 	</select>
 	
 	<select id="selectRank" resultMap="ArtResultSet">
-        SELECT * 
-        FROM (
-        SELECT ART_NO , COUNT(*) AS COUNT_2
-        FROM PERSONAL
-        GROUP BY ART_NO
-        ORDER BY COUNT_2 DESC
-        )
-        JOIN ART USING(ART_NO)
-        JOIN IMG I USING(ART_NO)
-		WHERE STATUS='Y' AND I.FILE_LEVEL=0 AND ART_TYPE=#{i} AND ROWNUM<![CDATA[<=]]>4
-        ORDER BY COUNT_2 DESC
+		SELECT * 
+		FROM ART
+		JOIN IMG I USING(ART_NO)
+		WHERE STATUS='Y' AND I.FILE_LEVEL=0 AND ART_TYPE=#{i}
+		AND ROWNUM <![CDATA[<=]]> 3
+		ORDER BY COUNT DESC
 	</select>
 	
+
+	<update id="deleteArt">
+		UPDATE ART
+		SET STATUS = 'N'
+		WHERE ART_NO = #{artNo}
+	
+	</update>
+	
+
 	<update id="updateArt">
 		UPDATE ART SET ART_TYPE=#{artType}, 
 		ART_TITLE=#{artTitle}, 
@@ -340,4 +343,6 @@
 		WHERE ART_NO = #{artNo}
 	</update>
 
+
 </mapper>
+

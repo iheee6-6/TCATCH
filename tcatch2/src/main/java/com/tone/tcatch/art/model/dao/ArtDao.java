@@ -142,6 +142,11 @@ public class ArtDao {
 		return (ArrayList)sqlSession.selectList("artMapper.selectRank",i);
 	}
 
+
+	public int deleteArt(Art a) {
+		
+		return sqlSession.update("artMapper.deleteArt",a);
+
 	public int updateArt(Art a) {
 		return sqlSession.update("artMapper.updateArt", a);
 	}
@@ -152,6 +157,7 @@ public class ArtDao {
 
 	public int updateTicketDate(TicketDate td) {
 		return sqlSession.update("artMapper.updateTicketDate",td);
+
 	}
 
 }

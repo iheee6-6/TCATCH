@@ -3,6 +3,7 @@ package com.tone.tcatch.art.model.vo;
 import java.sql.Date;
 
 public class Purchase {
+
 	private int purchaseNo; //예매번호
 	private int mNo; // 회원번호
 	private String seatName; //좌석 이름
@@ -13,11 +14,11 @@ public class Purchase {
 	private int waybillNumber; // 운송장 번호
 	private int timeNo; // 회차번호
 	private int artNo; // 공연번호
-	
+
 	public Purchase() {}
 
 	public Purchase(int purchaseNo, int mNo, String seatName, int seatSal, int type, Date buyDate, int purchaseCount,
-			int waybillNumber, int timeNo, int artNo) {
+			String waybillNumber, int timeNo, int artNo) {
 		super();
 		this.purchaseNo = purchaseNo;
 		this.mNo = mNo;
@@ -34,7 +35,7 @@ public class Purchase {
 	
 	
 
-	public Purchase(int mNo, String seatName, int seatSal, int type, Date buyDate, int purchaseCount, int waybillNumber,
+	public Purchase(int mNo, String seatName, int seatSal, int type, Date buyDate, int purchaseCount, String waybillNumber,
 			int timeNo, int artNo) {
 		super();
 		this.mNo = mNo;
@@ -104,11 +105,11 @@ public class Purchase {
 		this.purchaseCount = purchaseCount;
 	}
 
-	public int getWaybillNumber() {
+	public String getWaybillNumber() {
 		return waybillNumber;
 	}
 
-	public void setWaybillNumber(int waybillNumber) {
+	public void setWaybillNumber(String waybillNumber) {
 		this.waybillNumber = waybillNumber;
 	}
 

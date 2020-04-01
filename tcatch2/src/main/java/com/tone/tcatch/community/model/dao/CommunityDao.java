@@ -93,5 +93,10 @@ public class CommunityDao {
 		
 		return sqlSession.delete("communityMapper.deleteR",dNo);
 	}
+
+	public void updateR(int dNo) {
+		sqlSession.update("communityMapper.updateR",dNo);
+		
+	}
 	
 }

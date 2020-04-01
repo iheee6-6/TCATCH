@@ -28,7 +28,7 @@ public class Ticket extends Art{
 	private Timestamp refundEnrollDate; //환불 신청 날짜 
 	private String refundStatus; //환불 승인여부
 	
-	private int wayBill; //운송장 번호
+	private String wayBill; //운송장 번호
 	
 	
 	private String review_no; //리뷰 작성 여부 확인 //
@@ -172,11 +172,11 @@ public class Ticket extends Art{
 		this.refundStatus = refundStatus;
 	}
 
-	public int getWayBill() {
+	public String getWayBill() {
 		return wayBill;
 	}
 
-	public void setWayBill(int wayBill) {
+	public void setWayBill(String wayBill) {
 		this.wayBill = wayBill;
 	}
 

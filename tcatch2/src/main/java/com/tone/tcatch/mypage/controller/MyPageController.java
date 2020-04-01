@@ -32,6 +32,7 @@ import com.tone.tcatch.mypage.model.vo.Alarm;
 import com.tone.tcatch.mypage.model.vo.Refund;
 import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.art.model.vo.Img;
+import com.tone.tcatch.art.model.vo.Purchase;
 import com.tone.tcatch.art.model.vo.Seat;
 import com.tone.tcatch.common.Pagination;
 import com.tone.tcatch.ticket.model.vo.Ticket;
@@ -449,9 +450,22 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("billInsert.do")
-	public String billInsert(@RequestParam("product_No") int product_No) {
+	public String billInsert(int tNo , String wayBill) throws MypageException {
+		Purchase p = new Purchase();
 		
-		return null;
+		p.setPurchaseNo(tNo);
+		p.setWaybillNumber(wayBill);
+		
+		System.out.println("tNo : " + tNo);
+		System.out.println("way : " + wayBill);
+		
+		int result = mpService.updatePurchase(p);
+		
+		if(result>0) {
+			return "redirect:adminChecknCancel.do";
+		}else {
+			throw new MypageException("실패!");
+		}
 	}
 	
 	@RequestMapping("adminRefundList.do")

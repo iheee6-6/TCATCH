@@ -80,13 +80,14 @@
 <body>
 
 <form action="billInsert.do" method="post" onsubmit="return check();">
+<input type="hidden" value="" id="tNo" name="tNo">
 <div id="myModal" class="modal">
       <!-- Modal content -->
       
       <div class="modal-content" style="width:30%;">
       			<h2>운송장번호 입력하기</h2>
-
-                <input type="text" id="dcontent" name="dContent" placeholder="운송장번호">
+				
+                <input type="text" id="wayBill" name="wayBill" placeholder="운송장번호">
                 <br>
                
                 <div style="display:inline-block; float:center;">
@@ -100,7 +101,7 @@
     </div>
     <script>
     	function check(){
-    		if($("#dcontent").val() == 0){
+    		if($("#wayBill").val() == 0){
     			alert("운송장번호를 입력해주세요");
     			return false;
     		}
@@ -177,7 +178,7 @@
 									</tr>
 								</tfoot>
 								<tbody>
-								<c:forEach var="t" items="${ ticketList }">
+								<c:forEach var="t" items="${ ticketList }" varStatus="i">
 									<!-- 상품 리스트 뽑아내기 -->
 									<tr>
 										<%-- <input type="hidden" id="tv" value="${t.tNo }"> --%>
@@ -190,23 +191,30 @@
 										<td id="id2">${t.artTitle }</td>
 										<td id="id3">${t.userAddress }</td>
 										<td id="id4">${t.userName }</td>
-										<td id="id5"><c:if test="${t.receiveMethod == 0 }"><button class="btn btn-outline-secondary" type="button"
-					style="font-size: 12px; width:80px; height:50px; float:center;" id="mm">운송장입력</button></c:if>
-										<c:if test="${t.receiveMethod == 1 }">현장발매</c:if></td>
+										<td id="id5">
+										<c:if test="${t.receiveMethod == 0 && t.wayBill eq null}">
+										<button class="btn btn-outline-secondary" type="button" style="font-size: 12px; width:80px; height:50px; float:center;" id="mm${i.index }">운송장입력</button>
+										</c:if>
+										<c:if test="${t.receiveMethod == 1 }">현장발매</c:if>
+										<c:if test="${t.receiveMethod == 0 && t.wayBill ne null }">${ t.wayBill }</c:if></td>
 									</tr>
-								
-								</c:forEach>
-								<script type="text/javascript">
-	        						$("#mm").on("click",function(){
+									
+									<script type="text/javascript">
+	        						$("#mm"+${i.index}).on("click",function(){
 	                				$('#myModal').show();
-	                				var tNo = $("#tv").val();
+	                				var row = $(this).parent().parent();
+	                				var tNo = row.children().children().val();
 	                				console.log(tNo);
+	                				$("#tNo").val(tNo);
 	        					});
 	        					//팝업 Close 기능
 	        					function close_pop(flag) {
 	           						$('#myModal').hide();
-	        					};
+	        					}
       							</script>
+								
+								</c:forEach>
+								
 									
 								</tbody>
 							</table>
@@ -216,8 +224,6 @@
 			</div>
 		</div>
 	</div>
-<jsp:include page="../common/footer.jsp"/>
-
 	<script
 		src="${ contextPath }/resources/admin/vendor/jquery/jquery.min.js"></script>
 	<script

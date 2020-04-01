@@ -92,6 +92,9 @@ public interface ArtService {
 	//메인 topList
 	ArrayList<Art> selectRank(int i);
 
+
+	int deleteArt(Art a);
+
 	//updateArt
 	int updateArt(Art a);
 	
@@ -99,6 +102,7 @@ public interface ArtService {
 	int updateImg(Img img);
 	//update TicketDAte
 	int updateTicketDate(TicketDate td);
+
 	
 
 

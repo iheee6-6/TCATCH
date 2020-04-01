@@ -197,7 +197,8 @@ public class ArtController {
 	@RequestMapping("/searchArt.do") 
 	public ModelAndView searchArt(ModelAndView mv , String title) {
 		ArrayList<Art> list = aService.searchArt(title);
-
+		System.out.println("search : " + list);
+		
 		mv.addObject("list", list);
 		mv.setViewName("musical/artSearch");
 		
@@ -499,7 +500,6 @@ public class ArtController {
 		mv.addObject("strToday",strToday);
 		mv.addObject("atDateTime", atDateTime);
 		mv.addObject("artType", art.getArtType());
-		mv.addObject("seatName", sList.get(0).getSeatName());
 		mv.addObject("sList",sList);
 		mv.setViewName("musical/buy_two");
 		
@@ -515,6 +515,36 @@ public class ArtController {
 		
 		return "redirect:musical.do";
 	}
+
+	
+	@RequestMapping("/adminArt.do") 
+	public ModelAndView adminArt(ModelAndView mv) {
+		ArrayList<Art> list = aService.searchArt("");
+		
+		mv.addObject("list", list);
+		mv.setViewName("admin/adminArtList");
+		
+		return mv;
+	}
+	
+	@RequestMapping("deleteArt.do")
+	public String deleteArt(@RequestParam("product_No") String[] product_No) {
+		
+		Art a = new Art();
+		int result = 0;
+		
+		for(int i =0; i<product_No.length; i++) {
+			a.setArtNo(Integer.parseInt(product_No[i]));
+			result = aService.deleteArt(a);
+		}
+		
+		if(result>0) {
+			return "redirect:adminArt.do";
+		}else {
+			throw new ArtException("공연목록 조회실패!");
+		}
+	}
+
 	
 	@RequestMapping("artUpdateForm.do")
 	public ModelAndView artUpdateForm(ModelAndView mv , int artNo) {
@@ -602,3 +632,4 @@ public class ArtController {
 					
 		
 }
+
