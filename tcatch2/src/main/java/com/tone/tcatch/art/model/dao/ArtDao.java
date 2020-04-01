@@ -143,4 +143,9 @@ public class ArtDao {
 		return (ArrayList)sqlSession.selectList("artMapper.selectRank",i);
 	}
 
+	public int deleteArt(Art a) {
+		
+		return sqlSession.update("artMapper.deleteArt",a);
+	}
+
 }

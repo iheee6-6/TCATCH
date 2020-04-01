@@ -307,4 +307,11 @@
 		ORDER BY COUNT DESC
 	</select>
 	
+	<update id="deleteArt">
+		UPDATE ART
+		SET STATUS = 'N'
+		WHERE ART_NO = #{artNo}
+	
+	</update>
+	
 </mapper>

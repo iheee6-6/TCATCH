@@ -186,6 +186,13 @@ public class ArtServiceImpl implements ArtService{
 	}
 
 
+	@Override
+	public int deleteArt(Art a) {
+		
+		return aDao.deleteArt(a);
+	}
+
+
 	
 	
 	

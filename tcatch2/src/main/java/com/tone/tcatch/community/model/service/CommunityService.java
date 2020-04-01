@@ -34,4 +34,7 @@ public interface CommunityService {
 
 	int deleteR(int dNo);
 
+	void updateR(int dNo);
+
+
 }

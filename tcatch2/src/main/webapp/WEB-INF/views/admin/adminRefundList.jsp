@@ -148,7 +148,6 @@
 			</div>
 		</div>
 	</div>
-<jsp:include page="../common/footer.jsp"/>
 
 	<script
 		src="${ contextPath }/resources/admin/vendor/jquery/jquery.min.js"></script>

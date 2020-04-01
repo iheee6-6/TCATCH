@@ -91,6 +91,8 @@ public interface ArtService {
 
 	//메인 topList
 	ArrayList<Art> selectRank(int i);
+
+	int deleteArt(Art a);
 	
 
 
