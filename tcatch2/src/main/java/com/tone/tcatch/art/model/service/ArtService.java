@@ -91,6 +91,14 @@ public interface ArtService {
 
 	//메인 topList
 	ArrayList<Art> selectRank(int i);
+
+	//updateArt
+	int updateArt(Art a);
+	
+	//update IMG
+	int updateImg(Img img);
+	//update TicketDAte
+	int updateTicketDate(TicketDate td);
 	
 
 
