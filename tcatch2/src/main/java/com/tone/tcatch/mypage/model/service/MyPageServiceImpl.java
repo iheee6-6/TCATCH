@@ -17,6 +17,7 @@ import com.tone.tcatch.common.model.vo.PageInfo;
 import com.tone.tcatch.member.model.vo.Member;
 import com.tone.tcatch.mypage.model.dao.MyPageDao;
 import com.tone.tcatch.mypage.model.vo.Alarm;
+import com.tone.tcatch.mypage.model.vo.Refund;
 import com.tone.tcatch.ticket.model.vo.Ticket;
 
 @Service("mpService")
@@ -173,6 +174,18 @@ public class MyPageServiceImpl implements MyPageService{
 	public ArrayList<Ticket> selectAdminTicketList() {
 		
 		return mpDao.selectAdminTicketList();
+	}
+
+	@Override
+	public ArrayList<Ticket> selectRefund() {
+		
+		return mpDao.selectRefund();
+	}
+
+	@Override
+	public int updateRefund(Refund re) {
+		
+		return mpDao.updateRefund(re);
 	}
 
 

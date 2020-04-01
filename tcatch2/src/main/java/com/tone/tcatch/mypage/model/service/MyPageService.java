@@ -10,6 +10,7 @@ import com.tone.tcatch.art.model.vo.Img;
 import com.tone.tcatch.art.model.vo.Seat;
 import com.tone.tcatch.member.model.vo.Member;
 import com.tone.tcatch.mypage.model.vo.Alarm;
+import com.tone.tcatch.mypage.model.vo.Refund;
 import com.tone.tcatch.ticket.model.vo.Ticket;
 
 public interface MyPageService {
@@ -66,6 +67,10 @@ public interface MyPageService {
 	ArrayList<Seat> selectSeatList(Integer artNo, Integer timeNo);
 
 	ArrayList<Ticket> selectAdminTicketList();
+
+	ArrayList<Ticket> selectRefund();
+
+	int updateRefund(Refund re);
 
 
 }

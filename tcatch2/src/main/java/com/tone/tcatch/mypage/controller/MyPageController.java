@@ -29,6 +29,7 @@ import com.tone.tcatch.member.model.vo.Member;
 import com.tone.tcatch.mypage.model.exception.MypageException;
 import com.tone.tcatch.mypage.model.service.MyPageService;
 import com.tone.tcatch.mypage.model.vo.Alarm;
+import com.tone.tcatch.mypage.model.vo.Refund;
 import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.art.model.vo.Img;
 import com.tone.tcatch.art.model.vo.Seat;
@@ -443,6 +444,44 @@ public class MyPageController {
 		mv.addObject("ticketList", ticketList);
 		mv.setViewName("admin/admin");
 		return mv;
+	}
+	
+	@RequestMapping("billInsert.do")
+	public String billInsert(@RequestParam("product_No") int product_No) {
+		
+		return null;
+	}
+	
+	@RequestMapping("adminRefundList.do")
+	public ModelAndView adminRefundList(ModelAndView mv) {
+		
+		
+		ArrayList<Ticket> refundList = mpService.selectRefund();
+		
+		mv.addObject("refundList",refundList);
+		mv.setViewName("admin/adminRefundList");
+		
+		return mv;
+	}
+	
+	@RequestMapping("adminRefundUpdate.do")
+	public String refundUpdate(@RequestParam("product_No") String[] product_No) throws MypageException {
+		
+		Refund re = new Refund();
+		
+		int result = 0;
+		
+		for(int i=0; i<product_No.length; i++) {
+			
+			re.setReNo(Integer.parseInt(product_No[i]));
+			result = mpService.updateRefund(re);
+		}
+		
+		if(result>0) {
+			return "redirect:adminRefundList.do";
+		}else {
+			throw new MypageException("환불처리 실패"); 
+		}
 	}
 
 }

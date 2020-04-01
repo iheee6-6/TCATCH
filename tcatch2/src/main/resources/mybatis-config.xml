@@ -15,6 +15,7 @@
 		<typeAlias type="com.tone.tcatch.community.model.vo.Community" alias="Community"/>
 		<typeAlias type="com.tone.tcatch.ticket.model.vo.Ticket" alias="Ticket"/>
 		<typeAlias type="com.tone.tcatch.mypage.model.vo.Alarm" alias="Alarm"/>
+		<typeAlias type="com.tone.tcatch.mypage.model.vo.Refund" alias="Refund"/>
 		<typeAlias type="com.tone.tcatch.art.model.vo.ArtDetail" alias="ArtDetail"/>
 		<typeAlias type="com.tone.tcatch.art.model.vo.Art" alias="Art"/>
 		<typeAlias type="com.tone.tcatch.art.model.vo.ArtTime" alias="ArtTime"/>
