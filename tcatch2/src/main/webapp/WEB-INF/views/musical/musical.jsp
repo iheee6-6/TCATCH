@@ -71,7 +71,7 @@ div {
 			<p class='m2-tit'>
 				<img src='${contextPath}/resources/images/musical/TCATCH.png' />
 			</p>
-		<button onclick="location.href='insert.do'">ArtInsert</button>
+		<%-- <button onclick="location.href='insert.do'">ArtInsert</button>
 		<button onclick="location.href='timeInsertForm.do'">TimeInsert</button>
 		<button onclick="location.href='companyInsertForm.do'">CompanyInsert</button>
 		<button onclick="location.href='searchArtForm.do'">search</button>
@@ -79,7 +79,7 @@ div {
 		<c:url var="update" value="artUpdateForm.do">
 							<c:param name="artNo" value="1"/>
 		</c:url>
-		<button onclick="location.href='${update}'">artUpdateForm</button>		
+		<button onclick="location.href='${update}'">artUpdateForm</button>		 --%>
 			<div class="rank-best">
 			<div>
 			<!-- 1위 -->
@@ -158,7 +158,7 @@ div {
 								
 								<div class='list-bigger-txt'>
 									<p class='list-b-tit1'>${a.artTitle}</p>
-									<p class='list-b-tit2'>조회수 ${a.count } , 댓글 (${ a.replyCount })</p>		
+									<p class='list-b-tit2'>조회수 ${a.count } , 후기 (${ a.replyCount })</p>		
 									<p class='list-b-circle'>${ a.sale }%</p>
 								</div>
 							</div>
@@ -192,7 +192,7 @@ div {
 								<p class='list-2-tit1'>
 									${a.artTitle}
 								</p>
-								<p class='list-2-tit2'>댓글 (${ a.replyCount })</p>
+								<p class='list-2-tit2'>후기 (${ a.replyCount })</p>
 							</div>
 						</a>
 					</c:if>

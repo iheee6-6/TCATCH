@@ -154,7 +154,6 @@ td {
 			                              		
 			                              		function selectC(){
 			                              			 var value = $("option:selected").val();
-			                              			 console.log(value);
 			                                         $("#timeNo").val(value);
 			                              		}
 			                              </script>
@@ -170,7 +169,7 @@ td {
 				<p>선택한 좌석:</p>
 						<input type="text" name="seatName[]" id="whktjr">
 				<button type="submit" id="goBuy">구매</button>
-				<button type="button" onclick="re();" id="ree">취소</button>
+				<button type="button" onclick="window.location.reload();" id="ree">취소</button>
 			</div>
 		<br>
 

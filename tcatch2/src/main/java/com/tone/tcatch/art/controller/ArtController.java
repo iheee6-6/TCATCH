@@ -197,8 +197,7 @@ public class ArtController {
 	@RequestMapping("/searchArt.do") 
 	public ModelAndView searchArt(ModelAndView mv , String title) {
 		ArrayList<Art> list = aService.searchArt(title);
-		System.out.println("search : " + list);
-		
+
 		mv.addObject("list", list);
 		mv.setViewName("musical/artSearch");
 		
@@ -500,6 +499,7 @@ public class ArtController {
 		mv.addObject("strToday",strToday);
 		mv.addObject("atDateTime", atDateTime);
 		mv.addObject("artType", art.getArtType());
+		mv.addObject("seatName", sList.get(0).getSeatName());
 		mv.addObject("sList",sList);
 		mv.setViewName("musical/buy_two");
 		

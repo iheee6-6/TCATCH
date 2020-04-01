@@ -3,16 +3,16 @@ package com.tone.tcatch.art.model.vo;
 import java.sql.Date;
 
 public class Purchase {
-	private int purchaseNo; //¿¹¸Å ¹øÈ£
-	private int mNo; //È¸¿ø¹øÈ£
-	private String seatName; //ÁÂ¼® ÀÌ¸§
-	private int seatSal; //°¡°İ
-	private int type; //¼ö·É ¹æ¹ı
-	private Date buyDate; //¿¹¸Å ³¯Â¥
-	private int purchaseCount; //¸Å¼ö
-	private int waybillNumber; //¿î¼ÛÀå ¹øÈ£
-	private int timeNo; //È¸Â÷¹øÈ£ 
-	private int artNo; // °ø¿¬¹øÈ£
+	private int purchaseNo; //ì˜ˆë§¤ë²ˆí˜¸
+	private int mNo; // íšŒì›ë²ˆí˜¸
+	private String seatName; //ì¢Œì„ ì´ë¦„
+	private int seatSal; // ê°€ê²©ì´ë¦„
+	private int type; // ë°°ì†¡ íƒ€ì…
+	private Date buyDate; // êµ¬ë§¤ ë‚ ì§œ
+	private int purchaseCount; // êµ¬ë§¤ ê°œìˆ˜
+	private int waybillNumber; // ìš´ì†¡ì¥ ë²ˆí˜¸
+	private int timeNo; // íšŒì°¨ë²ˆí˜¸
+	private int artNo; // ê³µì—°ë²ˆí˜¸
 	
 	public Purchase() {}
 
