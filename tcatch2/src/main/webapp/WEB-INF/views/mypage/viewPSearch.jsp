@@ -22,8 +22,10 @@
 	height: 55px;
 	margin-left: 210px;
 }
+li{
+	list-style:none;
+}
 </style>
-	<%	int index = 1;%>
 	<c:choose>
 		<c:when test="${empty viewPerformanceList }">
 			<div
@@ -32,12 +34,16 @@
 		</c:when>
 		<c:otherwise>
 			
-			<c:forEach var="v" items="${viewPerformanceList }">
+			<c:forEach var="v" items="${viewPerformanceList }" varStatus="status">
 
 				<div class="memo end">
 					<h3 style="margin: 0">
 						<div class="number">
-							<span><%=index++%></span>
+						<c:set value="${pi.currentPage}" var="index"/>
+						<c:if test="${status.last }">
+							<c:set value="${pi.currentPage +1}" var="index"/>
+						</c:if>
+							<span>${index}</span>
 						</div>
 						<strong>${v.artTitle }</strong>
 					</h3>
@@ -84,9 +90,9 @@
 						</c:if>
 					</div>
 						<c:if test="${ !empty v.review_content}">
-						<br>
+						
 							<em>< 후기 > </em> 
-							<div class="reviewMemo">
+							<div class="reviewMemo" style="padding:5px;">
 							<span>${v.review_content }</span>
 							</div>
 						</c:if>

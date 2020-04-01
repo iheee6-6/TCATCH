@@ -89,6 +89,8 @@ ul{
 													</td>
 												</tr>
 												</c:if>
+												
+												<c:if test="${ticket.status ne '환불 완료'}">
 												<tr>
 													<th class="le">티켓수령방법
 														<p></p>
@@ -114,6 +116,7 @@ ul{
 														</div>
 													</td>
 												</tr>
+												</c:if>
 											</table>
 
 									
@@ -157,10 +160,11 @@ ul{
 											</table>
 
 										</div>
-
+										
+										
 										<!-- 취소안내 -->
 										<div class="mycont">
-
+											<c:if test="${ticket.status ne '환불 완료'}">
 											<h2 class="tit">
 												<img src="resources/images/mypage/h2_mtit08.gif"
 													alt="예매취소 안내" />
@@ -173,17 +177,6 @@ ul{
 												</h4>
 												
 												
-												<script>
-												$(function(){
-												
-												var date = new Date('${end}');
-													console.log(date.getTime()-60*60*1000);
-													date.setTime(date.getTime()-60*60*1000);
-													
-													$("#endT").text(moment(date).format('LLL'));
-													
-												})
-												</script> 
 											</div>
 											<c:if test="${ticket.status eq '예매완료'}">		
 											<ul class="gbox_notice" style="text-align: right;">
@@ -197,6 +190,7 @@ ul{
 											</ul>
 											</c:if>
 											
+										</c:if>
 											<div style="text-align: center;">
 												<a class='dcursor' id='imgList'
 													onclick='history.back();'><img
@@ -238,7 +232,8 @@ ul{
 											</ul>
 										</div>
 									</div>
-
+									
+									
 
 								</div>
 							</div>
@@ -256,16 +251,22 @@ ul{
 	$(function(){
 		$("#cnc").addClass("active");
 		
+		var date = new Date('${end}');
+		console.log(date.getTime()-60*60*1000);
+		date.setTime(date.getTime()-60*60*1000);
+		
+		var endd = moment(date);
+		$("#endT").text(endd.format('LLL'));
+		
+	
 		$("#imgCancelPayNone").click(function(){
+			
 			if(confirm("정말 예매취소하시겠습니까?")){
 				var date = new Date();
 				
 				var endT = $("#endT").text();
-				console.log(date);
-				console.log(endT);
 				
-				console.log(moment(date).format("LLL") - endT);
-				if(moment(date).format("LLL") < endT){
+				if(moment(date).isBefore(endd)){
 					location.href='${ tdelete }';
 				}else{
 					alert("취소가능일 지났습니다.");
@@ -276,7 +277,7 @@ ul{
 		
 	});
 	function MySeatPopup(){
-			 window.open("seatCheck.do?seat='${ticket.seat}&artNo='${ticket.artNo}'&timeNo='${ticket.timeNo}'", "내 자리 확인", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
+			 window.open("seatCheck.do?seat=${ticket.seat}&artNo=${ticket.artNo}&timeNo=${ticket.timeNo}", "내 자리 확인", "width=800, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
 	}  
 	function ViewTheaterMap(){
 		window.open("viewTheaterMap.do?address='${ticket.address }'", "극장 위치 확인", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  

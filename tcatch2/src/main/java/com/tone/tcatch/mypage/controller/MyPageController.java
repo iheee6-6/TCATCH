@@ -256,12 +256,14 @@ public class MyPageController {
 			@RequestParam(value="seat", required=true)String seat,
 			@RequestParam("artNo") String artNo , 
 			@RequestParam("timeNo") String timeNo) {
+		
+		
 		ArrayList<Seat> sList=new ArrayList<>();
-		try {
-			sList= mpService.selectSeatList(Integer.parseInt(artNo),Integer.parseInt(timeNo));
-		}catch(NumberFormatException e){
-			
-		}
+		
+		sList= mpService.selectSeatList(Integer.parseInt(artNo),Integer.parseInt(timeNo));
+		System.out.println(Integer.parseInt(artNo)+" "+Integer.parseInt(timeNo));
+		
+		System.out.println(sList);
 		mv.addObject("sList",sList);
 		mv.addObject("seat",seat);	
 		mv.setViewName("mypage/seatCheck");
@@ -278,17 +280,17 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("refund.do")
-	public ModelAndView refund(ModelAndView mv, HttpSession session, 
-			@RequestParam(value="tNo", required=false)int tNo) throws MypageException {
+	public String refund(ModelAndView mv, HttpSession session, 
+			@RequestParam(value="tNo")int tNo,RedirectAttributes rd) throws MypageException {
 		Member loginUser = (Member) session.getAttribute("loginUser");
 
 		int result = mpService.refundTicket(loginUser.getId(), tNo);
 		if (result > 0) {
-			session.setAttribute("msg", "예매취소 요청이 완료되었습니다. 관리자의 승인에 의해 이루어집니다.");
-			mv.setViewName("rediret:checknCancel.do");
+			rd.addFlashAttribute("msg", "예매취소 요청이 완료되었습니다. 관리자의 승인에 의해 이루어집니다.");
+			return "redirect:checknCancel.do";
 		} else
 			throw new MypageException("예매취소 요청 실패");
-		return mv;
+		
 	}
 
 	@RequestMapping("noticeView.do")
@@ -385,7 +387,7 @@ public class MyPageController {
 	
 
 	//@Scheduled(cron = "0 0 * * * *") //매일 매시 정각마다(티켓팅은 정각에 이루어지기 때문)
-	  @Scheduled(cron = "0 * 17 * * *")
+	  @Scheduled(cron = "0 * 15 * * *")
 	  public void test() {
 		java.util.Date sysd = new java.util.Date();
 		Timestamp d = new Timestamp(sysd.getTime());
@@ -416,7 +418,7 @@ public class MyPageController {
 		String setfrom = "tcatch@gmail.com";
 		String tomail = email; // 받는 사람 이메일
 		String title = "★ "+artTitle + "  티켓팅 알림입니다.!!! ★";
-		String content = "<html><body><div style='text-align:center;width:350px;height:350px;margin:10px;padding:20px;border:2px solid black'><h1>"+artTitle+ " 티켓팅 한시간 전 입니다!</h1><p>잊지말고 티켓팅하세요~ 좋은 자리 잡으시길 바랍니다.</p>"
+		String content = "<html><body><div style='text-align:center;width:400px;height:auto;margin:10px;padding:20px;border:2px solid black'><h1>"+artTitle+ "<br> 티켓팅 한시간 전 입니다!</h1><p>잊지말고 티켓팅하세요~ 좋은 자리 잡으시길 바랍니다.</p>"
 				+"<img src=\'cid:logo.png\' width='300px'></div></body></html>"; // 내용
 		
 		try {
