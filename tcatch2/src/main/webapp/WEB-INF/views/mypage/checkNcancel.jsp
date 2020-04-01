@@ -7,7 +7,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>TCATCH</title>
+<title>TCATCH-MyPage</title>
+<link rel="shortcut icon" type="image/x-icon" href='${contextPath}/resources/images/common/logo.png'>
+
 <style>
 td a {
 	font-size: 14px;

@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>TCATCH</title>
+<title>TCATCH-MyPage</title>
+<link rel="shortcut icon" type="image/x-icon" href='${contextPath}/resources/images/common/logo.png'>
 
 <style>
 .sms_alram{
@@ -86,13 +87,13 @@ margin: auto;
 									</table>
 								</div>
 								<div class="text-danger" style="margin-left: 30px;">
-									※ 티켓오픈 알림 받을 공연을 추가하거나 티켓 오픈 예정 공연 확인은 공지사항을 확인해주세요
+									※ 티켓오픈 알림 받을 공연을 추가하거나 티켓 오픈 예정 공연 확인은 옆의 버튼에서 확인해주세요
 
 									<c:url var="noticeView" value="noticeView.do" />
 
 									<div style="float: right; margin-right: 50px;">
 										<button type="button" class="btn btn-sm"
-											onclick="location.href='${ noticeView }'">공지사항 확인</button>
+											onclick="location.href='${ noticeView }'">티켓 오픈 목록 확인</button>
 										<button type="button" class="btn btn-sm" id="allCheck">전체
 											선택</button>
 										<button type="button"  class="btn btn-sm" id="deleteCh">선택 삭제</button>
@@ -110,26 +111,24 @@ margin: auto;
 	<script>
 		$(function() {
 			$("#alarmS").addClass("active");
+		});
+		$("#allCheck").click(function() {
+			if ($(this).text() == "전체 선택") {
+				$('.chkAlarm').prop('checked', true);
+				$(this).text("전체 해제");
+			} else {
+				$('.chkAlarm').prop('checked', false);
+				$(this).text("전체 선택");
+			}
 
-			$("#allCheck").click(function() {
-				if ($(this).text() == "전체 선택") {
-					$('.chkAlarm').prop('checked', true);
-					$(this).text("전체 해제");
-				} else {
-					$('.chkAlarm').prop('checked', false);
-					$(this).text("전체 선택");
-				}
-	
-			});
-	
-			$("#deleteCh").click(function() {
-				if($(".chkAlarm:checked").val()){
-				if (confirm("정말 삭제하시겠습니까?")) {
-					$("#checkForm").submit();
-				}
-				}
-			});
-			
+		});
+
+		$("#deleteCh").click(function() {
+			if($(".chkAlarm:checked").val()){
+			if (confirm("정말 삭제하시겠습니까?")) {
+				$("#checkForm").submit();
+			}
+			}
 		});
 	</script>
 

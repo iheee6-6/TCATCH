@@ -58,14 +58,15 @@ li a {
 											</c:when>
 											<c:otherwise>
 												<c:forEach var="b" items="${ recentHistoryList }">
+												<c:url var="tDetail" value="tDetail.do">
+													<c:param name="tNo" value="${b.tNo }" />
+												</c:url>
 													<tr>
 														<fmt:formatDate value="${b.tDate}" var="tdate"
 															pattern="yyyy-MM-dd" />
 
 														<td>${tdate }</td>
-														<c:url var="tDetail" value="tDetail.do">
-															<c:param name="tNo" value="${b.tNo }" />
-														</c:url>
+														
 														<td><a href="${tDetail}"
 															style="font-size: 14px; color: black;">${b.tNo}</a></td>
 														<td>${b.artTitle }</td>

@@ -4,15 +4,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>TCATCH-공연장 약도</title>
+<link rel="shortcut icon" type="image/x-icon" href='${contextPath}/resources/images/common/logo.png'>
+
 </head>
 <body>
 
 	<div id="map"
 		style="width: 1000px; height: 600px; z-index: 0; margin: auto"></div>
+
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2afbe1f7936e7a946254f01d5b3a8e79&libraries=services"></script>
 	<script>
+	
+	
 	console.log("${address}");
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
