@@ -78,6 +78,14 @@
 		<result property="artNo" column="ART_NO"/>	
 	</resultMap>
 	
+	<resultMap id="RefundResultSet" type="Refund">
+		<id property="reNo" column="REFUND_NO"/>
+		<result property="puNo" column="PURCHASE_NO"/>
+		<result property="r_date" column="R_DATE"/>
+		<result property="status" column="STATUS"/>
+		<result property="userName" column="M_NAME"/>
+	</resultMap>
+	
 	<select id="selectRHistory" parameterType="Ticket"
 		resultMap="ticketResultSet">
 		SELECT purchase_no, buy_date, art_title, date_time, purchase_count,
@@ -359,5 +367,19 @@
 		FROM TICKET_VIEW
 		ORDER BY purchase_no DESC
 	</select>
+	
+	<select id="selectRefund" resultMap="RefundResultSet">
+		SELECT *
+		FROM REFUND
+        JOIN PURCHASE USING(PURCHASE_NO)
+        JOIN MEMBER USING(M_NO)
+		ORDER BY REFUND_NO
+	</select>
+	
+	<update id="updateRefund">
+		UPDATE REFUND
+		SET STATUS = 'N'
+		WHERE REFUND_NO=#{reNo}
+	</update>
 
 </mapper>

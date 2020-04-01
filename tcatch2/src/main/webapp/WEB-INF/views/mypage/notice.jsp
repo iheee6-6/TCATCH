@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>TCATCH-MyPage</title>
+<link rel="shortcut icon" type="image/x-icon" href='${contextPath}/resources/images/common/logo.png'>
 
 <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
 <link href="resources/css/mypage/notice.css" rel="stylesheet" />
@@ -74,30 +75,30 @@ padding-top:30px;
 											<canvas id="chart-area10141" class="donut"
 												style="display: block; width: 220px; height: 220px;"
 												width="220" height="220"></canvas>
-										</div> <fmt:formatDate var="tdate1" value="${notice.ticketingDate }" pattern="yyyy-MM-dd HH:mm:ss" />
+										</div> 
+											<fmt:formatDate var="tdate1" value="${notice.ticketingDate }" pattern="yyyy-MM-dd HH:mm:ss" />
 											<fmt:parseNumber value="${notice.ticketingDate.time / (1000*60*60*24)}"
 												integerOnly="true" var="tdate12" />
 											
-											<fmt:formatDate var="tdate2" value="${notice.ticketingDate }"
-											pattern="yyyy.MM.dd(E) : aaa hh:mm" />
-										<div class="donut-dday">
-											<c:choose>
-												<c:when test="${tdate12-now  >=1}">
-													D-${tdate12-now}
-												</c:when>
-												<c:otherwise>
-													Today
-												</c:otherwise>
-											</c:choose>
-										</div>
-										<div class="ticket-txt">
-
-											<p class="ticket-date">${tdate2 }</p>
-											<p class="ticket-tit">${notice.artTitle}</p>
-										</div>
-										<p class="ticket-tail">
-											<span class="re">단독</span>
-										</p></a>
+											<fmt:formatDate var="tdate2" value="${notice.ticketingDate }" pattern="yyyy.MM.dd(E) : aaa hh:mm" />
+											<div class="donut-dday">
+												<c:choose>
+													<c:when test="${tdate12-now >= 1}">
+														D-${tdate12-now}
+													</c:when>
+													<c:otherwise>
+														Today
+													</c:otherwise>
+												</c:choose>
+											</div>
+											<div class="ticket-txt">
+	
+												<p class="ticket-date">${tdate2 }</p>
+												<p class="ticket-tit">${notice.artTitle}</p>
+											</div>
+											<p class="ticket-tail">
+												<span class="re">단독</span>
+											</p></a>
 								</div>
 							</c:forEach>
 

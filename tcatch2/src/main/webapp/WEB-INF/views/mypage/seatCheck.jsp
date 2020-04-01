@@ -5,7 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>TCATCH</title>
+<title>TCATCH-자리 확인</title>
+<link rel="shortcut icon" type="image/x-icon" href='${contextPath}/resources/images/common/logo.png'>
+
 <link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/detail1.css" />
 	<!-- sub.css -->
 	<link rel='stylesheet' type='text/css' href="${ contextPath }/resources/css/product/detail2.css" />
@@ -59,7 +61,6 @@ td {
 	<hr>
 	<table>
 		<%int count = 65;%>
-		<tbody>
 			<tr>
 				<c:forEach var="s" items="${sList}">
 					
@@ -75,27 +76,34 @@ td {
 					<c:otherwise>
 					<td>
 						<input type="checkbox" name="seatName[]"
-							id="${s.seatName }" value="${s.seatName }" disabled> <label
-							class="l" for='${s.seatName }' id="${s.seatName }"></label>
+							id="${s.seatName }" value="${s.seatName }" disabled> 
+							<label class="l" for='${s.seatName }' id="${s.seatName }"></label>
 					</td>
 					</c:otherwise>
 					</c:choose>
 				</c:forEach>
 			</tr>
-
-		</tbody>
+			
 	</table>
+	<br><br>
+	<c:forTokens items="${seat}" var="s" delims=" " varStatus="status">
+		${s}
+		<c:if test="${not status.last}">
+			,
+		</c:if>
+	</c:forTokens>
+	
 	<script>
-			$(function(){
-				console.log("${seat}");
-				var seatArray= '${seat}'.split(" ");
-				
-				for(var s in seatArray){
-					if(seatArray[s] != "")
-					$('input:checkbox[value='+seatArray[s]+']').next().css({"background":"red"});
-				}
-				
-			});
+		$(function(){
+			console.log("${seat}");
+			var seatArray= '${seat}'.split(" ");
+			
+			for(var s in seatArray){
+				if(seatArray[s] != "")
+				$('input:checkbox[value='+seatArray[s]+']').next().css({"background":"red"});
+			}
+			
+		});
 	</script>
 </body>
 </html>

@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 
-<title>Insert title here</title>
-
+<title>TCATCH-MyPage</title>
+<link rel="shortcut icon" type="image/x-icon" href='${contextPath}/resources/images/common/logo.png'>
 <!--     Fonts and icons     -->
 <link
 	href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"

@@ -5,7 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>TCATCH</title>
+<title>TCATCH-MyPage</title>
+<link rel="shortcut icon" type="image/x-icon" href='${contextPath}/resources/images/common/logo.png'>
+
 <style>
 .pImage {
 	float: left;
@@ -16,12 +18,12 @@ p span {
 	margin-left: 10px;
 }
 
-.sidebar{
-	height:100% !important;
+.sidebar {
+	height: 100% !important;
 }
 
-.main-panel{
-display:inline-table
+.main-panel {
+	display: inline-table
 }
 </style>
 </head>
@@ -52,20 +54,23 @@ display:inline-table
 											<c:choose>
 												<c:when test="${empty interestList }">
 													<tr>
-														<td colspan="3" style="text-align:center">관심공연이 없습니다.</td>
+														<td colspan="3" style="text-align: center">관심공연이
+															없습니다.</td>
 													</tr>
 												</c:when>
 												<c:otherwise>
 													<c:forEach var="I" items="${ interestList}">
 														<tr>
 															<td><input class="interestP" name="interestP"
-																type="checkbox" value="${I.artNo }"> &nbsp; ${I.enrollDate }</td>
+																type="checkbox" value="${I.artNo }"> &nbsp;
+																${I.enrollDate }</td>
 															<td>
 																<p class="list">
 																<p class="pImage">
 																	<c:forEach var="img" items="${imgList}">
 																		<c:if test="${img.artNo eq I.artNo }">
-																			<img src="resources/images/art/${img.changeName }" width="72" height="89">
+																			<img src="resources/images/art/${img.changeName }"
+																				width="72" height="89">
 																		</c:if>
 																	</c:forEach>
 																</p>
@@ -77,7 +82,8 @@ display:inline-table
 															<td><c:url var="pDetail" value="musicalDetail.do">
 																	<c:param name="artNo" value="${I.artNo }" />
 																</c:url>
-																<button type="button" class="btn" onclick="location.href='${pDetail}'">예매하기</button></td>
+																<button type="button" class="btn"
+																	onclick="location.href='${pDetail}'">예매하기</button></td>
 
 														</tr>
 													</c:forEach>
@@ -96,7 +102,8 @@ display:inline-table
 										<%-- <c:url var="deleteP" value="deleteP.do">
 										<c:param name="art_no" value="<%=arr %>"/>
 									</c:url> --%>
-										<button type="button" class="btn btn-sm" id="deleteP">선택 삭제</button>
+										<button type="button" class="btn btn-sm" id="deleteP">선택
+											삭제</button>
 									</div>
 								</div>
 								<%-- </c:if> --%>
@@ -111,31 +118,30 @@ display:inline-table
 	<script>
 		$(function() {
 			$("#interest").addClass("active");
-		
+		});
 
-			$("#allCheck").click(function() {
-				if ($(this).text() == "전체 선택") {
-					$('.interestP').prop('checked', true);
-					$(this).text("전체 해제");
-				} else {
-					$('.interestP').prop('checked', false);
-					$(this).text("전체 선택");
+		$("#allCheck").click(function() {
+			if ($(this).text() == "전체 선택") {
+				$('.interestP').prop('checked', true);
+				$(this).text("전체 해제");
+			} else {
+				$('.interestP').prop('checked', false);
+				$(this).text("전체 선택");
+			}
+
+		});
+		
+		$("#deleteP").click(function() {
+			if ($(".interestP:checked").val()) {
+				if (confirm("정말 삭제하시겠습니까?")) {
+					$("#checkForm").submit();
 				}
-	
-			});
-	
-			$("#deleteP").click(function() {
-				if($(".interestP:checked").val()){
-					if (confirm("정말 삭제하시겠습니까?")) {
-						$("#checkForm").submit();
-					}
-				}
-	
-			});
+			}
+
 		});
 	</script>
 	<jsp:include page="../common/footer.jsp" />
-	
+
 </body>
 
 </html>

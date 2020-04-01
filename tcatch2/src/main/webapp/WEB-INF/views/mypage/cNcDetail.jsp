@@ -7,7 +7,8 @@
 <head>
 <meta charset="UTF-8">
 
-<title>TCATCH</title>
+<title>TCATCH-MyPage</title>
+<link rel="shortcut icon" type="image/x-icon" href='${contextPath}/resources/images/common/logo.png'>
 
 <style>
 ul{
@@ -155,17 +156,16 @@ ul{
 													
 													</td>
 												</tr>
-												
-
+									
 											</table>
 
 										</div>
 										
 										
 										<!-- 취소안내 -->
-										<div class="mycont">
+										<div class="mycont" id="tdI">
 											<c:if test="${ticket.status ne '환불 완료'}">
-											<h2 class="tit">
+											<h2 class="tit" >
 												<img src="resources/images/mypage/h2_mtit08.gif"
 													alt="예매취소 안내" />
 											</h2>
@@ -173,7 +173,7 @@ ul{
 												<h4 style="margin-top: 10px;">
 												<fmt:formatDate value="${ticket.viewDate}" pattern="yyyy-MM-dd HH:mm" var="end"/>
 													
-													※ 취소 마감시간 :<span class='text-danger' id="endT">${endT}</span> 까지
+													※ 취소 마감시간 :<span class='text-danger' id="endT"></span> 까지
 												</h4>
 												
 												
@@ -191,13 +191,16 @@ ul{
 											</c:if>
 											
 										</c:if>
+										</div>
 											<div style="text-align: center;">
 												<a class='dcursor' id='imgList'
 													onclick='history.back();'><img
 													src='resources/images/mypage/btn_reser_list.gif'
 													alt='예매내역 목록' /></a>
 											</div>
-										</div>
+											
+											<a href="javascript:window.print()"><button class="btn btn-primary" id="print-button" style="float:right">인쇄하기</button></a>
+										
 									</div>
 									<!-- 유의사항 -->
 									<div class="mycont">
@@ -248,40 +251,51 @@ ul{
 		</div>
 		</div>
 	<script>
-	$(function(){
-		$("#cnc").addClass("active");
-		
-		var date = new Date('${end}');
-		console.log(date.getTime()-60*60*1000);
-		date.setTime(date.getTime()-60*60*1000);
-		
-		var endd = moment(date);
-		$("#endT").text(endd.format('LLL'));
-		
-	
-		$("#imgCancelPayNone").click(function(){
-			
-			if(confirm("정말 예매취소하시겠습니까?")){
-				var date = new Date();
+		$(function() {
+			$("#cnc").addClass("active");
+
+			var viewDate = new Date('${end}');
+			viewDate.setTime(viewDate.getTime() - 60 * 60 * 1000);
+
+			var endd = moment(viewDate);
+			$("#endT").text(endd.format('LLL'));
+			var date = new Date();
+
+			if (moment(date).isAfter(endd)) {
+				$("#divDeliveryNone").html("완료");
+				$("#tdI").html("");
 				
-				var endT = $("#endT").text();
-				
-				if(moment(date).isBefore(endd)){
-					location.href='${ tdelete }';
-				}else{
-					alert("취소가능일 지났습니다.");
-				}
 			}
+
+			$("#imgCancelPayNone").click(function() {
+
+				if (confirm("정말 예매취소하시겠습니까?")) {
+					var date = new Date();
+
+					var endT = $("#endT").text();
+
+					if (moment(date).isBefore(endd)) {
+						location.href = '${ tdelete }';
+					} else {
+						alert("취소가능일 지났습니다.");
+					}
+				}
+			});
+
 		});
-		
-		
-	});
-	function MySeatPopup(){
-			 window.open("seatCheck.do?seat=${ticket.seat}&artNo=${ticket.artNo}&timeNo=${ticket.timeNo}", "내 자리 확인", "width=800, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
-	}  
-	function ViewTheaterMap(){
-		window.open("viewTheaterMap.do?address='${ticket.address }'", "극장 위치 확인", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
-	}
+		function MySeatPopup() {
+			window
+					.open(
+							"seatCheck.do?seat=${ticket.seat}&artNo=${ticket.artNo}&timeNo=${ticket.timeNo}",
+							"내 자리 확인",
+							"width=800, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+		}
+		function ViewTheaterMap() {
+			window
+					.open("viewTheaterMap.do?address='${ticket.address }'",
+							"극장 위치 확인",
+							"width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+		}
 	</script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/ko.js"></script>

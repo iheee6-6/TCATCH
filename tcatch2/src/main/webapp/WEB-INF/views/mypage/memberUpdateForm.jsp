@@ -19,8 +19,9 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap"
 	rel="stylesheet">
+<title>TCATCH-MyPage</title>
+<link rel="shortcut icon" type="image/x-icon" href='${contextPath}/resources/images/common/logo.png'>
 
-<title>Insert title here</title>
 <style>
 .bd-placeholder-img {
 	font-size: 1.125rem;
