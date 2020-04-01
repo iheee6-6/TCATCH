@@ -31,6 +31,7 @@
 		<result property="dWriter" column="DWRITER"/>
 		<result property="count" column="COUNT"/>
 		<result property="status" column="STATUS"/>
+		<result property="rstatus" column="RCHECK"/>
 		
 	</resultMap>
 	
@@ -102,7 +103,7 @@
 	
 	<insert id="insertReport" parameterType="Report">
 		INSERT INTO REPORT
-		VALUES(SEQ_D_NO.NEXTVAL,#{reCno},#{dContent},#{dWriter},DEFAULT,DEFAULT,#{dType})
+		VALUES(SEQ_D_NO.NEXTVAL,#{reCno},#{dContent},#{dWriter},#{count},DEFAULT,#{dType},DEFAULT)
 	
 	</insert>
 	
@@ -131,5 +132,11 @@
    	DELETE FROM REPORT
    	WHERE REPORT_NO = #{dNo}
    </delete>
+   
+   <update id="updateR">
+   	UPDATE REPORT
+   	SET RCHECK = 'Y'
+   	WHERE REPORT_NO = #{dNo}
+   </update>
 	
 </mapper>

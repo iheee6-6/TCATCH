@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.art.model.vo.Img;
+import com.tone.tcatch.art.model.vo.Purchase;
 import com.tone.tcatch.art.model.vo.Seat;
 import com.tone.tcatch.common.model.vo.PageInfo;
 import com.tone.tcatch.member.model.vo.Member;
@@ -236,6 +237,11 @@ public class MyPageDao {
 	public int updateRefund(Refund re) {
 		
 		return sqlSession.update("myPageMapper.updateRefund",re);
+	}
+
+	public int updatePurchase(Purchase p) {
+		
+		return sqlSession.update("myPageMapper.updatePurchase",p);
 	}
 
 	

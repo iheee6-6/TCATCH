@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.art.model.vo.Img;
+import com.tone.tcatch.art.model.vo.Purchase;
 import com.tone.tcatch.art.model.vo.Seat;
 import com.tone.tcatch.member.model.vo.Member;
 import com.tone.tcatch.mypage.model.vo.Alarm;
@@ -71,6 +72,8 @@ public interface MyPageService {
 	ArrayList<Ticket> selectRefund();
 
 	int updateRefund(Refund re);
+
+	int updatePurchase(Purchase p);
 
 
 }

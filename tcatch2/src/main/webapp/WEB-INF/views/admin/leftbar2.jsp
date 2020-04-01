@@ -30,10 +30,10 @@ section,div {
 	display: block;
 	
 }
+
 .wrapper{
 display:block;
 width:1300px;
-height:900px;
 margin-top: 150px;  
 margin-left:200px; 
 margin-right:200px;
@@ -42,7 +42,7 @@ margin-bottom: 150px;
 
 .sidebar{
 	width:17%;
-	height:100%;
+	height:500px;
 	float:left;
 }
 
@@ -75,9 +75,14 @@ margin-bottom: 150px;
 				<li id="cnc"><a href="admin3.do"><i
 						class="fa fa-* fa-check"></i>
 						<p>신고목록</p></a></li>
+						
+				<li id="cnc"><a href="adminArt.do"><i
+						class="fa fa-* fa-check"></i>
+						<p>공연목록</p></a></li>
 				<li id="viewPer"><a href="admin4.do"> <i
 						class="fa  fa-* fa-eye"></i>
 						<p>공연 입력</p></a></li>
+				
 
 			</ul>
 		</div>

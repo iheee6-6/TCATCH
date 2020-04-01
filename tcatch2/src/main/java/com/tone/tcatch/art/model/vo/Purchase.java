@@ -3,21 +3,21 @@ package com.tone.tcatch.art.model.vo;
 import java.sql.Date;
 
 public class Purchase {
-	private int purchaseNo; //¿¹¸Å ¹øÈ£
-	private int mNo; //È¸¿ø¹øÈ£
-	private String seatName; //ÁÂ¼® ÀÌ¸§
-	private int seatSal; //°¡°Ý
-	private int type; //¼ö·É ¹æ¹ý
-	private Date buyDate; //¿¹¸Å ³¯Â¥
-	private int purchaseCount; //¸Å¼ö
-	private int waybillNumber; //¿î¼ÛÀå ¹øÈ£
-	private int timeNo; //È¸Â÷¹øÈ£ 
-	private int artNo; // °ø¿¬¹øÈ£
+	private int purchaseNo; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+	private int mNo; //È¸ï¿½ï¿½ï¿½ï¿½È£
+	private String seatName; //ï¿½Â¼ï¿½ ï¿½Ì¸ï¿½
+	private int seatSal; //ï¿½ï¿½ï¿½ï¿½
+	private int type; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+	private Date buyDate; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥
+	private int purchaseCount; //ï¿½Å¼ï¿½
+	private String waybillNumber; //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+	private int timeNo; //È¸ï¿½ï¿½ï¿½ï¿½È£ 
+	private int artNo; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
 	
 	public Purchase() {}
 
 	public Purchase(int purchaseNo, int mNo, String seatName, int seatSal, int type, Date buyDate, int purchaseCount,
-			int waybillNumber, int timeNo, int artNo) {
+			String waybillNumber, int timeNo, int artNo) {
 		super();
 		this.purchaseNo = purchaseNo;
 		this.mNo = mNo;
@@ -34,7 +34,7 @@ public class Purchase {
 	
 	
 
-	public Purchase(int mNo, String seatName, int seatSal, int type, Date buyDate, int purchaseCount, int waybillNumber,
+	public Purchase(int mNo, String seatName, int seatSal, int type, Date buyDate, int purchaseCount, String waybillNumber,
 			int timeNo, int artNo) {
 		super();
 		this.mNo = mNo;
@@ -104,11 +104,11 @@ public class Purchase {
 		this.purchaseCount = purchaseCount;
 	}
 
-	public int getWaybillNumber() {
+	public String getWaybillNumber() {
 		return waybillNumber;
 	}
 
-	public void setWaybillNumber(int waybillNumber) {
+	public void setWaybillNumber(String waybillNumber) {
 		this.waybillNumber = waybillNumber;
 	}
 

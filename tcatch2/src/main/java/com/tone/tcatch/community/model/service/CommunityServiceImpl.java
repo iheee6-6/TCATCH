@@ -103,4 +103,11 @@ public class CommunityServiceImpl implements CommunityService{
 		
 		return cDao.deleteR(dNo);
 	}
+
+	@Override
+	public void updateR(int dNo) {
+		cDao.updateR(dNo);
+		
+	}
+
 }

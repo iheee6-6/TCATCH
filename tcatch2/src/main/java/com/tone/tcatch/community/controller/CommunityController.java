@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -108,7 +109,7 @@ public class CommunityController {
 	@RequestMapping("cdetail.do")
 	public ModelAndView communityDetail(ModelAndView mv , int cNo ,
 			@RequestParam("page") Integer page,
-			HttpServletRequest request , HttpServletResponse response
+			HttpServletRequest request , HttpServletResponse response,RedirectAttributes rd
 			) {
 		int currentPage = page != null ? page : 1;
 		
@@ -208,6 +209,9 @@ public class CommunityController {
 		System.out.println(r.getReCno());
 		System.out.println("report : " + r);
 		
+		r.setCount(page);
+		System.out.println("page : " + r.getCount());
+		
 		int result = cService.insertReport(r);
 		if(result >0 ) {
 			return "redirect:cdetail.do?cNo="+r.getReCno()+"&page=" + page;
@@ -236,7 +240,7 @@ public class CommunityController {
 		for(int i =0; i<product_No.length; i++) {
 			c.setcNo(Integer.parseInt(product_No[i]));
 			result = cService.delReport(c);
-			cService.deleteR(dNo[i]);
+			cService.updateR(dNo[i]);
 		}
 		
 		
@@ -252,7 +256,6 @@ public class CommunityController {
 	
 	@RequestMapping("/admin3.do")
 	public ModelAndView admin3(ModelAndView mv) {
-		
 		ArrayList<Report> list = cService.selectReport();
 		if(list != null) {
 			mv.addObject("list",list).setViewName("admin/admin3");

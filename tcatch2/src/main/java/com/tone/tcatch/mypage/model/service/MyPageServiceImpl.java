@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.tone.tcatch.art.model.vo.Art;
 import com.tone.tcatch.art.model.vo.ArtDetail;
 import com.tone.tcatch.art.model.vo.Img;
+import com.tone.tcatch.art.model.vo.Purchase;
 import com.tone.tcatch.art.model.vo.Seat;
 import com.tone.tcatch.common.Pagination;
 import com.tone.tcatch.common.model.vo.PageInfo;
@@ -187,6 +188,14 @@ public class MyPageServiceImpl implements MyPageService{
 		
 		return mpDao.updateRefund(re);
 	}
+
+	@Override
+	public int updatePurchase(Purchase p) {
+		
+		return mpDao.updatePurchase(p);
+	}
+
+
 
 
 	

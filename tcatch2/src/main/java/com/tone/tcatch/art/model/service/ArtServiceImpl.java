@@ -187,6 +187,14 @@ public class ArtServiceImpl implements ArtService{
 
 
 	@Override
+
+	public int deleteArt(Art a) {
+		
+		return aDao.deleteArt(a);
+	}
+
+
+
 	public int updateArt(Art a) {
 		return aDao.updateArt(a);
 	}
@@ -202,6 +210,7 @@ public class ArtServiceImpl implements ArtService{
 	public int updateTicketDate(TicketDate td) {
 		return aDao.updateTicketDate(td);
 	}
+
 
 
 }

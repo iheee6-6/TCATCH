@@ -9,12 +9,13 @@ public class Report {
 	private String dWriter;
 	private int count;
 	private String status;
+	private String rstatus;
 	
 	public Report() {
 		
 	}
 
-	public Report(int dNo,int reCno, String dType, String dContent, String dWriter, int count,String status) {
+	public Report(int dNo,int reCno, String dType, String dContent, String dWriter, int count,String status,String rstatus) {
 		super();
 		this.dNo = dNo;
 		this.reCno = reCno;
@@ -23,6 +24,17 @@ public class Report {
 		this.dWriter = dWriter;
 		this.count = count;
 		this.status = status;
+		this.rstatus = rstatus;
+	}
+	
+	
+
+	public String getRstatus() {
+		return rstatus;
+	}
+
+	public void setRstatus(String rstatus) {
+		this.rstatus = rstatus;
 	}
 
 	public int getdNo() {
@@ -85,8 +97,10 @@ public class Report {
 	@Override
 	public String toString() {
 		return "Report [dNo=" + dNo + ", reCno=" + reCno + ", dType=" + dType + ", dContent=" + dContent + ", dWriter="
-				+ dWriter + ", count=" + count + ", status=" + status + "]";
+				+ dWriter + ", count=" + count + ", status=" + status + ", rstatus=" + rstatus + "]";
 	}
+
+	
 
 
 	
