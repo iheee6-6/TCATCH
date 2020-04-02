@@ -388,7 +388,7 @@ public class MyPageController {
 	
 
 	//@Scheduled(cron = "0 0 * * * *") //매일 매시 정각마다(티켓팅은 정각에 이루어지기 때문)
-	  @Scheduled(cron = "0 * 15 * * *")
+	  @Scheduled(cron = "0 * * * * *")
 	  public void test() {
 		java.util.Date sysd = new java.util.Date();
 		Timestamp d = new Timestamp(sysd.getTime());
@@ -429,7 +429,7 @@ public class MyPageController {
 			messageHelper.setTo(tomail);
 			messageHelper.setSubject(title);
 			messageHelper.setText(content,true);
-			FileSystemResource file = new FileSystemResource(new File("C:/Users/USER/git/TCATCH/tcatch2/src/main/webapp/resources/images/common/logo.png"));
+			FileSystemResource file = new FileSystemResource(new File("D:/tcatch/TCATCH/tcatch2/src/main/webapp/resources/images/common/logo.png"));
 		    messageHelper.addInline("logo.png", file);
 
 			mailSender.send(message);

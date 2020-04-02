@@ -381,5 +381,11 @@
 		SET STATUS = 'N'
 		WHERE REFUND_NO=#{reNo}
 	</update>
+	
+	<update id="updatePurchase">
+		UPDATE PURCHASE
+		SET WAYBILL_NUMBER = #{waybillNumber}
+		WHERE PURCHASE_NO = #{purchaseNo}
+	</update>
 
 </mapper>

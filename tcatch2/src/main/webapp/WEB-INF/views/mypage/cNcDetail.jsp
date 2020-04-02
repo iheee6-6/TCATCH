@@ -203,7 +203,7 @@ ul{
 										
 									</div>
 									<!-- 유의사항 -->
-									<div class="mycont">
+									<div class="mycont" id="guide1">
 										<h2 class="tit">
 											<img src="resources/images/mypage/h2_mtit09.gif"
 												alt="유의사항" />
@@ -255,18 +255,20 @@ ul{
 			$("#cnc").addClass("active");
 
 			var viewDate = new Date('${end}');
-			viewDate.setTime(viewDate.getTime() - 60 * 60 * 1000);
-
 			var endd = moment(viewDate);
-			$("#endT").text(endd.format('LLL'));
+			
 			var date = new Date();
 
 			if (moment(date).isAfter(endd)) {
 				$("#divDeliveryNone").html("완료");
 				$("#tdI").html("");
-				
+				$("#guide1").html("");
 			}
-
+			
+			viewDate.setTime(viewDate.getTime() - 60 * 60 * 1000);
+			endd= moment(viewDate);
+			$("#endT").text(endd.format('LLL'));
+			
 			$("#imgCancelPayNone").click(function() {
 
 				if (confirm("정말 예매취소하시겠습니까?")) {
@@ -277,7 +279,7 @@ ul{
 					if (moment(date).isBefore(endd)) {
 						location.href = '${ tdelete }';
 					} else {
-						alert("취소가능일 지났습니다.");
+						alert("취소 가능일이 지났습니다.");
 					}
 				}
 			});
