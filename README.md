@@ -22,11 +22,22 @@
 ▶ 티켓팅 알림 
 
 
-<개발 환경>
 운영체제 - Windows
+
+
 개발환경 - Java 1.8, Eclipse, oracle 11g R2, SpringFramework 3.1, HTML5, CSS, Java Script, Ajax
-DB - Oracle 11g, sql Developer
+
+
+DB - Oracle 11g sql Developer
+
+
 서버 - Apache Tomcat 8.5
+
+
 설계도구 - Erdcloud, kakaoOven
+
+
 라이브러리 - MyBatis, Maven, ojdbc6, Log4j, spring-security, fileupload, JavaMail API, Bootstrap4, jQuery 3.4.1 
+
+
 형상관리 - GitHub
